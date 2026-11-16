@@ -48,6 +48,8 @@ class TestExperimentoMdmCvm(unittest.TestCase):
         self.assertGreater(formal["exact_normalized"]["f1"], 0.98)
         self.assertAlmostEqual(drift["exact_normalized"]["pr_auc"], 0.7626, delta=0.01)
         self.assertAlmostEqual(drift["hybrid_logistic"]["pr_auc"], 0.8835, delta=0.01)
+        if "hybrid_hgb" in drift:
+            self.assertAlmostEqual(drift["hybrid_hgb"]["pr_auc"], 0.8835, delta=0.01)
         self.assertGreater(
             drift["hybrid_logistic"]["pr_auc"] - drift["exact_normalized"]["pr_auc"],
             0.11,

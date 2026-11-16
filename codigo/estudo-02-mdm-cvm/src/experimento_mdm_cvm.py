@@ -695,9 +695,11 @@ def _evaluate_linkage_regime(
         "candidate_positives": block_true,
         "candidate_negatives": int(n_pairs - block_true),
         "blocking_recall": round(float(block_recall), 4),
+        "classifier_type": "HistGradientBoostingClassifier",
         "models": {
             "exact_normalized": _summarize_model(exact_norm, None),
             "tfidf_cosine": _summarize_model(oof_tfidf_pred, tfidf_cos),
+            "hybrid_hgb": _summarize_model(oof_ml_pred, oof_ml_score),
             "hybrid_logistic": _summarize_model(oof_ml_pred, oof_ml_score),
         },
         "feature_coefficients": {name: round(float(val), 4) for name, val in zip(feat_names, mean_coefs)},

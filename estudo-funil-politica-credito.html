@@ -565,8 +565,8 @@
         <div class="quick-stat-val">5,05M u.m. (4,14% sobre capital)</div>
       </div>
       <div class="quick-stat-item">
-        <div class="quick-stat-label">Controle de Risco Oculto</div>
-        <div class="quick-stat-val">1,05% de perda · 1.794 alertas bloqueados</div>
+        <div class="quick-stat-label">Controle de Inadimplência &amp; Perda</div>
+        <div class="quick-stat-val">1,05% Bad Rate EAD (0,69% perda bruta)</div>
       </div>
       <div class="quick-stat-item">
         <div class="quick-stat-label">Ganho vs Regras de Corte Único</div>
@@ -643,7 +643,7 @@
               <div class="e5-bench-row" style="background:#ECFDF5; border-color:#6EE7B7;">
                 <div class="e5-bench-meta">
                   <div class="e5-bench-title" style="color:#065F46;">Funil + Matriz 3×3</div>
-                  <div class="e5-bench-sub" style="color:#047857;">49,7% aprov. · 1,05% perda</div>
+                  <div class="e5-bench-sub" style="color:#047857;">49,7% aprov. · 1,05% Bad Rate EAD (0,69% perda)</div>
                 </div>
                 <div class="e5-bench-val" style="color:#047857;">5,05M</div>
               </div>
@@ -804,8 +804,8 @@
                   <tr>
                     <th>Política Simulada (30.000 registros OOS)</th>
                     <th>Aprovados (N / %)</th>
-                    <th>Perda (Contratos)</th>
-                    <th>Perda (Capital)</th>
+                    <th>Bad Rate Contratos</th>
+                    <th>Bad Rate EAD (Perda Bruta LGD 65%)</th>
                     <th>Capital Alocado (u.m.)</th>
                     <th>Lucro Líquido (u.m.)</th>
                     <th>Retorno s/ Capital</th>
@@ -816,7 +816,7 @@
                     <td>Regra Rígida (Antes · só Longo Prazo)</td>
                     <td>11.732 (39,11%)</td>
                     <td>0,88%</td>
-                    <td>0,88%</td>
+                    <td>0,88% (0,57%)</td>
                     <td>117.320.000</td>
                     <td>4.553.250</td>
                     <td>3,88%</td>
@@ -825,7 +825,7 @@
                     <td>Só Score LP (Armadilha · entrada flexível)</td>
                     <td>17.964 (59,88%)</td>
                     <td>2,99%</td>
-                    <td>2,99%</td>
+                    <td>2,99% (1,94%)</td>
                     <td>179.640.000</td>
                     <td>4.297.950</td>
                     <td>2,39%</td>
@@ -834,7 +834,7 @@
                     <td>Random Forest 1D (Corte único @ 5,5%, mesmo capital)</td>
                     <td>12.198 (40,66%)</td>
                     <td>0,91%</td>
-                    <td>0,91%</td>
+                    <td>0,91% (0,59%)</td>
                     <td>121.980.000</td>
                     <td>4.706.550</td>
                     <td>3,86%</td>
@@ -843,7 +843,7 @@
                     <td>Random Forest 1D (Pareado A/B + taxa 7,0% no B)</td>
                     <td>14.903 (49,68%)</td>
                     <td>1,09%</td>
-                    <td>1,03%</td>
+                    <td>1,03% (0,67%)</td>
                     <td>121.982.000</td>
                     <td>5.076.630</td>
                     <td>4,16%</td>
@@ -852,7 +852,7 @@
                     <td style="color:#166534;">Funil + Matriz 3×3 (Solução C→B→A)</td>
                     <td style="color:#166534;">14.903 (49,68%)</td>
                     <td style="color:#166534;">1,20%</td>
-                    <td style="color:#166534;">1,05%</td>
+                    <td style="color:#166534;">1,05% (0,69%)</td>
                     <td style="color:#166534;">121.982.000</td>
                     <td style="color:#166534;">5.051.520</td>
                     <td style="color:#166534;">4,14%</td>
@@ -1259,7 +1259,7 @@ python -m unittest discover -s testes -v</pre>
     "study05_desc": "Separa eliminatórios por gravidade (<code>R1→R2→R3</code>) e aplica Matriz 3×3 na R4: <strong>5,05M u.m.</strong> de P&amp;L simulado (+10,9% sobre a regra rígida de 4,55M). O ganho decorre da precificação de risco no Cluster B (+739k u.m.), exigindo adesão mínima de 75,9%. O RF 1D pareado rende 5,08M (−0,49%): a matriz entrega 9 células auditáveis.",
     "study05_btn_study": "Ler Estudo e Simulador →",
     "hero_policy_label": "Concessão de Crédito & IA · 150 mil registros históricos",
-    "hero_policy_val": "Elevou o P&amp;L simulado em <strong>+10,9%</strong> sobre a regra rígida, com perda EAD de <strong>1,05%</strong> →",
+    "hero_policy_val": "Elevou o P&amp;L simulado em <strong>+10,9%</strong> sobre a regra rígida, com Bad Rate EAD de <strong>1,05%</strong> (perda bruta de 0,69%) →",
     "study03_badge": "Estudo 03 · 138 Bancos + 108 UF-Anos",
     "study03_meta": "BCB Olinda (11m) + IBGE 2022–2025",
     "study03_title": "Onde Bancos Cobram Mais Caro e Limites da Renda Regional",
@@ -1380,7 +1380,7 @@ python -m unittest discover -s testes -v</pre>
     "hero_card_kicker": "Latest Studies",
     "hero_card_sub": "Click any outcome below to inspect the open data and code:",
     "hero_policy_label": "Credit Policy & AI · 150k Historical Records",
-    "hero_policy_val": "Lifted simulated P&amp;L by <strong>+10.9%</strong> over the rigid rule, with a <strong>1.05%</strong> EAD bad rate →",
+    "hero_policy_val": "Lifted simulated P&amp;L by <strong>+10.9%</strong> over rigid rule, with <strong>1.05%</strong> EAD Bad Rate (0.69% gross credit loss) →",
     "hero_diff_label": "Credit Forecasting · Central Bank",
     "hero_diff_val": "Cut forecast MAE by <strong>R$ 7.39 bn/month (-54%)</strong> with ANBIMA holiday calendar →",
     "hero_domain_label": "Data Quality & Collections · 30k Accounts",
@@ -1556,7 +1556,7 @@ python -m unittest discover -s testes -v</pre>
     "hero_card_kicker": "Últimos Estudios",
     "hero_card_sub": "Haz clic en cualquier resultado para ver los datos y el código:",
     "hero_policy_label": "Concesión de Crédito & IA · 150 mil registros históricos",
-    "hero_policy_val": "Elevó el P&amp;L simulado en <strong>+10,9%</strong> sobre la regla rígida, con pérdida EAD de <strong>1,05%</strong> →",
+    "hero_policy_val": "Elevó el P&amp;L simulado en <strong>+10,9%</strong> sobre la regla rígida, con Bad Rate EAD de <strong>1,05%</strong> (pérdida bruta de 0,69%) →",
     "hero_diff_label": "Previsión de Crédito · Banco Central",
     "hero_diff_val": "Redujo el error de proyección (MAE) en <strong>R$ 7,39 mil M/mes (-54%)</strong> con feriados ANBIMA →",
     "hero_domain_label": "Calidad de Datos & Cobranza · 30 mil cuentas",
@@ -2332,7 +2332,7 @@ python -m unittest discover -s testes -v</pre>
     const kpiEl = document.getElementById("e5-sim-kpis");
     kpiEl.innerHTML = [
       `<div class="kpi-card" style="padding:15px 16px;"><div class="kpi-label">Aprovados (30.000 registros OOS)</div><div class="kpi-val">${fmtPct(aprovEfetivos / 30000)} (${fmtInt(aprovEfetivos)})</div><div class="kpi-delta">Cluster A: ${fmtInt(pol.conservacao.cluster_a)} · Cluster B: ${fmtInt(pol.conservacao.cluster_b)}</div></div>`,
-      `<div class="kpi-card" style="padding:15px 16px;"><div class="kpi-label">Perda s/ Capital · Retorno</div><div class="kpi-val">${fmtPct(pol.bad_rate_ead)} · ${fmtPct(pnlOverEad)}</div><div class="kpi-delta">Capital alocado: ${fmtInt(eadTotal)} u.m.</div></div>`,
+      `<div class="kpi-card" style="padding:15px 16px;"><div class="kpi-label">Bad Rate EAD · Perda LGD</div><div class="kpi-val">${fmtPct(pol.bad_rate_ead)} · ${fmtPct(pol.bad_rate_ead * lgd)}</div><div class="kpi-delta">Retorno s/ capital: ${fmtPct(pnlOverEad)} (${fmtInt(eadTotal)} u.m.)</div></div>`,
       `<div class="kpi-card" style="padding:15px 16px;"><div class="kpi-label">Lucro Líquido (Perda ${Math.round(lgd * 100)}%)</div><div class="kpi-val" style="color:${isOpt ? "#059669" : "#0B2038"};">${fmtInt(pnl)} u.m.</div><div class="kpi-delta">IC 95%: [${fmtInt(icLo)}; ${fmtInt(icHi)}]${extraPremissa}</div></div>`,
       `<div class="kpi-card" style="padding:15px 16px;"><div class="kpi-label">Ganho vs Regra Rígida</div><div class="kpi-val" style="color:${deltaRig >= 0 ? "#059669" : "#D91568"};">${deltaRig >= 0 ? "+" : ""}${fmtInt(deltaRig)} u.m.</div><div class="kpi-delta">RF 1D corte único: ${fmtInt(pnlRf1d)} · ${pnlPerApp.toFixed(2).replace(".", ",")} u.m./contrato</div></div>`
     ].join("");
@@ -2367,13 +2367,13 @@ python -m unittest discover -s testes -v</pre>
     if (isOpt) {
       diagEl.innerHTML = `<span style="font-weight:600; color:#0F172A;">Leitura do cenário (Perda ${Math.round(lgd * 100)}%${extraPremissa}):</span> a política Funil + Matriz 3×3 aprova ${fmtInt(aprovEfetivos)} contratos com retorno sobre capital de ${fmtPct(pnlOverEad)} e lucro líquido de ${fmtInt(pnl)} u.m. — superando a Regra Rígida (${fmtInt(pnlRig)}) e o Random Forest 1D em corte único no mesmo capital (${fmtInt(pnlRf1d)}). Reduzir a taxa do Cluster B para 5,50% no seletor 4 mostra que o ajuste tarifário responde por +739 mil u.m.`;
     } else if (polKey === "rf_cp_isolado_1d_mesmo_ead") {
-      diagEl.innerHTML = `<span style="font-weight:600; color:#0F172A;">Leitura do cenário — Random Forest 1D (corte único @ 121,98M):</span> com taxa uniforme de 5,5% e limite integral, aprova ${fmtInt(pol.aprovados)} registros (perda de ${fmtPct(pol.bad_rate_ead)}) e gera ${fmtInt(pnl)} u.m. — mostrando quanto a contraproposta de 65% a 7,0% no Cluster B agrega ao resultado final.`;
+      diagEl.innerHTML = `<span style="font-weight:600; color:#0F172A;">Leitura do cenário — Random Forest 1D (corte único @ 121,98M):</span> com taxa uniforme de 5,5% e limite integral, aprova ${fmtInt(pol.aprovados)} registros (Bad Rate EAD de ${fmtPct(pol.bad_rate_ead)}, perda bruta de ${fmtPct(pol.bad_rate_ead * lgd)}) e gera ${fmtInt(pnl)} u.m. — mostrando quanto a contraproposta de 65% a 7,0% no Cluster B agrega ao resultado final.`;
     } else if (polKey === "rf_cp_isolado_pareado_ab") {
       diagEl.innerHTML = `<span style="font-weight:600; color:#0F172A;">Leitura do cenário — Random Forest 1D Pareado A/B:</span> aplicando as mesmas faixas (7.175 a 100% + 7.728 a 65%) e taxas (5,5% / 7,0%) sem a grade 3×3, gera ${fmtInt(pnl)} u.m. — uma diferença de apenas ${fmtInt(pnl - pnlOpt)} u.m. (0,49%) em troca da governança clara dos 9 quadrantes.`;
     } else if (polKey === "conservadora_rigida") {
       diagEl.innerHTML = `<span style="font-weight:600; color:#0F172A;">Leitura do cenário — Regra Rígida (Antes):</span> os bloqueios precoces nas etapas R2 e R3 limitam a aprovação a ${fmtPct(pol.taxa_aprovacao)} (${fmtInt(pol.ead_total_um)} u.m. de capital), entregando ${fmtInt(pnl)} u.m. (${fmtPct(pnlOverEad)} sobre o capital).`;
     } else {
-      diagEl.innerHTML = `<span style="font-weight:600; color:#0F172A;">Leitura do cenário — Só Score LP (Armadilha):</span> abre a porta sem filtro de curto prazo, aprovando os 1.794 casos de Alerta Precoce e elevando a perda para ${fmtPct(pol.bad_rate_ead)} — o que faz o lucro cair rapidamente quando a perda na cobrança sobe.`;
+      diagEl.innerHTML = `<span style="font-weight:600; color:#0F172A;">Leitura do cenário — Só Score LP (Armadilha):</span> abre a porta sem filtro de curto prazo, aprovando os 1.794 casos de Alerta Precoce e elevando o Bad Rate EAD para ${fmtPct(pol.bad_rate_ead)} (perda bruta de ${fmtPct(pol.bad_rate_ead * lgd)}) — o que faz o lucro cair rapidamente quando a perda na cobrança sobe.`;
     }
 
     const cleanStageName = name => name

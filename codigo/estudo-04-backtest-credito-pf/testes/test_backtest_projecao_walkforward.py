@@ -35,8 +35,35 @@ class TestBacktestProjecaoWalkforward(unittest.TestCase):
         self.assertAlmostEqual(ridge["bottomup_mae_brl_bi"], 6.24, delta=0.05)
         self.assertAlmostEqual(naive["bottomup_mae_brl_bi"], 13.63, delta=0.05)
         self.assertAlmostEqual(bench["budget_saving_brl_bi_month"], 7.39, delta=0.05)
+        self.assertAlmostEqual(bench["forecast_error_reduction_brl_bi_month"], 7.39, delta=0.05)
         self.assertGreaterEqual(ridge["bottomup_within_5_count"], 32)
         self.assertGreater(ridge["bottomup_ljung_box_p"], 0.05)
+
+    def test_03_ablation_study_reproducibility(self):
+        mod = load_module()
+        latent, realized = mod.generate_series()
+        snapshot = mod.load_bcb_snapshot()
+        ablation = mod.run_ablation_benchmark(realized, snapshot["dates"])
+        self.assertEqual(len(ablation), 5)
+        keys = [x["key"] for x in ablation]
+        self.assertEqual(keys, ["naive_t1", "ridge_raw", "ridge_season", "ridge_weekdays", "ridge_anbima"])
+
+        # Verifica cada degrau da ablação empírica
+        raw = next(x for x in ablation if x["key"] == "ridge_raw")
+        season = next(x for x in ablation if x["key"] == "ridge_season")
+        weekdays = next(x for x in ablation if x["key"] == "ridge_weekdays")
+        anbima = next(x for x in ablation if x["key"] == "ridge_anbima")
+
+        self.assertAlmostEqual(raw["bottomup_mae_brl_bi"], 9.52, delta=0.05)
+        self.assertAlmostEqual(season["bottomup_mae_brl_bi"], 9.42, delta=0.05)
+        self.assertAlmostEqual(weekdays["bottomup_mae_brl_bi"], 7.47, delta=0.05)
+        self.assertAlmostEqual(anbima["bottomup_mae_brl_bi"], 6.24, delta=0.05)
+
+        # Ganho incremental comprovado do calendário ANBIMA sobre dias úteis brutos
+        incremental_anbima = weekdays["bottomup_mae_brl_bi"] - anbima["bottomup_mae_brl_bi"]
+        self.assertAlmostEqual(incremental_anbima, 1.23, delta=0.05)
+        self.assertAlmostEqual(anbima["cumulative_reduction_bi"], 7.39, delta=0.05)
+        self.assertAlmostEqual(anbima["reduction_vs_naive_pct"], 54.2, delta=0.5)
 
 
 if __name__ == "__main__":

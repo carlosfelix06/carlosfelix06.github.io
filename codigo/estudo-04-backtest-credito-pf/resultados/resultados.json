@@ -24,12 +24,12 @@
     "product_mase": 0.9831534015895352,
     "aggregate_mase": 0.9987962908881954,
     "paired_t_statistic": 6.6306781710364415,
-    "paired_t_p_value": 3.9846210030474405e-08,
+    "paired_t_p_value": 3.984621003047435e-08,
     "ljung_box_lag": 4,
-    "ljung_box_statistic": 16.888031829180118,
-    "ljung_box_p_value": 0.0020322034927407187,
+    "ljung_box_statistic": 16.888031829180115,
+    "ljung_box_p_value": 0.002032203492740722,
     "dm_statistic": 5.535160519860301,
-    "dm_p_value": 1.6190593022176657e-06,
+    "dm_p_value": 1.6190593022176621e-06,
     "dm_hac_lag": 4,
     "per_modality": [
       {
@@ -175,8 +175,9 @@
         }
       ],
       "dm_ridge_vs_naive_stat": 2.55,
-      "dm_ridge_vs_naive_p": 0.015649191974251183,
+      "dm_ridge_vs_naive_p": 0.015649191974251186,
       "mae_reduction_brl_bi_month": 7.39,
+      "forecast_error_reduction_brl_bi_month": 7.39,
       "budget_saving_brl_bi_month": 7.39,
       "origin_series": [
         {
@@ -442,6 +443,63 @@
           "ridge_bu_bi": 405.84,
           "naive_ape_pct": 0.93,
           "ridge_ape_pct": 1.93
+        }
+      ],
+      "ablation_study": [
+        {
+          "key": "naive_t1",
+          "label": "Baseline Ingênuo (t-1)",
+          "description": "Projeta o valor observado no mês imediatamente anterior",
+          "bottomup_mae_brl_bi": 13.63,
+          "bottomup_wmape_pct": 3.8,
+          "bottomup_within_5pct": 75.8,
+          "incremental_reduction_bi": 0.0,
+          "cumulative_reduction_bi": 0.0,
+          "reduction_vs_naive_pct": 0.0
+        },
+        {
+          "key": "ridge_raw",
+          "label": "Ridge (Lags + Tendência Linear)",
+          "description": "Lags t-1, t-12 e tendência linear (t/60)",
+          "bottomup_mae_brl_bi": 9.52,
+          "bottomup_wmape_pct": 2.66,
+          "bottomup_within_5pct": 81.8,
+          "incremental_reduction_bi": 4.11,
+          "cumulative_reduction_bi": 4.11,
+          "reduction_vs_naive_pct": 30.2
+        },
+        {
+          "key": "ridge_season",
+          "label": "Ridge + Sazonalidade Harmônica",
+          "description": "Acrescenta sen/cos harmônicos e dummies de dez/jan/fev",
+          "bottomup_mae_brl_bi": 9.42,
+          "bottomup_wmape_pct": 2.63,
+          "bottomup_within_5pct": 84.8,
+          "incremental_reduction_bi": 0.1,
+          "cumulative_reduction_bi": 4.21,
+          "reduction_vs_naive_pct": 30.9
+        },
+        {
+          "key": "ridge_weekdays",
+          "label": "Ridge + Dias Úteis Brutos (Seg-Sex)",
+          "description": "Acrescenta contagem de segundas a sextas do mês sem feriados",
+          "bottomup_mae_brl_bi": 7.47,
+          "bottomup_wmape_pct": 2.09,
+          "bottomup_within_5pct": 90.9,
+          "incremental_reduction_bi": 1.94,
+          "cumulative_reduction_bi": 6.16,
+          "reduction_vs_naive_pct": 45.2
+        },
+        {
+          "key": "ridge_anbima",
+          "label": "Ridge + Feriados Bancários ANBIMA",
+          "description": "Subtrai feriados bancários nacionais oficiais ANBIMA",
+          "bottomup_mae_brl_bi": 6.24,
+          "bottomup_wmape_pct": 1.74,
+          "bottomup_within_5pct": 97.0,
+          "incremental_reduction_bi": 1.24,
+          "cumulative_reduction_bi": 7.39,
+          "reduction_vs_naive_pct": 54.2
         }
       ]
     }

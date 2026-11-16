@@ -145,25 +145,39 @@ def generate_series() -> tuple[np.ndarray, np.ndarray]:
     return smoothed, realized
 
 
-def _month_features(dates: list[str], idx: int) -> np.ndarray:
+def _month_features(dates: list[str], idx: int, variant: str = "anbima") -> np.ndarray:
     d = dates[idx]
     mm = int(d[3:5])
     yyyy = int(d[6:10])
+    trend = idx / 60.0
+
+    if variant == "raw":
+        # Apenas tendência linear + lags no regressor
+        return np.array([trend])
+
+    angle = 2.0 * np.pi * (mm - 1) / 12.0
+    season = [
+        np.sin(angle),
+        np.cos(angle),
+        1.0 if mm == 12 else 0.0,
+        1.0 if mm in (1, 2) else 0.0,
+    ]
+    if variant == "season":
+        # Lags + tendência linear + termos sazonais harmônicos e pontuais
+        return np.array([trend] + season)
+
     start = f"{yyyy:04d}-{mm:02d}-01"
     end = f"{yyyy + 1:04d}-01-01" if mm == 12 else f"{yyyy:04d}-{mm + 1:02d}-01"
+
+    if variant == "weekdays":
+        # Dias úteis brutos (segunda a sexta, sem subtrair feriados bancários)
+        raw_bdays = int(np.busday_count(start, end))
+        return np.array([trend] + season + [float(raw_bdays - 21)])
+
+    # variant == "anbima": dias úteis bancários nacionais ANBIMA
     calendar = _brazilian_bank_holidays(yyyy)
     bdays = int(np.busday_count(start, end, busdaycal=calendar))
-    angle = 2.0 * np.pi * (mm - 1) / 12.0
-    return np.array(
-        [
-            idx / 60.0,
-            np.sin(angle),
-            np.cos(angle),
-            1.0 if mm == 12 else 0.0,
-            1.0 if mm in (1, 2) else 0.0,
-            float(bdays - 21),
-        ]
-    )
+    return np.array([trend] + season + [float(bdays - 21)])
 
 
 def _fit_holt_winters_add(y: np.ndarray, period: int = 12) -> float:
@@ -208,17 +222,17 @@ def _fit_holt_winters_add(y: np.ndarray, period: int = 12) -> float:
     return max(0.0, float(level + trend + season[n % period]))
 
 
-def _fit_ridge_seasonal(hist: np.ndarray, dates: list[str], target_idx: int) -> float:
+def _fit_ridge_seasonal(hist: np.ndarray, dates: list[str], target_idx: int, variant: str = "anbima") -> float:
     rows_x, rows_y = [], []
     for t in range(12, target_idx):
-        feat = np.concatenate([[np.log(hist[t - 1]), np.log(hist[t - 12])], _month_features(dates, t)])
+        feat = np.concatenate([[np.log(hist[t - 1]), np.log(hist[t - 12])], _month_features(dates, t, variant=variant)])
         rows_x.append(feat)
         rows_y.append(np.log(hist[t]))
     x_tr = np.asarray(rows_x)
     y_tr = np.asarray(rows_y)
     scaler = StandardScaler().fit(x_tr)
     reg = Ridge(alpha=5.0).fit(scaler.transform(x_tr), y_tr)
-    x_next = np.concatenate([[np.log(hist[-1]), np.log(hist[-12])], _month_features(dates, target_idx)]).reshape(1, -1)
+    x_next = np.concatenate([[np.log(hist[-1]), np.log(hist[-12])], _month_features(dates, target_idx, variant=variant)]).reshape(1, -1)
     return float(np.exp(reg.predict(scaler.transform(x_next))[0]))
 
 
@@ -382,6 +396,8 @@ def run_model_benchmark(realized: np.ndarray, dates: list[str], series_meta: lis
         for j in range(n_orig)
     ]
 
+    ablation_study = run_ablation_benchmark(realized, dates)
+
     naive_row = next(r for r in summary_rows if r["key"] == "naive_t1")
     ridge_row = next(r for r in summary_rows if r["key"] == "ridge_cal")
     return {
@@ -394,11 +410,85 @@ def run_model_benchmark(realized: np.ndarray, dates: list[str], series_meta: lis
         "mae_reduction_brl_bi_month": round(
             naive_row["bottomup_mae_brl_bi"] - ridge_row["bottomup_mae_brl_bi"], 2
         ),
+        "forecast_error_reduction_brl_bi_month": round(
+            naive_row["bottomup_mae_brl_bi"] - ridge_row["bottomup_mae_brl_bi"], 2
+        ),
         "budget_saving_brl_bi_month": round(
             naive_row["bottomup_mae_brl_bi"] - ridge_row["bottomup_mae_brl_bi"], 2
         ),
         "origin_series": origin_series,
+        "ablation_study": ablation_study,
     }
+
+
+def run_ablation_benchmark(realized: np.ndarray, dates: list[str]) -> list[dict]:
+    """Estudo de ablação empírico out-of-sample (33 origens walk-forward):
+    isola sequencialmente a contribuição de lags/tendência, sazonalidade,
+    dias úteis brutos e feriados nacionais ANBIMA."""
+    totals = realized.sum(axis=0)
+    n_orig = realized.shape[1] - BENCHMARK_START_MONTH
+    actual_tot = totals[BENCHMARK_START_MONTH:]
+
+    # 0. Baseline Ingênuo
+    naive_bu = realized[:, BENCHMARK_START_MONTH - 1 : -1].sum(axis=0)
+    naive_mae = float(np.mean(np.abs(naive_bu - actual_tot)) / 1000.0)
+    naive_wmape = float(np.abs(naive_bu - actual_tot).sum() / actual_tot.sum() * 100.0)
+    naive_w5 = float(np.mean(np.abs(naive_bu / actual_tot - 1.0) <= TOLERANCE) * 100.0)
+
+    ablation_specs = [
+        ("naive_t1", "Baseline Ingênuo (t-1)", "Projeta o valor observado no mês imediatamente anterior", "naive"),
+        ("ridge_raw", "Ridge (Lags + Tendência Linear)", "Lags t-1, t-12 e tendência linear (t/60)", "raw"),
+        ("ridge_season", "Ridge + Sazonalidade Harmônica", "Acrescenta sen/cos harmônicos e dummies de dez/jan/fev", "season"),
+        ("ridge_weekdays", "Ridge + Dias Úteis Brutos (Seg-Sex)", "Acrescenta contagem de segundas a sextas do mês sem feriados", "weekdays"),
+        ("ridge_anbima", "Ridge + Feriados Bancários ANBIMA", "Subtrai feriados bancários nacionais oficiais ANBIMA", "anbima"),
+    ]
+
+    results = []
+    prev_mae = naive_mae
+
+    for key, label, desc, variant_code in ablation_specs:
+        if variant_code == "naive":
+            results.append({
+                "key": key,
+                "label": label,
+                "description": desc,
+                "bottomup_mae_brl_bi": round(naive_mae, 2),
+                "bottomup_wmape_pct": round(naive_wmape, 2),
+                "bottomup_within_5pct": round(naive_w5, 1),
+                "incremental_reduction_bi": 0.0,
+                "cumulative_reduction_bi": 0.0,
+                "reduction_vs_naive_pct": 0.0,
+            })
+            continue
+
+        p_bu = np.zeros((5, n_orig))
+        for j, t in enumerate(range(BENCHMARK_START_MONTH, realized.shape[1])):
+            for i in range(5):
+                p_bu[i, j] = _fit_ridge_seasonal(realized[i, :t], dates, t, variant=variant_code)
+
+        bu_tot = p_bu.sum(axis=0)
+        bu_ape = np.abs(bu_tot / actual_tot - 1.0)
+        mae_bu = float(np.mean(np.abs(bu_tot - actual_tot)) / 1000.0)
+        wmape_bu = float(np.abs(bu_tot - actual_tot).sum() / actual_tot.sum() * 100.0)
+        w5_bu = float(np.mean(bu_ape <= TOLERANCE) * 100.0)
+        inc_red = round(prev_mae - mae_bu, 2)
+        cum_red = round(naive_mae - mae_bu, 2)
+        pct_red = round((naive_mae - mae_bu) / naive_mae * 100.0, 1)
+        prev_mae = mae_bu
+
+        results.append({
+            "key": key,
+            "label": label,
+            "description": desc,
+            "bottomup_mae_brl_bi": round(mae_bu, 2),
+            "bottomup_wmape_pct": round(wmape_bu, 2),
+            "bottomup_within_5pct": round(w5_bu, 1),
+            "incremental_reduction_bi": inc_red,
+            "cumulative_reduction_bi": cum_red,
+            "reduction_vs_naive_pct": pct_red,
+        })
+
+    return results
 
 
 def calculate_metrics(

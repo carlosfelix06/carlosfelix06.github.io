@@ -7,7 +7,7 @@
 <link rel="alternate icon" href="favicon.ico">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <title>Unificação de Cadastros Duplicados (MDM) na Base CVM | Carlos Santos</title>
-<meta name="description" content="Auditoria MDM em 7.905 registros públicos da CVM (6.736 CNPJs) e benchmark cego 5-fold de Record Linkage sem CNPJ entre Razão Social formal e drift comercial CRM.">
+<meta name="description" content="Auditoria MDM em 7.905 registros públicos da CVM (6.736 CNPJs) e benchmark cego 5-fold de Record Linkage sem CNPJ entre Razão Social formal e divergência de nomes comerciais observada na CVM (DENOM_COMERC vs DENOM_SOCIAL).">
 <link rel="canonical" href="https://carlosfelix06.github.io/estudo-mdm-golden-record.html">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Unificação de Cadastros Duplicados (MDM) na Base CVM | Carlos Santos">
@@ -469,7 +469,7 @@
       </div>
       <div class="quick-stat-item">
         <div class="quick-stat-label">Record Linkage Sem CNPJ (5-Fold Disjunto)</div>
-        <div class="quick-stat-val">Regra Exata vence no Social (F1 98,5%) · HGB Híbrido salta PR-AUC 0,763 → 0,884 no drift CRM</div>
+        <div class="quick-stat-val">Regra Exata vence no Social (F1 98,5%) · HGB Híbrido salta PR-AUC 0,763 → 0,884 na divergência de nomes comerciais CVM</div>
       </div>
     </div>
   </div>
@@ -494,7 +494,7 @@
   <div class="exec-summary-grid">
     <div class="exec-takeaway">
       <span class="exec-takeaway-title">Principal Descoberta</span>
-      <ul class="exec-takeaway-list"><li>Usar Recência (DT_INI_SIT) inverte ATIVO para CANCELADA em 33 de 42 conflitos reais (78,6%).</li><li>Sem CNPJ (5-fold disjunto): regra normalizada vence em nomes formais (F1 = 98,54%), mas HGB híbrido eleva o PR-AUC sob drift CRM de 0,7626 para 0,8835 (+12,1 p.p.).</li></ul>
+      <ul class="exec-takeaway-list"><li>Usar Recência (DT_INI_SIT) inverte ATIVO para CANCELADA em 33 de 42 conflitos reais (78,6%).</li><li>Sem CNPJ (5-fold disjunto): regra normalizada vence em nomes formais (F1 = 98,54%), mas HGB híbrido eleva o PR-AUC sob divergência de nomes comerciais CVM de 0,7626 para 0,8835 (+12,1 p.p.).</li></ul>
     </div>
     <div class="exec-takeaway">
       <span class="exec-takeaway-title">Aplicação Direta</span>
@@ -747,7 +747,7 @@
 
         <h3 style="margin-top:2rem; color:var(--ink-heading);">Pareamento Nominal Cego sem CNPJ (Validação Cruzada 5-Fold Disjunta)</h3>
         <p>
-          Quando fluxos externos chegam sem chave fiscal, regras e modelos respondem de forma oposta conforme o padrão da origem: na <strong>Razão Social formal (41.616 pares)</strong> a <strong>Regra Exata Normalizada</strong> lidera (<strong>F1 = 98,54%</strong> vs 97,75% do ML). Porém, sob <strong>drift comercial/CRM real</strong> (<code>DENOM_COMERC</code> vs <code>DENOM_SOCIAL</code>, <strong>26.091 pares candidatos</strong>), a Regra Exata cai para <code>PR-AUC 0,7626</code> e o <strong>Matcher ML Híbrido (HistGradientBoosting)</strong> salta para <strong>PR-AUC = 0,8835 (+12,1 p.p.)</strong>, recuperando siglas como <code>SICOOB DTVM</code> (<code>score 0,965</code>) e <code>OSLO DTVM</code> (<code>0,908</code>).
+          Quando fluxos externos chegam sem chave fiscal, regras e modelos respondem de forma oposta conforme o padrão da origem: na <strong>Razão Social formal (41.616 pares)</strong> a <strong>Regra Exata Normalizada</strong> lidera (<strong>F1 = 98,54%</strong> vs 97,75% do ML). Porém, sob <strong>divergência de nomes comerciais observada na CVM</strong> (<code>DENOM_COMERC</code> vs <code>DENOM_SOCIAL</code>, <strong>26.091 pares candidatos</strong>), a Regra Exata cai para <code>PR-AUC 0,7626</code> e o <strong>Matcher ML Híbrido (HistGradientBoosting)</strong> salta para <strong>PR-AUC = 0,8835 (+12,1 p.p.)</strong>, recuperando siglas como <code>SICOOB DTVM</code> (<code>score 0,965</code>) e <code>OSLO DTVM</code> (<code>0,908</code>).
         </p>
         <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-left:4px solid #0284C7; border-radius:6px; padding:12px 16px; margin:1rem 0; font-size:13.5px; line-height:1.6; color:#334155;">
           <strong>Rigor de Pipeline: Perda no Blocking vs Revocação Completa (End-to-End Recall):</strong> O blocking comercial capturou <strong>576 de 613 pares verdadeiros (93,96%)</strong>, descartando <strong>37 pares (6,04%)</strong> antes de chegarem ao classificador de matching. Com isso, embora o classificador HGB tenha revocação out-of-fold de <strong>86,81%</strong> entre os pares candidatos, a <strong>revocação completa do pipeline end-to-end</strong> fica em <strong>81,57%</strong> (500 de 613 pares consolidados). Os 5 folds foram separados por componentes conexos de CNPJ para blindar o teste contra vazamento de entidades.
@@ -769,7 +769,7 @@
       </details>
     </div>
     
-          <p class="meta">Figura 4. Benchmark cego sem CNPJ (5 folds disjuntos por entidade): alterne entre F1-Score por regime cadastral e a curva Precisão-Revocação no cenário de drift comercial/CRM.</p>
+          <p class="meta">Figura 4. Benchmark cego sem CNPJ (5 folds disjuntos por entidade): alterne entre F1-Score por regime cadastral e a curva Precisão-Revocação no cenário de divergência de nomes comerciais observada na CVM.</p>
         </div>
 
         <h2 id="simulador">
@@ -1073,7 +1073,7 @@
     "study05_desc": "Separa eliminatórios por gravidade (<code>R1→R2→R3</code>) e aplica Matriz 3×3 na R4: <strong>5,05M u.m.</strong> de P&amp;L simulado (+10,9% sobre a regra rígida de 4,55M). O ganho decorre da precificação de risco no Cluster B (+739k u.m.), exigindo adesão mínima de 75,9%. O RF 1D pareado rende 5,08M (−0,49%): a matriz entrega 9 células auditáveis.",
     "study05_btn_study": "Ler Estudo e Simulador →",
     "hero_policy_label": "Concessão de Crédito & IA · 150 mil registros históricos",
-    "hero_policy_val": "Elevou o P&amp;L simulado em <strong>+10,9%</strong> sobre a regra rígida, com perda EAD de <strong>1,05%</strong> →",
+    "hero_policy_val": "Elevou o P&amp;L simulado em <strong>+10,9%</strong> sobre a regra rígida, com Bad Rate EAD de <strong>1,05%</strong> (perda bruta de 0,69%) →",
     "study03_badge": "Estudo 03 · 138 Bancos + 108 UF-Anos",
     "study03_meta": "BCB Olinda (11m) + IBGE 2022–2025",
     "study03_title": "Onde Bancos Cobram Mais Caro e Limites da Renda Regional",
@@ -1194,7 +1194,7 @@
     "hero_card_kicker": "Latest Studies",
     "hero_card_sub": "Click any outcome below to inspect the open data and code:",
     "hero_policy_label": "Credit Policy & AI · 150k Historical Records",
-    "hero_policy_val": "Lifted simulated P&amp;L by <strong>+10.9%</strong> over the rigid rule, with a <strong>1.05%</strong> EAD bad rate →",
+    "hero_policy_val": "Lifted simulated P&amp;L by <strong>+10.9%</strong> over rigid rule, with <strong>1.05%</strong> EAD Bad Rate (0.69% gross credit loss) →",
     "hero_diff_label": "Credit Forecasting · Central Bank",
     "hero_diff_val": "Cut forecast MAE by <strong>R$ 7.39 bn/month (-54%)</strong> with ANBIMA holiday calendar →",
     "hero_domain_label": "Data Quality & Collections · 30k Accounts",
@@ -1370,7 +1370,7 @@
     "hero_card_kicker": "Últimos Estudios",
     "hero_card_sub": "Haz clic en cualquier resultado para ver los datos y el código:",
     "hero_policy_label": "Concesión de Crédito & IA · 150 mil registros históricos",
-    "hero_policy_val": "Elevó el P&amp;L simulado en <strong>+10,9%</strong> sobre la regla rígida, con pérdida EAD de <strong>1,05%</strong> →",
+    "hero_policy_val": "Elevó el P&amp;L simulado en <strong>+10,9%</strong> sobre la regla rígida, con Bad Rate EAD de <strong>1,05%</strong> (pérdida bruta de 0,69%) →",
     "hero_diff_label": "Previsión de Crédito · Banco Central",
     "hero_diff_val": "Redujo el error de proyección (MAE) en <strong>R$ 7,39 mil M/mes (-54%)</strong> con feriados ANBIMA →",
     "hero_domain_label": "Calidad de Datos & Cobranza · 30 mil cuentas",
