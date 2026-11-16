@@ -566,6 +566,15 @@
       <figcaption style="margin-top:10px;">Painel estadual 2022–2025 (N = 108 UF-anos · R² com Efeitos Fixos Temporais = 0,550) e desvios persistentes em 09/2026 (TO, MS e MA acima; PB, ES e SC abaixo do esperado pela renda).</figcaption>
     </figure>
 
+    <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-left:4px solid #0284C7; border-radius:8px; padding:16px 18px; margin:1.5rem 0 2rem; font-size:13.5px; line-height:1.6; color:#334155;">
+      <strong>Rigor Estatístico e Trade-offs Metodológicos:</strong>
+      <ul style="margin:8px 0 0; padding-left:18px;">
+        <li><strong>Seleção de Clusters (Silhueta k=2 vs k=3):</strong> Os coeficientes de silhueta medidos foram <code>k=2 (0,3033)</code>, <code>k=3 (0,2418)</code> e <code>k=4 (0,2556)</code>. Embora k=2 possua maior separação geométrica, ele colapsa os bancos intermediários e de alta extração num único bloco. Optou-se por k=3 pelo trade-off de interpretabilidade operacional de negócio (segmentando em Baixo Custo, Bancos Universais e Alta Extração), viabilizando estratégias acionáveis de portabilidade.</li>
+        <li><strong>Avaliação Retrospectiva OOS 2025:</strong> O teste de 2025 emprega a renda domiciliar anual consolidada do IBGE, tratando-se de uma avaliação retrospectiva de consistência transversal, e não de uma previsão prospectiva em tempo real sujeita a defasagens temporais de divulgação oficial.</li>
+        <li><strong>β-Convergência e Regressão à Média:</strong> A forte correlação negativa observada entre o nível inicial de inadimplência em 2022 e a variação até 2026 (<code>p = 0,0023</code>) reflete tanto a dinâmica de convergência regional quanto o risco clássico de artefato de regressão à média estatística.</li>
+      </ul>
+    </div>
+
     <div class="study-note" style="background:#FFFFFF; border:1px solid var(--line); border-left:4px solid var(--accent); border-radius:8px; padding:18px 20px; margin:2rem 0;">
       <strong style="color:var(--ink-heading); font-size:14.5px;">Reproduzir esta análise localmente:</strong>
       <p style="margin:6px 0 10px; font-size:13.5px; color:var(--ink);">O script completo e os snapshots públicos congelados estão no repositório GitHub. Execute no terminal:</p>
@@ -626,6 +635,7 @@ python src/estudo_alta_renda_publico.py</pre>
 <td class="num"><code>AGORACRED SCFI</code>, <code>BANCO SEMEAR</code>, <code>BANCO AFINZ</code></td>
 </tr>
 </tbody></table></div>
+<p><em>Justificativa do número de clusters (Trade-off de Silhueta):</em> Os coeficientes de silhueta medidos foram <code>k=2 (0,3033)</code>, <code>k=3 (0,2418)</code> e <code>k=4 (0,2556)</code>. Embora <code>k=2</code> apresente maior separação geométrica estrita, ele aglutina os bancos universais e os de alta extração em um único grupo indistinto. A escolha de <code>k=3</code> equilibra coerência estatística com a interpretabilidade estratégica de negócio (baixo spread, carteiras garantidas e alta extração), viabilizando ações operacionais de portabilidade.</p>
 <p>Nas linhas sem garantia direta, a amplitude entre percentis de instituições é drástica (<code>P90/P10 = 15,57x</code> no Não-Consignado, <code>5,04x</code> no Cheque Especial, <code>4,85x</code> no Cartão Parcelado e <code>4,09x</code> no Rotativo <code>217,8%</code> vs <code>890,2% a.a.</code>), ao contrário do <strong>Consignado INSS</strong> regulado por teto (<code>1,21x</code>, <code>20,65%</code> vs <code>24,98%</code>). O coeficiente <strong>Spearman ρ = 0,8656 (<code>370</code> pares)</strong> prova que essa dispersão reflete posicionamento estratégico de balanço e funding persistente ao longo de quase um ano.</p>
 <h3>2. Painel Regional (<code>108</code> UF-Anos · <code>2022–2025</code>) e Rejeição do Modelo Puro de Renda</h3>
 <div class="wrap"><table><thead><tr>
@@ -659,6 +669,7 @@ python src/estudo_alta_renda_publico.py</pre>
 <td class="num">Estados que iniciaram piores convergiram mais rápido</td>
 </tr>
 </tbody></table></div>
+<p><em>Ressalvas metodológicas:</em> (1) O teste fora da amostra de 2025 utiliza a renda domiciliar anual consolidada do IBGE, configurando uma avaliação retrospectiva de consistência e não um forecast prospectivo em tempo de execução com defasagem de publicação; (2) A β-convergência regional carrega o risco de artefato de regressão à média (estados com taxas extremas tendem mecanicamente a flutuar em direção à média nacional).</p>
 <p>Em setembro de 2026, embora o corte transversal ainda guarde associação negativa (<code>Spearman ρ = -0,417, p = 0,030</code>), os maiores desvios positivos (risco muito acima do previsto pela renda) permanecem concentrados em <code>MA</code>, <code>MS</code>, <code>TO</code> e <code>PE</code>, enquanto <code>SC</code>, <code>RS</code>, <code>AL</code> e <code>CE</code> registram resíduos negativos favoráveis.</p></div></section>
 <section id="etapa-5" class="canonical-step" style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:24px 26px; margin-bottom:1.5rem; box-shadow:0 1px 4px rgba(0,0,0,0.02);">  <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px; border-bottom:1px solid var(--line); padding-bottom:12px;">    <span style="background:var(--primary); color:#FFFFFF; font-size:12px; font-weight:800; width:26px; height:26px; border-radius:50%; display:grid; place-items:center;">5</span>    <h3 style="font-size:1.2rem; font-weight:800; color:var(--ink-heading); margin:0;">Conclusão e implicação prática</h3>  </div>  <div class="canonical-content" style="color:var(--ink); font-size:15px; line-height:1.7;"><p>1. <strong>Inteligência Competitiva &amp; Portabilidade:</strong> Como <strong>80,2%</strong> dos bancos baratos mantêm posicionamento de preço por um ano (<code>ρ = 0,8656</code>), estratégias de portabilidade e crédito com garantia (Consignado Privado, Home/Auto Equity) sobre clientes atualmente tomadores no Arquétipo 3 (<code>80,4º percentil</code>) capturam spreads reais de <strong>5x a 15x</strong> sem assumir o risco cego do balcão sem garantia.</p>
 <p>2. <strong>Política Regional de Crédito:</strong> O <strong>fracasso out-of-sample do modelo puramente baseado em renda (<code>MAE 1,28</code> vs <code>0,95 p.p.</code>)</strong> encerra a tentação de alocar risco estadual estaticamente por PIB/P90 do IBGE. Decisões de limite por praça precisam ancorar-se na série temporal local de inadimplência do próprio banco/UF acrescida de macroeconomia de taxas, corrigindo para desvios persistentes em praças como <code>TO</code>, <code>MA</code> e <code>MS</code>.</p></div></section>
@@ -765,7 +776,7 @@ python src/estudo_alta_renda_publico.py</pre>
     "hero_diff_label": "Previsão de Crédito · Banco Central",
     "hero_diff_val": "Reduziu o erro de projeção (MAE) em <strong>R$ 7,39 bi/mês (-54%)</strong> com calendário ANBIMA →",
     "hero_domain_label": "Qualidade de Dados & Cobrança · 30 mil contas",
-    "hero_domain_val": "Preservou <strong>92,4% (NT$ 6,48M simulados)</strong> em experimento de falha de dados →",
+    "hero_domain_val": "Preservou <strong>97,6% (NT$ 6,48M simulados)</strong> em experimento de falha de dados →",
     "hero_method_label": "Base Única de Empresas (MDM) · 7.905 registros CVM",
     "hero_method_val": "Eliminou <strong>14,8%</strong> de duplicidades e unificou empresas e fundos em visão confiável →",
     "hero_avail_label": "Taxas de Juros & Concorrência · 138 Bancos + IBGE",
@@ -815,9 +826,9 @@ python src/estudo_alta_renda_publico.py</pre>
     "study05_badge": "Estudo 05 · Política de Crédito & Decisão",
     "study05_meta": "GiveMeSomeCredit (OpenML 46929) · 150.000 registros históricos",
     "study05_title": "Otimização de Política de Crédito: Maximizando o Retorno com Score e Machine Learning",
-    "study05_desc": "Separa eliminatórios por gravidade (<code>R1→R2→R3</code>) e aplica uma Matriz 3×3 na R4: <strong>5,05M u.m.</strong> de P&amp;L simulado (+10,9% sobre a regra rígida de 4,55M), perda EAD de <strong>1,05%</strong> e aprovação de 49,68%. O RF 1D pareado chega a 5,08M (−0,49%): a matriz entrega governança auditável em 9 faixas, não acurácia extra.",
+    "study05_desc": "Separa eliminatórios por gravidade (<code>R1→R2→R3</code>) e aplica Matriz 3×3 na R4: <strong>5,05M u.m.</strong> de P&amp;L simulado (+10,9% sobre a regra rígida de 4,55M). O ganho decorre da precificação de risco no Cluster B (+739k u.m.), exigindo adesão mínima de 75,9%. O RF 1D pareado rende 5,08M (−0,49%): a matriz entrega 9 células auditáveis.",
     "study05_btn_study": "Ler Estudo e Simulador →",
-    "hero_policy_label": "Concessão de Crédito & IA · 150 mil propostas",
+    "hero_policy_label": "Concessão de Crédito & IA · 150 mil registros históricos",
     "hero_policy_val": "Elevou o P&amp;L simulado em <strong>+10,9%</strong> sobre a regra rígida, com perda EAD de <strong>1,05%</strong> →",
     "study03_badge": "Estudo 03 · 138 Bancos + 108 UF-Anos",
     "study03_meta": "BCB Olinda (11m) + IBGE 2022–2025",
@@ -829,7 +840,7 @@ python src/estudo_alta_renda_publico.py</pre>
     "sidebar_intro": "Estudos aprofundados com simuladores interativos e modelos executivos:",
     "study01_badge": "Estudo 01 · UCI Credit Default",
     "study01_title": "Impacto da Qualidade dos Dados no Risco de Inadimplência",
-    "study01_desc": "Experimento simulado em 30.000 contas UCI mostrando que falhas de ETL degradam a fila de cobrança e que tratar ausências nativamente + ordenar por Perda Esperada preserva <strong>92,4% do retorno simulado (estimativa de NT$ 6,48M sob premissas parametrizadas)</strong>.",
+    "study01_desc": "Experimento simulado em 30.000 contas UCI mostrando que falhas de ETL degradam a fila de cobrança e que tratar ausências nativamente + ordenar por Perda Esperada preserva <strong>97,6% do retorno simulado (estimativa de NT$ 6,48M sob premissas parametrizadas)</strong>.",
     "study01_btn_study": "Ler estudo →",
     "study01_btn_sim": "Simulador",
     "study01_btn_code": "Código ↗",
@@ -860,7 +871,7 @@ python src/estudo_alta_renda_publico.py</pre>
     "cat_intro_desc": "Casos analíticos reproduzíveis baseados exclusivamente em fontes de dados públicas oficiais ou benchmarks públicos anonimizados (UCI Machine Learning Repository, Dados Abertos CVM, IBGE PNAD Contínua, Banco Central do Brasil SGS e GiveMeSomeCredit / OpenML #46929).",
     "cat_card01_badge": "Estudo 01 · UCI Credit Default",
     "cat_card01_title": "Impacto da Qualidade dos Dados no Risco de Inadimplência",
-    "cat_card01_desc": "Experimento simulado em 30.000 contas UCI: tratar ausências nativamente + priorizar por Perda Esperada preserva 92,4% do retorno simulado (NT$ 6,48M sob premissas operacionais parametrizadas).",
+    "cat_card01_desc": "Experimento simulado em 30.000 contas UCI: tratar ausências nativamente + priorizar por Perda Esperada preserva 97,6% do retorno simulado (NT$ 6,48M sob premissas operacionais parametrizadas).",
     "cat_card02_badge": "Estudo 02 · Dados Abertos CVM",
     "cat_card02_title": "Unificação de Cadastros Duplicados (MDM) na Base CVM",
     "cat_card02_desc": "Consolida 7.905 registros da CVM (-14,8% duplicidades), separando a regra determinística de sobrevivência com CNPJ (78,6% de inversão por recência) da acurácia do pareamento sem CNPJ (PR-AUC 0,884).",
@@ -870,9 +881,9 @@ python src/estudo_alta_renda_publico.py</pre>
     "cat_card04_badge": "Estudo 04 · Banco Central SGS",
     "cat_card04_title": "Previsão de Crédito PF: Backtest Walk-Forward e Efeito Calendário",
     "cat_card04_desc": "Ajustar por feriados nacionais ANBIMA e dias úteis reduz o erro absoluto de projeção (MAE) em R$ 7,39 bi/mês (de R$ 13,63 bi para R$ 6,24 bi/mês · wMAPE 2,79%) e acerta 97,0% dos meses na meta ±5%.",
-    "cat_card05_badge": "Estudo 05 · 150 mil propostas (OpenML)",
+    "cat_card05_badge": "Estudo 05 · 150 mil registros históricos (OpenML)",
     "cat_card05_title": "Otimização de Política de Crédito: Maximizando o Retorno com Score e Machine Learning",
-    "cat_card05_desc": "Simulação Otimizada 2D aprova 49,68% com Bad Rate EAD de 1,05% e 5,05M u.m. (4,14% P&amp;L/EAD vs 4,71M RF 1D @ mesmo EAD e 4,55M rígida), isolando 1.794 casos Early Warning (6,35% BR).",
+    "cat_card05_desc": "Simulação Otimizada 2D aprova 49,68% com Bad Rate EAD de 1,05% e 5,05M u.m. (+10,9% vs rígida). P&amp;L decomposto em -255k + 14k + 739k (Cluster B @ 7%), com break-even em 75,9% de adesão.",
     "cat_btn_read": "Ler estudo →",
     "cat_btn_code_data": "<i class='bi bi-github'></i> Código e Dados ↗",
     "cat_btn_code_res": "<i class='bi bi-github'></i> Código e Resultados ↗",
@@ -903,12 +914,12 @@ python src/estudo_alta_renda_publico.py</pre>
     "hero_cta_credit": "View Credit Study",
     "hero_card_kicker": "Latest Studies",
     "hero_card_sub": "Click any outcome below to inspect the open data and code:",
-    "hero_policy_label": "Credit Policy & AI · 150k Applications",
+    "hero_policy_label": "Credit Policy & AI · 150k Historical Records",
     "hero_policy_val": "Lifted simulated P&amp;L by <strong>+10.9%</strong> over the rigid rule, with a <strong>1.05%</strong> EAD bad rate →",
     "hero_diff_label": "Credit Forecasting · Central Bank",
     "hero_diff_val": "Cut forecast MAE by <strong>R$ 7.39 bn/month (-54%)</strong> with ANBIMA holiday calendar →",
     "hero_domain_label": "Data Quality & Collections · 30k Accounts",
-    "hero_domain_val": "Recovered <strong>92.4%</strong> of financial losses by fixing hidden customer data flaws →",
+    "hero_domain_val": "Recovered <strong>97.6%</strong> of financial value (NT$ 6.48M) in simulated data failure experiment →",
     "hero_method_label": "Unified Registry (MDM) · 7,905 CVM Records",
     "hero_method_val": "Eliminated <strong>14.8%</strong> duplicates and built a single, reliable entity view →",
     "hero_avail_label": "Bank Pricing & Income · 138 Banks + IBGE",
@@ -956,9 +967,9 @@ python src/estudo_alta_renda_publico.py</pre>
     "study04_btn_study": "Read Study & Method →",
     "study04_btn_json": "JSON Data",
     "study05_badge": "Study 05 · Credit Policy & Decisioning",
-    "study05_meta": "GiveMeSomeCredit (OpenML 46929) · 150,000 historical borrowers",
+    "study05_meta": "GiveMeSomeCredit (OpenML 46929) · 150,000 historical records",
     "study05_title": "How a 2D Policy (Score × Random Forest) Lifts Return on EAD to 4.14% vs RF 1D & Rigid",
-    "study05_desc": "Separates knock-outs by severity (<code>R1→R2→R3</code>) and applies a complementary 3×3 Matrix in R4 (<code>49.68%</code> simulated approval, <strong>1.05%</strong> EAD Bad Rate, <strong>5.05M</strong> net P&amp;L vs 4.71M RF 1D @ equal EAD &amp; 4.55M rigid), isolating <strong>1,794</strong> Early Warning cases (<code>6.35%</code> BR).",
+    "study05_desc": "Separates knock-outs by severity (<code>R1→R2→R3</code>) and applies a 3×3 Matrix in R4 (<strong>5.05M</strong> net P&amp;L, +10.9% vs rigid). Gain is driven by Cluster B pricing (+739k u.m.) with a 75.9% acceptance break-even threshold. Paired RF 1D yields 5.08M (-0.49%): matrix trades 0.49% for 9 auditable cells.",
     "study05_btn_study": "Read Study & Simulator →",
     "study03_badge": "Study 03 · 138 Banks + 108 State-Years",
     "study03_meta": "BCB Olinda (11m) + IBGE 2022–2025",
@@ -970,7 +981,7 @@ python src/estudo_alta_renda_publico.py</pre>
     "sidebar_intro": "In-depth studies with interactive simulators and executive decision models:",
     "study01_badge": "Study 01 · UCI Credit Default",
     "study01_title": "Impact of Data Quality on Default Risk",
-    "study01_desc": "Shows on 30,000 accounts how missing data hides defaulters without triggering global alerts, recovering <strong>92.4% of value (NT$ 6.48M)</strong> with native missing handling. <em>Method:</em> <code>32.3% → 27.4%</code> capture drop & HGB NaN + Expected Loss.",
+    "study01_desc": "Shows on 30,000 accounts how missing data hides defaulters without triggering global alerts, recovering <strong>97.6% of value (NT$ 6.48M)</strong> with native missing handling. <em>Method:</em> <code>32.3% → 27.4%</code> capture drop & HGB NaN + Expected Loss.",
     "study01_btn_study": "Read study →",
     "study01_btn_sim": "Simulator",
     "study01_btn_code": "Code ↗",
@@ -1001,7 +1012,7 @@ python src/estudo_alta_renda_publico.py</pre>
     "cat_intro_desc": "Reproducible analytical case studies based exclusively on official public data sources and anonymized public benchmarks (UCI Machine Learning Repository, CVM Open Data, IBGE PNAD Contínua, Central Bank of Brazil SGS, and GiveMeSomeCredit / OpenML #46929).",
     "cat_card01_badge": "Study 01 · UCI Credit Default",
     "cat_card01_title": "Impact of Data Quality on Default Risk",
-    "cat_card01_desc": "Proves on 30,000 accounts that missing data hides defaulters without moving global alerts; native missing handling recovers NT$ 6.48M (92.4% of clean value).",
+    "cat_card01_desc": "Proves on 30,000 accounts that missing data hides defaulters without moving global alerts; native missing handling recovers NT$ 6.48M (97.6% of clean value).",
     "cat_card02_badge": "Study 02 · CVM Open Data",
     "cat_card02_title": "Entity Deduplication & Golden Record (MDM) on CVM Data",
     "cat_card02_desc": "Consolidates 7,905 CVM records (-14.8% duplicates), resolves 78.6% of conflicts by recency, and matches unkeyed records with HGB (PR-AUC 0.763 → 0.884).",
@@ -1011,9 +1022,9 @@ python src/estudo_alta_renda_publico.py</pre>
     "cat_card04_badge": "Study 04 · Central Bank SGS",
     "cat_card04_title": "Household Credit Forecasting: Walk-Forward Backtest & Calendar Effects",
     "cat_card04_desc": "Adjusting for Brazilian national holidays (ANBIMA) and business days reduces monthly forecast MAE by R$ 7.39 bn/month (wMAPE 2.79%) with 97.0% of months inside ±5%.",
-    "cat_card05_badge": "Study 05 · 150k Applications (OpenML)",
+    "cat_card05_badge": "Study 05 · 150k Historical Records (OpenML)",
     "cat_card05_title": "Credit Policy Optimization: Maximizing Returns with Score and Machine Learning",
-    "cat_card05_desc": "Optimized 2D simulation approves 49.68% with 1.05% EAD Bad Rate and 5.05M P&amp;L (4.14% P&amp;L/EAD vs 4.71M RF 1D @ equal EAD &amp; 4.55M rigid), isolating 1,794 Early Warning cases (6.35% BR).",
+    "cat_card05_desc": "Optimized 2D simulation approves 49.68% with 1.05% EAD Bad Rate and 5.05M P&amp;L (+10.9% vs rigid). P&amp;L bridge decomposes into -255k + 14k + 739k (Cluster B @ 7%), with a 75.9% acceptance break-even.",
     "cat_btn_read": "Read study →",
     "cat_btn_code_data": "<i class='bi bi-github'></i> Code &amp; Data ↗",
     "cat_btn_code_res": "<i class='bi bi-github'></i> Code &amp; Results ↗",
@@ -1044,12 +1055,12 @@ python src/estudo_alta_renda_publico.py</pre>
     "hero_cta_credit": "Ver Estudio de Crédito",
     "hero_card_kicker": "Últimos Estudios",
     "hero_card_sub": "Haz clic en cualquier resultado para ver los datos y el código:",
-    "hero_policy_label": "Concesión de Crédito & IA · 150 mil solicitudes",
+    "hero_policy_label": "Concesión de Crédito & IA · 150 mil registros históricos",
     "hero_policy_val": "Elevó el P&amp;L simulado en <strong>+10,9%</strong> sobre la regla rígida, con pérdida EAD de <strong>1,05%</strong> →",
     "hero_diff_label": "Previsión de Crédito · Banco Central",
     "hero_diff_val": "Redujo el error de proyección (MAE) en <strong>R$ 7,39 mil M/mes (-54%)</strong> con feriados ANBIMA →",
     "hero_domain_label": "Calidad de Datos & Cobranza · 30 mil cuentas",
-    "hero_domain_val": "Recuperó el <strong>92,4%</strong> de pérdidas financieras al corregir fallas catastrales ocultas →",
+    "hero_domain_val": "Preservó el <strong>97,6% (NT$ 6,48M)</strong> del valor simulado en fallo de datos →",
     "hero_method_label": "Base Única de Empresas (MDM) · 7.905 registros CVM",
     "hero_method_val": "Eliminó <strong>14,8%</strong> de duplicidades y creó una visión única y confiable de empresas →",
     "hero_avail_label": "Tasas & Ingreso Regional · 138 Bancos + IBGE",
@@ -1099,7 +1110,7 @@ python src/estudo_alta_renda_publico.py</pre>
     "study05_badge": "Estudio 05 · Política de Crédito y Decisión",
     "study05_meta": "GiveMeSomeCredit (OpenML 46929) · 150.000 registros históricos",
     "study05_title": "Cómo Política 2D (Score × Random Forest) Eleva Retorno s/ EAD a 4,14% vs RF 1D y Rígida",
-    "study05_desc": "Separa filtros eliminatorios por gravedad (<code>R1→R2→R3</code>) y aplica Matriz 3×3 complementaria en R4 (<code>49,68%</code> aprobación simulada, Bad Rate EAD <strong>1,05%</strong>, P&amp;L <strong>5,05M</strong> vs 4,71M RF 1D @ igual EAD y 4,55M rígida), aislando <strong>1.794</strong> casos Early Warning (<code>6,35%</code> BR).",
+    "study05_desc": "Separa filtros por gravedad (<code>R1→R2→R3</code>) y aplica Matriz 3×3 en R4: <strong>5,05M</strong> P&amp;L (+10,9% vs rígida). El beneficio proviene del precio en Cluster B (+739k), con umbral de aceptación del 75,9%. RF 1D rinde 5,08M (-0,49%): la matriz entrega 9 celdas auditables.",
     "study05_btn_study": "Leer Estudio y Simulador →",
     "study03_badge": "Estudio 03 · 138 Bancos + 108 UF-Años",
     "study03_meta": "BCB Olinda (11m) + IBGE 2022–2025",
@@ -1111,7 +1122,7 @@ python src/estudo_alta_renda_publico.py</pre>
     "sidebar_intro": "Estudios profundos con simuladores interactivos y modelos ejecutivos de decisión:",
     "study01_badge": "Estudio 01 · UCI Credit Default",
     "study01_title": "Impacto de la Calidad de los Datos en el Riesgo de Morosidad",
-    "study01_desc": "Demuestra en 30.000 cuentas que fallas catastrales ocultan morosos sin alterar alertas globales, recuperando <strong>92,4% del valor (NT$ 6,48M)</strong> al tratar ausencias nativamente. <em>Método:</em> <code>32,3% → 27,4%</code> en captura y HGB NaN + Pérdida Esperada.",
+    "study01_desc": "Demuestra en 30.000 cuentas que fallas catastrales ocultan morosos sin alterar alertas globales, recuperando <strong>97,6% del valor (NT$ 6,48M)</strong> al tratar ausencias nativamente. <em>Método:</em> <code>32,3% → 27,4%</code> en captura y HGB NaN + Pérdida Esperada.",
     "study01_btn_study": "Leer estudio →",
     "study01_btn_sim": "Simulador",
     "study01_btn_code": "Código ↗",
@@ -1142,7 +1153,7 @@ python src/estudo_alta_renda_publico.py</pre>
     "cat_intro_desc": "Casos analíticos reproducibles basados exclusivamente en fuentes públicas oficiales y benchmarks públicos anonimizados (UCI Machine Learning Repository, Datos Abiertos CVM, IBGE PNAD Contínua, Banco Central do Brasil SGS y GiveMeSomeCredit / OpenML #46929).",
     "cat_card01_badge": "Estudio 01 · UCI Credit Default",
     "cat_card01_title": "Impacto de la calidad de los datos en el riesgo de morosidad",
-    "cat_card01_desc": "Prueba en 30.000 cuentas que fallas catastrales ocultan morosos sin disparar alertas globales; el manejo nativo recupera NT$ 6,48M (92,4% del valor limpio).",
+    "cat_card01_desc": "Prueba en 30.000 cuentas que fallas catastrales ocultan morosos sin disparar alertas globales; el manejo nativo recupera NT$ 6,48M (97,6% del valor limpio).",
     "cat_card02_badge": "Estudio 02 · Datos Abiertos CVM",
     "cat_card02_title": "Unificación de Registros Duplicados (MDM) en la Base CVM",
     "cat_card02_desc": "Consolida 7.905 registros CVM (-14,8% duplicidades), resuelve 78,6% de conflictos por recencia y cruza registros sin CNPJ con HGB (PR-AUC 0,763 → 0,884).",
@@ -1152,9 +1163,9 @@ python src/estudo_alta_renda_publico.py</pre>
     "cat_card04_badge": "Estudio 04 · Banco Central SGS",
     "cat_card04_title": "Previsión de Crédito PF: Backtest Walk-Forward y Efecto Calendario",
     "cat_card04_desc": "Ajustar por feriados nacionales ANBIMA y días hábiles reduce el error mensual (MAE) en R$ 7,39 mil M/mes (wMAPE 2,79%) y acierta 97,0% de los meses en ±5%.",
-    "cat_card05_badge": "Estudio 05 · 150 mil solicitudes (OpenML)",
+    "cat_card05_badge": "Estudio 05 · 150 mil registros históricos (OpenML)",
     "cat_card05_title": "Optimización de Política de Crédito: Maximizando Retorno con Score e Inteligencia Artificial",
-    "cat_card05_desc": "Simulación Optimizada 2D aprueba 49,68% con Bad Rate EAD de 1,05% y 5,05M (4,14% P&amp;L/EAD vs 4,71M RF 1D @ igual EAD y 4,55M rígida), aislando 1.794 casos Early Warning (6,35% BR).",
+    "cat_card05_desc": "Simulación Optimizada 2D aprueba 49,68% con Bad Rate EAD de 1,05% y 5,05M (+10,9% vs rígida). P&amp;L descompuesto en -255k + 14k + 739k (Cluster B @ 7%), con umbral de 75,9% de aceptación.",
     "cat_btn_read": "Leer estudio →",
     "cat_btn_code_data": "<i class='bi bi-github'></i> Código y Datos ↗",
     "cat_btn_code_res": "<i class='bi bi-github'></i> Código y Resultados ↗",
