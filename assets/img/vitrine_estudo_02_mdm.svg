@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 460" width="380" height="460" role="img" aria-labelledby="t02 d02">
+  <title id="t02">Estudo 02 — Arquitetura MDM &amp; Golden Record na Base CVM</title>
+  <desc id="d02">Cruzamento de 7.905 registros em 6 fluxos da CVM com resolução de entidades em 6.736 CNPJs únicos (-14,8%) e recência invertendo 78,6% dos conflitos.</desc>
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="0.8" y2="1">
+      <stop offset="0%" stop-color="#0B2038"/>
+      <stop offset="100%" stop-color="#1E1B4B"/>
+    </linearGradient>
+    <pattern id="grid2" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M 28 0 L 0 0 0 28" fill="none" stroke="rgba(148,163,184,0.08)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="380" height="460" rx="12" fill="url(#bg2)"/>
+  <rect width="380" height="460" rx="12" fill="url(#grid2)"/>
+
+  <!-- Top Eyebrow -->
+  <rect x="24" y="22" width="224" height="28" rx="14" fill="rgba(147,51,234,0.2)" stroke="rgba(192,132,252,0.5)" stroke-width="1"/>
+  <text x="136" y="40" text-anchor="middle" fill="#E9D5FF" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="11" font-weight="800" letter-spacing="0.5">DADOS ABERTOS CVM · 6 FLUXOS</text>
+
+  <!-- Title -->
+  <text x="24" y="80" fill="#F8FAFC" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="20.5" font-weight="800">MDM &amp; Golden Record</text>
+  <text x="24" y="102" fill="#CBD5E1" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="500">Resolução de Entidades &amp; Sobrevivência</text>
+
+  <!-- Panel 1: Fluxo de Consolidação -->
+  <rect x="24" y="118" width="332" height="154" rx="10" fill="rgba(15,23,42,0.78)" stroke="rgba(148,163,184,0.22)" stroke-width="1"/>
+  <text x="38" y="142" fill="#C084FC" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="11" font-weight="800" letter-spacing="0.5">FUNIL DE ENTIDADES &amp; CONFLITOS</text>
+
+  <rect x="38" y="160" width="140" height="46" rx="6" fill="rgba(30,41,59,0.9)" stroke="rgba(148,163,184,0.2)" stroke-width="1"/>
+  <text x="48" y="178" fill="#94A3B8" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="10.5" font-weight="700">REGISTROS BRUTOS</text>
+  <text x="48" y="198" fill="#FFFFFF" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="16" font-weight="800">7.905 Linhas</text>
+
+  <text x="188" y="188" fill="#C084FC" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="16" font-weight="800">→</text>
+
+  <rect x="202" y="160" width="140" height="46" rx="6" fill="rgba(147,51,234,0.2)" stroke="rgba(192,132,252,0.4)" stroke-width="1"/>
+  <text x="212" y="178" fill="#E9D5FF" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="10.5" font-weight="700">GOLDEN RECORDS</text>
+  <text x="212" y="198" fill="#38BDF8" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="16" font-weight="800">6.736 Únicos</text>
+
+  <line x1="38" y1="222" x2="342" y2="222" stroke="rgba(148,163,184,0.18)" stroke-width="1"/>
+
+  <text x="38" y="244" fill="#E2E8F0" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="11.5" font-weight="600">Taxa de Redundância Cadastral: <tspan fill="#F472B6" font-weight="800">-14,8%</tspan></text>
+  <text x="38" y="260" fill="#94A3B8" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="10.5" font-weight="500">6 fluxos diários CVM consolidados com auditoria completa</text>
+
+  <!-- Two Crisp Metric Cards -->
+  <rect x="24" y="286" width="158" height="148" rx="10" fill="rgba(30,41,59,0.75)" stroke="rgba(192,132,252,0.38)" stroke-width="1"/>
+  <text x="38" y="312" fill="#C084FC" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="10.5" font-weight="800" letter-spacing="0.5">REGRA RECÊNCIA</text>
+  <text x="38" y="352" fill="#FFFFFF" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="30" font-weight="800">78,6%</text>
+  <text x="38" y="378" fill="#CBD5E1" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" font-weight="600">33 de 42 Conflitos</text>
+  <text x="38" y="408" fill="#F472B6" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="11.5" font-weight="700">Inverte sincronismo</text>
+
+  <rect x="198" y="286" width="158" height="148" rx="10" fill="rgba(14,116,144,0.28)" stroke="rgba(56,189,248,0.65)" stroke-width="1.4"/>
+  <text x="212" y="312" fill="#7DD3FC" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="10.5" font-weight="800" letter-spacing="0.5">DEDUPLICAÇÃO</text>
+  <text x="212" y="352" fill="#FFFFFF" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="30" font-weight="800">-14,8%</text>
+  <text x="212" y="378" fill="#CBD5E1" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" font-weight="600">6.736 CNPJs Únicos</text>
+  <text x="212" y="408" fill="#38BDF8" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="11.5" font-weight="700">Consistência 100%</text>
+</svg>

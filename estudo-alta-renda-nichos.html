@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="alternate icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<title>Onde Bancos Cobram Mais Caro e Limites da Renda Regional | Carlos Santos</title>
+<meta name="description" content="Clusterização de 138 bancos e persistência de 11 meses (BCB Olinda 11/2025 vs 10/2026) combinadas a painel de 108 UF-anos (IBGE PNAD 2022–2025 × BCB SGS).">
+<link rel="canonical" href="https://carlosfelix06.github.io/estudo-alta-renda-nichos.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Onde Bancos Cobram Mais Caro e Limites da Renda Regional | Carlos Santos">
+<meta property="og:description" content="Clusterização de 138 bancos e persistência de 11 meses (BCB Olinda) combinadas a painel de 108 UF-anos (IBGE PNAD × BCB SGS).">
+<meta property="og:url" content="https://carlosfelix06.github.io/estudo-alta-renda-nichos.html">
+<meta property="og:image" content="https://carlosfelix06.github.io/assets/img/vitrine_estudo_03_alta_renda.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Onde Bancos Cobram Mais Caro e Limites da Renda Regional | Carlos Santos">
+<meta name="twitter:description" content="Clusterização de 138 bancos e persistência de 11 meses (BCB Olinda) combinadas a painel de 108 UF-anos (IBGE PNAD × BCB SGS).">
+<meta name="twitter:image" content="https://carlosfelix06.github.io/assets/img/vitrine_estudo_03_alta_renda.svg">
+<link rel="stylesheet" href="assets/vendor/bootstrap-icons/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/css/style.css?v=20261116_pillfix">
+<script src="https://cdn.jsdelivr.net/npm/plotly.js-basic-dist-min@2.35.2/plotly-basic.min.js" defer></script>
+<style>
+  /* Hero Compact Study */
+  #hero { padding: 82px 0 38px !important; }
+  #hero h1, #hero h1.study-title {
+    font-size: clamp(1.35rem, 2.2vw, 1.8rem) !important;
+    line-height: 1.22 !important;
+    letter-spacing: -0.3px !important;
+    margin: 0 0 10px !important;
+    font-weight: 800 !important;
+    max-width: 42ch;
+  }
+  .hero-role {
+    font-size: 1.02rem !important;
+    line-height: 1.4 !important;
+    margin: 0 0 12px !important;
+    color: #CBD5E1;
+  }
+  .hero-summary {
+    font-size: 14.5px !important;
+    line-height: 1.52 !important;
+    margin: 0 0 18px !important;
+    max-width: 58ch;
+  }
+
+  #hero { background: linear-gradient(135deg, #0F172A 0%, #6A1B9A 100%); }
+  .study-hero-grid { display:grid; grid-template-columns:1.35fr 1fr; gap:30px; align-items:center; }
+  .study-hero-panel { border:1px solid rgba(255,255,255,.18); border-radius:8px; padding:20px; background:rgba(255,255,255,.06); }
+  .study-hero-panel p { margin:0 0 12px; color:#F8FAFC; font-size:14px; }
+  .study-hero-panel p:last-child { margin-bottom:0; }
+  .study-article { max-width: 1180px; margin: 0 auto; padding: 40px 20px 70px; }
+  .study-article p { color:var(--ink); line-height:1.7; font-size:15px; margin:.85em 0; }
+  .study-article h2 { color:var(--ink-heading); letter-spacing:-.3px; }
+  .section-tag { display:inline-block; margin-bottom:6px; color:var(--primary); font-size:11.5px; font-weight:800; letter-spacing:.6px; text-transform:uppercase; }
+  .study-h2 { margin:0 0 8px; padding:0; border:0; font-size:1.6rem; font-weight:800; }
+  .study-sub { margin:0 0 22px; color:var(--mute); font-size:14.5px; line-height:1.5; }
+  .study-kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px; margin:1.5rem 0 2rem; }
+  .study-kpi { background:#FFFFFF; border:1px solid #E2E8F0; border-top:3px solid #D91568; border-radius:7px; padding:18px 20px; box-sizing: border-box; }
+  .study-kpi:nth-child(2) { border-top-color:#6A1B9A; }
+  .study-kpi:nth-child(3) { border-top-color:#2878E8; }
+  .study-kpi-label { color:#64748B; font-size:11px; font-weight:800; letter-spacing:.4px; text-transform:uppercase; }
+  .study-kpi-value, .kpi-val { color:var(--ink-heading); font-size:clamp(1.05rem, 1.3vw, 1.32rem) !important; font-weight:800; line-height:1.3; margin:4px 0; white-space:nowrap !important; }
+  .study-kpi-note { color:#334155; font-size:12.5px; line-height:1.5; }
+  .study-chart { background:#FFFFFF; border:1px solid #E2E8F0; border-radius:8px; margin:18px 0; padding:14px; }
+  .study-chart img { display:block; height:auto; max-width:100%; margin:auto; }
+  .study-chart figcaption, .study-note { color:#64748B; font-size:13px; line-height:1.55; }
+  .study-note { background:#F8FAFC; border-left:3px solid #6A1B9A; border-radius:0 5px 5px 0; padding:12px 15px; }
+
+  /* Barra de Recursos (.files) */
+  .files, .study-article .files {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 10px !important;
+    padding: 12px 18px !important;
+    background: #F8FAFC !important;
+    border: 1px solid #E2E8F0 !important;
+    border-radius: 10px !important;
+    margin: 1.2rem 0 2rem !important;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04) !important;
+  }
+  .files a, .study-article .files a {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    padding: 7px 14px !important;
+    background: #FFFFFF !important;
+    border: 1px solid #CBD5E1 !important;
+    border-radius: 6px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: var(--ink-heading) !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease !important;
+    line-height: 1.25 !important;
+  }
+  .files a:hover, .study-article .files a:hover {
+    background: #F1F5F9 !important;
+    border-color: var(--primary) !important;
+    color: var(--primary) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06) !important;
+    text-decoration: none !important;
+  }
+  .files a:first-child, .study-article .files a:first-child {
+    background: #0B2038 !important;
+    color: #FFFFFF !important;
+    border-color: #0B2038 !important;
+    font-weight: 700 !important;
+  }
+  .files a:first-child:hover, .study-article .files a:first-child:hover {
+    background: var(--primary) !important;
+    border-color: var(--primary) !important;
+    color: #FFFFFF !important;
+  }
+  @media (max-width:860px) {
+    .study-hero-grid { grid-template-columns:1fr; gap:20px; }
+  }
+
+/* ======================================================== */
+/* OTIMIZAÇÃO ESPECÍFICA PARA DISPOSITIVOS MÓVEIS NOS ESTUDOS */
+/* ======================================================== */
+@media (max-width: 768px) {
+  /* Layout e Container Geral dos Estudos */
+  main.case-study, .study-article, main.catalog {
+    padding: 20px 14px 40px !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  main.case-study p, .study-article p {
+    font-size: 14.5px !important;
+    line-height: 1.65 !important;
+    margin: 0.75em 0 !important;
+  }
+
+  .lead-paragraph {
+    font-size: 15.5px !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Títulos dos Estudos */
+  .study-h2 {
+    font-size: 1.3rem !important;
+    line-height: 1.3 !important;
+    margin: 1.8rem 0 0.5rem !important;
+    padding-bottom: 0.4rem !important;
+  }
+
+  .study-sub {
+    font-size: 13.5px !important;
+    line-height: 1.5 !important;
+    margin-bottom: 1.2rem !important;
+  }
+
+  /* Barra de Navegação Rápida nos Estudos (.files) */
+  .files, .study-article .files {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    padding: 10px 12px !important;
+    margin: 1rem 0 1.5rem !important;
+  }
+  
+  .files a, .study-article .files a {
+    display: inline-flex !important;
+    align-items: center !important;
+    padding: 6px 10px !important;
+    background: #F8FAFC !important;
+    border: 1px solid var(--line) !important;
+    border-radius: 6px !important;
+    font-size: 12.5px !important;
+    text-decoration: none !important;
+  }
+
+  /* Grids de Pesquisa e Quantitativos nos Estudos */
+  .card-grid-2, .card-grid-3, .quant-grid, .stage-grid, .study-figures {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+    margin-bottom: 1.8rem !important;
+  }
+
+  .card-grid-2 > *, .card-grid-3 > *, .quant-grid > *, .stage-grid > *,
+  .study-figures > *, .study-kpis > *, #sim-kpis > *, #mdm-kpis > *, .kpi-grid > * {
+    min-width: 0 !important;
+  }
+
+  .research-card, .quant-card, .fig-analytic-card, .stage-card, .study-figure, .study-chart, .sim-box {
+    padding: 16px 14px !important;
+    border-radius: 8px !important;
+    margin-bottom: 1.5rem !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .research-card-title {
+    font-size: 1.05rem !important;
+  }
+
+  /* KPIs e Métricas nos Estudos */
+  .study-kpis, #sim-kpis, #mdm-kpis, .kpi-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+    margin: 1rem 0 1.5rem !important;
+  }
+
+  .study-kpi, .kpi-card {
+    padding: 10px 12px !important;
+    border-radius: 6px !important;
+    min-width: 0 !important;
+  }
+
+  .study-kpi-value, .kpi-val {
+    font-size: clamp(1.05rem, 4.5vw, 1.3rem) !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  .study-kpi-label, .kpi-label {
+    font-size: 10px !important;
+  }
+
+  /* Simuladores Interativos (Estudo 01 e Estudo 02) */
+  .sim-box {
+    padding: 16px 12px !important;
+    border-radius: 8px !important;
+  }
+
+  .sim-controls, .sim-box > div:first-child {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  .sim-controls select, .sim-box select {
+    font-size: 13.5px !important;
+    padding: 8px 10px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .sim-field label {
+    font-size: 11px !important;
+  }
+
+  /* Barra Dinâmica da Fila no Simulador */
+  #sim-bar-container .bar, .split-bar-box {
+    flex-direction: column !important;
+    height: auto !important;
+    min-height: 48px !important;
+    border-radius: 6px !important;
+    font-size: 11px !important;
+  }
+
+  #sim-bar-container .bar > div, .split-bar-box > div {
+    width: 100% !important;
+    padding: 8px 10px !important;
+    box-sizing: border-box !important;
+    text-align: left !important;
+  }
+
+  /* Caixas de Destaque / Diagnóstico Operacional */
+  .so, .fig-interp, .study-note {
+    padding: 12px 14px !important;
+    font-size: 13px !important;
+    line-height: 1.55 !important;
+    margin: 1rem 0 !important;
+  }
+
+  /* Bloco de Código e Pré-visualização JSON */
+  .code-box, pre, .repro-terminal {
+    font-size: 11px !important;
+    line-height: 1.45 !important;
+    padding: 10px 12px !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    word-break: break-word !important;
+    white-space: pre-wrap !important;
+    box-sizing: border-box !important;
+  }
+
+  pre code, .code-box code, .repro-terminal code {
+    padding: 0 !important;
+    background: transparent !important;
+    font-size: inherit !important;
+    white-space: inherit !important;
+  }
+
+  :not(pre) > code {
+    font-size: 0.88em !important;
+    padding: 1px 5px !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  /* Tabelas nos Estudos */
+  .quant-table, table {
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: 12.5px !important;
+    min-width: 0 !important;
+  }
+
+  .wrap > table:not(.quant-table), .table-responsive > table:not(.quant-table) {
+    min-width: 440px !important;
+    max-width: none !important;
+  }
+
+  .quant-table th, .quant-table td, table th, table td {
+    padding: 7px 8px !important;
+  }
+
+  .wrap, .table-responsive {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    display: block !important;
+    margin: 10px 0 !important;
+  }
+
+  .viz-interactive-shell, .viz-canvas {
+    max-width: 100% !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Passos Canônicos (Seções Expandidas) */
+  .canonical-step {
+    padding: 16px 14px !important;
+    margin-bottom: 1rem !important;
+    border-radius: 8px !important;
+  }
+
+  .canonical-step h3 {
+    font-size: 1.1rem !important;
+    line-height: 1.35 !important;
+  }
+
+  .canonical-content {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Figuras e Imagens */
+  .fig img, .fig-analytic-card img, .study-figure img, .study-chart img {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+    border-radius: 4px !important;
+  }
+
+  figcaption, .fig .meta {
+    font-size: 12px !important;
+    line-height: 1.45 !important;
+    margin-top: 6px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .study-kpis, #sim-kpis, #mdm-kpis, .kpi-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+  /* Micro-pílulas de Links Externos no Hero (Opção 2 - Imune a Cache de CSS) */
+  .btn-pill-compact, a.btn-pill-compact {
+    height: 38px !important;
+    padding: 0 14px !important;
+    border-radius: 6px !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    color: #F8FAFC !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 7px !important;
+    font-size: 12.5px !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease !important;
+    box-sizing: border-box !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+  }
+  .btn-pill-compact:hover, a.btn-pill-compact:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-color: #FFFFFF !important;
+    color: #FFFFFF !important;
+    transform: translateY(-1px) !important;
+    text-decoration: none !important;
+  }
+
+</style>
+</head>
+<body>
+<header id="header">
+  <div class="container header-inner">
+    <div class="logo">
+        <a href="index.html">
+          Carlos Santos
+          <span class="tagline-pill" data-i18n="tagline_pill">Dados &amp; Analytics</span>
+        </a>
+      </div>
+    <div class="header-right">
+      <nav id="navbar" aria-label="Navegação principal">
+      <ul>
+        <li><a href="index.html#hero">Início</a></li>
+        <li><a href="index.html#sobre">Sobre &amp; Trajetória</a></li>
+        <li><a href="index.html#entrega">O que entrega</a></li>
+        <li><a href="index.html#ferramentas">Ferramentas</a></li>
+        <li><a href="estudos.html" class="nav-cta">Vitrine de Estudos →</a></li>
+        <li><a href="index.html#contato">Contato</a></li>
+      </ul>
+    </nav>
+      <div class="lang-switcher" id="lang-switcher">
+        <button type="button" class="lang-btn" id="lang-btn" aria-label="Selecionar idioma" aria-expanded="false">
+          <i class="bi bi-globe2" style="font-size:13px; color:#FFA5C8;"></i>
+          <span class="lang-code" id="lang-current-code">PT</span>
+          <i class="bi bi-chevron-down" style="font-size:9px; margin-left:1px; opacity:0.8;"></i>
+        </button>
+        <ul class="lang-dropdown" id="lang-dropdown">
+          <li><button type="button" class="lang-option active" data-lang="pt"><span class="lang-code-pill">PT</span> Português</button></li>
+          <li><button type="button" class="lang-option" data-lang="en"><span class="lang-code-pill">EN</span> English</button></li>
+          <li><button type="button" class="lang-option" data-lang="es"><span class="lang-code-pill">ES</span> Español</button></li>
+        </ul>
+      </div>
+      <button type="button" class="mobile-nav-toggle" aria-label="Menu" aria-expanded="false" style="display:none;">
+        <i class="bi bi-list"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<section id="hero">
+  <div class="container study-hero-grid">
+    <div>
+      <span class="hero-tag">Estudo 03 · 138 Bancos + 108 UF-Anos</span>
+      <h1 class="study-title">Onde Bancos Cobram Mais Caro e Limites da Renda Regional</h1>
+      <p class="hero-role">Estrutura Competitiva de Juros em 138 Bancos e Painel de 108 UF-Anos (IBGE × BCB)</p>
+      <p class="hero-summary">Separa estritamente o grão de instituição financeira do grão estadual: prova que a dispersão de 15,57x entre bancos é persistente em 11 meses (Spearman ρ = 0,866) e refuta fora da amostra a previsão temporal de inadimplência estadual baseada apenas em renda (MAE 1,28 vs 0,95 p.p.).</p>
+      <div class="hero-cta-group">
+        <a class="btn-serasa" href="#sintese-executiva">Explorar Análise e Gráficos ↓</a>
+        <a class="btn-pill-compact" href="https://github.com/carlosfelix06/carlosfelix06.github.io/tree/main/codigo/estudo-03-alta-renda-credito-pf" target="_blank" rel="noopener">
+          <i class="bi bi-github"></i> GitHub ↗
+        </a>
+        <a class="btn-pill-compact" href="codigo/estudo-03-alta-renda-credito-pf/resultados/snapshot_publico.json" target="_blank" rel="noopener">
+          <i class="bi bi-filetype-json"></i> JSON ↗
+        </a>
+        <a class="btn-pill-compact" href="https://dadosabertos.bcb.gov.br/" target="_blank" rel="noopener">
+          <i class="bi bi-bank"></i> BCB Dados ↗
+        </a>
+      </div>
+    </div>
+    <aside class="study-hero-panel" aria-label="Fontes públicas e método">
+      <p><strong>Painel Bancário (11m):</strong> BCB Olinda (<code>11/2025</code> vs <code>10/2026</code> · 138 bancos · 370 pares idênticos).</p>
+      <p><strong>Painel Estadual (4 anos):</strong> IBGE SIDRA 7438 (2022–2025) × BCB SGS (108 UF-anos + fecho 09/2026).</p>
+      <p><strong>Replicação Aberta:</strong> Código Python + snapshot JSON publicados em <code>codigo/estudo-03-alta-renda-credito-pf</code>.</p>
+    </aside>
+  </div>
+</section>
+
+<main class="study-article">
+          <div class="files">
+          <span class="label-group"><i class="bi bi-compass"></i> Navegação Interna:</span>
+          <a href="estudos.html" class="nav-back"><i class="bi bi-arrow-left"></i> Voltar à Vitrine</a>
+          <a href="#sintese-executiva" class="nav-step"><i class="bi bi-file-earmark-text"></i> Síntese Executiva ↓</a>
+          <a href="#evidencias" class="nav-step"><i class="bi bi-bar-chart-line"></i> Evidências e Gráficos ↓</a>
+          <a href="#metodologia" class="nav-step"><i class="bi bi-journal-check"></i> Metodologia &amp; Documentação ↓</a>
+        </div>
+
+  <section id="sintese-executiva" class="exec-summary-box" aria-label="Síntese executiva e decisão">
+  <div class="exec-summary-eyebrow">Síntese Executiva &amp; Decisão Prática</div>
+  <p class="exec-summary-lead">Separando estritamente 138 bancos (BCB Olinda) de 108 UF-anos (IBGE PNAD × BCB SGS), testamos se diferenças de até 15,6x nos juros entre bancos permanecem estáveis e se a renda estadual prevê a inadimplência do ano seguinte.</p>
+  <div class="exec-summary-grid">
+    <div class="exec-takeaway">
+      <span class="exec-takeaway-title">Principal Descoberta</span>
+      <ul class="exec-takeaway-list"><li>Entre bancos, o nível de preço persiste após 11 meses (Spearman ρ = 0,8656; 80–83% seguem no mesmo quartil).</li><li>Entre estados, efeitos fixos anuais elevam o R² para 0,550, mas prever 2025 só com renda erra mais que a inércia da UF (MAE 1,28 vs 0,95 p.p.).</li></ul>
+    </div>
+    <div class="exec-takeaway">
+      <span class="exec-takeaway-title">Aplicação Direta</span>
+      <ul class="exec-takeaway-list"><li>Focar portabilidade e garantia sobre os 16 bancos de alta extração (spread de 5x–15x fora do Consignado INSS).</li><li>Descartar renda estadual isolada para limite regional; calibrar risco pela série local + ciclo de juros.</li></ul>
+    </div>
+  </div>
+</section>
+
+
+  <section id="evidencias" aria-labelledby="evidencias-title">
+    <h2 id="evidencias-title" class="study-h2" style="margin-bottom:0.6rem;">Evidências Quantitativas nos 138 Bancos e 108 UF-anos</h2>
+    <p class="study-sub" style="margin:0 0 14px; font-size:15.5px; font-weight:600; color:#0F172A; line-height:1.5;">O que mostram os dados públicos do Banco Central e IBGE sobre taxas e limites de crédito</p>
+    <p class="study-sub">Segmentação multivariada K-Means + PCA entre instituições financeiras, retenção de percentil de preço (11/2025 vs 10/2026) e teste fora da amostra do painel regional.</p>
+
+    <div class="study-kpis">
+      <article class="study-kpi">
+        <div class="study-kpi-label">Persistência de Preço (11m)</div>
+        <div class="study-kpi-value">ρ = 0,866 · 80–83%</div>
+        <div class="study-kpi-note">370 pares Banco×Modalidade (11/2025→10/2026): 80,2% ficam no quartil barato e 82,6% no caro.</div>
+      </article>
+      <article class="study-kpi">
+        <div class="study-kpi-label">Spread Não-Consignado (81 inst.)</div>
+        <div class="study-kpi-value">15,57x (P90/P10)</div>
+        <div class="study-kpi-note">P10 = 24,74% vs P90 = 385,29% a.a.; K-Means isola 27 competidores baratos (34,9º pct) vs 16 caros (80,4º).</div>
+      </article>
+      <article class="study-kpi">
+        <div class="study-kpi-label">Painel 108 UF-Anos (OOS 2025)</div>
+        <div class="study-kpi-value">FE R² 0,55 · Ridge Rejeitado</div>
+        <div class="study-kpi-note">Renda 2022–2024 prevê 2025 pior que a inércia estadual (MAE 1,28 vs 0,95 p.p.); β-convergência p = 0,0023.</div>
+      </article>
+    </div>
+
+    <figure class="study-chart">
+      <h3 style="margin:0 0 4px; font-size:1.1rem; font-weight:800; color:var(--ink-heading);">Figuras 1–3 · Arquétipos Bancários (74 Instituições), Dispersão de Juros (138 Bancos) &amp; Persistência 11 Meses</h3>
+      <p style="margin:0 0 12px; font-size:13.5px; color:var(--mute);">Alterne entre os 3 painéis microeconômicos ou filtre os arquétipos competitivos (BCB Olinda 11/2025 e 10/2026).</p>
+      
+    <div class="viz-interactive-shell" id="e3-banks-shell">
+      <div class="viz-toolbar">
+        <div class="viz-pills" id="e3-bank-views">
+          <button type="button" class="viz-pill active" data-view="clusters">Arquétipos K-Means (74 bancos)</button>
+          <button type="button" class="viz-pill" data-view="spread">Juros P10–P90 por Produto (138 bancos)</button>
+          <button type="button" class="viz-pill" data-view="persist">Persistência em 11 Meses (370 pares)</button>
+        </div>
+        <div class="viz-pills" id="e3-arch-filter">
+          <button type="button" class="viz-pill active" data-cid="all">Todos Arquétipos</button>
+          <button type="button" class="viz-pill" data-cid="0">Baixo Custo</button>
+          <button type="button" class="viz-pill" data-cid="1">Universais</button>
+          <button type="button" class="viz-pill" data-cid="2">Alta Extração</button>
+        </div>
+      </div>
+      <div id="e3-banks-plot" class="viz-canvas" style="min-height:410px;"></div>
+      <details class="svg-fallback-box" open>
+        <summary>Ver gráficos estáticos / exportar SVG (Arquétipos, Dispersão e Persistência) ▾</summary>
+        <div style="display:grid; gap:14px; margin-top:10px;">
+          <img src="assets/alta_renda_h1_h4.svg?v=10" alt="Arquétipos Competitivos Bancários">
+          <img src="assets/alta_renda_retornos_30d.svg?v=10" alt="Dispersão Intra-Produto 138 Bancos">
+          <img src="assets/alta_renda_ranking.svg?v=10" alt="Persistência Competitiva 11 Meses">
+        </div>
+      </details>
+    </div>
+    
+      <figcaption style="margin-top:10px;">Projeção PCA + K-Means (k=3, silhueta 0,242), dispersão intra-produto entre 138 bancos (até 15,57x P90/P10 no Crédito Não-Consignado) e persistência longitudinal de 370 pares idênticos (Spearman ρ = 0,8656).</figcaption>
+    </figure>
+
+    <figure class="study-chart">
+      <h3 style="margin:0 0 4px; font-size:1.1rem; font-weight:800; color:var(--ink-heading);">Figura 4 · Resíduos Estruturais dos 27 Estados (09/2026) &amp; Painel IBGE×BCB (N=108 UF-anos)</h3>
+      <p style="margin:0 0 12px; font-size:13.5px; color:var(--mute);">Compare o desvio estrutural observado em cada UF contra a expectativa pela renda ou explore a dispersão completa 2022–2025.</p>
+      
+    <div class="viz-interactive-shell" id="e3-uf-shell">
+      <div class="viz-toolbar">
+        <div class="viz-pills" id="e3-uf-views">
+          <button type="button" class="viz-pill active" data-view="residuals">Desvio Estrutural dos 27 Estados (09/2026)</button>
+          <button type="button" class="viz-pill" data-view="panel">Painel IBGE × BCB (108 UF-Anos)</button>
+        </div>
+        <span class="viz-hint">Passe o mouse em qualquer UF para ver Renda P90, Inadimplência Real e Resíduo</span>
+      </div>
+      <div id="e3-uf-plot" class="viz-canvas" style="min-height:460px;"></div>
+      <details class="svg-fallback-box" open>
+        <summary>Ver gráfico estático / baixar SVG ▾</summary>
+        <img src="assets/alta_renda_funil.svg?v=10" alt="Painel Estadual 108 UF-anos e Resíduos 2026">
+      </details>
+    </div>
+    
+      <figcaption style="margin-top:10px;">Painel estadual 2022–2025 (N = 108 UF-anos · R² com Efeitos Fixos Temporais = 0,550) e desvios persistentes em 09/2026 (TO, MS e MA acima; PB, ES e SC abaixo do esperado pela renda).</figcaption>
+    </figure>
+
+    <div class="study-note" style="background:#FFFFFF; border:1px solid var(--line); border-left:4px solid var(--accent); border-radius:8px; padding:18px 20px; margin:2rem 0;">
+      <strong style="color:var(--ink-heading); font-size:14.5px;">Reproduzir esta análise localmente:</strong>
+      <p style="margin:6px 0 10px; font-size:13.5px; color:var(--ink);">O script completo e os snapshots públicos congelados estão no repositório GitHub. Execute no terminal:</p>
+      <pre class="repro-terminal" style="margin:0 0 10px;">git clone https://github.com/carlosfelix06/carlosfelix06.github.io.git
+cd carlosfelix06.github.io/codigo/estudo-03-alta-renda-credito-pf
+python src/estudo_alta_renda_publico.py</pre>
+      <p style="margin:0; font-size:13px; color:var(--mute);">Dica: adicione <code>--refresh</code> para consultar as APIs ao vivo do IBGE e Banco Central. · <a href="https://github.com/carlosfelix06/carlosfelix06.github.io/tree/main/codigo/estudo-03-alta-renda-credito-pf" target="_blank" rel="noopener" style="font-weight:700; color:var(--accent);">Abrir código e JSON no GitHub ↗</a></p>
+    </div>
+  </section>
+
+  <section id="metodologia" style="margin-top:2.5rem">
+    <h2 class="study-h2" style="margin-bottom:0.6rem;">Metodologia, Limites Analíticos &amp; Documentação</h2>
+    <p class="study-sub" style="margin:0 0 14px; font-size:15.5px; font-weight:600; color:#0F172A; line-height:1.5;">Nota Técnica, Partições dos Dados e Reprodutibilidade do Experimento</p>
+    <section id="etapa-1" class="canonical-step" style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:24px 26px; margin-bottom:1.5rem; box-shadow:0 1px 4px rgba(0,0,0,0.02);">  <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px; border-bottom:1px solid var(--line); padding-bottom:12px;">    <span style="background:var(--primary); color:#FFFFFF; font-size:12px; font-weight:800; width:26px; height:26px; border-radius:50%; display:grid; place-items:center;">1</span>    <h3 style="font-size:1.2rem; font-weight:800; color:var(--ink-heading); margin:0;">Resumo executivo</h3>  </div>  <div class="canonical-content" style="color:var(--ink); font-size:15px; line-height:1.7;"><p>Analisamos o mercado brasileiro de crédito à Pessoa Física estritamente nos grãos em que dados públicos oficiais existem — <strong>Instituição Financeira</strong> (BCB Olinda) e <strong>Unidade da Federação</strong> (IBGE + BCB SGS) — sem extrapolações indevidas para CPFs individuais.</p>
+<p>Dois resultados centrais alteram decisões de precificação e expansão geográfica:</p>
+<p>1. <strong>A estrutura de preços entre bancos é estrutural e persistente (138 bancos · 370 pares em 11 meses):</strong> A amplitude <code>P90/P10</code> atinge <strong>15,57x</strong> no Crédito Pessoal Não-Consignado (<code>24,74%</code> vs <code>385,29% a.a.</code>) e <strong>5,04x</strong> no Cheque Especial. Rastreando exatamente os mesmos pares <code>(instituição, modalidade)</code> entre <code>11/2025</code> e <code>10/2026</code>, a correlação de postos é <strong>Spearman ρ = 0,8656 (<code>p = 1,4e-112</code>)</strong>: <strong>80,2%</strong> dos bancos do quartil mais barato e <strong>82,6%</strong> do quartil mais caro permanecem nas mesmas faixas após 11 meses (<code>Δ mediano = -0,06 p.p.</code>). Via <code>K-Means (k=3)</code> em <code>74</code> bancos multi-produto, identificam-se claramente 3 arquétipos: Competidores de Baixo Custo (<code>27</code>), Bancos Universais Colateralizados (<code>31</code>) e Segmento de Alta Extração (<code>16</code>).</p>
+<p>2. <strong>A renda estadual explica o corte transversal, mas falha em prever o ano seguinte:</strong> Em um painel de <strong>108 UF-anos (<code>2022–2025</code>)</strong>, adicionar efeitos fixos anuais eleva o <code>R²</code> de <strong>0,053</strong> (<code>OLS pooled</code>) para <strong>0,550</strong> — provando que choques macro anuais (Selic/ciclo) dominam metade da variância. Quando treinado de <code>2022–2024</code> para prever <code>2025</code> fora da amostra, o modelo de renda estadual obtém <code>MAE = 1,278 p.p.</code> (<code>R² = -2,65</code>), <strong>pior que a persistência inercial do próprio estado (<code>MAE = 0,953 p.p.</code>)</strong>, embora revele forte <strong>β-convergência</strong> regional entre 2022 e 2026 (<code>inclinação = -1,164, p = 0,0023</code>).</p></div></section>
+<section id="etapa-2" class="canonical-step" style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:24px 26px; margin-bottom:1.5rem; box-shadow:0 1px 4px rgba(0,0,0,0.02);">  <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px; border-bottom:1px solid var(--line); padding-bottom:12px;">    <span style="background:var(--primary); color:#FFFFFF; font-size:12px; font-weight:800; width:26px; height:26px; border-radius:50%; display:grid; place-items:center;">2</span>    <h3 style="font-size:1.2rem; font-weight:800; color:var(--ink-heading); margin:0;">Contexto e dados</h3>  </div>  <div class="canonical-content" style="color:var(--ink); font-size:15px; line-height:1.7;"><p>Todas as fontes são abertas, auditáveis via API e reproduzidas offline pelo snapshot em <code>resultados/snapshot_publico.json</code>:</p>
+<ul>
+<li><strong>Microdados de Precificação Bancária (<code>BCB Olinda TaxasJurosDiariaPorInicioPeriodo</code>):</strong> Coleta de duas janelas fechadas — <strong><code>2025-11-12 a 2025-11-18</code></strong> e <strong><code>2026-10-23 a 2026-10-29</code></strong> — cobrindo <strong>138 instituições</strong>, <strong>548 cotações</strong> na janela atual e <strong>370 pareamentos idênticos</strong> ao longo de 11 meses.</li>
+<li><strong>Painel Estadual de Renda (<code>IBGE SIDRA 7438 / Var 10769</code>):</strong> Distribuição real de renda domiciliar per capita (<code>P50</code>, <code>P90</code>, <code>P95</code>, <code>P99</code>) para o Brasil e todas as <strong>27 UFs</strong> nos <strong>4 anos <code>2022, 2023, 2024 e 2025</code></strong> (<code>108</code> observações UF-ano).</li>
+<li><strong>Risco e Carteira Estadual e Nacional (<code>BCB SGS 15861–15887</code> e séries macro PF):</strong> Inadimplência PF &gt;90 dias mensal (<code>01/2022–09/2026</code>) agregada por médias anuais <code>2022–2025</code> para alinhamento ao IBGE e fechamento atual de <code>09/2026</code>.</li>
+</ul></div></section>
+<section id="etapa-3" class="canonical-step" style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:24px 26px; margin-bottom:1.5rem; box-shadow:0 1px 4px rgba(0,0,0,0.02);">  <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px; border-bottom:1px solid var(--line); padding-bottom:12px;">    <span style="background:var(--primary); color:#FFFFFF; font-size:12px; font-weight:800; width:26px; height:26px; border-radius:50%; display:grid; place-items:center;">3</span>    <h3 style="font-size:1.2rem; font-weight:800; color:var(--ink-heading); margin:0;">Método e análise</h3>  </div>  <div class="canonical-content" style="color:var(--ink); font-size:15px; line-height:1.7;"><p>Para evitar viés de composição e falácia ecológica, a modelagem separa dois pipelines independentes:</p>
+<p>1. <strong>Estrutura Competitiva Bancária (<code>74</code> instituições com &gt;=3 modalidades em <code>10/2026</code>):</strong> Padronizamos a taxa de cada banco dentro de cada linha de produto como <strong>percentil intra-modalidade (<code>0</code> = mais barato, <code>1</code> = mais caro)</strong>, combinando <code>mean_pct_rank</code>, número de modalidades ofertadas, dispersão interna (<code>spread_std_pct</code>) e fração de portfólio colateralizado (<code>Consignado</code>/<code>Veículos</code>/<code>Imobiliário</code>). Aplicamos <strong>StandardScaler + PCA + K-Means (<code>k=2,3,4</code> avaliados por Silhueta)</strong> e medimos a estabilidade temporal interanual por correlação de Spearman + matriz de retenção nos quartis extremos (<code>&lt;=P25</code> e <code>&gt;=P75</code>).</p>
+<p>2. <strong>Econometria de Painel Estadual (<code>N = 108 UF-Anos</code>):</strong> Comparamos <strong>3 especificações</strong> no grão estadual: (i) <code>OLS Pooled (log P90)</code>, (ii) <code>Painel Efeitos Fixos de Ano (log P90 + P90/P50 + dummies 2023–2025)</code>, e (iii) <strong>Validação Temporal Fora da Amostra</strong> (<code>treino 2022–2024</code> → <code>teste 2025</code>, comparando <code>Ridge</code> estrutural contra o baseline inercial <code>UF_{t-1}</code>), acrescida de regressão de β-convergência <code>2022 → 09/2026</code>.</p></div></section>
+<section id="etapa-4" class="canonical-step" style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:24px 26px; margin-bottom:1.5rem; box-shadow:0 1px 4px rgba(0,0,0,0.02);">  <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px; border-bottom:1px solid var(--line); padding-bottom:12px;">    <span style="background:var(--primary); color:#FFFFFF; font-size:12px; font-weight:800; width:26px; height:26px; border-radius:50%; display:grid; place-items:center;">4</span>    <h3 style="font-size:1.2rem; font-weight:800; color:var(--ink-heading); margin:0;">Resultados e interpretação</h3>  </div>  <div class="canonical-content" style="color:var(--ink); font-size:15px; line-height:1.7;"><h3>1. Arquétipos Bancários e Persistência de Preços (<code>138</code> Bancos · <code>11</code> Meses)</h3>
+<div class="wrap"><table><thead><tr>
+<th>Arquétipo (<code>K-Means k=3 · Silhueta 0,242</code>)</th>
+<th class="num">Bancos</th>
+<th class="num">Percentil Médio de Taxa</th>
+<th class="num">Modalidades Médias</th>
+<th class="num">Mix Colateralizado</th>
+<th class="num">Exemplos Reais (Olinda BCB)</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>1 · Competidores de Baixo Custo</strong></td>
+<td class="num"><strong>27</strong></td>
+<td class="num"><strong>34,9º</strong> (mais baratos)</td>
+<td class="num"><strong>5,4</strong></td>
+<td class="num">48,7%</td>
+<td class="num"><code>BANCO BTG PACTUAL</code>, <code>ASA SCFI</code>, <code>BANCO BARI</code></td>
+</tr>
+<tr>
+<td><strong>2 · Bancos Universais / Garantia</strong></td>
+<td class="num"><strong>31</strong></td>
+<td class="num"><strong>53,3º</strong> (intermediários)</td>
+<td class="num"><strong>5,0</strong></td>
+<td class="num"><strong>66,8%</strong></td>
+<td class="num"><code>BANCO INTER</code>, <code>BANCO PAN</code>, <code>BANCO DIGIO</code></td>
+</tr>
+<tr>
+<td><strong>3 · Alta Extração / Segmento Caro</strong></td>
+<td class="num"><strong>16</strong></td>
+<td class="num"><strong>80,4º</strong> (topo caro)</td>
+<td class="num">3,4</td>
+<td class="num">42,1%</td>
+<td class="num"><code>AGORACRED SCFI</code>, <code>BANCO SEMEAR</code>, <code>BANCO AFINZ</code></td>
+</tr>
+</tbody></table></div>
+<p>Nas linhas sem garantia direta, a amplitude entre percentis de instituições é drástica (<code>P90/P10 = 15,57x</code> no Não-Consignado, <code>5,04x</code> no Cheque Especial, <code>4,85x</code> no Cartão Parcelado e <code>4,09x</code> no Rotativo <code>217,8%</code> vs <code>890,2% a.a.</code>), ao contrário do <strong>Consignado INSS</strong> regulado por teto (<code>1,21x</code>, <code>20,65%</code> vs <code>24,98%</code>). O coeficiente <strong>Spearman ρ = 0,8656 (<code>370</code> pares)</strong> prova que essa dispersão reflete posicionamento estratégico de balanço e funding persistente ao longo de quase um ano.</p>
+<h3>2. Painel Regional (<code>108</code> UF-Anos · <code>2022–2025</code>) e Rejeição do Modelo Puro de Renda</h3>
+<div class="wrap"><table><thead><tr>
+<th>Modelo Avaliado no Grão UF</th>
+<th class="num">R² / Ajuste</th>
+<th class="num">MAE Fora da Amostra (<code>2025</code>)</th>
+<th class="num">Veredito Quantitativo</th>
+</tr></thead><tbody>
+<tr>
+<td><code>OLS Pooled (log P90)</code> em 108 UF-anos</td>
+<td class="num"><code>R² = 0,0529</code></td>
+<td class="num">—</td>
+<td class="num">Fraco isoladamente; ignora ciclo macro de juros</td>
+</tr>
+<tr>
+<td><code>Painel com Efeitos Fixos de Ano (FE)</code></td>
+<td class="num"><strong><code>R² = 0,5504</code></strong></td>
+<td class="num">—</td>
+<td class="num">Ano macro domina <code>~50 p.p.</code> da variância total</td>
+</tr>
+<tr>
+<td><code>Ridge Temporal (treino 22–24 → teste 2025)</code></td>
+<td class="num"><code>R² OOS = -2,647</code></td>
+<td class="num"><code>1,278 p.p.</code></td>
+<td class="num"><strong>Rejeitado</strong> — não supera a inércia estadual (<code>0,953 p.p.</code>)</td>
+</tr>
+<tr>
+<td><code>Regressão β-Convergência (2022 → 09/2026)</code></td>
+<td class="num"><code>slope = -1,164</code></td>
+<td class="num"><code>p = 0,0023</code></td>
+<td class="num">Estados que iniciaram piores convergiram mais rápido</td>
+</tr>
+</tbody></table></div>
+<p>Em setembro de 2026, embora o corte transversal ainda guarde associação negativa (<code>Spearman ρ = -0,417, p = 0,030</code>), os maiores desvios positivos (risco muito acima do previsto pela renda) permanecem concentrados em <code>MA</code>, <code>MS</code>, <code>TO</code> e <code>PE</code>, enquanto <code>SC</code>, <code>RS</code>, <code>AL</code> e <code>CE</code> registram resíduos negativos favoráveis.</p></div></section>
+<section id="etapa-5" class="canonical-step" style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:24px 26px; margin-bottom:1.5rem; box-shadow:0 1px 4px rgba(0,0,0,0.02);">  <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px; border-bottom:1px solid var(--line); padding-bottom:12px;">    <span style="background:var(--primary); color:#FFFFFF; font-size:12px; font-weight:800; width:26px; height:26px; border-radius:50%; display:grid; place-items:center;">5</span>    <h3 style="font-size:1.2rem; font-weight:800; color:var(--ink-heading); margin:0;">Conclusão e implicação prática</h3>  </div>  <div class="canonical-content" style="color:var(--ink); font-size:15px; line-height:1.7;"><p>1. <strong>Inteligência Competitiva &amp; Portabilidade:</strong> Como <strong>80,2%</strong> dos bancos baratos mantêm posicionamento de preço por um ano (<code>ρ = 0,8656</code>), estratégias de portabilidade e crédito com garantia (Consignado Privado, Home/Auto Equity) sobre clientes atualmente tomadores no Arquétipo 3 (<code>80,4º percentil</code>) capturam spreads reais de <strong>5x a 15x</strong> sem assumir o risco cego do balcão sem garantia.</p>
+<p>2. <strong>Política Regional de Crédito:</strong> O <strong>fracasso out-of-sample do modelo puramente baseado em renda (<code>MAE 1,28</code> vs <code>0,95 p.p.</code>)</strong> encerra a tentação de alocar risco estadual estaticamente por PIB/P90 do IBGE. Decisões de limite por praça precisam ancorar-se na série temporal local de inadimplência do próprio banco/UF acrescida de macroeconomia de taxas, corrigindo para desvios persistentes em praças como <code>TO</code>, <code>MA</code> e <code>MS</code>.</p></div></section>
+<section id="etapa-6" class="canonical-step" style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:24px 26px; margin-bottom:1.5rem; box-shadow:0 1px 4px rgba(0,0,0,0.02);">  <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px; border-bottom:1px solid var(--line); padding-bottom:12px;">    <span style="background:var(--primary); color:#FFFFFF; font-size:12px; font-weight:800; width:26px; height:26px; border-radius:50%; display:grid; place-items:center;">6</span>    <h3 style="font-size:1.2rem; font-weight:800; color:var(--ink-heading); margin:0;">Fronteiras de validade e síntese final</h3>  </div>  <div class="canonical-content" style="color:var(--ink); font-size:15px; line-height:1.7;"><ul>
+<li><strong>Fronteira estrita de granularidade (Proteção contra Falácia Ecológica):</strong> As fontes públicas do BCB e IBGE não expõem score de CPF nem inadimplência por faixa de renda dentro de um mesmo banco. Conclui-se sobre posicionamento institucional (<code>138</code> bancos) e dinâmica estadual (<code>108</code> UF-anos); extrapolar taxas estaduais de inadimplência diretamente para perfis individuais intra-UF é metodologicamente inválido e explicitamente descartado neste estudo.</li>
+<li><strong>Reprodutibilidade completa:</strong> O código-fonte em <code>codigo/estudo-03-alta-renda-credito-pf/src/estudo_alta_renda_publico.py</code> executa localmente a partir de <code>resultados/snapshot_publico.json</code> e permite atualização ao vivo via <code>--refresh</code>.</li>
+</ul></div></section>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container"><p>Estudo público reproduzível com dados oficiais IBGE &amp; BCB · <a href="https://github.com/carlosfelix06/carlosfelix06.github.io/tree/main/codigo/estudo-03-alta-renda-credito-pf" target="_blank" rel="noopener">Código GitHub ↗</a> · <a href="estudos.html">Vitrine de Estudos</a> · <a href="index.html">Início</a></p></div>
+</footer>
+<script>
+  window.toggleExtraTools = function() {
+    const container = document.getElementById('tools-extra-container');
+    const btn = document.getElementById('btn-toggle-tools');
+    if (!container || !btn) return;
+    const lang = document.documentElement.lang || 'pt';
+    const dict = (typeof I18N_DATA !== 'undefined' && I18N_DATA[lang]) ? I18N_DATA[lang] : {};
+    const isHidden = container.style.display === 'none' || container.style.display === '';
+    if (isHidden) {
+      container.style.display = 'block';
+      btn.setAttribute('aria-expanded', 'true');
+      const lessTxt = dict.tools_btn_less || 'Ver menos tecnologias';
+      btn.innerHTML = '<span data-i18n="tools_btn_less">' + lessTxt + '</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>';
+    } else {
+      container.style.display = 'none';
+      btn.setAttribute('aria-expanded', 'false');
+      const moreTxt = dict.tools_btn_more || 'Ver todas as tecnologias (+21)';
+      btn.innerHTML = '<span data-i18n="tools_btn_more">' + moreTxt + '</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>';
+    }
+  };
+
+(function () {
+  "use strict";
+
+  function initMobileNav() {
+    const navbar = document.querySelector("#navbar");
+    const toggle = document.querySelector(".mobile-nav-toggle");
+    if (!navbar || !toggle) return;
+
+    toggle.addEventListener("click", function (e) {
+      e.stopPropagation();
+      const isOpen = navbar.classList.toggle("navbar-mobile");
+      toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      const icon = toggle.querySelector("i");
+      if (icon) {
+        if (isOpen) {
+          icon.classList.remove("bi-list");
+          icon.classList.add("bi-x");
+        } else {
+          icon.classList.remove("bi-x");
+          icon.classList.add("bi-list");
+        }
+      }
+    });
+
+    navbar.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        navbar.classList.remove("navbar-mobile");
+        toggle.setAttribute("aria-expanded", "false");
+        const icon = toggle.querySelector("i");
+        if (icon) {
+          icon.classList.remove("bi-x");
+          icon.classList.add("bi-list");
+        }
+      });
+    });
+
+    document.addEventListener("click", function (e) {
+      if (navbar.classList.contains("navbar-mobile") && !navbar.contains(e.target) && !toggle.contains(e.target)) {
+        navbar.classList.remove("navbar-mobile");
+        toggle.setAttribute("aria-expanded", "false");
+        const icon = toggle.querySelector("i");
+        if (icon) {
+          icon.classList.remove("bi-x");
+          icon.classList.add("bi-list");
+        }
+      }
+    });
+  }
+
+
+  // ===================================================
+  // INTERNACIONALIZAÇÃO (PT / EN / ES) COM LOCALSTORAGE
+  // ===================================================
+  const I18N_DATA = {
+  "pt": {
+    "tagline_pill": "Dados & Analytics",
+    "nav_home": "Início",
+    "nav_about": "Sobre & Trajetória",
+    "nav_deliver": "O que entrega",
+    "nav_tools": "Ferramentas",
+    "nav_studies": "Vitrine de Estudos →",
+    "nav_contact": "Contato",
+    "hero_tag": "Dados · Analytics · Decisão",
+    "hero_role": "Especialista em Dados & Analytics com foco em Risco de Crédito, Qualidade de Dados e Decisão Operacional",
+    "hero_summary": "Conecto investigação profunda de regras e bases de dados a diagnósticos claros e ações operacionais que geram resultado direto para o negócio.",
+    "hero_cta_studies": "Acessar Vitrine de Estudos →",
+    "hero_cta_credit": "Ver Estudo de Crédito",
+    "hero_card_kicker": "Últimos Estudos",
+    "hero_card_sub": "Clique em qualquer entrega para abrir os dados e o código:",
+    "hero_diff_label": "Previsão de Crédito · Banco Central",
+    "hero_diff_val": "Reduziu o erro de projeção (MAE) em <strong>R$ 7,39 bi/mês (-54%)</strong> com calendário ANBIMA →",
+    "hero_domain_label": "Qualidade de Dados & Cobrança · 30 mil contas",
+    "hero_domain_val": "Preservou <strong>92,4% (NT$ 6,48M simulados)</strong> em experimento de falha de dados →",
+    "hero_method_label": "Base Única de Empresas (MDM) · 7.905 registros CVM",
+    "hero_method_val": "Eliminou <strong>14,8%</strong> de duplicidades e unificou empresas e fundos em visão confiável →",
+    "hero_avail_label": "Taxas de Juros & Concorrência · 138 Bancos + IBGE",
+    "hero_avail_val": "Mapeou variação de até <strong>15,6x</strong> nos juros entre bancos e mediu a concorrência local →",
+    "about_title": "Sobre mim & Trajetória",
+    "about_sub": "Uma visão sobre a bagagem técnica, postura analítica e como gero impacto nas operações.",
+    "about_bio_p1": "Atuo na interseção entre <strong>Dados, Analytics e Operações de Negócio</strong>, investigando a origem, a granularidade e as regras das informações para construir indicadores confiáveis, identificar oportunidades e apoiar decisões estratégicas e operacionais.",
+    "about_quote": "“Indicadores consolidados podem esconder falhas operacionais. Uma análise eficiente começa pela qualidade dos dados, pelas regras de negócio e pela compreensão do problema.”",
+    "about_bio_p2": "Com foco em <strong>risco de crédito, funil de conversão, conciliação de indicadores e qualidade de dados</strong>, uno ferramentas escaláveis (SQL avançado, pipelines em Python, DuckDB e Databricks) à modelagem de negócio (Power BI, DAX e governança de KPIs) para assegurar que liderança e operação tomem decisões alinhadas e rastreáveis.",
+    "cred_edu_label": "01 · FORMAÇÃO ACADÊMICA",
+    "cred_edu_title": "Formação em Computação, Big Data e Estatística",
+    "cred_edu_desc": "• Bacharelado em <strong>Ciência da Computação</strong> (Faculdade Sumaré)<br>• Pós-graduação em <strong>Big Data</strong> (Univ. Anhembi Morumbi)<br>• Pós-graduação em <strong>Estatística Aplicada</strong> (FMU)",
+    "cred_spec_label": "02 · ÁREAS DE ESPECIALIDADE",
+    "cred_spec_title": "Frentes Centrais de Atuação",
+    "cred_spec_desc": "• <strong>Crédito:</strong> Escoragem, políticas de limite, priorização de cobrança.<br>• <strong>Qualidade (DQ):</strong> Data contracts, monitoramento de ausência e drift.<br>• <strong>BI & Receita:</strong> Modelagem dimensional, funil e conciliação de bases.",
+    "cred_ops_label": "03 · POSTURA OPERACIONAL",
+    "cred_ops_title": "Do Diagnóstico à Ação",
+    "cred_ops_desc": "• <strong>Rigor & Causalidade:</strong> Separação entre correlação e causalidade real.<br>• <strong>Comunicação em Camadas:</strong> Executiva para diretoria e técnica para squads.<br>• <strong>Reprodutibilidade:</strong> Pipelines auditáveis sem dependência de processos manuais.",
+    "deliver_title": "O que eu entrego",
+    "deliver_sub": "Capacidades analíticas aplicadas para resolver problemas reais de operações e gestão:",
+    "deliv_dashboards": "Dashboards",
+    "deliv_dashboards_p": "Painéis executivos com indicadores confiáveis, análises detalhadas e acompanhamento de resultados.",
+    "deliv_dashboards_link": "Ver painéis e modelos →",
+    "deliv_analyses": "Análises & Estudos",
+    "deliv_analyses_p": "Investigações de crédito, cobrança e receita para identificar causas, riscos e oportunidades.",
+    "deliv_analyses_link": "Ver estudo de crédito →",
+    "deliv_automations": "Automações",
+    "deliv_automations_p": "Processos em Python e SQL para reduzir retrabalho, validar informações e aumentar a eficiência.",
+    "deliv_automations_link": "Ver pipeline e simulador →",
+    "deliv_governance": "Governança de Dados",
+    "deliv_governance_p": "Qualidade, conciliação e regras de negócio para garantir consistência e confiabilidade dos indicadores.",
+    "deliv_governance_link": "Ver auditoria e DQ →",
+    "deliv_traceability": "Rastreabilidade",
+    "deliv_traceability_p": "Código versionado, documentação técnica e histórico das regras e transformações aplicadas.",
+    "deliv_traceability_link": "Ver repositório no GitHub ↗",
+    "tools_title": "Ferramentas & Tecnologias",
+    "tools_sub": "Ecossistema tecnológico organizado por especialidade para engenharia de dados, modelagem preditiva e analytics:",
+    "showcase_title": "Vitrine de Estudos & Projetos",
+    "showcase_sub": "Análises aprofundadas com metodologia reproduzível, dados quantitativos e impacto direto na decisão operacional:",
+    "showcase_recent_badge": "Últimos Estudos Publicados (Vitrine em Destaque)",
+    "study04_badge": "Estudo 04 · Backtest BCB SGS",
+    "study04_meta": "Piso de Ruído na Projeção de Concessões de Crédito PF · 57 meses reais",
+    "study04_title": "Previsão de Crédito PF: Backtest Walk-Forward e Efeito Calendário",
+    "study04_desc": "Incluir feriados nacionais ANBIMA e dias úteis reduz o erro absoluto de projeção (MAE) de <strong>R$ 13,63 bi para R$ 6,24 bi/mês (-R$ 7,39 bi/mês em acurácia de planejamento)</strong> e coloca <strong>97,0%</strong> dos meses na meta ±5%. <em>Método:</em> backtest walk-forward em 33 origens reais (<code>wMAPE 2,79% · Ljung-Box p = 0,403</code>).",
+    "study04_btn_study": "Ler Estudo e Método →",
+    "study04_btn_json": "Dados JSON",
+    "study05_badge": "Estudo 05 · Política de Crédito & Decisão",
+    "study05_meta": "GiveMeSomeCredit (OpenML 46929) · 150.000 registros históricos",
+    "study05_title": "Otimização de Política de Crédito: Maximizando o Retorno com Score e Machine Learning",
+    "study05_desc": "Separa eliminatórios por gravidade (<code>R1→R2→R3</code>) e aplica uma Matriz 3×3 na R4: <strong>5,05M u.m.</strong> de P&amp;L simulado (+10,9% sobre a regra rígida de 4,55M), perda EAD de <strong>1,05%</strong> e aprovação de 49,68%. O RF 1D pareado chega a 5,08M (−0,49%): a matriz entrega governança auditável em 9 faixas, não acurácia extra.",
+    "study05_btn_study": "Ler Estudo e Simulador →",
+    "hero_policy_label": "Concessão de Crédito & IA · 150 mil propostas",
+    "hero_policy_val": "Elevou o P&amp;L simulado em <strong>+10,9%</strong> sobre a regra rígida, com perda EAD de <strong>1,05%</strong> →",
+    "study03_badge": "Estudo 03 · 138 Bancos + 108 UF-Anos",
+    "study03_meta": "BCB Olinda (11m) + IBGE 2022–2025",
+    "study03_title": "Onde Bancos Cobram Mais Caro e Limites da Renda Regional",
+    "study03_desc": "Em duas análises independentes (sem relação causal direta): mapeia taxas de <strong>138 bancos</strong> (dispersão de até <strong>15,57x</strong> e persistência de 11 meses, <code>Spearman ρ = 0,866</code>) e avalia separadamente <strong>108 UF-anos</strong> mostrando que renda estadual isolada não prevê a inadimplência futura (<code>MAE 1,28 vs 0,95 p.p.</code>).",
+    "study03_btn_study": "Ler Estudo e Método →",
+    "sidebar_title": "Demais Estudos",
+    "sidebar_badge": "Acervo",
+    "sidebar_intro": "Estudos aprofundados com simuladores interativos e modelos executivos:",
+    "study01_badge": "Estudo 01 · UCI Credit Default",
+    "study01_title": "Impacto da Qualidade dos Dados no Risco de Inadimplência",
+    "study01_desc": "Experimento simulado em 30.000 contas UCI mostrando que falhas de ETL degradam a fila de cobrança e que tratar ausências nativamente + ordenar por Perda Esperada preserva <strong>92,4% do retorno simulado (estimativa de NT$ 6,48M sob premissas parametrizadas)</strong>.",
+    "study01_btn_study": "Ler estudo →",
+    "study01_btn_sim": "Simulador",
+    "study01_btn_code": "Código ↗",
+    "study02_badge": "Estudo 02 · Dados Abertos CVM",
+    "study02_title": "Unificação de Cadastros Duplicados (MDM) na Base CVM",
+    "study02_desc": "Separa duas frentes na base CVM (7.905 registros → 6.736 CNPJs, <strong>-14,8%</strong>): (1) regra determinística de sobrevivência cadastral com CNPJ (Recência inverte <strong>78,6% · 33/42</strong> conflitos de status) e (2) acurácia do pareamento probabilístico sem CNPJ via HGB (<code>PR-AUC 0,884</code>).",
+    "study02_btn_study": "Ler estudo →",
+    "study02_btn_sim": "Simulador",
+    "study02_btn_code": "Código ↗",
+    "sidebar_catalog_link": "Ver Vitrine Completa com os 5 Estudos",
+    "catalog_title": "Vitrine de Estudos Analíticos",
+    "catalog_sub": "Estudos de caso reais e dados públicos sobre Risco de Crédito, Qualidade de Dados, Resolução de Entidades e Econometria.",
+    "catalog_back_home": "← Voltar ao Portfólio Principal",
+    "contact_title": "Entre em Contato",
+    "contact_sub": "Disponível para posições de Especialista / Sênior em Dados, Analytics, Risco de Crédito e Inteligência de Negócio:",
+    "contact_btn_li": "Conectar no LinkedIn →",
+    "contact_btn_gh": "Explorar Repositório no GitHub",
+    "contact_loc_label": "Localização",
+    "contact_loc_val": "São Paulo, SP — Brasil (Híbrido / Remoto)",
+    "contact_li_label": "LinkedIn Profissional",
+    "contact_repo_label": "Projetos & Código",
+    "footer_rights": "Carlos Santos. Todos os direitos reservados.",
+    "cat_hero_tag": "Catálogo de estudos",
+    "cat_hero_title": "Vitrine de Estudos",
+    "cat_hero_role": "Análises com escopo, métricas e limitações documentados",
+    "cat_intro_label": "Vitrine de Estudos",
+    "cat_intro_title": "Estudos publicados",
+    "cat_intro_desc": "Casos analíticos reproduzíveis baseados exclusivamente em fontes de dados públicas oficiais ou benchmarks públicos anonimizados (UCI Machine Learning Repository, Dados Abertos CVM, IBGE PNAD Contínua, Banco Central do Brasil SGS e GiveMeSomeCredit / OpenML #46929).",
+    "cat_card01_badge": "Estudo 01 · UCI Credit Default",
+    "cat_card01_title": "Impacto da Qualidade dos Dados no Risco de Inadimplência",
+    "cat_card01_desc": "Experimento simulado em 30.000 contas UCI: tratar ausências nativamente + priorizar por Perda Esperada preserva 92,4% do retorno simulado (NT$ 6,48M sob premissas operacionais parametrizadas).",
+    "cat_card02_badge": "Estudo 02 · Dados Abertos CVM",
+    "cat_card02_title": "Unificação de Cadastros Duplicados (MDM) na Base CVM",
+    "cat_card02_desc": "Consolida 7.905 registros da CVM (-14,8% duplicidades), separando a regra determinística de sobrevivência com CNPJ (78,6% de inversão por recência) da acurácia do pareamento sem CNPJ (PR-AUC 0,884).",
+    "cat_card03_badge": "Estudo 03 · 138 Bancos + 108 UF-Anos",
+    "cat_card03_title": "Onde Bancos Cobram Mais Caro e Limites da Renda Regional",
+    "cat_card03_desc": "Em duas análises independentes (sem nexo causal direto): mapeia a persistência de taxas em 138 bancos (15,57x, ρ = 0,866) e mostra em 108 UF-anos que renda estadual isolada falha fora da amostra (MAE 1,28 vs 0,95 p.p.).",
+    "cat_card04_badge": "Estudo 04 · Banco Central SGS",
+    "cat_card04_title": "Previsão de Crédito PF: Backtest Walk-Forward e Efeito Calendário",
+    "cat_card04_desc": "Ajustar por feriados nacionais ANBIMA e dias úteis reduz o erro absoluto de projeção (MAE) em R$ 7,39 bi/mês (de R$ 13,63 bi para R$ 6,24 bi/mês · wMAPE 2,79%) e acerta 97,0% dos meses na meta ±5%.",
+    "cat_card05_badge": "Estudo 05 · 150 mil propostas (OpenML)",
+    "cat_card05_title": "Otimização de Política de Crédito: Maximizando o Retorno com Score e Machine Learning",
+    "cat_card05_desc": "Simulação Otimizada 2D aprova 49,68% com Bad Rate EAD de 1,05% e 5,05M u.m. (4,14% P&amp;L/EAD vs 4,71M RF 1D @ mesmo EAD e 4,55M rígida), isolando 1.794 casos Early Warning (6,35% BR).",
+    "cat_btn_read": "Ler estudo →",
+    "cat_btn_code_data": "<i class='bi bi-github'></i> Código e Dados ↗",
+    "cat_btn_code_res": "<i class='bi bi-github'></i> Código e Resultados ↗",
+    "footer_home_link": "Início",
+    "tools_cat_01": "<span class='badge-dot'></span> 01 · Linguagens &amp; Engenharia de Dados",
+    "tools_cat_02": "<span class='badge-dot'></span> 02 · Analytics &amp; Machine Learning",
+    "tools_cat_03": "<span class='badge-dot'></span> 03 · Bancos de Dados &amp; Infraestrutura",
+    "tools_cat_04": "<span class='badge-dot'></span> 04 · Business Intelligence &amp; Produtividade",
+    "tools_btn_more": "Ver todas as tecnologias (+21)",
+    "tools_btn_less": "Ver menos tecnologias",
+    "study03_kpi1_label": "Persistência 11m",
+    "study03_kpi2_label": "Spread Bancário",
+    "study03_kpi3_label": "Painel 108 UF-Anos",
+    "btn_code_and_data": "<i class='bi bi-github'></i> Código e Dados ↗"
+  },
+  "en": {
+    "tagline_pill": "Data & Analytics",
+    "nav_home": "Home",
+    "nav_about": "About & Career",
+    "nav_deliver": "What I Deliver",
+    "nav_tools": "Tools & Stack",
+    "nav_studies": "Studies Showcase →",
+    "nav_contact": "Contact",
+    "hero_tag": "Data · Analytics · Decision",
+    "hero_role": "Data & Analytics Specialist focused on Credit Risk, Data Quality and Operational Decision-Making",
+    "hero_summary": "I connect in-depth investigation of business rules and databases to clear diagnostics and operational actions that drive direct business value.",
+    "hero_cta_studies": "Explore Studies Showcase →",
+    "hero_cta_credit": "View Credit Study",
+    "hero_card_kicker": "Latest Studies",
+    "hero_card_sub": "Click any outcome below to inspect the open data and code:",
+    "hero_policy_label": "Credit Policy & AI · 150k Applications",
+    "hero_policy_val": "Lifted simulated P&amp;L by <strong>+10.9%</strong> over the rigid rule, with a <strong>1.05%</strong> EAD bad rate →",
+    "hero_diff_label": "Credit Forecasting · Central Bank",
+    "hero_diff_val": "Cut forecast MAE by <strong>R$ 7.39 bn/month (-54%)</strong> with ANBIMA holiday calendar →",
+    "hero_domain_label": "Data Quality & Collections · 30k Accounts",
+    "hero_domain_val": "Recovered <strong>92.4%</strong> of financial losses by fixing hidden customer data flaws →",
+    "hero_method_label": "Unified Registry (MDM) · 7,905 CVM Records",
+    "hero_method_val": "Eliminated <strong>14.8%</strong> duplicates and built a single, reliable entity view →",
+    "hero_avail_label": "Bank Pricing & Income · 138 Banks + IBGE",
+    "hero_avail_val": "Mapped up to <strong>15.6x</strong> interest rate spread and measured local competition impact →",
+    "about_title": "About Me & Career",
+    "about_sub": "A perspective on technical background, analytical mindset, and operational impact.",
+    "about_bio_p1": "I operate at the intersection of <strong>Data, Analytics, and Business Operations</strong>, investigating the lineage, granularity, and business logic of information to build reliable indicators, identify opportunities, and support strategic and operational decisions.",
+    "about_quote": "“Aggregated metrics can hide critical operational failures. Efficient analysis starts with data quality, business rules, and a deep understanding of the problem.”",
+    "about_bio_p2": "Focused on <strong>credit risk, conversion funnels, KPI reconciliation, and data quality</strong>, I combine scalable tools (advanced SQL, Python pipelines, DuckDB, Databricks) with business modeling (Power BI, DAX, KPI governance) to ensure leadership and operations execute auditable, aligned decisions.",
+    "cred_edu_label": "01 · ACADEMIC BACKGROUND",
+    "cred_edu_title": "Education in Computing, Big Data & Statistics",
+    "cred_edu_desc": "• B.S. in <strong>Computer Science</strong> (Faculdade Sumaré)<br>• Postgraduate in <strong>Big Data</strong> (Univ. Anhembi Morumbi)<br>• Postgraduate in <strong>Applied Statistics</strong> (FMU)",
+    "cred_spec_label": "02 · CORE SPECIALIZATIONS",
+    "cred_spec_title": "Key Areas of Expertise",
+    "cred_spec_desc": "• <strong>Credit:</strong> Scoring models, credit limit policies, collections prioritization.<br>• <strong>Quality (DQ):</strong> Data contracts, missingness monitoring, and drift detection.<br>• <strong>BI & Revenue:</strong> Dimensional modeling, funnel tracking, and base reconciliation.",
+    "cred_ops_label": "03 · OPERATIONAL POSTURE",
+    "cred_ops_title": "From Diagnostic to Action",
+    "cred_ops_desc": "• <strong>Rigor & Causality:</strong> Clear separation between correlation and true causality.<br>• <strong>Layered Communication:</strong> Executive summaries for leadership, deep technical specs for squads.<br>• <strong>Reproducibility:</strong> Auditable data pipelines with zero dependency on manual steps.",
+    "deliver_title": "What I Deliver",
+    "deliver_sub": "Applied analytical capabilities solving real-world challenges in business operations and management:",
+    "deliv_dashboards": "Dashboards",
+    "deliv_dashboards_p": "Executive dashboards with dependable KPIs, granular drill-downs, and outcome tracking.",
+    "deliv_dashboards_link": "View dashboards & models →",
+    "deliv_analyses": "Analytics & Studies",
+    "deliv_analyses_p": "Deep investigations into credit risk, collections, and revenue to uncover root causes and opportunities.",
+    "deliv_analyses_link": "View credit study →",
+    "deliv_automations": "Automations",
+    "deliv_automations_p": "Automated pipelines in Python and SQL to reduce manual effort, validate data contracts, and boost efficiency.",
+    "deliv_automations_link": "View pipeline & simulator →",
+    "deliv_governance": "Data Governance",
+    "deliv_governance_p": "Data quality audits, reconciliation, and business rules governance to ensure indicator consistency.",
+    "deliv_governance_link": "View audit & DQ →",
+    "deliv_traceability": "Traceability",
+    "deliv_traceability_p": "Version-controlled code, comprehensive technical documentation, and full transformation audit trails.",
+    "deliv_traceability_link": "View GitHub repository ↗",
+    "tools_title": "Tools & Technologies",
+    "tools_sub": "Technological ecosystem organized by domain for data engineering, predictive modeling, and analytics:",
+    "showcase_title": "Studies & Projects Showcase",
+    "showcase_sub": "In-depth analyses with reproducible methodology, quantitative data, and direct operational impact:",
+    "showcase_recent_badge": "Latest Published Studies (Featured Showcase)",
+    "study04_badge": "Study 04 · Central Bank SGS Backtest",
+    "study04_meta": "Noise Floor in Household Credit Granting Projections · 57 real months",
+    "study04_title": "Household Credit Forecasting: Walk-Forward Backtest & Calendar Effects",
+    "study04_desc": "Adding Brazilian national (ANBIMA) holidays and business days cuts monthly forecast error (MAE) from <strong>R$ 13.63 bn to R$ 6.24 bn (-R$ 7.39 bn/month in planning accuracy)</strong>, hitting the ±5% target in <strong>97.0%</strong> of months. <em>Method:</em> 33-origin walk-forward backtest (<code>wMAPE 2.79% · Ljung-Box p = 0.403</code>).",
+    "study04_btn_study": "Read Study & Method →",
+    "study04_btn_json": "JSON Data",
+    "study05_badge": "Study 05 · Credit Policy & Decisioning",
+    "study05_meta": "GiveMeSomeCredit (OpenML 46929) · 150,000 historical borrowers",
+    "study05_title": "How a 2D Policy (Score × Random Forest) Lifts Return on EAD to 4.14% vs RF 1D & Rigid",
+    "study05_desc": "Separates knock-outs by severity (<code>R1→R2→R3</code>) and applies a complementary 3×3 Matrix in R4 (<code>49.68%</code> simulated approval, <strong>1.05%</strong> EAD Bad Rate, <strong>5.05M</strong> net P&amp;L vs 4.71M RF 1D @ equal EAD &amp; 4.55M rigid), isolating <strong>1,794</strong> Early Warning cases (<code>6.35%</code> BR).",
+    "study05_btn_study": "Read Study & Simulator →",
+    "study03_badge": "Study 03 · 138 Banks + 108 State-Years",
+    "study03_meta": "BCB Olinda (11m) + IBGE 2022–2025",
+    "study03_title": "Where Banks Charge Most & Why Income Alone Fails to Predict Credit",
+    "study03_desc": "Compares rates across <strong>138 banks</strong> (a <strong>15.57x</strong> spread), proving price positioning persists over 11 months, and shows across <strong>108 state-years</strong> why static state income fails out-of-sample. <em>Method:</em> <code>K-Means + PCA (Spearman ρ = 0.866)</code> & fixed-effects panel (<code>MAE 1.28 vs 0.95 pp</code>).",
+    "study03_btn_study": "Read Study & Method →",
+    "sidebar_title": "Other Pipeline Studies",
+    "sidebar_badge": "Archive",
+    "sidebar_intro": "In-depth studies with interactive simulators and executive decision models:",
+    "study01_badge": "Study 01 · UCI Credit Default",
+    "study01_title": "Impact of Data Quality on Default Risk",
+    "study01_desc": "Shows on 30,000 accounts how missing data hides defaulters without triggering global alerts, recovering <strong>92.4% of value (NT$ 6.48M)</strong> with native missing handling. <em>Method:</em> <code>32.3% → 27.4%</code> capture drop & HGB NaN + Expected Loss.",
+    "study01_btn_study": "Read study →",
+    "study01_btn_sim": "Simulator",
+    "study01_btn_code": "Code ↗",
+    "study02_badge": "Study 02 · CVM Open Data",
+    "study02_title": "Entity Deduplication & Golden Record (MDM) on CVM Data",
+    "study02_desc": "Consolidates 7,905 official records into 6,736 unique CNPJs (<strong>-14.8% duplicates</strong>) and resolves <strong>78.6% (33/42)</strong> of conflicts by recency, even without tax keys. <em>Method:</em> Golden Record + Record Linkage (<code>PR-AUC 0.884</code>).",
+    "study02_btn_study": "Read study →",
+    "study02_btn_sim": "Simulator",
+    "study02_btn_code": "Code ↗",
+    "sidebar_catalog_link": "View Full Showcase with all 5 Studies",
+    "catalog_title": "Analytical Studies Showcase",
+    "catalog_sub": "Real-world case studies and open data on Credit Risk, Data Quality, Entity Resolution, and Econometrics.",
+    "catalog_back_home": "← Back to Main Portfolio",
+    "contact_title": "Get in Touch",
+    "contact_sub": "Available for Specialist / Senior roles in Data, Analytics, Credit Risk and Business Intelligence:",
+    "contact_btn_li": "Connect on LinkedIn →",
+    "contact_btn_gh": "Explore Repository on GitHub",
+    "contact_loc_label": "Location",
+    "contact_loc_val": "São Paulo, SP — Brazil (Hybrid / Remote)",
+    "contact_li_label": "Professional LinkedIn",
+    "contact_repo_label": "Projects & Code",
+    "footer_rights": "Carlos Santos. All rights reserved.",
+    "cat_hero_tag": "Studies Catalogue",
+    "cat_hero_title": "Studies Showcase",
+    "cat_hero_role": "Analyses with documented scope, metrics, and explicit limitations",
+    "cat_intro_label": "Studies Showcase",
+    "cat_intro_title": "Published Studies",
+    "cat_intro_desc": "Reproducible analytical case studies based exclusively on official public data sources and anonymized public benchmarks (UCI Machine Learning Repository, CVM Open Data, IBGE PNAD Contínua, Central Bank of Brazil SGS, and GiveMeSomeCredit / OpenML #46929).",
+    "cat_card01_badge": "Study 01 · UCI Credit Default",
+    "cat_card01_title": "Impact of Data Quality on Default Risk",
+    "cat_card01_desc": "Proves on 30,000 accounts that missing data hides defaulters without moving global alerts; native missing handling recovers NT$ 6.48M (92.4% of clean value).",
+    "cat_card02_badge": "Study 02 · CVM Open Data",
+    "cat_card02_title": "Entity Deduplication & Golden Record (MDM) on CVM Data",
+    "cat_card02_desc": "Consolidates 7,905 CVM records (-14.8% duplicates), resolves 78.6% of conflicts by recency, and matches unkeyed records with HGB (PR-AUC 0.763 → 0.884).",
+    "cat_card03_badge": "Study 03 · 138 Banks + 108 State-Years",
+    "cat_card03_title": "Where Banks Charge Most & Limits of Regional Income",
+    "cat_card03_desc": "Maps 138 banks with a 15.57x rate spread (persistence ρ = 0.866) and proves across 108 state-years that income alone fails out-of-sample tests.",
+    "cat_card04_badge": "Study 04 · Central Bank SGS",
+    "cat_card04_title": "Household Credit Forecasting: Walk-Forward Backtest & Calendar Effects",
+    "cat_card04_desc": "Adjusting for Brazilian national holidays (ANBIMA) and business days reduces monthly forecast MAE by R$ 7.39 bn/month (wMAPE 2.79%) with 97.0% of months inside ±5%.",
+    "cat_card05_badge": "Study 05 · 150k Applications (OpenML)",
+    "cat_card05_title": "Credit Policy Optimization: Maximizing Returns with Score and Machine Learning",
+    "cat_card05_desc": "Optimized 2D simulation approves 49.68% with 1.05% EAD Bad Rate and 5.05M P&amp;L (4.14% P&amp;L/EAD vs 4.71M RF 1D @ equal EAD &amp; 4.55M rigid), isolating 1,794 Early Warning cases (6.35% BR).",
+    "cat_btn_read": "Read study →",
+    "cat_btn_code_data": "<i class='bi bi-github'></i> Code &amp; Data ↗",
+    "cat_btn_code_res": "<i class='bi bi-github'></i> Code &amp; Results ↗",
+    "footer_home_link": "Home",
+    "tools_cat_01": "<span class='badge-dot'></span> 01 · Languages &amp; Data Engineering",
+    "tools_cat_02": "<span class='badge-dot'></span> 02 · Analytics &amp; Machine Learning",
+    "tools_cat_03": "<span class='badge-dot'></span> 03 · Databases &amp; Cloud Infrastructure",
+    "tools_cat_04": "<span class='badge-dot'></span> 04 · Business Intelligence &amp; Productivity",
+    "tools_btn_more": "View all technologies (+21)",
+    "tools_btn_less": "Show fewer technologies",
+    "study03_kpi1_label": "11m Persistence",
+    "study03_kpi2_label": "Bank Rate Spread",
+    "study03_kpi3_label": "108 State-Years Panel",
+    "btn_code_and_data": "<i class='bi bi-github'></i> Code &amp; Data ↗"
+  },
+  "es": {
+    "tagline_pill": "Datos & Analytics",
+    "nav_home": "Inicio",
+    "nav_about": "Sobre Mí & Trayectoria",
+    "nav_deliver": "Lo que entrego",
+    "nav_tools": "Herramientas",
+    "nav_studies": "Vitrina de Estudios →",
+    "nav_contact": "Contacto",
+    "hero_tag": "Datos · Analytics · Decisión",
+    "hero_role": "Especialista en Datos & Analytics con foco en Riesgo de Crédito, Calidad de Datos y Decisión Operativa",
+    "hero_summary": "Conecto la investigación profunda de reglas de negocio y bases de datos con diagnósticos claros y acciones operativas que generan impacto directo en el negocio.",
+    "hero_cta_studies": "Acceder a Vitrina de Estudios →",
+    "hero_cta_credit": "Ver Estudio de Crédito",
+    "hero_card_kicker": "Últimos Estudios",
+    "hero_card_sub": "Haz clic en cualquier resultado para ver los datos y el código:",
+    "hero_policy_label": "Concesión de Crédito & IA · 150 mil solicitudes",
+    "hero_policy_val": "Elevó el P&amp;L simulado en <strong>+10,9%</strong> sobre la regla rígida, con pérdida EAD de <strong>1,05%</strong> →",
+    "hero_diff_label": "Previsión de Crédito · Banco Central",
+    "hero_diff_val": "Redujo el error de proyección (MAE) en <strong>R$ 7,39 mil M/mes (-54%)</strong> con feriados ANBIMA →",
+    "hero_domain_label": "Calidad de Datos & Cobranza · 30 mil cuentas",
+    "hero_domain_val": "Recuperó el <strong>92,4%</strong> de pérdidas financieras al corregir fallas catastrales ocultas →",
+    "hero_method_label": "Base Única de Empresas (MDM) · 7.905 registros CVM",
+    "hero_method_val": "Eliminó <strong>14,8%</strong> de duplicidades y creó una visión única y confiable de empresas →",
+    "hero_avail_label": "Tasas & Ingreso Regional · 138 Bancos + IBGE",
+    "hero_avail_val": "Mapeó dispersión de hasta <strong>15,6x</strong> en tasas y midió el peso de la competencia local →",
+    "about_title": "Sobre mí & Trayectoria",
+    "about_sub": "Una visión sobre la base técnica, la postura analítica y cómo genero impacto en las operaciones.",
+    "about_bio_p1": "Actúo en la intersección entre <strong>Datos, Analytics y Operaciones de Negocio</strong>, investigando el origen, granularidad y reglas de la información para construir indicadores confiables, identificar oportunidades y apoyar decisiones estratégicas y operativas.",
+    "about_quote": "“Los indicadores consolidados pueden ocultar fallas operativas. Un análisis eficiente comienza por la calidad de los datos, las reglas de negocio y la comprensión del problema.”",
+    "about_bio_p2": "Con foco en <strong>riesgo de crédito, embudo de conversión, conciliación de indicadores y calidad de datos</strong>, uno herramientas escalables (SQL avanzado, pipelines en Python, DuckDB y Databricks) al modelado de negocio (Power BI, DAX y gobernanza de KPIs) para asegurar que liderazgo y operación tomen decisiones alineadas y auditables.",
+    "cred_edu_label": "01 · FORMACIÓN ACADÉMICA",
+    "cred_edu_title": "Formación en Computación, Big Data y Estadística",
+    "cred_edu_desc": "• Licenciatura en <strong>Ciencias de la Computación</strong> (Facultad Sumaré)<br>• Posgrado en <strong>Big Data</strong> (Univ. Anhembi Morumbi)<br>• Posgrado en <strong>Estadística Aplicada</strong> (FMU)",
+    "cred_spec_label": "02 · ÁREAS DE ESPECIALIDAD",
+    "cred_spec_title": "Frentes Centrales de Actuación",
+    "cred_spec_desc": "• <strong>Crédito:</strong> Scoring, políticas de límite, priorización de cobranza.<br>• <strong>Calidad (DQ):</strong> Data contracts, monitoreo de ausencias y drift.<br>• <strong>BI & Ingresos:</strong> Modelado dimensional, embudo y conciliación de bases.",
+    "cred_ops_label": "03 · POSTURA OPERATIVA",
+    "cred_ops_title": "Del Diagnóstico a la Acción",
+    "cred_ops_desc": "• <strong>Rigor & Causalidad:</strong> Separación entre correlación y causalidad real.<br>• <strong>Comunicación en Capas:</strong> Ejecutiva para dirección y técnica para squads.<br>• <strong>Reproducibilidad:</strong> Pipelines auditables sin dependencia de procesos manuales.",
+    "deliver_title": "Lo que entrego",
+    "deliver_sub": "Capacidades analíticas aplicadas para resolver problemas reales de operaciones y gestión:",
+    "deliv_dashboards": "Dashboards",
+    "deliv_dashboards_p": "Paneles ejecutivos con indicadores confiables, análisis detallados y seguimiento de resultados.",
+    "deliv_dashboards_link": "Ver paneles y modelos →",
+    "deliv_analyses": "Análisis & Estudios",
+    "deliv_analyses_p": "Investigaciones de crédito, cobranza e ingresos para identificar causas, riesgos y oportunidades.",
+    "deliv_analyses_link": "Ver estudio de crédito →",
+    "deliv_automations": "Automatizaciones",
+    "deliv_automations_p": "Procesos en Python y SQL para reducir retrabajo, validar contratos de datos y aumentar la eficiencia.",
+    "deliv_automations_link": "Ver pipeline y simulador →",
+    "deliv_governance": "Gobernanza de Datos",
+    "deliv_governance_p": "Calidad, conciliación y reglas de negocio para garantizar consistencia y confiabilidad de indicadores.",
+    "deliv_governance_link": "Ver auditoría y DQ →",
+    "deliv_traceability": "Trazabilidad",
+    "deliv_traceability_p": "Código versionado, documentación técnica e historial de transformaciones y reglas aplicadas.",
+    "deliv_traceability_link": "Ver repositorio en GitHub ↗",
+    "tools_title": "Herramientas & Tecnologías",
+    "tools_sub": "Ecosistema tecnológico organizado por especialidad para ingeniería de datos, modelado predictivo y analytics:",
+    "showcase_title": "Vitrina de Estudios & Proyectos",
+    "showcase_sub": "Análisis profundos con metodología reproducible, datos cuantitativos e impacto operativo directo:",
+    "showcase_recent_badge": "Últimos Estudios Publicados (Vitrina Destacada)",
+    "study04_badge": "Estudio 04 · Backtest BCB SGS",
+    "study04_meta": "Piso de Ruido en la Proyección de Concesiones de Crédito PF · 57 meses reales",
+    "study04_title": "Previsión de Crédito PF: Backtest Walk-Forward y Efecto Calendario",
+    "study04_desc": "Incluir feriados nacionales ANBIMA y días hábiles reduce el error de proyección (MAE) de <strong>R$ 13,63 mil M a R$ 6,24 mil M/mes (-R$ 7,39 mil M/mes)</strong> y ubica el <strong>97,0%</strong> de los meses en la meta ±5%. <em>Método:</em> backtest walk-forward en 33 meses reales (<code>wMAPE 2,79% · Ljung-Box p = 0,403</code>).",
+    "study04_btn_study": "Leer Estudio y Método →",
+    "study04_btn_json": "Datos JSON",
+    "study05_badge": "Estudio 05 · Política de Crédito y Decisión",
+    "study05_meta": "GiveMeSomeCredit (OpenML 46929) · 150.000 registros históricos",
+    "study05_title": "Cómo Política 2D (Score × Random Forest) Eleva Retorno s/ EAD a 4,14% vs RF 1D y Rígida",
+    "study05_desc": "Separa filtros eliminatorios por gravedad (<code>R1→R2→R3</code>) y aplica Matriz 3×3 complementaria en R4 (<code>49,68%</code> aprobación simulada, Bad Rate EAD <strong>1,05%</strong>, P&amp;L <strong>5,05M</strong> vs 4,71M RF 1D @ igual EAD y 4,55M rígida), aislando <strong>1.794</strong> casos Early Warning (<code>6,35%</code> BR).",
+    "study05_btn_study": "Leer Estudio y Simulador →",
+    "study03_badge": "Estudio 03 · 138 Bancos + 108 UF-Años",
+    "study03_meta": "BCB Olinda (11m) + IBGE 2022–2025",
+    "study03_title": "Dónde Cobran Más Caro los Bancos y Por Qué el Ingreso Solo Falla",
+    "study03_desc": "Analiza tasas de <strong>138 bancos</strong> (diferencia de hasta <strong>15,57x</strong>) probando persistencia de 11 meses, y muestra en <strong>108 UF-años</strong> por qué el ingreso estatal aislado falla en el futuro. <em>Método:</em> <code>K-Means + PCA (Spearman ρ = 0,866)</code> y efectos fijos (<code>MAE 1,28 vs 0,95 p.p.</code>).",
+    "study03_btn_study": "Leer Estudio y Método →",
+    "sidebar_title": "Demás Estudios del Pipeline",
+    "sidebar_badge": "Acervo",
+    "sidebar_intro": "Estudios profundos con simuladores interactivos y modelos ejecutivos de decisión:",
+    "study01_badge": "Estudio 01 · UCI Credit Default",
+    "study01_title": "Impacto de la Calidad de los Datos en el Riesgo de Morosidad",
+    "study01_desc": "Demuestra en 30.000 cuentas que fallas catastrales ocultan morosos sin alterar alertas globales, recuperando <strong>92,4% del valor (NT$ 6,48M)</strong> al tratar ausencias nativamente. <em>Método:</em> <code>32,3% → 27,4%</code> en captura y HGB NaN + Pérdida Esperada.",
+    "study01_btn_study": "Leer estudio →",
+    "study01_btn_sim": "Simulador",
+    "study01_btn_code": "Código ↗",
+    "study02_badge": "Estudio 02 · Datos Abiertos CVM",
+    "study02_title": "Unificación de Registros Duplicados (MDM) en la Base CVM",
+    "study02_desc": "Consolida 7.905 registros en 6.736 CNPJs únicos (<strong>-14,8% duplicidades</strong>) y resuelve <strong>78,6% (33/42)</strong> de los conflictos por recencia, aun sin clave de CNPJ. <em>Método:</em> Golden Record + Record Linkage (<code>PR-AUC 0,884</code>).",
+    "study02_btn_study": "Leer estudio →",
+    "study02_btn_sim": "Simulador",
+    "study02_btn_code": "Código ↗",
+    "sidebar_catalog_link": "Ver Vitrina Completa con los 5 Estudios",
+    "catalog_title": "Vitrina de Estudios Analíticos",
+    "catalog_sub": "Casos de estudio reales y datos públicos sobre Riesgo de Crédito, Calidad de Datos, Resolución de Entidades y Econometría.",
+    "catalog_back_home": "← Volver al Portafolio Principal",
+    "contact_title": "Póngase en Contacto",
+    "contact_sub": "Disponible para puestos de Especialista / Sénior en Datos, Analytics, Riesgo de Crédito e Inteligencia de Negocio:",
+    "contact_btn_li": "Conectar en LinkedIn →",
+    "contact_btn_gh": "Explorar Repositorio en GitHub",
+    "contact_loc_label": "Ubicación",
+    "contact_loc_val": "São Paulo, SP — Brasil (Híbrido / Remoto)",
+    "contact_li_label": "LinkedIn Profesional",
+    "contact_repo_label": "Proyectos & Código",
+    "footer_rights": "Carlos Santos. Todos los derechos reservados.",
+    "cat_hero_tag": "Catálogo de estudios",
+    "cat_hero_title": "Vitrina de Estudios",
+    "cat_hero_role": "Análisis con alcance, métricas y limitaciones documentadas",
+    "cat_intro_label": "Vitrina de Estudios",
+    "cat_intro_title": "Estudios publicados",
+    "cat_intro_desc": "Casos analíticos reproducibles basados exclusivamente en fuentes públicas oficiales y benchmarks públicos anonimizados (UCI Machine Learning Repository, Datos Abiertos CVM, IBGE PNAD Contínua, Banco Central do Brasil SGS y GiveMeSomeCredit / OpenML #46929).",
+    "cat_card01_badge": "Estudio 01 · UCI Credit Default",
+    "cat_card01_title": "Impacto de la calidad de los datos en el riesgo de morosidad",
+    "cat_card01_desc": "Prueba en 30.000 cuentas que fallas catastrales ocultan morosos sin disparar alertas globales; el manejo nativo recupera NT$ 6,48M (92,4% del valor limpio).",
+    "cat_card02_badge": "Estudio 02 · Datos Abiertos CVM",
+    "cat_card02_title": "Unificación de Registros Duplicados (MDM) en la Base CVM",
+    "cat_card02_desc": "Consolida 7.905 registros CVM (-14,8% duplicidades), resuelve 78,6% de conflictos por recencia y cruza registros sin CNPJ con HGB (PR-AUC 0,763 → 0,884).",
+    "cat_card03_badge": "Estudio 03 · 138 Bancos + 108 UF-Años",
+    "cat_card03_title": "Dónde Cobran Más Caro los Bancos y Límites del Ingreso Regional",
+    "cat_card03_desc": "Mapea 138 bancos con 15,57x de dispersión en tasas (persistencia ρ = 0,866) y prueba en 108 UF-años que el ingreso aislado falla fuera de muestra.",
+    "cat_card04_badge": "Estudio 04 · Banco Central SGS",
+    "cat_card04_title": "Previsión de Crédito PF: Backtest Walk-Forward y Efecto Calendario",
+    "cat_card04_desc": "Ajustar por feriados nacionales ANBIMA y días hábiles reduce el error mensual (MAE) en R$ 7,39 mil M/mes (wMAPE 2,79%) y acierta 97,0% de los meses en ±5%.",
+    "cat_card05_badge": "Estudio 05 · 150 mil solicitudes (OpenML)",
+    "cat_card05_title": "Optimización de Política de Crédito: Maximizando Retorno con Score e Inteligencia Artificial",
+    "cat_card05_desc": "Simulación Optimizada 2D aprueba 49,68% con Bad Rate EAD de 1,05% y 5,05M (4,14% P&amp;L/EAD vs 4,71M RF 1D @ igual EAD y 4,55M rígida), aislando 1.794 casos Early Warning (6,35% BR).",
+    "cat_btn_read": "Leer estudio →",
+    "cat_btn_code_data": "<i class='bi bi-github'></i> Código y Datos ↗",
+    "cat_btn_code_res": "<i class='bi bi-github'></i> Código y Resultados ↗",
+    "footer_home_link": "Inicio",
+    "tools_cat_01": "<span class='badge-dot'></span> 01 · Lenguajes e Ingeniería de Datos",
+    "tools_cat_02": "<span class='badge-dot'></span> 02 · Analytics &amp; Machine Learning",
+    "tools_cat_03": "<span class='badge-dot'></span> 03 · Bases de Datos e Infraestructura",
+    "tools_cat_04": "<span class='badge-dot'></span> 04 · Business Intelligence y Productividad",
+    "tools_btn_more": "Ver todas las tecnologías (+21)",
+    "tools_btn_less": "Ver menos tecnologías",
+    "study03_kpi1_label": "Persistencia 11m",
+    "study03_kpi2_label": "Spread Bancario",
+    "study03_kpi3_label": "Panel 108 UF-Años",
+    "btn_code_and_data": "<i class='bi bi-github'></i> Código y Datos ↗"
+  }
+};
+
+  function applyLanguage(lang) {
+    if (!I18N_DATA[lang]) lang = "pt";
+    try { localStorage.setItem("portfolio_user_lang", lang); } catch (e) {}
+    document.documentElement.lang = lang;
+
+    const codeEl = document.getElementById("lang-current-code");
+    if (codeEl) codeEl.textContent = lang.toUpperCase();
+
+    document.querySelectorAll(".lang-option").forEach(btn => {
+      btn.classList.toggle("active", btn.getAttribute("data-lang") === lang);
+    });
+
+    const dict = I18N_DATA[lang] || {};
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const key = el.getAttribute("data-i18n");
+      if (dict[key]) {
+        el.innerHTML = dict[key];
+      }
+    });
+
+    // Sincronismo com Google Translate para tradução contínua de parágrafos dos estudos
+    try {
+      const domain = window.location.hostname;
+      if (lang === "pt") {
+        document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + domain + ";";
+      } else {
+        document.cookie = "googtrans=/pt/" + lang + "; path=/;";
+        document.cookie = "googtrans=/pt/" + lang + "; path=/; domain=" + domain + ";";
+      }
+      const select = document.querySelector(".goog-te-combo");
+      if (select) {
+        select.value = lang;
+        select.dispatchEvent(new Event("change"));
+      }
+    } catch (e) {}
+  }
+
+  function initLanguageSwitcher() {
+    const switcher = document.getElementById("lang-switcher");
+    const btn = document.getElementById("lang-btn");
+    const dropdown = document.getElementById("lang-dropdown");
+    if (!switcher || !btn || !dropdown) return;
+
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      const isOpen = dropdown.classList.toggle("open");
+      btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+
+    dropdown.querySelectorAll(".lang-option").forEach(opt => {
+      opt.addEventListener("click", function (e) {
+        e.stopPropagation();
+        const selectedLang = this.getAttribute("data-lang");
+        applyLanguage(selectedLang);
+        dropdown.classList.remove("open");
+        btn.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    document.addEventListener("click", function (e) {
+      if (!switcher.contains(e.target)) {
+        dropdown.classList.remove("open");
+        btn.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    let savedLang = "pt";
+    try {
+      savedLang = localStorage.getItem("portfolio_user_lang") || "pt";
+    } catch (e) {}
+    applyLanguage(savedLang);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initLanguageSwitcher);
+  } else {
+    initLanguageSwitcher();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initMobileNav);
+  } else {
+    initMobileNav();
+  }
+
+  // ScrollSpy para atualizar o menu ativo conforme a seção visualizada
+  const sections = document.querySelectorAll("section[id]");
+  const navLinks = document.querySelectorAll("#navbar a[href^='#']");
+
+  if (sections.length && navLinks.length && "IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const currentId = entry.target.getAttribute("id");
+          navLinks.forEach((link) => {
+            const href = link.getAttribute("href");
+            if (href === "#" + currentId) {
+              link.classList.add("active");
+            } else {
+              link.classList.remove("active");
+            }
+          });
+        }
+      });
+    }, { rootMargin: "-70px 0px -50% 0px" });
+
+    sections.forEach((sec) => observer.observe(sec));
+  }
+})();
+</script>
+
+<script>
+(function() {
+  const E3_DATA = {"bank_points": [{"instituicao": "AGORACRED S/A SCFI", "n_modalidades": 3, "mean_pct_rank": 0.7993421052631579, "spread_std_pct": 0.08539970385359981, "secured_share": 0.6666666666666666, "cluster_id": 2, "cluster_name": "Arquétipo 3: Segmento Caro / Alta Extração", "pca_1": -1.643, "pca_2": 1.062}, {"instituicao": "ASA SCFI S.A.", "n_modalidades": 3, "mean_pct_rank": 0.3680555555555556, "spread_std_pct": 0.13247699544067135, "secured_share": 0.3333333333333333, "cluster_id": 0, "cluster_name": "Arquétipo 1: Competidores de Baixo Custo", "pca_1": -0.906, "pca_2": -0.796}, {"instituicao": "BANCO BARI S.A.", "n_modalidades": 5, "mean_pct_rank": 0.3602880787764509, "spread_std_pct": 0.1412251357061523, "secured_share": 0.6, "cluster_id": 0, "cluster_name": "Arquétipo 1: Competidores de Baixo Custo", "pca_1": 0.199, "pca_2": -0.419}, {"instituicao": "BANCO BTG PACTUAL S.A.", "n_modalidades": 5, "mean_pct_rank": 0.33544871794871794, "spread_std_pct": 0.21101290580632984, "secured_share": 0.4, "cluster_id": 0, "cluster_name": "Arquétipo 1: Competidores de Baixo Custo", "pca_1": 0.329, "pca_2": -0.895}, {"instituicao": "BANCO DIGIO", "n_modalidades": 6, "mean_pct_rank": 0.6317038080119475, "spread_std_pct": 0.24669606177911724, "secured_share": 0.6666666666666666, "cluster_id": 1, "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo", "pca_1": 0.579, "pca_2": 0.468}, {"instituicao": "BANCO GENIAL", "n_modalidades": 3, "mean_pct_rank": 0.08333333333333333, "spread_std_pct": 0.05931710140017395, "secured_share": 0.0, "cluster_id": 0, "cluster_name": "Arquétipo 1: Competidores de Baixo Custo", "pca_1": -1.23, "pca_2": -2.696}, {"instituicao": "BANCO INBURSA", "n_modalidades": 3, "mean_pct_rank": 0.12846298892810523, "spread_std_pct": 0.07658745298908626, "secured_share": 1.0, "cluster_id": 0, "cluster_name": "Arquétipo 1: Competidores de Baixo Custo", "pca_1": 0.475, "pca_2": 0.619}, {"instituicao": "BANCO INTER", "n_modalidades": 9, "mean_pct_rank": 0.5123559276252054, "spread_std_pct": 0.28718093608360434, "secured_share": 0.5555555555555556, "cluster_id": 1, "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo", "pca_1": 1.782, "pca_2": -0.736}, {"instituicao": "BANCO PAN", "n_modalidades": 8, "mean_pct_rank": 0.6277642613838299, "spread_std_pct": 0.30507962501346997, "secured_share": 0.625, "cluster_id": 1, "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo", "pca_1": 1.442, "pca_2": 0.029}, {"instituicao": "BANCO SEMEAR", "n_modalidades": 3, "mean_pct_rank": 0.8954065908013277, "spread_std_pct": 0.03959549681533541, "secured_share": 0.6666666666666666, "cluster_id": 2, "cluster_name": "Arquétipo 3: Segmento Caro / Alta Extração", "pca_1": -2.143, "pca_2": 1.134}, {"instituicao": "BANCO SICOOB S.A.", "n_modalidades": 7, "mean_pct_rank": 0.23719448866327691, "spread_std_pct": 0.08902388900886411, "secured_share": 0.42857142857142855, "cluster_id": 0, "cluster_name": "Arquétipo 1: Competidores de Baixo Custo", "pca_1": 0.47, "pca_2": -1.864}, {"instituicao": "BANCOSEGURO S.A.", "n_modalidades": 3, "mean_pct_rank": 0.36185897435897435, "spread_std_pct": 0.27710590178143785, "secured_share": 1.0, "cluster_id": 1, "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo", "pca_1": 1.104, "pca_2": 1.737}, {"instituicao": "BARU SCFI S/A", "n_modalidades": 3, "mean_pct_rank": 0.5398255813953488, "spread_std_pct": 0.28491407447851247, "secured_share": 0.6666666666666666, "cluster_id": 1, "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo", "pca_1": 0.155, "pca_2": 1.096}, {"instituicao": "BCO AFINZ S.A. - BM", "n_modalidades": 4, "mean_pct_rank": 0.6385901162790697, "spread_std_pct": 0.17363500733175896, "secured_share": 0.5, "cluster_id": 2, "cluster_name": "Arquétipo 3: Segmento Caro / Alta Extração", "pca_1": -0.734, "pca_2": 0.211}, {"instituicao": "BCO AGIBANK S.A.", "n_modalidades": 6, "mean_pct_rank": 0.3517673867964565, "spread_std_pct": 0.2667139139078898, "secured_share": 0.6666666666666666, "cluster_id": 1, "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo", "pca_1": 1.365, "pca_2": -0.085}, {"instituicao": "BCO ARBI S.A.", "n_modalidades": 5, "mean_pct_rank": 0.39002573517873396, "spread_std_pct": 0.2704649591274053, "secured_share": 0.6, "cluster_id": 1, "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo", "pca_1": 0.893, "pca_2": 0.037}, {"instituicao": "BCO BANESTES S.A.", "n_modalidades": 8, "mean_pct_rank": 0.38759555266593215, "spread_std_pct": 0.16036138522093163, "secured_share": 0.5, "cluster_id": 0, "cluster_name": "Arquétipo 1: Competidores de Baixo Custo", "pca_1": 0.945, "pca_2": -1.331}, {"instituicao": "BCO BMG S.A.", "n_modalidades": 6, "mean_pct_rank": 0.5668863854910366, "spread_std_pct": 0.23071970212870374, "secured_share": 0.6666666666666666, "cluster_id": 1, "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo", "pca_1": 0.639, "pca_2": 0.278}, {"instituicao": "BCO BRADESCO FINANC. S.A.", "n_modalidades": 3, "mean_pct_rank": 0.5173245614035088, "spread_std_pct": 0.19525205474335475, "secured_share": 0.6666666666666666, "cluster_id": 1, "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo", "pca_1": -0.321, "pca_2": 0.776}, {"instituicao": "BCO BRADESCO S.A.", "n_modalidades": 9, "mean_pct_rank": 0.4465454226470138, "spread_std_pct": 0.11707699698869968, "secured_share": 0.5555555555555556, "cluster_id": 0, "cluster_name": "Arquétipo 1: Competidores de Baixo Custo", "pca_1": 0.934, "pca_2": -1.394}, {"instituicao": "BCO BV S.A.", "n_modalidades": 5, "mean_pct_rank": 0.521497975708502, "spread_std_pct": 0.21632803708610318, "secured_share": 0.2, "cluster_id": 0, "cluster_name": "Arquétipo 1: Competidores de Baixo Custo", "pca_1": -0.425, "pca_2": -1.104}, {"instituicao": "BCO C6 CONSIG", "n_modalidades": 4, "mean_pct_rank": 0.5921905973504812, "spread_std_pct": 0.3394956950225233, "secured_share": 1.0, "cluster_id": 1, "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo", "pca_1": 1.213, "pca_2": 2.192}, {"instituicao": "BCO C6 S.A.", "n_modalidades": 5, "mean_pct_rank": 0.4971052631578948, "spread_std_pct": 0.2974573690910898, "secured_share": 0.4, "cluster_id": 1, "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo", "pca_1": 0.455, "pca_2": -0.279}, {"instituicao": "BCO CREFISA S.A.", "n_modalidades": 3, "mean_pct_rank": 0.8777777777777778, "spread_std_pct": 0.05665577237325315, "secured_share": 0.0, "cluster_id": 2, "cluster_name": "Arquétipo 3: Segmento Caro / Alta Extração", "pca_1": -3.141, "pca_2": -0.962}, {"instituicao": "BCO CSF S.A.", "n_modalidades": 3, "mean_pct_rank": 0.8298798798798798, "spread_std_pct": 0.10322055663549282, "secured_share": 0.3333333333333333, "cluster_id": 2, "cluster_name": "Arquétipo 3: Segmento Caro / Alta Extração", "pca_1": -2.181, "pca_2": 0.128}, {"instituicao": "BCO DA AMAZONIA S.A.", "n_modalidades": 4, "mean_pct_rank": 0.24539473684210525, "spread_std_pct": 0.24383785637193736, "secured_share": 0.5, "cluster_id": 0, "cluster_name": "Arquétipo 1: Competidores de Baixo Custo", "pca_1": 0.619, "pca_2": -0.439}, {"instituicao": "BCO DAYCOVAL S.A", "n_modalidades": 8, "mean_pct_rank": 0.6500013478842273, "spread_std_pct": 0.3898774458558826, "secured_share": 0.625, "cluster_id": 1, "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo", "pca_1": 1.89, "pca_2": 0.334}, {"instituicao": "BCO DO BRASIL S.A.", "n_modalidades": 9, "mean_pct_rank": 0.38525168139611227, "spread_std_pct": 0.14085353059574024, "secured_share": 0.5555555555555556, "cluster_id": 0, "cluster_name": "Arquétipo 1: Competidores de Baixo Custo", "pca_1": 1.22, "pca_2": -1.457}, {"instituicao": "BCO DO EST. DE SE S.A.", "n_modalidades": 7, "mean_pct_rank": 0.5731398917445428, "spread_std_pct": 0.3074480169940541, "secured_share": 0.5714285714285714, "cluster_id": 1, "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo", "pca_1": 1.205, "pca_2": -0.016}, {"instituicao": "BCO DO EST. DO PA S.A.", "n_modalidades": 8, "mean_pct_rank": 0.42446666195901206, "spread_std_pct": 0.12783517709312134, "secured_share": 0.5, "cluster_id": 0, "cluster_name": "Arquétipo 1: Competidores de Baixo Custo", "pca_1": 0.665, "pca_2": -1.348}, {"instituicao": "BCO DO ESTADO DO RS S.A.", "n_modalidades": 8, "mean_pct_rank": 0.32338408428907206, "spread_std_pct": 0.07823316614749357, "secured_share": 0.5, "cluster_id": 0, "cluster_name": "Arquétipo 1: Competidores de Baixo Custo", "pca_1": 0.613, "pca_2": -1.72}, {"instituicao": "BCO DO NORDESTE DO BRASIL S.A.", "n_modalidades": 6, "mean_pct_rank": 0.34258099781355594, "spread_std_pct": 0.12291828874454278, "secured_share": 0.5, "cluster_id": 0, "cluster_name": "Arquétipo 1: Competidores de Baixo Custo", "pca_1": 0.252, "pca_2": -1.067}, {"instituicao": "BCO INDUSTRIAL DO BRASIL S.A.", "n_modalidades": 5, "mean_pct_rank": 0.2780828861061419, "spread_std_pct": 0.29633998155138735, "secured_share": 0.6, "cluster_id": 1, "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo", "pca_1": 1.313, "pca_2": -0.13}, {"instituicao": "BCO MERCANTIL DO BRASIL S.A.", "n_modalidades": 6, "mean_pct_rank": 0.6351654539154539, "spread_std_pct": 0.30093471592532667, "secured_share": 0.5, "cluster_id": 1, "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo", "pca_1": 0.607, "pca_2": 0.113}, {"instituicao": "BCO PAULISTA S.A.", "n_modalidades": 3, "mean_pct_rank": 0.569086528388854, "spread_std_pct": 0.3902924723980335, "secured_share": 1.0, "cluster_id": 1, "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo", "pca_1": 1.279, "pca_2": 2.533}, {"instituicao": "BCO PINE S.A.", "n_modalidades": 3, "mean_pct_rank": 0.4448564843913681, "spread_std_pct": 0.3705951710023296, "secured_share": 0.6666666666666666, "cluster_id": 1, "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo", "pca_1": 0.888, "pca_2": 1.147}, {"instituicao": "BCO RENDIMENTO S.A.", "n_modalidades": 4, "mean_pct_rank": 0.38749999999999996, "spread_std_pct": 0.20047686206199014, "secured_share": 0.25, "cluster_id": 0, "cluster_name": "Arquétipo 1: Competidores de Baixo Custo", "pca_1": -0.404, "pca_2": -1.049}, {"instituicao": "BCO SAFRA S.A.", "n_modalidades": 7, "mean_pct_rank": 0.2488069912488517, "spread_std_pct": 0.21844059607381316, "secured_share": 0.5714285714285714, "cluster_id": 0, "cluster_name": "Arquétipo 1: Competidores de Baixo Custo", "pca_1": 1.452, "pca_2": -0.996}, {"instituicao": "BCO SANTANDER (BRASIL) S.A.", "n_modalidades": 7, "mean_pct_rank": 0.5290256203046901, "spread_std_pct": 0.19944295227721168, "secured_share": 0.5714285714285714, "cluster_id": 0, "cluster_name": "Arquétipo 1: Competidores de Baixo Custo", "pca_1": 0.672, "pca_2": -0.439}, {"instituicao": "BCO SENFF S.A.", "n_modalidades": 5, "mean_pct_rank": 0.7075342874180083, "spread_std_pct": 0.30426287837475496, "secured_share": 0.6, "cluster_id": 1, "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo", "pca_1": 0.335, "pca_2": 0.835}, {"instituicao": "BCO SOFISA S.A.", "n_modalidades": 5, "mean_pct_rank": 0.5319298245614036, "spread_std_pct": 0.2622701986983449, "secured_share": 0.2, "cluster_id": 0, "cluster_name": "Arquétipo 1: Competidores de Baixo Custo", "pca_1": -0.179, "pca_2": -0.942}, {"instituicao": "BCO VOLKSWAGEN S.A", "n_modalidades": 3, "mean_pct_rank": 0.1771255060728745, "spread_std_pct": 0.12049494890251947, "secured_share": 0.6666666666666666, "cluster_id": 0, "cluster_name": "Arquétipo 1: Competidores de Baixo Custo", "pca_1": 0.048, "pca_2": -0.196}, {"instituicao": "BCO VOLVO BRASIL S.A.", "n_modalidades": 3, "mean_pct_rank": 0.1594298245614035, "spread_std_pct": 0.10745569280250515, "secured_share": 0.6666666666666666, "cluster_id": 0, "cluster_name": "Arquétipo 1: Competidores de Baixo Custo", "pca_1": 0.013, "pca_2": -0.274}, {"instituicao": "BCO XP S.A.", "n_modalidades": 5, "mean_pct_rank": 0.2430128205128205, "spread_std_pct": 0.13882437028730701, "secured_share": 0.4, "cluster_id": 0, "cluster_name": "Arquétipo 1: Competidores de Baixo Custo", "pca_1": 0.123, "pca_2": -1.316}, {"instituicao": "BECKER FINANCEIRA SA - CFI", "n_modalidades": 4, "mean_pct_rank": 0.49741082175292695, "spread_std_pct": 0.17151523104954813, "secured_share": 0.75, "cluster_id": 1, "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo", "pca_1": 0.018, "pca_2": 0.686}, {"instituicao": "BRB - BCO DE BRASILIA S.A.", "n_modalidades": 4, "mean_pct_rank": 0.43049903100775194, "spread_std_pct": 0.14878340939027304, "secured_share": 0.5, "cluster_id": 0, "cluster_name": "Arquétipo 1: Competidores de Baixo Custo", "pca_1": -0.384, "pca_2": -0.32}, {"instituicao": "BRB - CFI S/A", "n_modalidades": 4, "mean_pct_rank": 0.45204108637401175, "spread_std_pct": 0.2578190645007084, "secured_share": 0.75, "cluster_id": 1, "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo", "pca_1": 0.637, "pca_2": 0.847}, {"instituicao": "CAIXA ECONOMICA FEDERAL", "n_modalidades": 8, "mean_pct_rank": 0.38066234500789276, "spread_std_pct": 0.2304686147275267, "secured_share": 0.625, "cluster_id": 0, "cluster_name": "Arquétipo 1: Competidores de Baixo Custo", "pca_1": 1.59, "pca_2": -0.739}, {"instituicao": "CALCRED S.A.", "n_modalidades": 3, "mean_pct_rank": 0.9430555555555555, "spread_std_pct": 0.019344983718311295, "secured_share": 0.3333333333333333, "cluster_id": 2, "cluster_name": "Arquétipo 3: Segmento Caro / Alta Extração", "pca_1": -2.947, "pca_2": 0.123}, {"instituicao": "CLOUDWALK FINANCEIRA S.A. CFI", "n_modalidades": 3, "mean_pct_rank": 0.6930555555555555, "spread_std_pct": 0.14127123461057123, "secured_share": 0.3333333333333333, "cluster_id": 2, "cluster_name": "Arquétipo 3: Segmento Caro / Alta Extração", "pca_1": -1.63, "pca_2": -0.057}, {"instituicao": "COBUCCIO S.A. SCFI", "n_modalidades": 6, "mean_pct_rank": 0.831609494109494, "spread_std_pct": 0.14967733377767783, "secured_share": 0.5, "cluster_id": 2, "cluster_name": "Arquétipo 3: Segmento Caro / Alta Extração", "pca_1": -0.756, "pca_2": 0.086}, {"instituicao": "DM SCFI", "n_modalidades": 3, "mean_pct_rank": 0.5833333333333334, "spread_std_pct": 0.42185656681265843, "secured_share": 0.3333333333333333, "cluster_id": 1, "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo", "pca_1": 0.291, "pca_2": 0.551}, {"instituicao": "FACTA S.A. CFI", "n_modalidades": 4, "mean_pct_rank": 0.7337822728811101, "spread_std_pct": 0.19026911556022544, "secured_share": 1.0, "cluster_id": 1, "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo", "pca_1": -0.007, "pca_2": 2.052}, {"instituicao": "GAZINCRED S.A. SCFI", "n_modalidades": 4, "mean_pct_rank": 0.7192123362181502, "spread_std_pct": 0.15433812877463107, "secured_share": 1.0, "cluster_id": 1, "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo", "pca_1": -0.185, "pca_2": 1.911}, {"instituicao": "HS FINANCEIRA", "n_modalidades": 5, "mean_pct_rank": 0.47431511470985155, "spread_std_pct": 0.20557777761764545, "secured_share": 0.4, "cluster_id": 0, "cluster_name": "Arquétipo 1: Competidores de Baixo Custo", "pca_1": -0.034, "pca_2": -0.607}, {"instituicao": "ITAÚ UNIBANCO HOLDING S.A.", "n_modalidades": 3, "mean_pct_rank": 0.6099415204678363, "spread_std_pct": 0.16351644771114018, "secured_share": 0.3333333333333333, "cluster_id": 2, "cluster_name": "Arquétipo 3: Segmento Caro / Alta Extração", "pca_1": -1.3, "pca_2": -0.172}, {"instituicao": "ITAÚ UNIBANCO S.A.", "n_modalidades": 5, "mean_pct_rank": 0.44267171912520753, "spread_std_pct": 0.10473838432330812, "secured_share": 0.8, "cluster_id": 0, "cluster_name": "Arquétipo 1: Competidores de Baixo Custo", "pca_1": 0.129, "pca_2": 0.284}, {"instituicao": "KREDILIG S.A. - CFI", "n_modalidades": 4, "mean_pct_rank": 0.4338815789473684, "spread_std_pct": 0.21824029347571933, "secured_share": 0.25, "cluster_id": 0, "cluster_name": "Arquétipo 1: Competidores de Baixo Custo", "pca_1": -0.409, "pca_2": -0.894}, {"instituicao": "LUIZACRED S.A. SCFI", "n_modalidades": 3, "mean_pct_rank": 0.7105263157894738, "spread_std_pct": 0.11041022400293729, "secured_share": 0.0, "cluster_id": 2, "cluster_name": "Arquétipo 3: Segmento Caro / Alta Extração", "pca_1": -2.424, "pca_2": -1.166}, {"instituicao": "MERCADO CRÉDITO SCFI S.A.", "n_modalidades": 5, "mean_pct_rank": 0.7106781376518219, "spread_std_pct": 0.21282183870378055, "secured_share": 0.4, "cluster_id": 2, "cluster_name": "Arquétipo 3: Segmento Caro / Alta Extração", "pca_1": -0.555, "pca_2": -0.067}, {"instituicao": "MIDWAY S.A. - SCFI", "n_modalidades": 6, "mean_pct_rank": 0.6833516991947223, "spread_std_pct": 0.18189761480916927, "secured_share": 0.6666666666666666, "cluster_id": 1, "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo", "pca_1": 0.073, "pca_2": 0.386}, {"instituicao": "NEGRESCO S.A. - CFI", "n_modalidades": 3, "mean_pct_rank": 0.9057017543859649, "spread_std_pct": 0.06801781762838081, "secured_share": 0.6666666666666666, "cluster_id": 2, "cluster_name": "Arquétipo 3: Segmento Caro / Alta Extração", "pca_1": -2.0, "pca_2": 1.242}, {"instituicao": "NEON FINANCEIRA - SCFI S.A.", "n_modalidades": 3, "mean_pct_rank": 0.7152777777777777, "spread_std_pct": 0.13089494892592682, "secured_share": 0.3333333333333333, "cluster_id": 2, "cluster_name": "Arquétipo 3: Segmento Caro / Alta Extração", "pca_1": -1.744, "pca_2": -0.04}, {"instituicao": "NU FINANCEIRA S.A. CFI", "n_modalidades": 6, "mean_pct_rank": 0.37618626005253913, "spread_std_pct": 0.25982758737183803, "secured_share": 0.6666666666666666, "cluster_id": 1, "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo", "pca_1": 1.266, "pca_2": -0.052}, {"instituicao": "PARANA BCO S.A.", "n_modalidades": 5, "mean_pct_rank": 0.5334469532143951, "spread_std_pct": 0.3877102321578225, "secured_share": 0.8, "cluster_id": 1, "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo", "pca_1": 1.586, "pca_2": 1.339}, {"instituicao": "PEFISA S.A. - C.F.I.", "n_modalidades": 3, "mean_pct_rank": 0.8041666666666666, "spread_std_pct": 0.14589284500009664, "secured_share": 0.3333333333333333, "cluster_id": 2, "cluster_name": "Arquétipo 3: Segmento Caro / Alta Extração", "pca_1": -1.867, "pca_2": 0.201}, {"instituicao": "PICPAY BANK - BANCO MÚLTIPLO S.A", "n_modalidades": 6, "mean_pct_rank": 0.5446500615105266, "spread_std_pct": 0.23776618587462622, "secured_share": 0.6666666666666666, "cluster_id": 1, "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo", "pca_1": 0.734, "pca_2": 0.25}, {"instituicao": "PORTOSEG S.A. CFI", "n_modalidades": 7, "mean_pct_rank": 0.5324079429342587, "spread_std_pct": 0.2565486742821521, "secured_share": 0.5714285714285714, "cluster_id": 1, "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo", "pca_1": 1.001, "pca_2": -0.259}, {"instituicao": "REALIZE SCFI S.A.", "n_modalidades": 3, "mean_pct_rank": 0.9402777777777778, "spread_std_pct": 0.02050669869476863, "secured_share": 0.3333333333333333, "cluster_id": 2, "cluster_name": "Arquétipo 3: Segmento Caro / Alta Extração", "pca_1": -2.933, "pca_2": 0.12}, {"instituicao": "SANTANDER SCFI S.A.", "n_modalidades": 3, "mean_pct_rank": 0.3861842105263158, "spread_std_pct": 0.1748127543305664, "secured_share": 0.6666666666666666, "cluster_id": 0, "cluster_name": "Arquétipo 1: Competidores de Baixo Custo", "pca_1": -0.129, "pca_2": 0.426}, {"instituicao": "SINOSSERRA S/A - SCFI", "n_modalidades": 3, "mean_pct_rank": 0.20964912280701756, "spread_std_pct": 0.2619298833151131, "secured_share": 0.6666666666666666, "cluster_id": 1, "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo", "pca_1": 0.807, "pca_2": 0.303}, {"instituicao": "VALOR S/A SCFI", "n_modalidades": 3, "mean_pct_rank": 0.9641025641025641, "spread_std_pct": 0.025576842747769248, "secured_share": 1.0, "cluster_id": 2, "cluster_name": "Arquétipo 3: Segmento Caro / Alta Extração", "pca_1": -1.82, "pca_2": 2.297}, {"instituicao": "VIA CERTA FINANCIADORA S.A. - CFI", "n_modalidades": 4, "mean_pct_rank": 0.6379934210526316, "spread_std_pct": 0.31633942484109534, "secured_share": 0.25, "cluster_id": 1, "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo", "pca_1": -0.316, "pca_2": -0.15}, {"instituicao": "ZEMA CFI S/A", "n_modalidades": 4, "mean_pct_rank": 0.5882591093117409, "spread_std_pct": 0.35185106660748566, "secured_share": 0.5, "cluster_id": 1, "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo", "pca_1": 0.44, "pca_2": 0.639}], "modalities": [{"modalidade": "Aquisição de veículos", "n_bancos": 39, "p10_aa": 13.27, "mediana_aa": 22.48, "p90_aa": 40.26, "iqr_pp": 8.55, "ratio_p90_p10": 3.03, "min_inst": "BCO RNX S.A.", "min_aa": 0.0, "max_inst": "OMNI SA CFI", "max_aa": 49.13}, {"modalidade": "Crédito pessoal consignado INSS", "n_bancos": 38, "p10_aa": 20.65, "mediana_aa": 23.7, "p90_aa": 24.98, "iqr_pp": 2.81, "ratio_p90_p10": 1.21, "min_inst": "BANCOSEGURO S.A.", "min_aa": 19.67, "max_inst": "PORTOSEG S.A. CFI", "max_aa": 29.15}, {"modalidade": "Crédito pessoal consignado público", "n_bancos": 44, "p10_aa": 21.14, "mediana_aa": 23.8, "p90_aa": 41.74, "iqr_pp": 5.24, "ratio_p90_p10": 1.97, "min_inst": "BANCO COOPERATIVO SICREDI", "min_aa": 19.6, "max_inst": "VALOR S/A SCFI", "max_aa": 123.3}, {"modalidade": "Crédito pessoal consignado privado", "n_bancos": 53, "p10_aa": 29.23, "mediana_aa": 48.07, "p90_aa": 75.43, "iqr_pp": 26.44, "ratio_p90_p10": 2.58, "min_inst": "COMPREV CFI S.A.", "min_aa": 8.61, "max_inst": "NEGRESCO S.A. - CFI", "max_aa": 92.6}, {"modalidade": "Crédito pessoal não consignado", "n_bancos": 81, "p10_aa": 24.74, "mediana_aa": 82.23, "p90_aa": 385.29, "iqr_pp": 195.75, "ratio_p90_p10": 15.57, "min_inst": "DM SCFI", "min_aa": 14.94, "max_inst": "SUMUP SCFI S.A", "max_aa": 826.61}, {"modalidade": "Cheque especial", "n_bancos": 31, "p10_aa": 31.65, "mediana_aa": 139.75, "p90_aa": 159.55, "iqr_pp": 85.9, "ratio_p90_p10": 5.04, "min_inst": "BANCO PAN", "min_aa": 22.56, "max_inst": "BCO DAYCOVAL S.A", "max_aa": 176.12}, {"modalidade": "Cartão de crédito - parcelado", "n_bancos": 61, "p10_aa": 63.89, "mediana_aa": 141.13, "p90_aa": 309.96, "iqr_pp": 124.43, "ratio_p90_p10": 4.85, "min_inst": "ZEMA CFI S/A", "min_aa": 14.14, "max_inst": "BCO DO EST. DE SE S.A.", "max_aa": 747.34}, {"modalidade": "Cartão de crédito - rotativo total", "n_bancos": 61, "p10_aa": 217.79, "mediana_aa": 497.48, "p90_aa": 890.16, "iqr_pp": 404.57, "ratio_p90_p10": 4.09, "min_inst": "BCO INDUSTRIAL DO BRASIL S.A.", "min_aa": 75.78, "max_inst": "PEFISA S.A. - C.F.I.", "max_aa": 1354.02}], "scatter_11m": [{"prev": 0.558, "curr": 0.5}, {"prev": 0.214, "curr": 0.183}, {"prev": 0.073, "curr": 0.217}, {"prev": 0.304, "curr": 0.2}, {"prev": 0.485, "curr": 0.378}, {"prev": 0.667, "curr": 0.581}, {"prev": 0.471, "curr": 0.425}, {"prev": 0.382, "curr": 0.533}, {"prev": 0.732, "curr": 0.683}, {"prev": 0.164, "curr": 0.267}, {"prev": 0.196, "curr": 0.1}, {"prev": 0.64, "curr": 0.7}, {"prev": 0.605, "curr": 0.423}, {"prev": 0.265, "curr": 0.188}, {"prev": 0.211, "curr": 0.316}, {"prev": 0.411, "curr": 0.5}, {"prev": 0.333, "curr": 0.351}, {"prev": 0.0, "curr": 0.0}, {"prev": 0.836, "curr": 0.9}, {"prev": 0.804, "curr": 0.767}, {"prev": 0.697, "curr": 0.851}, {"prev": 0.372, "curr": 0.173}, {"prev": 0.564, "curr": 0.512}, {"prev": 0.109, "curr": 0.167}, {"prev": 0.089, "curr": 0.05}, {"prev": 0.079, "curr": 0.184}, {"prev": 0.0, "curr": 0.108}, {"prev": 0.07, "curr": 0.231}, {"prev": 0.282, "curr": 0.047}, {"prev": 0.878, "curr": 0.974}, {"prev": 0.395, "curr": 0.5}, {"prev": 0.491, "curr": 0.75}, {"prev": 0.536, "curr": 0.533}, {"prev": 0.52, "curr": 0.8}, {"prev": 0.061, "curr": 0.216}, {"prev": 0.651, "curr": 0.577}, {"prev": 0.154, "curr": 0.186}, {"prev": 0.088, "curr": 0.075}, {"prev": 0.782, "curr": 0.883}, {"prev": 0.607, "curr": 0.617}, {"prev": 0.0, "curr": 0.167}, {"prev": 0.147, "curr": 0.087}, {"prev": 0.947, "curr": 0.921}, {"prev": 0.764, "curr": 0.85}, {"prev": 0.893, "curr": 0.867}, {"prev": 0.08, "curr": 0.0}, {"prev": 0.273, "curr": 0.297}, {"prev": 0.767, "curr": 0.827}, {"prev": 0.718, "curr": 0.698}, {"prev": 0.603, "curr": 0.562}, {"prev": 0.854, "curr": 0.947}, {"prev": 0.824, "curr": 0.887}, {"prev": 0.122, "curr": 0.237}, {"prev": 0.327, "curr": 0.2}, {"prev": 0.161, "curr": 0.117}, {"prev": 0.04, "curr": 0.233}, {"prev": 0.182, "curr": 0.324}, {"prev": 0.14, "curr": 0.154}, {"prev": 0.436, "curr": 0.395}, {"prev": 0.22, "curr": 0.105}, {"prev": 0.158, "curr": 0.263}, {"prev": 0.059, "curr": 0.412}, {"prev": 0.488, "curr": 0.5}, {"prev": 0.949, "curr": 0.907}, {"prev": 0.235, "curr": 0.212}, {"prev": 0.873, "curr": 0.717}, {"prev": 0.679, "curr": 0.883}, {"prev": 0.882, "curr": 0.512}, {"prev": 0.018, "curr": 0.05}, {"prev": 0.054, "curr": 0.217}, {"prev": 0.242, "curr": 0.162}, {"prev": 0.744, "curr": 0.788}, {"prev": 0.385, "curr": 0.256}, {"prev": 0.632, "curr": 0.637}, {"prev": 0.051, "curr": 0.116}, {"prev": 0.317, "curr": 0.263}, {"prev": 0.127, "curr": 0.117}, {"prev": 1.0, "curr": 0.731}, {"prev": 0.026, "curr": 0.14}, {"prev": 0.366, "curr": 0.474}, {"prev": 0.655, "curr": 0.667}, {"prev": 0.339, "curr": 0.317}, {"prev": 0.24, "curr": 0.367}, {"prev": 0.364, "curr": 0.459}, {"prev": 0.116, "curr": 0.077}, {"prev": 0.359, "curr": 0.291}, {"prev": 0.485, "curr": 0.45}, {"prev": 0.036, "curr": 0.15}, {"prev": 0.554, "curr": 0.467}, {"prev": 0.606, "curr": 0.568}, {"prev": 0.907, "curr": 0.596}, {"prev": 0.692, "curr": 0.721}, {"prev": 0.956, "curr": 0.9}, {"prev": 0.463, "curr": 0.553}, {"prev": 0.632, "curr": 0.737}, {"prev": 0.309, "curr": 0.263}, {"prev": 0.293, "curr": 0.316}, {"prev": 0.342, "curr": 0.395}, {"prev": 0.436, "curr": 0.3}, {"prev": 0.393, "curr": 0.367}, {"prev": 0.92, "curr": 0.533}, {"prev": 0.667, "curr": 0.703}, {"prev": 0.488, "curr": 0.442}, {"prev": 0.333, "curr": 0.488}, {"prev": 0.515, "curr": 0.475}, {"prev": 0.658, "curr": 0.684}, {"prev": 0.39, "curr": 0.342}, {"prev": 0.691, "curr": 0.783}, {"prev": 0.696, "curr": 0.667}, {"prev": 0.545, "curr": 0.919}, {"prev": 0.884, "curr": 0.808}, {"prev": 0.231, "curr": 0.605}, {"prev": 0.176, "curr": 0.037}, {"prev": 0.737, "curr": 0.711}, {"prev": 0.218, "curr": 0.133}, {"prev": 0.518, "curr": 0.483}, {"prev": 0.88, "curr": 0.933}, {"prev": 0.221, "curr": 0.225}, {"prev": 0.049, "curr": 0.079}, {"prev": 0.727, "curr": 0.8}, {"prev": 0.982, "curr": 0.933}, {"prev": 0.84, "curr": 0.9}, {"prev": 0.564, "curr": 0.733}, {"prev": 0.768, "curr": 0.783}, {"prev": 0.939, "curr": 0.973}, {"prev": 0.053, "curr": 0.132}, {"prev": 0.48, "curr": 0.667}, {"prev": 0.294, "curr": 0.1}, {"prev": 0.974, "curr": 0.974}, {"prev": 0.091, "curr": 0.033}, {"prev": 0.018, "curr": 0.017}, {"prev": 1.0, "curr": 1.0}, {"prev": 0.394, "curr": 0.514}, {"prev": 0.977, "curr": 0.885}, {"prev": 0.769, "curr": 0.791}, {"prev": 0.941, "curr": 0.988}, {"prev": 0.268, "curr": 0.053}, {"prev": 0.537, "curr": 0.605}, {"prev": 0.842, "curr": 0.158}, {"prev": 0.6, "curr": 0.35}, {"prev": 0.321, "curr": 0.3}, {"prev": 0.56, "curr": 0.6}, {"prev": 0.576, "curr": 0.486}, {"prev": 0.442, "curr": 0.327}, {"prev": 0.641, "curr": 0.291}, {"prev": 0.441, "curr": 0.35}, {"prev": 1.0, "curr": 1.0}, {"prev": 0.786, "curr": 0.8}, {"prev": 0.72, "curr": 0.767}, {"prev": 0.0, "curr": 0.038}, {"prev": 0.846, "curr": 0.674}, {"prev": 0.195, "curr": 0.158}, {"prev": 0.447, "curr": 0.421}, {"prev": 0.527, "curr": 0.5}, {"prev": 0.661, "curr": 0.6}, {"prev": 0.36, "curr": 0.433}, {"prev": 0.419, "curr": 0.385}, {"prev": 0.513, "curr": 0.349}, {"prev": 0.544, "curr": 0.55}, {"prev": 0.707, "curr": 0.211}, {"prev": 0.145, "curr": 0.333}, {"prev": 0.75, "curr": 0.333}, {"prev": 0.44, "curr": 0.467}, {"prev": 0.121, "curr": 0.27}, {"prev": 0.628, "curr": 0.365}, {"prev": 0.41, "curr": 0.233}, {"prev": 0.368, "curr": 0.375}, {"prev": 0.291, "curr": 0.417}, {"prev": 0.25, "curr": 0.233}, {"prev": 0.12, "curr": 0.267}, {"prev": 0.233, "curr": 0.192}, {"prev": 0.5, "curr": 0.4}, {"prev": 0.263, "curr": 0.211}, {"prev": 0.634, "curr": 0.684}, {"prev": 0.868, "curr": 0.816}, {"prev": 0.0, "curr": 0.067}, {"prev": 0.0, "curr": 0.0}, {"prev": 0.093, "curr": 0.212}, {"prev": 0.821, "curr": 0.837}, {"prev": 0.206, "curr": 0.275}, {"prev": 0.055, "curr": 0.083}, {"prev": 0.036, "curr": 0.45}, {"prev": 0.96, "curr": 0.967}, {"prev": 0.515, "curr": 0.608}, {"prev": 0.698, "curr": 0.865}, {"prev": 0.75, "curr": 0.838}, {"prev": 0.0, "curr": 0.026}, {"prev": 0.132, "curr": 0.237}, {"prev": 0.16, "curr": 0.3}, {"prev": 0.105, "curr": 0.105}, {"prev": 0.309, "curr": 0.25}, {"prev": 0.125, "curr": 0.133}, {"prev": 0.68, "curr": 0.567}, {"prev": 0.588, "curr": 0.6}, {"prev": 0.421, "curr": 0.553}, {"prev": 0.2, "curr": 0.5}, {"prev": 0.091, "curr": 0.189}, {"prev": 0.302, "curr": 0.308}, {"prev": 0.179, "curr": 0.07}, {"prev": 0.015, "curr": 0.025}, {"prev": 0.618, "curr": 0.517}, {"prev": 0.5, "curr": 0.55}, {"prev": 0.76, "curr": 0.867}, {"prev": 0.727, "curr": 0.73}, {"prev": 0.465, "curr": 0.25}, {"prev": 0.462, "curr": 0.465}, {"prev": 0.324, "curr": 0.325}, {"prev": 0.909, "curr": 0.983}, {"prev": 0.714, "curr": 0.85}, {"prev": 0.023, "curr": 0.115}, {"prev": 0.615, "curr": 0.814}, {"prev": 0.662, "curr": 0.775}, {"prev": 0.709, "curr": 0.817}, {"prev": 0.286, "curr": 0.283}, {"prev": 0.32, "curr": 0.833}, {"prev": 0.345, "curr": 0.45}, {"prev": 0.107, "curr": 0.067}, {"prev": 0.553, "curr": 0.605}, {"prev": 0.529, "curr": 0.175}, {"prev": 0.582, "curr": 0.583}, {"prev": 1.0, "curr": 0.967}, {"prev": 0.316, "curr": 0.342}, {"prev": 0.047, "curr": 0.058}, {"prev": 0.073, "curr": 0.026}, {"prev": 0.816, "curr": 0.789}, {"prev": 0.279, "curr": 0.25}, {"prev": 0.455, "curr": 0.4}, {"prev": 0.179, "curr": 0.15}, {"prev": 0.4, "curr": 0.333}, {"prev": 0.338, "curr": 0.312}, {"prev": 0.895, "curr": 0.868}, {"prev": 0.103, "curr": 0.013}, {"prev": 0.585, "curr": 0.395}, {"prev": 0.636, "curr": 0.676}, {"prev": 0.256, "curr": 0.269}, {"prev": 0.721, "curr": 0.65}, {"prev": 0.026, "curr": 0.053}, {"prev": 0.236, "curr": 0.233}, {"prev": 0.28, "curr": 0.4}, {"prev": 0.256, "curr": 0.651}, {"prev": 0.456, "curr": 0.438}, {"prev": 0.244, "curr": 0.184}, {"prev": 0.5, "curr": 0.658}, {"prev": 0.879, "curr": 0.757}, {"prev": 0.308, "curr": 0.209}, {"prev": 0.526, "curr": 0.079}, {"prev": 0.418, "curr": 0.55}, {"prev": 0.232, "curr": 0.25}, {"prev": 0.6, "curr": 0.733}, {"prev": 0.455, "curr": 0.649}, {"prev": 0.349, "curr": 0.404}, {"prev": 0.128, "curr": 0.093}, {"prev": 0.382, "curr": 0.287}, {"prev": 0.927, "curr": 0.917}, {"prev": 0.946, "curr": 0.95}, {"prev": 0.268, "curr": 0.267}, {"prev": 0.683, "curr": 0.737}, {"prev": 0.794, "curr": 0.725}, {"prev": 0.809, "curr": 0.863}, {"prev": 0.951, "curr": 1.0}, {"prev": 0.848, "curr": 0.811}, {"prev": 0.279, "curr": 0.904}, {"prev": 0.971, "curr": 0.975}, {"prev": 0.186, "curr": 0.0}, {"prev": 0.795, "curr": 0.884}, {"prev": 0.589, "curr": 0.65}, {"prev": 0.735, "curr": 0.812}, {"prev": 0.985, "curr": 0.825}, {"prev": 0.8, "curr": 0.767}, {"prev": 0.911, "curr": 0.983}, {"prev": 0.818, "curr": 0.541}, {"prev": 0.791, "curr": 0.923}, {"prev": 0.872, "curr": 0.547}, {"prev": 0.779, "curr": 0.925}, {"prev": 0.745, "curr": 0.833}, {"prev": 0.571, "curr": 0.567}, {"prev": 0.909, "curr": 0.946}, {"prev": 0.535, "curr": 0.538}, {"prev": 0.744, "curr": 0.767}, {"prev": 0.691, "curr": 0.625}, {"prev": 0.255, "curr": 0.483}, {"prev": 0.455, "curr": 0.433}, {"prev": 0.756, "curr": 0.763}, {"prev": 0.706, "curr": 0.713}, {"prev": 0.763, "curr": 0.763}, {"prev": 0.4, "curr": 0.683}, {"prev": 0.375, "curr": 0.383}, {"prev": 0.8, "curr": 0.633}, {"prev": 0.303, "curr": 0.405}, {"prev": 0.326, "curr": 0.462}, {"prev": 0.538, "curr": 0.326}, {"prev": 0.412, "curr": 0.388}, {"prev": 0.78, "curr": 0.711}, {"prev": 0.2, "curr": 0.283}, {"prev": 0.429, "curr": 0.167}, {"prev": 0.574, "curr": 0.575}, {"prev": 0.61, "curr": 0.658}, {"prev": 0.974, "curr": 0.86}, {"prev": 0.818, "curr": 0.867}, {"prev": 0.643, "curr": 0.633}, {"prev": 1.0, "curr": 0.921}, {"prev": 0.902, "curr": 0.895}, {"prev": 0.509, "curr": 0.95}, {"prev": 0.152, "curr": 0.135}, {"prev": 0.581, "curr": 0.481}, {"prev": 0.964, "curr": 0.933}, {"prev": 0.875, "curr": 0.833}, {"prev": 0.395, "curr": 0.519}, {"prev": 0.205, "curr": 0.419}, {"prev": 0.838, "curr": 0.787}, {"prev": 0.805, "curr": 0.842}, {"prev": 0.93, "curr": 1.0}, {"prev": 0.853, "curr": 0.875}, {"prev": 0.636, "curr": 0.633}, {"prev": 0.929, "curr": 0.9}, {"prev": 0.618, "curr": 0.613}, {"prev": 0.97, "curr": 0.784}, {"prev": 0.473, "curr": 0.6}, {"prev": 0.357, "curr": 0.35}, {"prev": 0.03, "curr": 0.054}, {"prev": 0.163, "curr": 0.692}, {"prev": 0.103, "curr": 0.023}, {"prev": 0.559, "curr": 0.537}, {"prev": 1.0, "curr": 1.0}, {"prev": 0.397, "curr": 0.362}, {"prev": 0.674, "curr": 0.712}, {"prev": 0.162, "curr": 0.125}, {"prev": 0.945, "curr": 0.65}, {"prev": 0.964, "curr": 1.0}, {"prev": 0.676, "curr": 0.762}, {"prev": 0.364, "curr": 0.317}, {"prev": 0.839, "curr": 0.817}, {"prev": 0.212, "curr": 0.243}, {"prev": 0.721, "curr": 0.769}, {"prev": 0.487, "curr": 0.372}, {"prev": 0.647, "curr": 0.75}, {"prev": 0.191, "curr": 0.113}, {"prev": 0.415, "curr": 0.421}, {"prev": 0.789, "curr": 0.526}, {"prev": 0.545, "curr": 0.467}, {"prev": 0.625, "curr": 0.717}, {"prev": 0.982, "curr": 0.967}, {"prev": 0.821, "curr": 0.917}, {"prev": 0.897, "curr": 0.938}, {"prev": 0.814, "curr": 0.962}, {"prev": 0.474, "curr": 0.447}, {"prev": 0.341, "curr": 0.289}, {"prev": 0.579, "curr": 0.632}, {"prev": 0.25, "curr": 0.237}, {"prev": 0.512, "curr": 0.135}, {"prev": 0.59, "curr": 0.744}, {"prev": 0.273, "curr": 0.367}, {"prev": 0.455, "curr": 0.4}, {"prev": 0.024, "curr": 0.0}, {"prev": 0.605, "curr": 0.579}, {"prev": 0.353, "curr": 0.05}, {"prev": 0.659, "curr": 0.368}, {"prev": 0.368, "curr": 0.368}, {"prev": 0.044, "curr": 0.062}, {"prev": 0.439, "curr": 0.447}, {"prev": 0.953, "curr": 0.942}, {"prev": 1.0, "curr": 1.0}, {"prev": 1.0, "curr": 0.95}, {"prev": 0.829, "curr": 0.789}, {"prev": 0.182, "curr": 0.1}, {"prev": 0.857, "curr": 0.75}, {"prev": 0.868, "curr": 0.912}, {"prev": 0.976, "curr": 0.868}, {"prev": 0.891, "curr": 0.0}, {"prev": 0.209, "curr": 0.635}], "spearman_rho": 0.8656, "panel_rows": [{"uf": "AC", "uf_name": "Acre", "year": 2022, "p50": 623.0, "p90": 2198.0, "p99": 6603.0, "p90_p50_ratio": 3.528, "inad_yr": 3.039}, {"uf": "AC", "uf_name": "Acre", "year": 2023, "p50": 660.0, "p90": 2362.0, "p99": 6409.0, "p90_p50_ratio": 3.579, "inad_yr": 3.433}, {"uf": "AC", "uf_name": "Acre", "year": 2024, "p50": 750.0, "p90": 2582.0, "p99": 7681.0, "p90_p50_ratio": 3.443, "inad_yr": 3.493}, {"uf": "AC", "uf_name": "Acre", "year": 2025, "p50": 842.0, "p90": 2812.0, "p99": 9044.0, "p90_p50_ratio": 3.34, "inad_yr": 4.429}, {"uf": "AL", "uf_name": "Alagoas", "year": 2022, "p50": 601.0, "p90": 1727.0, "p99": 6349.0, "p90_p50_ratio": 2.874, "inad_yr": 4.588}, {"uf": "AL", "uf_name": "Alagoas", "year": 2023, "p50": 728.0, "p90": 2089.0, "p99": 7394.0, "p90_p50_ratio": 2.87, "inad_yr": 5.113}, {"uf": "AL", "uf_name": "Alagoas", "year": 2024, "p50": 795.0, "p90": 2441.0, "p99": 9178.0, "p90_p50_ratio": 3.07, "inad_yr": 4.576}, {"uf": "AL", "uf_name": "Alagoas", "year": 2025, "p50": 865.0, "p90": 2689.0, "p99": 10056.0, "p90_p50_ratio": 3.109, "inad_yr": 5.294}, {"uf": "AP", "uf_name": "Amapá", "year": 2022, "p50": 664.0, "p90": 2434.0, "p99": 9973.0, "p90_p50_ratio": 3.666, "inad_yr": 3.974}, {"uf": "AP", "uf_name": "Amapá", "year": 2023, "p50": 968.0, "p90": 3073.0, "p99": 9653.0, "p90_p50_ratio": 3.175, "inad_yr": 4.122}, {"uf": "AP", "uf_name": "Amapá", "year": 2024, "p50": 916.0, "p90": 2966.0, "p99": 8831.0, "p90_p50_ratio": 3.238, "inad_yr": 4.062}, {"uf": "AP", "uf_name": "Amapá", "year": 2025, "p50": 1033.0, "p90": 3592.0, "p99": 9109.0, "p90_p50_ratio": 3.477, "inad_yr": 5.113}, {"uf": "AM", "uf_name": "Amazonas", "year": 2022, "p50": 582.0, "p90": 1982.0, "p99": 6699.0, "p90_p50_ratio": 3.405, "inad_yr": 4.713}, {"uf": "AM", "uf_name": "Amazonas", "year": 2023, "p50": 692.0, "p90": 2342.0, "p99": 7414.0, "p90_p50_ratio": 3.384, "inad_yr": 5.833}, {"uf": "AM", "uf_name": "Amazonas", "year": 2024, "p50": 814.0, "p90": 2531.0, "p99": 7395.0, "p90_p50_ratio": 3.109, "inad_yr": 5.067}, {"uf": "AM", "uf_name": "Amazonas", "year": 2025, "p50": 938.0, "p90": 2818.0, "p99": 9958.0, "p90_p50_ratio": 3.004, "inad_yr": 5.508}, {"uf": "BA", "uf_name": "Bahia", "year": 2022, "p50": 626.0, "p90": 1821.0, "p99": 6558.0, "p90_p50_ratio": 2.909, "inad_yr": 4.401}, {"uf": "BA", "uf_name": "Bahia", "year": 2023, "p50": 728.0, "p90": 2105.0, "p99": 6906.0, "p90_p50_ratio": 2.891, "inad_yr": 5.109}, {"uf": "BA", "uf_name": "Bahia", "year": 2024, "p50": 903.0, "p90": 2502.0, "p99": 8435.0, "p90_p50_ratio": 2.771, "inad_yr": 4.462}, {"uf": "BA", "uf_name": "Bahia", "year": 2025, "p50": 1011.0, "p90": 2944.0, "p99": 8857.0, "p90_p50_ratio": 2.912, "inad_yr": 5.022}, {"uf": "CE", "uf_name": "Ceará", "year": 2022, "p50": 628.0, "p90": 1859.0, "p99": 7458.0, "p90_p50_ratio": 2.96, "inad_yr": 4.543}, {"uf": "CE", "uf_name": "Ceará", "year": 2023, "p50": 692.0, "p90": 2028.0, "p99": 8482.0, "p90_p50_ratio": 2.931, "inad_yr": 5.225}, {"uf": "CE", "uf_name": "Ceará", "year": 2024, "p50": 792.0, "p90": 2259.0, "p99": 7778.0, "p90_p50_ratio": 2.852, "inad_yr": 4.523}, {"uf": "CE", "uf_name": "Ceará", "year": 2025, "p50": 870.0, "p90": 2499.0, "p99": 10549.0, "p90_p50_ratio": 2.872, "inad_yr": 4.83}, {"uf": "DF", "uf_name": "Distrito Federal", "year": 2022, "p50": 1515.0, "p90": 6669.0, "p99": 15383.0, "p90_p50_ratio": 4.402, "inad_yr": 3.447}, {"uf": "DF", "uf_name": "Distrito Federal", "year": 2023, "p50": 1722.0, "p90": 7477.0, "p99": 19616.0, "p90_p50_ratio": 4.342, "inad_yr": 4.076}, {"uf": "DF", "uf_name": "Distrito Federal", "year": 2024, "p50": 1788.0, "p90": 7680.0, "p99": 20395.0, "p90_p50_ratio": 4.295, "inad_yr": 3.682}, {"uf": "DF", "uf_name": "Distrito Federal", "year": 2025, "p50": 2162.0, "p90": 10479.0, "p99": 29899.0, "p90_p50_ratio": 4.847, "inad_yr": 3.766}, {"uf": "ES", "uf_name": "Espírito Santo", "year": 2022, "p50": 1099.0, "p90": 3165.0, "p99": 10246.0, "p90_p50_ratio": 2.88, "inad_yr": 3.221}, {"uf": "ES", "uf_name": "Espírito Santo", "year": 2023, "p50": 1271.0, "p90": 3644.0, "p99": 12277.0, "p90_p50_ratio": 2.867, "inad_yr": 3.484}, {"uf": "ES", "uf_name": "Espírito Santo", "year": 2024, "p50": 1398.0, "p90": 4013.0, "p99": 13138.0, "p90_p50_ratio": 2.871, "inad_yr": 3.073}, {"uf": "ES", "uf_name": "Espírito Santo", "year": 2025, "p50": 1515.0, "p90": 4392.0, "p99": 13514.0, "p90_p50_ratio": 2.899, "inad_yr": 3.556}, {"uf": "GO", "uf_name": "Goiás", "year": 2022, "p50": 1129.0, "p90": 2965.0, "p99": 9049.0, "p90_p50_ratio": 2.626, "inad_yr": 2.691}, {"uf": "GO", "uf_name": "Goiás", "year": 2023, "p50": 1311.0, "p90": 3874.0, "p99": 11730.0, "p90_p50_ratio": 2.955, "inad_yr": 3.136}, {"uf": "GO", "uf_name": "Goiás", "year": 2024, "p50": 1402.0, "p90": 4003.0, "p99": 11748.0, "p90_p50_ratio": 2.855, "inad_yr": 3.422}, {"uf": "GO", "uf_name": "Goiás", "year": 2025, "p50": 1537.0, "p90": 4770.0, "p99": 14497.0, "p90_p50_ratio": 3.103, "inad_yr": 5.19}, {"uf": "MA", "uf_name": "Maranhão", "year": 2022, "p50": 569.0, "p90": 1586.0, "p99": 5281.0, "p90_p50_ratio": 2.787, "inad_yr": 3.645}, {"uf": "MA", "uf_name": "Maranhão", "year": 2023, "p50": 655.0, "p90": 1847.0, "p99": 6653.0, "p90_p50_ratio": 2.82, "inad_yr": 4.197}, {"uf": "MA", "uf_name": "Maranhão", "year": 2024, "p50": 717.0, "p90": 1991.0, "p99": 6097.0, "p90_p50_ratio": 2.777, "inad_yr": 4.252}, {"uf": "MA", "uf_name": "Maranhão", "year": 2025, "p50": 793.0, "p90": 2363.0, "p99": 8844.0, "p90_p50_ratio": 2.98, "inad_yr": 6.042}, {"uf": "MT", "uf_name": "Mato Grosso", "year": 2022, "p50": 1186.0, "p90": 3053.0, "p99": 8678.0, "p90_p50_ratio": 2.574, "inad_yr": 1.698}, {"uf": "MT", "uf_name": "Mato Grosso", "year": 2023, "p50": 1332.0, "p90": 3744.0, "p99": 11328.0, "p90_p50_ratio": 2.811, "inad_yr": 1.987}, {"uf": "MT", "uf_name": "Mato Grosso", "year": 2024, "p50": 1608.0, "p90": 4193.0, "p99": 11626.0, "p90_p50_ratio": 2.608, "inad_yr": 2.556}, {"uf": "MT", "uf_name": "Mato Grosso", "year": 2025, "p50": 1561.0, "p90": 4502.0, "p99": 12129.0, "p90_p50_ratio": 2.884, "inad_yr": 4.757}, {"uf": "MS", "uf_name": "Mato Grosso do Sul", "year": 2022, "p50": 1191.0, "p90": 3499.0, "p99": 11460.0, "p90_p50_ratio": 2.938, "inad_yr": 2.222}, {"uf": "MS", "uf_name": "Mato Grosso do Sul", "year": 2023, "p50": 1307.0, "p90": 3987.0, "p99": 11580.0, "p90_p50_ratio": 3.05, "inad_yr": 2.716}, {"uf": "MS", "uf_name": "Mato Grosso do Sul", "year": 2024, "p50": 1440.0, "p90": 4167.0, "p99": 11647.0, "p90_p50_ratio": 2.894, "inad_yr": 3.472}, {"uf": "MS", "uf_name": "Mato Grosso do Sul", "year": 2025, "p50": 1590.0, "p90": 4964.0, "p99": 13581.0, "p90_p50_ratio": 3.122, "inad_yr": 5.432}, {"uf": "MG", "uf_name": "Minas Gerais", "year": 2022, "p50": 1061.0, "p90": 2878.0, "p99": 9007.0, "p90_p50_ratio": 2.713, "inad_yr": 2.86}, {"uf": "MG", "uf_name": "Minas Gerais", "year": 2023, "p50": 1303.0, "p90": 3446.0, "p99": 11921.0, "p90_p50_ratio": 2.645, "inad_yr": 3.243}, {"uf": "MG", "uf_name": "Minas Gerais", "year": 2024, "p50": 1409.0, "p90": 3723.0, "p99": 11289.0, "p90_p50_ratio": 2.642, "inad_yr": 3.129}, {"uf": "MG", "uf_name": "Minas Gerais", "year": 2025, "p50": 1523.0, "p90": 4301.0, "p99": 14176.0, "p90_p50_ratio": 2.824, "inad_yr": 3.965}, {"uf": "PA", "uf_name": "Pará", "year": 2022, "p50": 662.0, "p90": 2001.0, "p99": 7562.0, "p90_p50_ratio": 3.023, "inad_yr": 3.704}, {"uf": "PA", "uf_name": "Pará", "year": 2023, "p50": 780.0, "p90": 2507.0, "p99": 8446.0, "p90_p50_ratio": 3.214, "inad_yr": 4.278}, {"uf": "PA", "uf_name": "Pará", "year": 2024, "p50": 838.0, "p90": 2508.0, "p99": 8768.0, "p90_p50_ratio": 2.993, "inad_yr": 4.15}, {"uf": "PA", "uf_name": "Pará", "year": 2025, "p50": 929.0, "p90": 2691.0, "p99": 9907.0, "p90_p50_ratio": 2.897, "inad_yr": 5.195}, {"uf": "PB", "uf_name": "Paraíba", "year": 2022, "p50": 604.0, "p90": 1813.0, "p99": 6690.0, "p90_p50_ratio": 3.002, "inad_yr": 4.438}, {"uf": "PB", "uf_name": "Paraíba", "year": 2023, "p50": 714.0, "p90": 2364.0, "p99": 9753.0, "p90_p50_ratio": 3.311, "inad_yr": 4.951}, {"uf": "PB", "uf_name": "Paraíba", "year": 2024, "p50": 864.0, "p90": 2678.0, "p99": 9018.0, "p90_p50_ratio": 3.1, "inad_yr": 4.223}, {"uf": "PB", "uf_name": "Paraíba", "year": 2025, "p50": 986.0, "p90": 3013.0, "p99": 11154.0, "p90_p50_ratio": 3.056, "inad_yr": 4.318}, {"uf": "PR", "uf_name": "Paraná", "year": 2022, "p50": 1203.0, "p90": 3481.0, "p99": 10942.0, "p90_p50_ratio": 2.894, "inad_yr": 2.549}, {"uf": "PR", "uf_name": "Paraná", "year": 2023, "p50": 1375.0, "p90": 3955.0, "p99": 11821.0, "p90_p50_ratio": 2.876, "inad_yr": 2.909}, {"uf": "PR", "uf_name": "Paraná", "year": 2024, "p50": 1587.0, "p90": 4691.0, "p99": 14754.0, "p90_p50_ratio": 2.956, "inad_yr": 2.856}, {"uf": "PR", "uf_name": "Paraná", "year": 2025, "p50": 1788.0, "p90": 5271.0, "p99": 15485.0, "p90_p50_ratio": 2.948, "inad_yr": 3.717}, {"uf": "PE", "uf_name": "Pernambuco", "year": 2022, "p50": 623.0, "p90": 1826.0, "p99": 7189.0, "p90_p50_ratio": 2.931, "inad_yr": 5.261}, {"uf": "PE", "uf_name": "Pernambuco", "year": 2023, "p50": 696.0, "p90": 2025.0, "p99": 7423.0, "p90_p50_ratio": 2.909, "inad_yr": 5.875}, {"uf": "PE", "uf_name": "Pernambuco", "year": 2024, "p50": 829.0, "p90": 2691.0, "p99": 10471.0, "p90_p50_ratio": 3.246, "inad_yr": 5.032}, {"uf": "PE", "uf_name": "Pernambuco", "year": 2025, "p50": 956.0, "p90": 3229.0, "p99": 11069.0, "p90_p50_ratio": 3.378, "inad_yr": 5.304}, {"uf": "PI", "uf_name": "Piauí", "year": 2022, "p50": 662.0, "p90": 2179.0, "p99": 7906.0, "p90_p50_ratio": 3.292, "inad_yr": 4.287}, {"uf": "PI", "uf_name": "Piauí", "year": 2023, "p50": 730.0, "p90": 2478.0, "p99": 12132.0, "p90_p50_ratio": 3.395, "inad_yr": 4.574}, {"uf": "PI", "uf_name": "Piauí", "year": 2024, "p50": 858.0, "p90": 2536.0, "p99": 10292.0, "p90_p50_ratio": 2.956, "inad_yr": 4.156}, {"uf": "PI", "uf_name": "Piauí", "year": 2025, "p50": 987.0, "p90": 2877.0, "p99": 11662.0, "p90_p50_ratio": 2.915, "inad_yr": 4.848}, {"uf": "RJ", "uf_name": "Rio de Janeiro", "year": 2022, "p50": 1156.0, "p90": 4111.0, "p99": 13907.0, "p90_p50_ratio": 3.556, "inad_yr": 5.619}, {"uf": "RJ", "uf_name": "Rio de Janeiro", "year": 2023, "p50": 1318.0, "p90": 5015.0, "p99": 15492.0, "p90_p50_ratio": 3.805, "inad_yr": 5.993}, {"uf": "RJ", "uf_name": "Rio de Janeiro", "year": 2024, "p50": 1422.0, "p90": 5269.0, "p99": 16297.0, "p90_p50_ratio": 3.705, "inad_yr": 5.024}, {"uf": "RJ", "uf_name": "Rio de Janeiro", "year": 2025, "p50": 1520.0, "p90": 5625.0, "p99": 19980.0, "p90_p50_ratio": 3.701, "inad_yr": 5.467}, {"uf": "RN", "uf_name": "Rio Grande do Norte", "year": 2022, "p50": 724.0, "p90": 2466.0, "p99": 8838.0, "p90_p50_ratio": 3.406, "inad_yr": 4.603}, {"uf": "RN", "uf_name": "Rio Grande do Norte", "year": 2023, "p50": 786.0, "p90": 2647.0, "p99": 9904.0, "p90_p50_ratio": 3.368, "inad_yr": 5.376}, {"uf": "RN", "uf_name": "Rio Grande do Norte", "year": 2024, "p50": 939.0, "p90": 3324.0, "p99": 9871.0, "p90_p50_ratio": 3.54, "inad_yr": 4.474}, {"uf": "RN", "uf_name": "Rio Grande do Norte", "year": 2025, "p50": 1020.0, "p90": 3414.0, "p99": 15144.0, "p90_p50_ratio": 3.347, "inad_yr": 4.902}, {"uf": "RS", "uf_name": "Rio Grande do Sul", "year": 2022, "p50": 1345.0, "p90": 3963.0, "p99": 12015.0, "p90_p50_ratio": 2.946, "inad_yr": 2.328}, {"uf": "RS", "uf_name": "Rio Grande do Sul", "year": 2023, "p50": 1506.0, "p90": 4415.0, "p99": 13545.0, "p90_p50_ratio": 2.932, "inad_yr": 2.625}, {"uf": "RS", "uf_name": "Rio Grande do Sul", "year": 2024, "p50": 1692.0, "p90": 4973.0, "p99": 14532.0, "p90_p50_ratio": 2.939, "inad_yr": 2.515}, {"uf": "RS", "uf_name": "Rio Grande do Sul", "year": 2025, "p50": 1833.0, "p90": 5304.0, "p99": 17671.0, "p90_p50_ratio": 2.894, "inad_yr": 3.651}, {"uf": "RO", "uf_name": "Rondônia", "year": 2022, "p50": 991.0, "p90": 2499.0, "p99": 7329.0, "p90_p50_ratio": 2.522, "inad_yr": 2.035}, {"uf": "RO", "uf_name": "Rondônia", "year": 2023, "p50": 1093.0, "p90": 2773.0, "p99": 9101.0, "p90_p50_ratio": 2.537, "inad_yr": 2.576}, {"uf": "RO", "uf_name": "Rondônia", "year": 2024, "p50": 1254.0, "p90": 3422.0, "p99": 9206.0, "p90_p50_ratio": 2.729, "inad_yr": 3.066}, {"uf": "RO", "uf_name": "Rondônia", "year": 2025, "p50": 1430.0, "p90": 3893.0, "p99": 10297.0, "p90_p50_ratio": 2.722, "inad_yr": 4.642}, {"uf": "RR", "uf_name": "Roraima", "year": 2022, "p50": 704.0, "p90": 2536.0, "p99": 9501.0, "p90_p50_ratio": 3.602, "inad_yr": 3.297}, {"uf": "RR", "uf_name": "Roraima", "year": 2023, "p50": 904.0, "p90": 3185.0, "p99": 8807.0, "p90_p50_ratio": 3.523, "inad_yr": 3.839}, {"uf": "RR", "uf_name": "Roraima", "year": 2024, "p50": 879.0, "p90": 3500.0, "p99": 10156.0, "p90_p50_ratio": 3.982, "inad_yr": 3.875}, {"uf": "RR", "uf_name": "Roraima", "year": 2025, "p50": 1127.0, "p90": 4162.0, "p99": 11900.0, "p90_p50_ratio": 3.693, "inad_yr": 4.84}, {"uf": "SC", "uf_name": "Santa Catarina", "year": 2022, "p50": 1434.0, "p90": 3676.0, "p99": 9984.0, "p90_p50_ratio": 2.563, "inad_yr": 2.563}, {"uf": "SC", "uf_name": "Santa Catarina", "year": 2023, "p50": 1644.0, "p90": 4151.0, "p99": 11612.0, "p90_p50_ratio": 2.525, "inad_yr": 2.966}, {"uf": "SC", "uf_name": "Santa Catarina", "year": 2024, "p50": 1812.0, "p90": 4936.0, "p99": 13549.0, "p90_p50_ratio": 2.724, "inad_yr": 2.791}, {"uf": "SC", "uf_name": "Santa Catarina", "year": 2025, "p50": 1989.0, "p90": 5094.0, "p99": 15320.0, "p90_p50_ratio": 2.561, "inad_yr": 3.429}, {"uf": "SP", "uf_name": "São Paulo", "year": 2022, "p50": 1300.0, "p90": 4131.0, "p99": 14310.0, "p90_p50_ratio": 3.178, "inad_yr": 3.139}, {"uf": "SP", "uf_name": "São Paulo", "year": 2023, "p50": 1499.0, "p90": 4755.0, "p99": 16587.0, "p90_p50_ratio": 3.172, "inad_yr": 3.696}, {"uf": "SP", "uf_name": "São Paulo", "year": 2024, "p50": 1660.0, "p90": 5022.0, "p99": 16964.0, "p90_p50_ratio": 3.025, "inad_yr": 3.392}, {"uf": "SP", "uf_name": "São Paulo", "year": 2025, "p50": 1797.0, "p90": 5508.0, "p99": 19198.0, "p90_p50_ratio": 3.065, "inad_yr": 3.962}, {"uf": "SE", "uf_name": "Sergipe", "year": 2022, "p50": 697.0, "p90": 2179.0, "p99": 8200.0, "p90_p50_ratio": 3.126, "inad_yr": 3.776}, {"uf": "SE", "uf_name": "Sergipe", "year": 2023, "p50": 745.0, "p90": 2436.0, "p99": 7657.0, "p90_p50_ratio": 3.27, "inad_yr": 4.407}, {"uf": "SE", "uf_name": "Sergipe", "year": 2024, "p50": 923.0, "p90": 2872.0, "p99": 9144.0, "p90_p50_ratio": 3.112, "inad_yr": 3.977}, {"uf": "SE", "uf_name": "Sergipe", "year": 2025, "p50": 996.0, "p90": 3551.0, "p99": 11731.0, "p90_p50_ratio": 3.565, "inad_yr": 4.541}, {"uf": "TO", "uf_name": "Tocantins", "year": 2022, "p50": 860.0, "p90": 2551.0, "p99": 8263.0, "p90_p50_ratio": 2.966, "inad_yr": 2.482}, {"uf": "TO", "uf_name": "Tocantins", "year": 2023, "p50": 1079.0, "p90": 3134.0, "p99": 9408.0, "p90_p50_ratio": 2.905, "inad_yr": 2.741}, {"uf": "TO", "uf_name": "Tocantins", "year": 2024, "p50": 1161.0, "p90": 3569.0, "p99": 10391.0, "p90_p50_ratio": 3.074, "inad_yr": 3.137}, {"uf": "TO", "uf_name": "Tocantins", "year": 2025, "p50": 1360.0, "p90": 3876.0, "p99": 11745.0, "p90_p50_ratio": 2.85, "inad_yr": 6.444}], "rows_2026": [{"uf": "PB", "uf_name": "Paraíba", "p50": 986.0, "p90": 3013.0, "p95": 4982.0, "p99": 11154.0, "p90_p50_ratio": 3.056, "inad_latest": 5.13, "inad_12m_avg": 4.932, "inad_2022_01": 3.93, "delta_2022_2026_pp": 1.2, "pred_inad": 7.09, "residual_pp": -1.96}, {"uf": "ES", "uf_name": "Espírito Santo", "p50": 1515.0, "p90": 4392.0, "p95": 6550.0, "p99": 13514.0, "p90_p50_ratio": 2.899, "inad_latest": 4.58, "inad_12m_avg": 4.228, "inad_2022_01": 2.92, "delta_2022_2026_pp": 1.66, "pred_inad": 6.41, "residual_pp": -1.83}, {"uf": "SC", "uf_name": "Santa Catarina", "p50": 1989.0, "p90": 5094.0, "p95": 7461.0, "p99": 15320.0, "p90_p50_ratio": 2.561, "inad_latest": 4.53, "inad_12m_avg": 4.135, "inad_2022_01": 2.27, "delta_2022_2026_pp": 2.26, "pred_inad": 6.15, "residual_pp": -1.62}, {"uf": "CE", "uf_name": "Ceará", "p50": 870.0, "p90": 2499.0, "p95": 3976.0, "p99": 10549.0, "p90_p50_ratio": 2.872, "inad_latest": 5.99, "inad_12m_avg": 5.55, "inad_2022_01": 3.92, "delta_2022_2026_pp": 2.07, "pred_inad": 7.42, "residual_pp": -1.43}, {"uf": "RN", "uf_name": "Rio Grande do Norte", "p50": 1020.0, "p90": 3414.0, "p95": 5854.0, "p99": 15144.0, "p90_p50_ratio": 3.347, "inad_latest": 5.91, "inad_12m_avg": 5.483, "inad_2022_01": 4.09, "delta_2022_2026_pp": 1.82, "pred_inad": 6.86, "residual_pp": -0.95}, {"uf": "PR", "uf_name": "Paraná", "p50": 1788.0, "p90": 5271.0, "p95": 7639.0, "p99": 15485.0, "p90_p50_ratio": 2.948, "inad_latest": 5.15, "inad_12m_avg": 4.686, "inad_2022_01": 2.36, "delta_2022_2026_pp": 2.79, "pred_inad": 6.08, "residual_pp": -0.93}, {"uf": "SP", "uf_name": "São Paulo", "p50": 1797.0, "p90": 5508.0, "p95": 8239.0, "p99": 19198.0, "p90_p50_ratio": 3.065, "inad_latest": 5.11, "inad_12m_avg": 4.676, "inad_2022_01": 2.83, "delta_2022_2026_pp": 2.28, "pred_inad": 6.01, "residual_pp": -0.9}, {"uf": "MG", "uf_name": "Minas Gerais", "p50": 1523.0, "p90": 4301.0, "p95": 6376.0, "p99": 14176.0, "p90_p50_ratio": 2.824, "inad_latest": 5.57, "inad_12m_avg": 5.016, "inad_2022_01": 2.57, "delta_2022_2026_pp": 3.0, "pred_inad": 6.45, "residual_pp": -0.88}, {"uf": "SE", "uf_name": "Sergipe", "p50": 996.0, "p90": 3551.0, "p95": 5397.0, "p99": 11731.0, "p90_p50_ratio": 3.565, "inad_latest": 6.08, "inad_12m_avg": 5.352, "inad_2022_01": 3.31, "delta_2022_2026_pp": 2.77, "pred_inad": 6.79, "residual_pp": -0.71}, {"uf": "PE", "uf_name": "Pernambuco", "p50": 956.0, "p90": 3229.0, "p95": 5008.0, "p99": 11069.0, "p90_p50_ratio": 3.378, "inad_latest": 6.31, "inad_12m_avg": 5.973, "inad_2022_01": 4.63, "delta_2022_2026_pp": 1.68, "pred_inad": 6.96, "residual_pp": -0.65}, {"uf": "RS", "uf_name": "Rio Grande do Sul", "p50": 1833.0, "p90": 5304.0, "p95": 7984.0, "p99": 17671.0, "p90_p50_ratio": 2.894, "inad_latest": 5.72, "inad_12m_avg": 5.212, "inad_2022_01": 2.13, "delta_2022_2026_pp": 3.59, "pred_inad": 6.07, "residual_pp": -0.35}, {"uf": "PI", "uf_name": "Piauí", "p50": 987.0, "p90": 2877.0, "p95": 4434.0, "p99": 11662.0, "p90_p50_ratio": 2.915, "inad_latest": 6.82, "inad_12m_avg": 6.16, "inad_2022_01": 3.72, "delta_2022_2026_pp": 3.1, "pred_inad": 7.17, "residual_pp": -0.35}, {"uf": "AL", "uf_name": "Alagoas", "p50": 865.0, "p90": 2689.0, "p95": 4243.0, "p99": 10056.0, "p90_p50_ratio": 3.109, "inad_latest": 6.95, "inad_12m_avg": 6.219, "inad_2022_01": 4.09, "delta_2022_2026_pp": 2.86, "pred_inad": 7.29, "residual_pp": -0.34}, {"uf": "DF", "uf_name": "Distrito Federal", "p50": 2162.0, "p90": 10479.0, "p95": 15078.0, "p99": 29899.0, "p90_p50_ratio": 4.847, "inad_latest": 4.53, "inad_12m_avg": 4.197, "inad_2022_01": 2.93, "delta_2022_2026_pp": 1.6, "pred_inad": 4.85, "residual_pp": -0.32}, {"uf": "AM", "uf_name": "Amazonas", "p50": 938.0, "p90": 2818.0, "p95": 4251.0, "p99": 9958.0, "p90_p50_ratio": 3.004, "inad_latest": 7.09, "inad_12m_avg": 6.609, "inad_2022_01": 4.02, "delta_2022_2026_pp": 3.07, "pred_inad": 7.21, "residual_pp": -0.12}, {"uf": "AC", "uf_name": "Acre", "p50": 842.0, "p90": 2812.0, "p95": 4173.0, "p99": 9044.0, "p90_p50_ratio": 3.34, "inad_latest": 7.19, "inad_12m_avg": 6.102, "inad_2022_01": 2.71, "delta_2022_2026_pp": 4.48, "pred_inad": 7.21, "residual_pp": -0.02}, {"uf": "BA", "uf_name": "Bahia", "p50": 1011.0, "p90": 2944.0, "p95": 4281.0, "p99": 8857.0, "p90_p50_ratio": 2.912, "inad_latest": 7.3, "inad_12m_avg": 6.503, "inad_2022_01": 3.8, "delta_2022_2026_pp": 3.5, "pred_inad": 7.13, "residual_pp": 0.17}, {"uf": "AP", "uf_name": "Amapá", "p50": 1033.0, "p90": 3592.0, "p95": 5618.0, "p99": 9109.0, "p90_p50_ratio": 3.477, "inad_latest": 7.0, "inad_12m_avg": 6.413, "inad_2022_01": 3.53, "delta_2022_2026_pp": 3.47, "pred_inad": 6.77, "residual_pp": 0.23}, {"uf": "PA", "uf_name": "Pará", "p50": 929.0, "p90": 2691.0, "p95": 4307.0, "p99": 9907.0, "p90_p50_ratio": 2.897, "inad_latest": 7.52, "inad_12m_avg": 6.657, "inad_2022_01": 3.28, "delta_2022_2026_pp": 4.24, "pred_inad": 7.29, "residual_pp": 0.23}, {"uf": "RO", "uf_name": "Rondônia", "p50": 1430.0, "p90": 3893.0, "p95": 5518.0, "p99": 10297.0, "p90_p50_ratio": 2.722, "inad_latest": 7.03, "inad_12m_avg": 6.409, "inad_2022_01": 1.86, "delta_2022_2026_pp": 5.17, "pred_inad": 6.63, "residual_pp": 0.4}, {"uf": "RJ", "uf_name": "Rio de Janeiro", "p50": 1520.0, "p90": 5625.0, "p95": 9099.0, "p99": 19980.0, "p90_p50_ratio": 3.701, "inad_latest": 6.57, "inad_12m_avg": 6.205, "inad_2022_01": 4.9, "delta_2022_2026_pp": 1.67, "pred_inad": 5.97, "residual_pp": 0.6}, {"uf": "RR", "uf_name": "Roraima", "p50": 1127.0, "p90": 4162.0, "p95": 5817.0, "p99": 11900.0, "p90_p50_ratio": 3.693, "inad_latest": 7.15, "inad_12m_avg": 6.294, "inad_2022_01": 3.0, "delta_2022_2026_pp": 4.15, "pred_inad": 6.51, "residual_pp": 0.64}, {"uf": "MT", "uf_name": "Mato Grosso", "p50": 1561.0, "p90": 4502.0, "p95": 6487.0, "p99": 12129.0, "p90_p50_ratio": 2.884, "inad_latest": 7.15, "inad_12m_avg": 6.504, "inad_2022_01": 1.75, "delta_2022_2026_pp": 5.4, "pred_inad": 6.37, "residual_pp": 0.78}, {"uf": "GO", "uf_name": "Goiás", "p50": 1537.0, "p90": 4770.0, "p95": 6703.0, "p99": 14497.0, "p90_p50_ratio": 3.103, "inad_latest": 7.99, "inad_12m_avg": 7.192, "inad_2022_01": 2.44, "delta_2022_2026_pp": 5.55, "pred_inad": 6.26, "residual_pp": 1.73}, {"uf": "MA", "uf_name": "Maranhão", "p50": 793.0, "p90": 2363.0, "p95": 3551.0, "p99": 8844.0, "p90_p50_ratio": 2.98, "inad_latest": 9.7, "inad_12m_avg": 8.909, "inad_2022_01": 3.31, "delta_2022_2026_pp": 6.39, "pred_inad": 7.52, "residual_pp": 2.18}, {"uf": "MS", "uf_name": "Mato Grosso do Sul", "p50": 1590.0, "p90": 4964.0, "p95": 6911.0, "p99": 13581.0, "p90_p50_ratio": 3.122, "inad_latest": 8.56, "inad_12m_avg": 7.314, "inad_2022_01": 2.07, "delta_2022_2026_pp": 6.49, "pred_inad": 6.19, "residual_pp": 2.37}, {"uf": "TO", "uf_name": "Tocantins", "p50": 1360.0, "p90": 3876.0, "p95": 5591.0, "p99": 11745.0, "p90_p50_ratio": 2.85, "inad_latest": 10.65, "inad_12m_avg": 9.376, "inad_2022_01": 2.28, "delta_2022_2026_pp": 8.37, "pred_inad": 6.63, "residual_pp": 4.02}]};
+  let bankView = "clusters";
+  let cidFilter = "all";
+  let ufView = "residuals";
+
+  function renderBanks() {
+    const el = document.getElementById("e3-banks-plot");
+    const filterBox = document.getElementById("e3-arch-filter");
+    if (!el || !window.Plotly) return;
+    if (filterBox) filterBox.style.display = bankView === "clusters" ? "flex" : "none";
+
+    if (bankView === "clusters") {
+      const colors = { 0: "#10B981", 1: "#2878E8", 2: "#D91568" };
+      const names = { 0: "Baixo Custo (27)", 1: "Universais (31)", 2: "Alta Extração (16)" };
+      const cids = cidFilter === "all" ? [0, 1, 2] : [Number(cidFilter)];
+      const traces = cids.map(cid => {
+        const pts = E3_DATA.bank_points.filter(b => b.cluster_id === cid);
+        return {
+          type: "scatter", mode: "markers", name: names[cid],
+          x: pts.map(b => b.pca_1), y: pts.map(b => b.pca_2),
+          marker: { color: colors[cid], size: pts.map(b => 9 + b.n_modalidades * 2), line: { color: "#FFFFFF", width: 1.2 }, opacity: 0.88 },
+          customdata: pts.map(b => [b.instituicao, b.n_modalidades, (b.mean_pct_rank * 100).toFixed(0), (b.secured_share * 100).toFixed(0)]),
+          hovertemplate: "<b>%{customdata[0]}</b><br>Rank Médio Preço: %{customdata[2]}º pct<br>Modalidades: %{customdata[1]} · Garantia: %{customdata[3]}%<extra>" + names[cid] + "</extra>"
+        };
+      });
+      Plotly.react(el, traces, {
+        title: { text: "Arquétipos Competitivos Bancários (K-Means k=3 em 74 Bancos · Passe o mouse nos pontos)", font: { size: 15, color: "#0B2038" } },
+        paper_bgcolor: "#FFFFFF", plot_bgcolor: "#F8FAFC",
+        margin: { t: 68, r: 24, b: 56, l: 64 },
+        legend: { orientation: "h", y: 1.13, x: 0.5, xanchor: "center" },
+        xaxis: { title: "PCA 1 (Mix Garantia + Amplitude)", gridcolor: "#E2E8F0" },
+        yaxis: { title: "PCA 2 (Preço Relativo & Dispersão)", gridcolor: "#E2E8F0" }
+      }, { responsive: true, displayModeBar: false });
+    } else if (bankView === "spread") {
+      const mods = [...E3_DATA.modalities].reverse();
+      const segX = [], segY = [];
+      mods.forEach(m => { segX.push(m.p10_aa, m.p90_aa, null); segY.push(m.modalidade, m.modalidade, null); });
+      Plotly.react(el, [
+        { type: "scatter", mode: "lines", x: segX, y: segY, line: { color: "#CBD5E1", width: 6 }, showlegend: false, hoverinfo: "skip" },
+        { type: "scatter", mode: "markers", name: "P10 (Mais Baratos)", x: mods.map(m => m.p10_aa), y: mods.map(m => m.modalidade), marker: { color: "#10B981", size: 10 }, customdata: mods.map(m => [m.min_inst, m.ratio_p90_p10]), hovertemplate: "<b>%{y}</b><br>P10: %{x:.1f}% a.a.<br>Spread P90/P10: %{customdata[1]:.1f}x<extra>P10</extra>" },
+        { type: "scatter", mode: "markers", name: "Mediana (P50)", x: mods.map(m => m.mediana_aa), y: mods.map(m => m.modalidade), marker: { color: "#0B2038", size: 10, symbol: "diamond" }, hovertemplate: "<b>%{y}</b><br>Mediana: %{x:.1f}% a.a.<extra>P50</extra>" },
+        { type: "scatter", mode: "markers", name: "P90 (Mais Caros)", x: mods.map(m => m.p90_aa), y: mods.map(m => m.modalidade), marker: { color: "#D91568", size: 10 }, customdata: mods.map(m => [m.max_inst, m.ratio_p90_p10]), hovertemplate: "<b>%{y}</b><br>P90: %{x:.1f}% a.a.<br>Topo Observado: %{customdata[0]}<extra>P90</extra>" }
+      ], {
+        title: { text: window.innerWidth < 680 ? "Dispersão de Juros: 138 Bancos<br>(Escala Log % a.a. · BCB Olinda)" : "Dispersão de Juros Entre 138 Bancos (Escala Log % a.a. · BCB Olinda)", font: { size: window.innerWidth < 680 ? 11.5 : 15, color: "#0B2038" } },
+        paper_bgcolor: "#FFFFFF", plot_bgcolor: "#F8FAFC",
+        margin: { t: window.innerWidth < 680 ? 92 : 68, r: window.innerWidth < 680 ? 12 : 22, b: 52, l: window.innerWidth < 680 ? 118 : 215 },
+        legend: { orientation: "h", y: window.innerWidth < 680 ? 1.18 : 1.13, x: 0.5, xanchor: "center", font: { size: window.innerWidth < 680 ? 10 : 12 } },
+        xaxis: { type: "log", title: "Taxa Anual (% a.a., log)", gridcolor: "#E2E8F0" },
+        yaxis: { gridcolor: "#E2E8F0", tickfont: { size: window.innerWidth < 680 ? 9.5 : 11.5 } }
+      }, { responsive: true, displayModeBar: false });
+    } else {
+      const pts = E3_DATA.scatter_11m;
+      Plotly.react(el, [
+        { type: "scatter", mode: "markers", name: "370 pares Banco × Produto", x: pts.map(p => +(p.prev * 100).toFixed(1)), y: pts.map(p => +(p.curr * 100).toFixed(1)), marker: { color: "#2878E8", size: 7, opacity: 0.55 }, hovertemplate: "11/2025: %{x:.0f}º pct → 10/2026: %{y:.0f}º pct<extra></extra>" },
+        { type: "scatter", mode: "lines", name: "Persistência Perfeita (ρ = " + E3_DATA.spearman_rho.toFixed(3) + ")", x: [0, 100], y: [0, 100], line: { color: "#D91568", dash: "dash", width: 2.2 }, hoverinfo: "skip" }
+      ], {
+        title: { text: window.innerWidth < 680 ? "Persistência de Posição em 11m<br>(Spearman ρ = 0,866)" : "Persistência de Posição Competitiva em 11 Meses (Spearman ρ = 0,866)", font: { size: window.innerWidth < 680 ? 11.5 : 15, color: "#0B2038" } },
+        paper_bgcolor: "#FFFFFF", plot_bgcolor: "#F8FAFC",
+        margin: { t: window.innerWidth < 680 ? 92 : 68, r: window.innerWidth < 680 ? 12 : 24, b: 56, l: window.innerWidth < 680 ? 48 : 64 },
+        legend: { orientation: "h", y: window.innerWidth < 680 ? 1.18 : 1.13, x: 0.5, xanchor: "center", font: { size: window.innerWidth < 680 ? 10 : 12 } },
+        xaxis: { title: "Percentil de Juros em 11/2025", range: [-2, 102], gridcolor: "#E2E8F0" },
+        yaxis: { title: "Percentil de Juros em 10/2026", range: [-2, 102], gridcolor: "#E2E8F0" }
+      }, { responsive: true, displayModeBar: false });
+    }
+  }
+
+  function renderUf() {
+    const el = document.getElementById("e3-uf-plot");
+    if (!el || !window.Plotly) return;
+    if (ufView === "residuals") {
+      const rows = E3_DATA.rows_2026;
+      Plotly.react(el, [{
+        type: "bar", orientation: "h",
+        y: rows.map(r => r.uf + " — " + r.uf_name),
+        x: rows.map(r => r.residual_pp),
+        marker: { color: rows.map(r => r.residual_pp < 0 ? "#10B981" : "#D91568") },
+        customdata: rows.map(r => [r.p90, r.inad_latest, r.pred_inad]),
+        hovertemplate: "<b>%{y}</b><br>Resíduo Estrutural: %{x:+.2f} p.p.<br>Inadimplência Real 09/2026: %{customdata[1]:.2f}%<br>Esperado pela Renda: %{customdata[2]:.2f}%<br>Renda P90 IBGE: R$ %{customdata[0]:,.0f}<extra></extra>"
+      }], {
+        title: { text: window.innerWidth < 680 ? "Desvio Estrutural dos 27 Estados (09/2026)<br>(< 0 = menor inadimplência vs renda)" : "Desvio Estrutural dos 27 Estados em 09/2026 (< 0 = menor inadimplência que o esperado pela renda)", font: { size: window.innerWidth < 680 ? 11.5 : 14.5, color: "#0B2038" } },
+        paper_bgcolor: "#FFFFFF", plot_bgcolor: "#F8FAFC",
+        margin: { t: window.innerWidth < 680 ? 64 : 54, r: window.innerWidth < 680 ? 12 : 20, b: 50, l: window.innerWidth < 680 ? 108 : 175 },
+        xaxis: { title: "Resíduo (p.p.)", zeroline: true, zerolinewidth: 2, zerolinecolor: "#0B2038", gridcolor: "#E2E8F0" },
+        yaxis: { gridcolor: "#E2E8F0", tickfont: { size: window.innerWidth < 680 ? 9.5 : 11 } }
+      }, { responsive: true, displayModeBar: false });
+    } else {
+      const yrColors = { 2022: "#94A3B8", 2023: "#2878E8", 2024: "#6A1B9A", 2025: "#D91568" };
+      const traces = [2022, 2023, 2024, 2025].map(yr => {
+        const sub = E3_DATA.panel_rows.filter(r => r.year === yr);
+        return {
+          type: "scatter", mode: "markers", name: String(yr),
+          x: sub.map(r => r.p90), y: sub.map(r => r.inad_yr),
+          marker: { color: yrColors[yr], size: 8.5, opacity: 0.85, line: { color: "#FFFFFF", width: 0.8 } },
+          customdata: sub.map(r => [r.uf, r.uf_name, r.p50]),
+          hovertemplate: "<b>%{customdata[0]} · %{customdata[1]} (" + yr + ")</b><br>Renda P90: R$ %{x:,.0f}<br>Renda P50: R$ %{customdata[2]:,.0f}<br>Inadimplência Média: %{y:.2f}%<extra></extra>"
+        };
+      });
+      Plotly.react(el, traces, {
+        title: { text: window.innerWidth < 680 ? "Painel IBGE × BCB<br>(108 UF-Anos · R² FE 0,55)" : "Painel IBGE × BCB (108 UF-Anos · R² Efeitos Fixos 0,55)", font: { size: window.innerWidth < 680 ? 11.5 : 15, color: "#0B2038" } },
+        paper_bgcolor: "#FFFFFF", plot_bgcolor: "#F8FAFC",
+        margin: { t: window.innerWidth < 680 ? 88 : 68, r: window.innerWidth < 680 ? 12 : 24, b: 56, l: window.innerWidth < 680 ? 48 : 64 },
+        legend: { orientation: "h", y: 1.13, x: 0.5, xanchor: "center" },
+        xaxis: { title: "Renda P90 Estadual (R$/mês · IBGE)", gridcolor: "#E2E8F0" },
+        yaxis: { title: "Inadimplência PF Média Anual (%)", gridcolor: "#E2E8F0" }
+      }, { responsive: true, displayModeBar: false });
+    }
+  }
+
+  function boot() {
+    if (!window.Plotly) return;
+    document.querySelectorAll("#e3-banks-shell .svg-fallback-box, #e3-uf-shell .svg-fallback-box").forEach(d => d.removeAttribute("open"));
+    document.querySelectorAll("#e3-bank-views .viz-pill").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll("#e3-bank-views .viz-pill").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        bankView = btn.dataset.view;
+        renderBanks();
+      });
+    });
+    document.querySelectorAll("#e3-arch-filter .viz-pill").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll("#e3-arch-filter .viz-pill").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        cidFilter = btn.dataset.cid;
+        renderBanks();
+      });
+    });
+    document.querySelectorAll("#e3-uf-views .viz-pill").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll("#e3-uf-views .viz-pill").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        ufView = btn.dataset.view;
+        renderUf();
+      });
+    });
+    renderBanks();
+    renderUf();
+  }
+  window.addEventListener("load", boot);
+})();
+</script>
+
+</body>
+</html>

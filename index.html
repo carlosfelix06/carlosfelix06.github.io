@@ -1,0 +1,2280 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="alternate icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<title>Carlos Santos | Especialista em Dados, Analytics &amp; Risco de Crédito</title>
+<meta name="description" content="Portfólio de Carlos Santos — Especialista em Dados e Analytics focado em Risco de Crédito, Qualidade de Dados, BI e Decisão Operacional.">
+<link rel="canonical" href="https://carlosfelix06.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Carlos Santos | Especialista em Dados, Analytics &amp; Risco de Crédito">
+<meta property="og:description" content="Portfólio executivo de Ciência de Dados, Risco de Crédito, Engenharia Analítica e Decisão Operacional com 5 estudos reproduzíveis e simuladores interativos.">
+<meta property="og:url" content="https://carlosfelix06.github.io/">
+<meta property="og:image" content="https://carlosfelix06.github.io/assets/img/hero/1226331.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Carlos Santos | Especialista em Dados, Analytics &amp; Risco de Crédito">
+<meta name="twitter:description" content="Portfólio executivo de Ciência de Dados, Risco de Crédito, Engenharia Analítica e Decisão Operacional com 5 estudos reproduzíveis e simuladores interativos.">
+<meta name="twitter:image" content="https://carlosfelix06.github.io/assets/img/hero/1226331.jpg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Carlos Alberto Felix Santos","jobTitle":"Especialista em Dados, Analytics e Risco de Crédito","url":"https://carlosfelix06.github.io/","email":"mailto:carlosfelix06@hotmail.com","sameAs":["https://www.linkedin.com/in/carlos-felix-santos-sp-br/","https://github.com/carlosfelix06"]}
+</script>
+<link rel="stylesheet" href="assets/vendor/bootstrap-icons/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/css/style.css?v=20261116_pillfix">
+<style>
+  /* mobile-nav-toggle visible dynamically */
+  body { color: var(--ink); font-family: var(--sans); background: var(--bg); font-size: 16px; line-height: 1.65; }
+  h1, h2, h3, h4 { color: var(--ink-heading); font-family: var(--sans); }
+  p { color: var(--ink); }
+
+  /* Hero Estratégico (O que o recrutador vê em 5 segundos) */
+  #hero {
+    padding: 110px 0 65px;
+    background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+    color: #FFFFFF;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    gap: 36px;
+    align-items: center;
+  }
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 24px; }
+  }
+  .hero-tag {
+    font-size: 11.5px;
+    font-weight: 800;
+    color: #FFA5C8;
+    background: rgba(217, 21, 104, 0.16);
+    border: 1px solid rgba(217, 21, 104, 0.4);
+    border-radius: 20px;
+    padding: 4px 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  #hero h1 {
+    font-size: clamp(2.3rem, 4.5vw, 3.2rem);
+    font-weight: 800;
+    color: #FFFFFF;
+    margin: 0 0 12px;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+  }
+  .hero-role {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #CBD5E1;
+    margin: 0 0 16px;
+    line-height: 1.4;
+  }
+  .hero-summary {
+    font-size: 15px;
+    color: #94A3B8;
+    line-height: 1.6;
+    margin: 0 0 24px;
+    max-width: 54ch;
+  }
+  .hero-cta-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .btn-serasa {
+    background: #D91568;
+    color: #FFFFFF;
+    padding: 12px 24px;
+    font-weight: 700;
+    font-size: 14.5px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(217, 21, 104, 0.35);
+  }
+  .btn-serasa:hover {
+    background: #B80F55;
+    color: #FFFFFF;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(217, 21, 104, 0.45);
+    text-decoration: none;
+  }
+  .btn-outline-white {
+    background: rgba(255, 255, 255, 0.06);
+    color: #FFFFFF;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    padding: 12px 22px;
+    font-weight: 600;
+    font-size: 14.5px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  .btn-outline-white:hover {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.4);
+    color: #FFFFFF;
+    transform: translateY(-2px);
+    text-decoration: none;
+  }
+
+  /* Painel de Credenciais Rápidas no Hero */
+  .hero-quick-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 12px;
+    padding: 24px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  }
+  
+  /* Respiro aprimorado no cartão lateral do Hero */
+  .quick-stat-item {
+    padding-bottom: 18px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .quick-stat-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+  .quick-stat-item.highlight-stat {
+    background: rgba(217, 21, 104, 0.12);
+    border: 1px solid rgba(217, 21, 104, 0.3);
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin-bottom: 16px;
+  }
+  .quick-stat-item.highlight-stat .quick-stat-label {
+    color: #FFA5C8;
+    font-size: 11px;
+  }
+  .quick-stat-item.highlight-stat .quick-stat-val {
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  /* Melhoria de legibilidade e densidade nos cards inferiores */
+  .deliverable-card p {
+    font-size: 14.5px;
+    color: var(--ink);
+    line-height: 1.6;
+    margin: 0;
+    text-align: left !important;
+  }
+  .cred-box-desc {
+    font-size: 13.5px;
+    color: var(--ink);
+    margin: 0;
+    line-height: 1.6;
+    text-align: left;
+  }
+  .trajectory-bio-card p {
+    font-size: 15.5px;
+    line-height: 1.7;
+    color: var(--ink);
+    text-align: left;
+  }
+
+  .quick-stat-item-old {
+    padding-bottom: 14px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .quick-stat-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+  .quick-stat-label {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #FFA5C8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 3px;
+  }
+  .quick-stat-val {
+    font-size: 14.5px;
+    font-weight: 600;
+    color: #F8FAFC;
+    line-height: 1.4;
+  }
+
+  /* Seções */
+  .section-header-clean {
+    margin-bottom: 2rem;
+  }
+  .section-tag-clean {
+    font-size: 12px;
+    font-weight: 800;
+    color: #D91568;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .section-title-clean {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--ink-heading);
+    margin: 0 0 8px;
+    line-height: 1.25;
+  }
+  .section-sub-clean {
+    color: var(--mute);
+    margin: 0;
+    font-size: 15px;
+    max-width: 100%;
+  }
+
+  .hero-impact-card {
+    padding: 20px 22px;
+  }
+  .quick-card-head {
+    padding-bottom: 12px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  }
+  .quick-card-sub {
+    display: block;
+    font-size: 12.5px;
+    color: #CBD5E1;
+    line-height: 1.45;
+    margin-top: 3px;
+  }
+  .hero-impact-card a.quick-stat-item {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    padding: 11px 13px 12px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.025);
+    transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+  }
+  .hero-impact-card a.quick-stat-item.highlight-stat {
+    background: rgba(217, 21, 104, 0.14);
+    border-color: rgba(217, 21, 104, 0.36);
+  }
+  .hero-impact-card a.quick-stat-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .hero-impact-card a.quick-stat-item:hover {
+    background: rgba(217, 21, 104, 0.22);
+    border-color: rgba(255, 165, 200, 0.55);
+    transform: translateX(3px);
+  }
+  .hero-impact-card a.quick-stat-item strong {
+    color: #FFFFFF;
+  }
+
+  /* Seção "Sobre mim & Trajetória" estruturada para avaliação de competências */
+  .trajectory-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 32px;
+  }
+  @media (max-width: 860px) {
+    .trajectory-grid { grid-template-columns: 1fr; gap: 24px; }
+  }
+  .trajectory-bio-card {
+    background: #FFFFFF;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 28px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+  }
+  .trajectory-bio-card p {
+    font-size: 15.5px;
+    line-height: 1.7;
+    margin: 0 0 1rem;
+    color: var(--ink);
+  }
+  .trajectory-bio-card p:last-child { margin-bottom: 0; }
+  .trajectory-callout {
+    border-left: 3px solid #D91568;
+    background: rgba(217, 21, 104, 0.04);
+    padding: 12px 16px;
+    margin: 1.2rem 0;
+    font-weight: 600;
+    color: var(--ink-heading);
+    font-size: 14.5px;
+    border-radius: 0 6px 6px 0;
+  }
+
+  /* Coluna da Formação e Frentes de Atuação */
+  .credentials-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .cred-box {
+    background: #FFFFFF;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 18px 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+  }
+  .cred-box-label {
+    font-size: 11px;
+    font-weight: 800;
+    color: #D91568;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .cred-box-title {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--ink-heading);
+    margin: 0 0 4px;
+  }
+  .cred-box-desc {
+    font-size: 13px;
+    color: var(--mute);
+    margin: 0;
+    line-height: 1.45;
+  }
+
+  /* Grid O Que Entrega */
+  .deliverables-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+  .deliverable-card {
+    background: #FFFFFF;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 22px 18px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .deliverable-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  }
+  .deliverable-card i {
+    font-size: 24px;
+    color: #D91568;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .deliverable-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    margin: 0 0 6px;
+    color: var(--ink-heading);
+  }
+  .deliverable-card p {
+    font-size: 13.5px;
+    color: var(--ink);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* Card do Estudo na Home */
+  .featured-study-home {
+    background: #FFFFFF;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    display: grid;
+    grid-template-columns: minmax(250px, 0.92fr) 1.35fr;
+    align-items: stretch;
+  }
+  @media (max-width: 820px) {
+    .featured-study-home { grid-template-columns: 1fr; }
+  }
+  .featured-study-thumb {
+    background: linear-gradient(145deg, #0B2038 0%, #0F172A 100%);
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    text-decoration: none;
+    overflow: hidden;
+  }
+  .featured-study-thumb img {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+    border-radius: 8px;
+  }
+  .featured-study-content {
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* Contato */
+  .contact {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    line-height: 2.2;
+  }
+  .contact li {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    color: var(--ink);
+  }
+  .contact i {
+    color: #D91568;
+    margin-right: 12px;
+    font-size: 17px;
+    width: 20px;
+    text-align: center;
+  }
+  .contact a {
+    color: #D91568;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .contact a:hover {
+    text-decoration: underline;
+  }
+
+
+/* Layout em 2 Colunas para Vitrine de Estudos */
+.studies-showcase-layout {
+  display: grid;
+  grid-template-columns: 1.55fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.showcase-column-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--ink-heading);
+  margin-bottom: 14px;
+}
+
+.studies-showcase-sidebar {
+  position: sticky;
+  top: 86px;
+}
+
+.sidebar-studies-card {
+  background: #F8FAFC;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 22px 20px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.sidebar-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--ink-heading);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sidebar-badge {
+  font-size: 10.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  background: rgba(2, 132, 199, 0.12);
+  color: #0284C7;
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.sidebar-intro {
+  font-size: 13px;
+  color: var(--mute);
+  margin: 0 0 16px;
+  line-height: 1.5;
+}
+
+.sidebar-studies-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sidebar-study-item {
+  background: #FFFFFF;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.sidebar-study-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.06);
+  border-color: #CBD5E1;
+}
+
+.sidebar-study-tag {
+  font-size: 10.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
+.tag-magenta {
+  color: #D91568;
+}
+
+.tag-purple {
+  color: #6A1B9A;
+}
+
+.sidebar-study-name {
+  font-size: 14.5px;
+  font-weight: 700;
+  margin: 0 0 8px;
+  line-height: 1.35;
+}
+
+.sidebar-study-name a {
+  color: var(--ink-heading);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.sidebar-study-name a:hover {
+  color: var(--primary);
+}
+
+.sidebar-study-desc {
+  font-size: 12.5px;
+  color: var(--mute);
+  line-height: 1.5;
+  margin: 0 0 12px;
+}
+
+.sidebar-study-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border-top: 1px solid #F1F5F9;
+  padding-top: 10px;
+}
+
+.sidebar-link-primary {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.sidebar-link-primary:hover {
+  text-decoration: underline;
+}
+
+.sidebar-link-subtle {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--mute);
+  background: #F8FAFC;
+  border: 1px solid var(--line);
+  padding: 3px 8px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.sidebar-link-subtle:hover {
+  background: #EFF6FF;
+  color: #0284C7;
+  border-color: #BFDBFE;
+}
+
+.sidebar-footer {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--line);
+}
+
+.sidebar-catalog-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 14px;
+  background: #FFFFFF;
+  border: 1.5px solid var(--primary);
+  border-radius: 6px;
+  color: var(--primary);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.sidebar-catalog-btn:hover {
+  background: var(--primary);
+  color: #FFFFFF;
+}
+
+@media (max-width: 980px) {
+  .studies-showcase-layout {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+  .studies-showcase-sidebar {
+    position: static !important;
+  }
+}
+
+/* ======================================================== */
+/* OTIMIZAÇÃO RESPONSIVA PARA DISPOSITIVOS MÓVEIS (SMARTPHONE) */
+/* ======================================================== */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (max-width: 1140px) {
+  /* Scroll margin para nenhum título ficar encoberto pelo header fixo */
+  section[id], h2[id], div[id] {
+    scroll-margin-top: 66px !important;
+  }
+
+  /* Header Superior Fixo Compacto */
+  #header {
+    padding: 10px 0 !important;
+  }
+  .header-inner {
+    position: relative !important;
+  }
+  #header .logo {
+    font-size: 18px !important;
+  }
+  #header .logo a {
+    gap: 8px !important;
+  }
+  #header .logo span.tagline-pill {
+    font-size: 9px !important;
+    padding: 2px 6px !important;
+  }
+
+  /* Botão Hambúrguer Visível */
+  .mobile-nav-toggle {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* Menu Suspenso Mobile */
+  #navbar {
+    display: none !important;
+    position: absolute !important;
+    top: calc(100% + 10px) !important;
+    left: -20px !important;
+    right: -20px !important;
+    background: #0B2038 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-bottom: 3px solid var(--primary) !important;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.5) !important;
+    padding: 14px 20px 18px !important;
+    z-index: 1001 !important;
+  }
+
+  #navbar.navbar-mobile {
+    display: block !important;
+    animation: fadeInDown 0.2s ease-out !important;
+  }
+
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  #navbar ul {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  #navbar li {
+    width: 100% !important;
+  }
+
+  #navbar a {
+    display: block !important;
+    padding: 10px 14px !important;
+    font-size: 14px !important;
+    border-radius: 4px !important;
+    background: rgba(255, 255, 255, 0.04) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+    text-align: left !important;
+  }
+
+  #navbar a::after {
+    display: none !important;
+  }
+
+  #navbar a:hover, #navbar a.active {
+    background: rgba(217, 21, 104, 0.18) !important;
+    color: #FFA5C8 !important;
+  }
+
+  #navbar a.nav-cta {
+    margin-top: 6px !important;
+    text-align: center !important;
+  }
+
+  /* Hero Section no Mobile */
+  #hero {
+    padding: 76px 0 32px !important;
+  }
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+  #hero h1 {
+    font-size: 1.85rem !important;
+    line-height: 1.22 !important;
+  }
+  .hero-role {
+    font-size: 1.05rem !important;
+    line-height: 1.4 !important;
+    margin-bottom: 12px !important;
+  }
+  .hero-summary {
+    font-size: 14px !important;
+    line-height: 1.55 !important;
+    margin-bottom: 18px !important;
+  }
+  .hero-cta-group {
+    flex-direction: column !important;
+    gap: 10px !important;
+    width: 100% !important;
+  }
+  .hero-cta-group .btn-serasa,
+  .hero-cta-group .btn-outline-white {
+    width: 100% !important;
+    justify-content: center !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+  }
+  .hero-quick-card {
+    padding: 16px 14px !important;
+    margin-top: 6px !important;
+  }
+
+  /* Seções e Títulos */
+  section, .section {
+    padding: 2.2rem 0 1rem !important;
+  }
+  .section-title-clean {
+    font-size: 1.45rem !important;
+    line-height: 1.3 !important;
+  }
+  .section-sub-clean {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Trajetória & Credenciais */
+  .trajectory-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  .trajectory-bio-card {
+    padding: 18px 16px !important;
+  }
+  .cred-box {
+    padding: 14px 16px !important;
+  }
+
+  /* O Que Entrega */
+  .deliverables-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+  .deliverable-card {
+    padding: 18px 16px !important;
+  }
+
+  /* Grid de Ferramentas / Tecnologias */
+  .tools-grid-7 {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+  .tool-card {
+    padding: 10px 8px !important;
+  }
+
+  /* Vitrine & Cards de Estudo */
+  .catalog-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .catalog-card {
+    padding: 16px 14px !important;
+  }
+  .featured-study-home {
+    grid-template-columns: 1fr !important;
+  }
+  .featured-study-thumb {
+    min-height: auto !important;
+    padding: 10px !important;
+  }
+  .featured-study-thumb img {
+    max-height: 270px !important;
+  }
+  .featured-study-content {
+    padding: 18px 16px !important;
+  }
+
+  /* Estudo de Caso & Simuladores */
+  .card-grid-2, .card-grid-3, .audit-grid-2, .quant-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+  .research-card, .quant-card, .sim-box {
+    padding: 16px 14px !important;
+  }
+  .sim-controls {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+  .kpi-grid, #sim-kpis, #mdm-kpis {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+  .kpi-card {
+    padding: 10px 10px !important;
+  }
+  .kpi-val {
+    font-size: 1.4rem !important;
+  }
+
+  /* Tabelas Responsivas */
+  .wrap, .table-responsive {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    display: block !important;
+  }
+  table {
+    min-width: 0;
+    max-width: 100%;
+    font-size: 13px !important;
+  }
+  .wrap > table:not(.quant-table), .table-responsive > table:not(.quant-table) {
+    min-width: 440px;
+    max-width: none;
+  }
+
+  /* Imagens & Figuras */
+  .fig img, .fig-analytic-card img, .study-figure img, .study-chart img {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+  }
+}
+
+@media (max-width: 480px) {
+  #header .logo {
+    font-size: 16px !important;
+  }
+  #header .logo span.tagline-pill {
+    display: none !important;
+  }
+  .kpi-grid, #sim-kpis, #mdm-kpis {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="container header-inner">
+    <div class="logo">
+        <a href="index.html">
+          Carlos Santos
+          <span class="tagline-pill" data-i18n="tagline_pill">Dados &amp; Analytics</span>
+        </a>
+      </div>
+    <div class="header-right">
+      <nav id="navbar">
+      <ul>
+        <li><a href="#hero" class="active" data-i18n="nav_home">Início</a></li>
+        <li><a href="#sobre" data-i18n="nav_about">Sobre &amp; Trajetória</a></li>
+        <li><a href="#entrega" data-i18n="nav_deliver">O que entrega</a></li>
+        <li><a href="#ferramentas" data-i18n="nav_tools">Ferramentas</a></li>
+        <li><a href="#estudos" class="nav-cta" data-i18n="nav_studies">Vitrine de Estudos →</a></li>
+        <li><a href="#contato" data-i18n="nav_contact">Contato</a></li>
+      </ul>
+    </nav>
+      <div class="lang-switcher" id="lang-switcher">
+        <button type="button" class="lang-btn" id="lang-btn" aria-label="Selecionar idioma" aria-expanded="false">
+          <i class="bi bi-globe2" style="font-size:13px; color:#FFA5C8;"></i>
+          <span class="lang-code" id="lang-current-code">PT</span>
+          <i class="bi bi-chevron-down" style="font-size:9px; margin-left:1px; opacity:0.8;"></i>
+        </button>
+        <ul class="lang-dropdown" id="lang-dropdown">
+          <li><button type="button" class="lang-option active" data-lang="pt"><span class="lang-code-pill">PT</span> Português</button></li>
+          <li><button type="button" class="lang-option" data-lang="en"><span class="lang-code-pill">EN</span> English</button></li>
+          <li><button type="button" class="lang-option" data-lang="es"><span class="lang-code-pill">ES</span> Español</button></li>
+        </ul>
+      </div>
+      <button type="button" class="mobile-nav-toggle" aria-label="Menu" aria-expanded="false" style="display:none;">
+        <i class="bi bi-list"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- Hero Estratégico -->
+  <section id="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="hero-tag" data-i18n="hero_tag">Dados · Analytics · Decisão</span>
+        <h1>Carlos Santos</h1>
+        <div class="hero-role">
+          <span data-i18n="hero_role">Especialista em Dados &amp; Analytics com foco em Risco de Crédito, Qualidade de Dados e Decisão Operacional</span>
+        </div>
+        <p class="hero-summary" data-i18n="hero_summary">Conecto investigação profunda de regras e bases de dados a diagnósticos claros e ações operacionais que geram resultado direto para o negócio.</p>
+        <div class="hero-cta-group">
+          <a class="btn-serasa" href="#estudos">
+            <span data-i18n="hero_cta_studies">Acessar Vitrine de Estudos →</span>
+          </a>
+          <a class="btn-outline-white" href="assets/curriculo-carlos-santos-dados-analytics.pdf" target="_blank" rel="noopener">
+            <i class="bi bi-file-earmark-pdf"></i> Currículo PDF
+          </a>
+          <a class="btn-outline-white" href="mailto:carlosfelix06@hotmail.com">
+            <i class="bi bi-envelope"></i> Contato Direto
+          </a>
+        </div>
+      </div>
+
+      <!-- Resumo direto dos 4 resultados em 20s para quem chega pelo LinkedIn -->
+      <div class="hero-quick-card hero-impact-card">
+        <div class="quick-card-head">
+          <div class="quick-stat-label" data-i18n="hero_card_kicker">Últimos Estudos</div>
+          <span class="quick-card-sub" data-i18n="hero_card_sub">Clique em qualquer entrega para abrir os dados e o código:</span>
+        </div>
+        <a class="quick-stat-item highlight-stat" href="estudo-funil-politica-credito.html">
+          <div class="quick-stat-label" data-i18n="hero_policy_label">Concessão de Crédito & IA · 150 mil propostas</div>
+          <div class="quick-stat-val" data-i18n="hero_policy_val">Elevou o P&amp;L simulado em <strong>+10,9%</strong> sobre a regra rígida, com perda EAD de <strong>1,05%</strong> →</div>
+        </a>
+        <a class="quick-stat-item" href="estudo-backtest-projecao-pedidos.html">
+          <div class="quick-stat-label" data-i18n="hero_diff_label">Previsão de Crédito · Banco Central</div>
+          <div class="quick-stat-val" data-i18n="hero_diff_val">Reduziu o erro de projeção (MAE) em <strong>R$ 7,39 bi/mês (-54%)</strong> com calendário ANBIMA →</div>
+        </a>
+        <a class="quick-stat-item" href="estudo-qualidade-dados-inadimplencia.html">
+          <div class="quick-stat-label" data-i18n="hero_domain_label">Qualidade de Dados &amp; Cobrança · 30 mil contas</div>
+          <div class="quick-stat-val" data-i18n="hero_domain_val">Preservou <strong>92,4% (NT$ 6,48M simulados)</strong> em experimento de falha de dados →</div>
+        </a>
+        <a class="quick-stat-item" href="estudo-mdm-golden-record.html">
+          <div class="quick-stat-label" data-i18n="hero_method_label">Base Única de Empresas (MDM) · 7.905 registros CVM</div>
+          <div class="quick-stat-val" data-i18n="hero_method_val">Eliminou <strong>14,8%</strong> de duplicidades e unificou empresas e fundos em visão confiável →</div>
+        </a>
+        <a class="quick-stat-item" href="estudo-alta-renda-nichos.html">
+          <div class="quick-stat-label" data-i18n="hero_avail_label">Taxas de Juros &amp; Concorrência · 138 Bancos + IBGE</div>
+          <div class="quick-stat-val" data-i18n="hero_avail_val">Mapeou variação de até <strong>15,6x</strong> nos juros entre bancos e mediu a concorrência local →</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção Sobre mim & Trajetória (O "Quem eu sou" profissional) -->
+  <section id="sobre" class="section">
+    <div class="container">
+      <div class="section-header-clean">
+        <h2 class="section-title-clean" data-i18n="about_title">Sobre mim &amp; Trajetória</h2>
+        <p class="section-sub-clean" data-i18n="about_sub">Uma visão sobre a bagagem técnica, postura analítica e como gero impacto nas operações.</p>
+      </div>
+
+      <div class="trajectory-grid">
+        <!-- Bio com tom afirmativo e propositivo -->
+        <div class="trajectory-bio-card">
+          <p data-i18n="about_bio_p1">
+            Atuo na interseção entre <strong>Dados, Analytics e Operações de Negócio</strong>, investigando a origem, a granularidade e as regras das informações para construir indicadores confiáveis, identificar oportunidades e apoiar decisões estratégicas e operacionais.
+          </p>
+          <div class="trajectory-callout" data-i18n="about_quote">
+            “Indicadores consolidados podem esconder falhas operacionais. Uma análise eficiente começa pela qualidade dos dados, pelas regras de negócio e pela compreensão do problema.”
+          </div>
+          <p data-i18n="about_bio_p2">
+            Com foco em <strong>risco de crédito, funil de conversão, conciliação de indicadores e qualidade de dados</strong>, uno ferramentas escaláveis (SQL avançado, pipelines em Python, DuckDB e Databricks) à modelagem de negócio (Power BI, DAX e governança de KPIs) para assegurar que liderança e operação tomem decisões alinhadas e rastreáveis.
+          </p>
+        </div>
+
+        <!-- Credenciais Formais com titulação precisa (sem sugerir engenharia) -->
+        <div class="credentials-stack">
+          <div class="cred-box">
+            <div class="cred-box-label" data-i18n="cred_edu_label">01 · FORMAÇÃO ACADÊMICA</div>
+            <div class="cred-box-title" data-i18n="cred_edu_title">Formação em Computação, Big Data e Estatística</div>
+            <div class="cred-box-desc" data-i18n="cred_edu_desc">
+              • Bacharelado em <strong>Ciência da Computação</strong> (Faculdade Sumaré)<br>
+              • Pós-graduação em <strong>Big Data</strong> (Univ. Anhembi Morumbi)<br>
+              • Pós-graduação em <strong>Estatística Aplicada</strong> (FMU)
+            </div>
+          </div>
+
+          <div class="cred-box">
+            <div class="cred-box-label" data-i18n="cred_spec_label">02 · ÁREAS DE ESPECIALIDADE</div>
+            <div class="cred-box-title" data-i18n="cred_spec_title">Frentes Centrais de Atuação</div>
+            <div class="cred-box-desc" data-i18n="cred_spec_desc">
+              • <strong>Crédito:</strong> Escoragem, políticas de limite, priorização de cobrança.<br>
+              • <strong>Qualidade (DQ):</strong> Data contracts, monitoramento de ausência e drift.<br>
+              • <strong>BI &amp; Receita:</strong> Modelagem dimensional, funil e conciliação de bases.
+            </div>
+          </div>
+
+          <div class="cred-box">
+            <div class="cred-box-label" data-i18n="cred_ops_label">03 · POSTURA OPERACIONAL</div>
+            <div class="cred-box-title" data-i18n="cred_ops_title">Do Diagnóstico à Ação</div>
+            <div class="cred-box-desc" data-i18n="cred_ops_desc">
+              • <strong>Rigor &amp; Causalidade:</strong> Separação entre correlação e causalidade real.<br>
+              • <strong>Comunicação em Camadas:</strong> Executiva para diretoria e técnica para squads.<br>
+              • <strong>Reprodutibilidade:</strong> Pipelines auditáveis sem dependência de processos manuais.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Linha do Tempo Profissional (Trajetória & Experiência) -->
+      <div class="trajectory-timeline" style="margin-top:32px;">
+        <h3 style="font-size:1.15rem; font-weight:700; color:var(--ink-heading); margin-bottom:14px; display:flex; align-items:center; gap:8px;">
+          <i class="bi bi-briefcase" style="color:var(--primary);"></i> Trajetória &amp; Experiência Profissional
+        </h3>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
+          <div class="cred-box" style="border-left:4px solid var(--primary);">
+            <div style="font-size:11.5px; font-weight:700; color:var(--primary); text-transform:uppercase;">2021 – Presente · 5 anos</div>
+            <div style="font-weight:700; font-size:15px; color:var(--ink-heading); margin:2px 0 4px;">Especialista em Dados &amp; Analytics</div>
+            <div style="font-size:13px; color:var(--mute); margin-bottom:6px;">Setor Financeiro, Risco &amp; Decisão Operacional</div>
+            <p style="font-size:13.5px; line-height:1.55; color:var(--ink); margin:0;">
+              Liderança técnica em modelagem de risco, esteiras de escoragem e funil de conversão. Construção de políticas de crédito em camadas, conciliação de indicadores e mitigação de perdas operacionais com Python, SQL avançado, DuckDB e Databricks.
+            </p>
+          </div>
+          <div class="cred-box" style="border-left:4px solid #6A1B9A;">
+            <div style="font-size:11.5px; font-weight:700; color:#6A1B9A; text-transform:uppercase;">2018 – 2021 · 3 anos</div>
+            <div style="font-weight:700; font-size:15px; color:var(--ink-heading); margin:2px 0 4px;">Engenharia Analítica &amp; BI Sênior</div>
+            <div style="font-size:13px; color:var(--mute); margin-bottom:6px;">FinOps, Inteligência de Receita &amp; Governança</div>
+            <p style="font-size:13.5px; line-height:1.55; color:var(--ink); margin:0;">
+              Estruturação de data warehouses dimensionais, governança de métricas de receita/cobrança e conciliação contábil-operacional. Criação de modelos semânticos em Power BI/DAX e pipelines automatizados em SQL Server e Python.
+            </p>
+          </div>
+          <div class="cred-box" style="border-left:4px solid #059669;">
+            <div style="font-size:11.5px; font-weight:700; color:#059669; text-transform:uppercase;">2014 – 2018 · 4 anos</div>
+            <div style="font-weight:700; font-size:15px; color:var(--ink-heading); margin:2px 0 4px;">Analista de Sistemas &amp; Banco de Dados</div>
+            <div style="font-size:13px; color:var(--mute); margin-bottom:6px;">Engenharia de Software, ETL &amp; Automação</div>
+            <p style="font-size:13.5px; line-height:1.55; color:var(--ink); margin:0;">
+              Desenvolvimento de rotinas de integração de dados, otimização de consultas e procedimentos analíticos em bases relacionais transacionais de alta volumetria.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 Casos Reais Anonimizados com Métricas de Impacto -->
+      <div class="trajectory-cases" style="margin-top:28px;">
+        <h3 style="font-size:1.15rem; font-weight:700; color:var(--ink-heading); margin-bottom:14px; display:flex; align-items:center; gap:8px;">
+          <i class="bi bi-journal-check" style="color:#059669;"></i> Entregas Profissionais &amp; Casos de Impacto Mensurado
+        </h3>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(310px, 1fr)); gap:16px;">
+          <!-- Caso 1 -->
+          <div style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:20px; box-shadow:0 1px 4px rgba(0,0,0,0.02);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <span style="font-size:11px; font-weight:800; color:#D91568; text-transform:uppercase; letter-spacing:0.5px;">Caso 01 · Crédito &amp; Decisão</span>
+              <span style="font-size:12px; font-weight:700; color:#059669; background:#ECFDF5; padding:2px 8px; border-radius:12px;">+10,9% P&amp;L Simulado</span>
+            </div>
+            <div style="font-weight:700; font-size:14.5px; color:var(--ink-heading); margin-bottom:6px;">Funil de Política de Crédito em Camadas &amp; Early Warning</div>
+            <p style="font-size:13px; line-height:1.55; color:var(--ink); margin:0 0 8px;"><strong>Problema:</strong> Regras de corte único descartavam bons pagadores ou abriam margem para inadimplência oculta por falta de visão combinada de curto e longo prazo.</p>
+            <p style="font-size:13px; line-height:1.55; color:var(--ink); margin:0 0 8px;"><strong>Atuação:</strong> Modelagem de funil de gravidade (R1→R4) com Matriz 3×3 calibrada, isolando 1.794 contas em risco oculto e conservando o capital.</p>
+            <div style="font-size:12px; color:var(--mute);"><strong>Stack:</strong> Python, Scikit-learn, SQL Server, Databricks, Power BI/DAX</div>
+          </div>
+
+          <!-- Caso 2 -->
+          <div style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:20px; box-shadow:0 1px 4px rgba(0,0,0,0.02);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <span style="font-size:11px; font-weight:800; color:#6A1B9A; text-transform:uppercase; letter-spacing:0.5px;">Caso 02 · Governança &amp; MDM</span>
+              <span style="font-size:12px; font-weight:700; color:#059669; background:#ECFDF5; padding:2px 8px; border-radius:12px;">-14,8% Duplicidades</span>
+            </div>
+            <div style="font-weight:700; font-size:14.5px; color:var(--ink-heading); margin-bottom:6px;">Deduplicação de Entidades &amp; Golden Record Cadastral</div>
+            <p style="font-size:13px; line-height:1.55; color:var(--ink); margin:0 0 8px;"><strong>Problema:</strong> Múltiplos sistemas legados e cadastros públicos divergentes geravam duplicidade e quebra de relacionamento B2B.</p>
+            <p style="font-size:13px; line-height:1.55; color:var(--ink); margin:0 0 8px;"><strong>Atuação:</strong> Pipeline de Entity Resolution com deduplicação probabilística, blocagem fonética e sobrevivência temporal confiável em D+1.</p>
+            <div style="font-size:12px; color:var(--mute);"><strong>Stack:</strong> DuckDB, PySpark, Python, PostgreSQL, Data Contracts</div>
+          </div>
+
+          <!-- Caso 3 -->
+          <div style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:20px; box-shadow:0 1px 4px rgba(0,0,0,0.02);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <span style="font-size:11px; font-weight:800; color:#2878E8; text-transform:uppercase; letter-spacing:0.5px;">Caso 03 · Forecasting &amp; Finanças</span>
+              <span style="font-size:12px; font-weight:700; color:#059669; background:#ECFDF5; padding:2px 8px; border-radius:12px;">-54% Erro de Previsão</span>
+            </div>
+            <div style="font-weight:700; font-size:14.5px; color:var(--ink-heading); margin-bottom:6px;">Previsão de Concessões com Calendário ANBIMA &amp; Walk-Forward</div>
+            <p style="font-size:13px; line-height:1.55; color:var(--ink); margin:0 0 8px;"><strong>Problema:</strong> Desvios nas metas orçamentárias mensais causados pela variação de feriados móveis e dias úteis entre meses consecutivos.</p>
+            <p style="font-size:13px; line-height:1.55; color:var(--ink); margin:0 0 8px;"><strong>Atuação:</strong> Modelagem Ridge sazonal com dias úteis bancários nacionais, reduzindo o MAE de R$ 13,63 bi para R$ 6,24 bi/mês em 33 origens de backtest.</p>
+            <div style="font-size:12px; color:var(--mute);"><strong>Stack:</strong> Python, Statsmodels, NumPy (`busdaycalendar`), APIs BCB SGS, Docker</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- O que eu entrego (Conectado a estudos práticos e textos assertivos alinhados à esquerda) -->
+  <section id="entrega" class="section" style="background:#FFFFFF;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+    <div class="container">
+      <div class="section-header-clean">
+        <h2 class="section-title-clean" data-i18n="deliver_title">O que eu entrego</h2>
+        <p class="section-sub-clean" data-i18n="deliver_sub">Capacidades analíticas aplicadas para resolver problemas reais de operações e gestão:</p>
+      </div>
+
+      <div class="deliverables-grid">
+        <a class="deliverable-card" href="estudo-alta-renda-nichos.html">
+          <i class="bi bi-bar-chart-line"></i>
+          <h3 data-i18n="deliv_dashboards">Dashboards</h3>
+          <p data-i18n="deliv_dashboards_p">Painéis executivos com indicadores confiáveis, análises detalhadas e acompanhamento de resultados.</p>
+          <span class="card-study-link" data-i18n="deliv_dashboards_link">Ver painéis e modelos →</span>
+        </a>
+
+        <a class="deliverable-card" href="estudo-funil-politica-credito.html">
+          <i class="bi bi-search"></i>
+          <h3 data-i18n="deliv_analyses">Análises &amp; Estudos</h3>
+          <p data-i18n="deliv_analyses_p">Investigações de crédito, cobrança e receita para identificar causas, riscos e oportunidades.</p>
+          <span class="card-study-link" data-i18n="deliv_analyses_link">Ver estudo de crédito →</span>
+        </a>
+
+        <a class="deliverable-card" href="estudo-backtest-projecao-pedidos.html">
+          <i class="bi bi-cpu"></i>
+          <h3 data-i18n="deliv_automations">Automações</h3>
+          <p data-i18n="deliv_automations_p">Processos em Python e SQL para reduzir retrabalho, validar informações e aumentar a eficiência.</p>
+          <span class="card-study-link" data-i18n="deliv_automations_link">Ver pipeline e simulador →</span>
+        </a>
+
+        <a class="deliverable-card" href="estudo-mdm-golden-record.html">
+          <i class="bi bi-shield-check"></i>
+          <h3 data-i18n="deliv_governance">Governança de Dados</h3>
+          <p data-i18n="deliv_governance_p">Qualidade, conciliação e regras de negócio para garantir consistência e confiabilidade dos indicadores.</p>
+          <span class="card-study-link" data-i18n="deliv_governance_link">Ver auditoria e DQ →</span>
+        </a>
+
+        <a class="deliverable-card" href="https://github.com/carlosfelix06/carlosfelix06.github.io/tree/main/codigo" target="_blank" rel="noopener">
+          <i class="bi bi-git"></i>
+          <h3 data-i18n="deliv_traceability">Rastreabilidade</h3>
+          <p data-i18n="deliv_traceability_p">Código versionado, documentação técnica e histórico das regras e transformações aplicadas.</p>
+          <span class="card-study-link" data-i18n="deliv_traceability_link">Ver repositório no GitHub ↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ferramentas & Tecnologias organizadas em 4 fileiras de 7 por especialidade -->
+  <section id="ferramentas" class="section">
+    <div class="container">
+      <div class="section-header-clean">
+        <h2 class="section-title-clean" data-i18n="tools_title">Ferramentas &amp; Tecnologias</h2>
+        <p class="section-sub-clean" data-i18n="tools_sub">Ecossistema tecnológico organizado por especialidade para engenharia de dados, modelagem preditiva e analytics:</p>
+      </div>
+
+      <!-- Fileira 1: Linguagens e Engenharia de Dados (7 tecnologias principais) -->
+      <div class="tools-category-badge" data-i18n="tools_cat_01">
+        <span class="badge-dot"></span> 01 · Linguagens &amp; Engenharia de Dados
+      </div>
+      <ul class="tools-grid-7">
+        <li class="tool-card">
+          <img src="assets/img/tools_serasa/python.svg" alt="Python">
+          <span class="t-name">Python</span>
+          <span class="t-role">Pipelines &amp; ML</span>
+        </li>
+        <li class="tool-card">
+          <img src="assets/img/tools_serasa/sql.svg" alt="SQL">
+          <span class="t-name">SQL</span>
+          <span class="t-role">Consultas &amp; ETL</span>
+        </li>
+        <li class="tool-card">
+          <img src="assets/img/tools_serasa/spark.svg" alt="PySpark">
+          <span class="t-name">PySpark</span>
+          <span class="t-role">Proc. Distribuído</span>
+        </li>
+        <li class="tool-card">
+          <img src="assets/img/tools_serasa/databricks.svg" alt="Databricks">
+          <span class="t-name">Databricks</span>
+          <span class="t-role">Big Data &amp; Lakehouse</span>
+        </li>
+        <li class="tool-card">
+          <img src="assets/img/tools_serasa/duckdb.png" alt="DuckDB">
+          <span class="t-name">DuckDB</span>
+          <span class="t-role">Analytics Local</span>
+        </li>
+        <li class="tool-card">
+          <img src="assets/img/tools_serasa/polars.svg" alt="Polars">
+          <span class="t-name">Polars</span>
+          <span class="t-role">Alta Velocidade</span>
+        </li>
+        <li class="tool-card">
+          <img src="assets/img/tools_serasa/pandas.svg" alt="Pandas">
+          <span class="t-name">Pandas</span>
+          <span class="t-role">Data Wrangling</span>
+        </li>
+      </ul>
+
+      <!-- Seção Expansível com as próximas 3 fileiras (21 tecnologias) -->
+      <div id="tools-extra-container" style="display:none;margin-top:10px;padding-top:16px;border-top:1px dashed var(--line)">
+        
+        <!-- Fileira 2: Analytics e Machine Learning -->
+        <div class="tools-category-badge" data-i18n="tools_cat_02">
+          <span class="badge-dot"></span> 02 · Analytics &amp; Machine Learning
+        </div>
+        <ul class="tools-grid-7">
+          <li class="tool-card">
+            <img src="assets/img/tools_serasa/scikitlearn.svg" alt="Scikit-Learn">
+            <span class="t-name">Scikit-Learn</span>
+            <span class="t-role">Modelagem Preditiva</span>
+          </li>
+          <li class="tool-card">
+            <img src="assets/img/tools_serasa/xgboost.svg" alt="XGBoost">
+            <span class="t-name">XGBoost</span>
+            <span class="t-role">Gradient Boosting</span>
+          </li>
+          <li class="tool-card">
+            <img src="assets/img/tools_serasa/statsmodels.svg" alt="Statsmodels">
+            <span class="t-name">Statsmodels</span>
+            <span class="t-role">Inferência Estatística</span>
+          </li>
+          <li class="tool-card">
+            <img src="assets/img/tools_serasa/jupyter.svg" alt="JupyterLab">
+            <span class="t-name">JupyterLab</span>
+            <span class="t-role">Exploração &amp; POCs</span>
+          </li>
+          <li class="tool-card">
+            <img src="assets/img/tools_serasa/powerbi.png" alt="Power BI">
+            <span class="t-name">Power BI</span>
+            <span class="t-role">Dashboards &amp; DAX</span>
+          </li>
+          <li class="tool-card">
+            <img src="assets/img/tools_serasa/plotly.svg" alt="Plotly">
+            <span class="t-name">Plotly</span>
+            <span class="t-role">Visualizações Interativas</span>
+          </li>
+          <li class="tool-card">
+            <img src="assets/img/tools_serasa/streamlit.svg" alt="Streamlit">
+            <span class="t-name">Streamlit</span>
+            <span class="t-role">Web Data Apps</span>
+          </li>
+        </ul>
+
+        <!-- Fileira 3: Bancos de Dados e Infraestrutura -->
+        <div class="tools-category-badge" data-i18n="tools_cat_03">
+          <span class="badge-dot"></span> 03 · Bancos de Dados &amp; Infraestrutura
+        </div>
+        <ul class="tools-grid-7">
+          <li class="tool-card">
+            <img src="assets/img/tools_serasa/postgresql.svg" alt="PostgreSQL">
+            <span class="t-name">PostgreSQL</span>
+            <span class="t-role">Bancos Relacionais</span>
+          </li>
+          <li class="tool-card">
+            <img src="assets/img/tools_serasa/sqlserver.svg" alt="SQL Server">
+            <span class="t-name">SQL Server</span>
+            <span class="t-role">T-SQL &amp; Procedures</span>
+          </li>
+          <li class="tool-card">
+            <img src="assets/img/tools_serasa/aws.svg" alt="AWS">
+            <span class="t-name">AWS</span>
+            <span class="t-role">Cloud Storage &amp; S3</span>
+          </li>
+          <li class="tool-card">
+            <img src="assets/img/tools_serasa/awsglue.svg" alt="AWS Glue">
+            <span class="t-name">AWS Glue</span>
+            <span class="t-role">Catálogo &amp; ETL</span>
+          </li>
+          <li class="tool-card">
+            <img src="assets/img/tools_serasa/athena.svg" alt="Amazon Athena">
+            <span class="t-name">Amazon Athena</span>
+            <span class="t-role">Consultas Serverless</span>
+          </li>
+          <li class="tool-card">
+            <img src="assets/img/tools_serasa/docker.svg" alt="Docker">
+            <span class="t-name">Docker</span>
+            <span class="t-role">Containers &amp; Ambientes</span>
+          </li>
+          <li class="tool-card">
+            <img src="assets/img/tools_serasa/git.svg" alt="Git">
+            <span class="t-name">Git</span>
+            <span class="t-role">Versionamento</span>
+          </li>
+        </ul>
+
+        <!-- Fileira 4: Business Intelligence e Produtividade -->
+        <div class="tools-category-badge" data-i18n="tools_cat_04">
+          <span class="badge-dot"></span> 04 · Business Intelligence &amp; Produtividade
+        </div>
+        <ul class="tools-grid-7">
+          <li class="tool-card">
+            <img src="assets/img/tools_serasa/excel.svg" alt="Excel Avançado">
+            <span class="t-name">Excel Avançado</span>
+            <span class="t-role">Modelagem &amp; Validação</span>
+          </li>
+          <li class="tool-card">
+            <img src="assets/img/tools_serasa/powerpoint.svg" alt="PowerPoint">
+            <span class="t-name">PowerPoint</span>
+            <span class="t-role">Apresentação Executiva</span>
+          </li>
+          <li class="tool-card">
+            <img src="assets/img/tools_serasa/dax.svg" alt="DAX">
+            <span class="t-name">DAX</span>
+            <span class="t-role">Cálculos Analíticos</span>
+          </li>
+          <li class="tool-card">
+            <img src="assets/img/tools_serasa/powerquery.svg" alt="Power Query">
+            <span class="t-name">Power Query</span>
+            <span class="t-role">ETL &amp; Linguagem M</span>
+          </li>
+          <li class="tool-card">
+            <img src="assets/img/tools_serasa/github.svg" alt="GitHub">
+            <span class="t-name">GitHub</span>
+            <span class="t-role">CI/CD &amp; Portfólio</span>
+          </li>
+          <li class="tool-card">
+            <img src="assets/img/tools_serasa/vscode.svg" alt="VS Code">
+            <span class="t-name">VS Code</span>
+            <span class="t-role">IDE &amp; Dev</span>
+          </li>
+          <li class="tool-card">
+            <img src="assets/img/tools_serasa/parquet.svg" alt="Apache Parquet">
+            <span class="t-name">Apache Parquet</span>
+            <span class="t-role">Armazenamento Colunar</span>
+          </li>
+        </ul>
+
+      </div>
+
+      <!-- Botão Centralizado Elegante para expandir/recolher as tecnologias -->
+      <div class="tools-more-wrap">
+        <button id="btn-toggle-tools" class="btn-tools-toggle" type="button" aria-expanded="false" aria-controls="tools-extra-container" onclick="toggleExtraTools()">
+          <span data-i18n="tools_btn_more">Ver todas as tecnologias (+21)</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vitrine Central de Estudos & Projetos (Layout Dividido: 2 em Destaque + Acervo Lateral) -->
+  <section id="estudos" class="section" style="background:#FFFFFF;border-top:1px solid var(--line)">
+    <div class="container">
+      <div class="section-header-clean">
+        <h2 class="section-title-clean" data-i18n="showcase_title">Vitrine de Estudos &amp; Projetos</h2>
+        <p class="section-sub-clean" data-i18n="showcase_sub">Análises aprofundadas com metodologia reproduzível, dados quantitativos e impacto direto na decisão operacional:</p>
+      </div>
+
+      <div class="studies-showcase-layout">
+
+        <!-- Coluna Principal: Os 2 Últimos Estudos como Vitrine -->
+        <div class="studies-showcase-main">
+          <div class="showcase-column-title">
+            <i class="bi bi-stars" style="color:var(--primary); font-size:16px;"></i>
+            <span data-i18n="showcase_recent_badge">Últimos Estudos Publicados (Vitrine em Destaque)</span>
+          </div>
+
+          <!-- Destaque 1: Estudo 05 - Funil Política de Crédito & Matriz 3x3 -->
+          <article class="featured-study-home">
+            <a class="featured-study-thumb" href="estudo-funil-politica-credito.html">
+              <img src="assets/img/vitrine_estudo_05_politica.svg" alt="Capa executiva Estudo 05: Funil de Política de Crédito R1-R4 e Matriz 3x3 Score LP x Random Forest CP">
+            </a>
+            <div class="featured-study-content">
+              <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:10px">
+                <span class="card-badge" data-i18n="study05_badge" style="background:#059669;color:#FFFFFF;border:none;padding:4px 10px;border-radius:4px;font-size:11px;font-weight:800;text-transform:uppercase">Estudo 05 · Política de Crédito & Decisão</span>
+                <span data-i18n="study05_meta" style="font-size:12.5px;color:var(--mute);font-weight:600">GiveMeSomeCredit (OpenML 46929) · 150.000 registros históricos</span>
+              </div>
+              <h3 data-i18n="study05_title" style="font-size:1.35rem;margin:0 0 10px;color:var(--ink-heading);line-height:1.3">
+                Otimização de Política de Crédito: Maximizando o Retorno com Score e Machine Learning
+              </h3>
+              <p data-i18n="study05_desc" style="color:var(--ink);font-size:14px;line-height:1.6;margin:0 0 16px">
+                Separa eliminatórios por gravidade (<code>R1→R2→R3</code>) e aplica uma Matriz 3×3 na R4: <strong>5,05M u.m.</strong> de P&amp;L simulado (+10,9% sobre a regra rígida de 4,55M), perda EAD de <strong>1,05%</strong> e aprovação de 49,68%. O RF 1D pareado chega a 5,08M (−0,49%): a matriz entrega governança auditável em 9 faixas, não acurácia extra.
+              </p>
+              <div style="display:flex;flex-wrap:wrap;gap:10px">
+                <a class="btn-serasa" href="estudo-funil-politica-credito.html" data-i18n="study05_btn_study" style="font-size:13.5px;padding:9px 18px;background:#059669;">
+                  Ler Estudo e Simulador →
+                </a>
+                <a href="assets/politica/resultados.json" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:9px 14px;background:var(--bg);color:var(--ink-heading);border:1px solid var(--line);border-radius:6px;font-weight:600;font-size:13px;text-decoration:none;">
+                  <i class="bi bi-filetype-json"></i> Dados JSON
+                </a>
+                <a href="https://github.com/carlosfelix06/carlosfelix06.github.io/tree/main/codigo/estudo-05-funil-politica-credito" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:9px 14px;background:var(--bg);color:var(--ink-heading);border:1px solid var(--line);border-radius:6px;font-weight:600;font-size:13px;text-decoration:none;">
+                  <i class="bi bi-github"></i> Código e Dados ↗
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Destaque 2: Estudo 04 - Backtest Walk-Forward -->
+          <article class="featured-study-home" style="margin-top:22px">
+            <a class="featured-study-thumb" href="estudo-backtest-projecao-pedidos.html">
+              <img src="assets/img/vitrine_estudo_04_bcb.svg" alt="Capa executiva Estudo 04: Backtest Walk-Forward BCB SGS vs Agregado PF">
+            </a>
+            <div class="featured-study-content">
+              <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:10px">
+                <span class="card-badge" data-i18n="study04_badge" style="background:#0284C7;color:#FFFFFF;border:none;padding:4px 10px;border-radius:4px;font-size:11px;font-weight:800;text-transform:uppercase">Estudo 04 · Backtest BCB SGS</span>
+                <span data-i18n="study04_meta" style="font-size:12.5px;color:var(--mute);font-weight:600">Piso de Ruído na Projeção de Concessões de Crédito PF · 57 meses reais</span>
+              </div>
+              <h3 data-i18n="study04_title" style="font-size:1.35rem;margin:0 0 10px;color:var(--ink-heading);line-height:1.3">
+                Previsão de Crédito PF: Backtest Walk-Forward e Efeito Calendário
+              </h3>
+              <p data-i18n="study04_desc" style="color:var(--ink);font-size:14px;line-height:1.6;margin:0 0 16px">
+                Incluir feriados nacionais ANBIMA e dias úteis reduz o erro absoluto de projeção (MAE) de <strong>R$ 13,63 bi para R$ 6,24 bi/mês (-R$ 7,39 bi/mês em acurácia de planejamento)</strong> e coloca <strong>97,0%</strong> dos meses na meta ±5%. <em>Método:</em> backtest walk-forward em 33 origens reais (<code>wMAPE 2,79% · Ljung-Box p = 0,403</code>).
+              </p>
+              <div style="display:flex;flex-wrap:wrap;gap:10px">
+                <a class="btn-serasa" href="estudo-backtest-projecao-pedidos.html" data-i18n="study04_btn_study" style="font-size:13.5px;padding:9px 18px;background:#0284C7;">
+                  Ler Estudo e Método →
+                </a>
+                <a href="assets/backtest/resultados.json" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:9px 14px;background:var(--bg);color:var(--ink-heading);border:1px solid var(--line);border-radius:6px;font-weight:600;font-size:13px;text-decoration:none;">
+                  <i class="bi bi-filetype-json"></i> Dados JSON
+                </a>
+                <a href="https://github.com/carlosfelix06/carlosfelix06.github.io/tree/main/codigo/estudo-04-backtest-credito-pf" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:9px 14px;background:var(--bg);color:var(--ink-heading);border:1px solid var(--line);border-radius:6px;font-weight:600;font-size:13px;text-decoration:none;">
+                  <i class="bi bi-github"></i> Código e Dados ↗
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Destaque 3: Estudo 03 - Alta Renda -->
+          <article class="featured-study-home" style="margin-top:22px">
+            <a class="featured-study-thumb" href="estudo-alta-renda-nichos.html">
+              <img src="assets/img/vitrine_estudo_03_alta_renda.svg" alt="Capa executiva Estudo 03: Cortes de Renda IBGE e Crédito PF BCB SGS">
+            </a>
+            <div class="featured-study-content">
+              <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:10px">
+                <span class="card-badge" data-i18n="study03_badge" style="background:#2878E8;color:#FFFFFF;border:none;padding:4px 10px;border-radius:4px;font-size:11px;font-weight:800;text-transform:uppercase">Estudo 03 · 138 Bancos + 108 UF-Anos</span>
+                <span data-i18n="study03_meta" style="font-size:12.5px;color:var(--mute);font-weight:600">BCB Olinda (11m) + IBGE 2022–2025</span>
+              </div>
+              <h3 data-i18n="study03_title" style="font-size:1.35rem;margin:0 0 10px;color:var(--ink-heading);line-height:1.3">
+                Onde Bancos Cobram Mais Caro e Limites da Renda Regional
+              </h3>
+              <p data-i18n="study03_desc" style="color:var(--ink);font-size:14px;line-height:1.6;margin:0 0 16px">
+                Analisa taxas de <strong>138 bancos</strong> (diferença de até <strong>15,57x</strong>) provando que a posição de preço persiste por 11 meses, e mostra em <strong>108 UF-anos</strong> por que usar apenas renda estadual falha no futuro. <em>Método:</em> <code>K-Means + PCA (Spearman ρ = 0,866)</code> e painel de efeitos fixos (<code>MAE 1,28 vs 0,95 p.p.</code>).
+              </p>
+              <div class="home-kpi-mini-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(95px,1fr));gap:8px;margin:0 0 16px">
+                <div style="background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px">
+                  <div style="font-size:10.5px;font-weight:700;color:var(--mute);text-transform:uppercase" data-i18n="study03_kpi1_label">Persistência 11m</div>
+                  <div style="font-size:1.15rem;font-weight:800;color:#2878E8">ρ = 0,866 (370 pares)</div>
+                </div>
+                <div style="background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px">
+                  <div style="font-size:10.5px;font-weight:700;color:var(--mute);text-transform:uppercase" data-i18n="study03_kpi2_label">Spread Bancário</div>
+                  <div style="font-size:1.15rem;font-weight:800;color:#D91568">15,57x P90/P10</div>
+                </div>
+                <div style="background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px">
+                  <div style="font-size:10.5px;font-weight:700;color:var(--mute);text-transform:uppercase" data-i18n="study03_kpi3_label">Painel 108 UF-Anos</div>
+                  <div style="font-size:1.15rem;font-weight:800;color:#6A1B9A">R² FE 0,55 · β p=0,002</div>
+                </div>
+              </div>
+              <div style="display:flex;flex-wrap:wrap;gap:10px">
+                <a class="btn-serasa" href="estudo-alta-renda-nichos.html" data-i18n="study03_btn_study" style="font-size:13.5px;padding:9px 18px;background:#2878E8;">
+                  Ler Estudo e Método →
+                </a>
+                <a href="https://github.com/carlosfelix06/carlosfelix06.github.io/tree/main/codigo/estudo-03-alta-renda-credito-pf" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:9px 14px;background:var(--bg);color:var(--ink-heading);border:1px solid var(--line);border-radius:6px;font-weight:600;font-size:13px;text-decoration:none;">
+                  <i class="bi bi-github"></i> Código e Dados ↗
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Coluna Lateral: Lista ao Lado com os Demais Estudos -->
+        <aside class="studies-showcase-sidebar">
+          <div class="sidebar-studies-card">
+            <div class="sidebar-header">
+              <h3 class="sidebar-title">
+                <i class="bi bi-collection-play" style="color:var(--primary);"></i>
+                <span data-i18n="sidebar_title">Demais Estudos</span>
+              </h3>
+              <span class="sidebar-badge" data-i18n="sidebar_badge">Acervo</span>
+            </div>
+            <p class="sidebar-intro" data-i18n="sidebar_intro">
+              Estudos aprofundados com simuladores interativos e modelos executivos:
+            </p>
+
+            <ul class="sidebar-studies-list">
+              <!-- Item Estudo 01: Qualidade de Dados & Inadimplência -->
+              <li class="sidebar-study-item">
+                <div style="display:flex; gap:12px; align-items:flex-start; margin-bottom:8px;">
+                  <a href="estudo-qualidade-dados-inadimplencia.html" style="flex-shrink:0; width:92px; height:80px; border-radius:6px; overflow:hidden; background:#0B2038; border:1px solid var(--line); display:block;">
+                    <img src="assets/img/vitrine_estudo_01_uci.svg" alt="Preview Estudo 01" style="width:100%; height:100%; object-fit:cover; object-position:top center; display:block;">
+                  </a>
+                  <div style="flex-grow:1; min-width:0;">
+                    <span class="sidebar-study-tag tag-magenta" data-i18n="study01_badge">Estudo 01 · UCI Credit Default</span>
+                    <h4 class="sidebar-study-name" style="margin:4px 0 0;">
+                      <a href="estudo-qualidade-dados-inadimplencia.html" data-i18n="study01_title">
+                        Impacto da Qualidade dos Dados no Risco de Inadimplência
+                      </a>
+                    </h4>
+                  </div>
+                </div>
+                <p class="sidebar-study-desc" data-i18n="study01_desc">
+                  Mostra em 30.000 contas que falhas cadastrais escondem maus pagadores sem derrubar alertas técnicos, recuperando <strong>92,4% do retorno (NT$ 6,48M)</strong> ao tratar ausências nativamente. <em>Método:</em> <code>32,3% → 27,4%</code> na captura e HGB NaN + Perda Esperada.
+                </p>
+                <div class="sidebar-study-actions">
+                  <a href="estudo-qualidade-dados-inadimplencia.html" class="sidebar-link-primary" data-i18n="study01_btn_study">Ler estudo →</a>
+                  <a href="estudo-qualidade-dados-inadimplencia.html#simulador" class="sidebar-link-subtle">
+                    <i class="bi bi-sliders"></i> <span data-i18n="study01_btn_sim">Simulador</span>
+                  </a>
+                  <a href="https://github.com/carlosfelix06/carlosfelix06.github.io/tree/main/codigo/estudo-01-qualidade-dados" target="_blank" rel="noopener" class="sidebar-link-subtle">
+                    <i class="bi bi-github"></i> <span data-i18n="study01_btn_code">Código ↗</span>
+                  </a>
+                </div>
+              </li>
+
+              <!-- Item Estudo 02: Arquitetura MDM & Golden Record -->
+              <li class="sidebar-study-item">
+                <div style="display:flex; gap:12px; align-items:flex-start; margin-bottom:8px;">
+                  <a href="estudo-mdm-golden-record.html" style="flex-shrink:0; width:92px; height:80px; border-radius:6px; overflow:hidden; background:#0B2038; border:1px solid var(--line); display:block;">
+                    <img src="assets/img/vitrine_estudo_02_mdm.svg" alt="Preview Estudo 02" style="width:100%; height:100%; object-fit:cover; object-position:top center; display:block;">
+                  </a>
+                  <div style="flex-grow:1; min-width:0;">
+                    <span class="sidebar-study-tag tag-purple" data-i18n="study02_badge">Estudo 02 · Dados Abertos CVM</span>
+                    <h4 class="sidebar-study-name" style="margin:4px 0 0;">
+                      <a href="estudo-mdm-golden-record.html" data-i18n="study02_title">
+                        Unificação de Cadastros Duplicados (MDM) na Base CVM
+                      </a>
+                    </h4>
+                  </div>
+                </div>
+                <p class="sidebar-study-desc" data-i18n="study02_desc">
+                  Consolida 7.905 registros em 6.736 CNPJs únicos (<strong>-14,8% de duplicidades</strong>) e resolve <strong>78,6% (33/42)</strong> dos conflitos pela fonte mais recente, mesmo sem CNPJ. <em>Método:</em> Golden Record + Record Linkage (<code>PR-AUC 0,884</code>).
+                </p>
+                <div class="sidebar-study-actions">
+                  <a href="estudo-mdm-golden-record.html" class="sidebar-link-primary" data-i18n="study02_btn_study">Ler estudo →</a>
+                  <a href="estudo-mdm-golden-record.html#simulador" class="sidebar-link-subtle">
+                    <i class="bi bi-diagram-3"></i> <span data-i18n="study02_btn_sim">Simulador</span>
+                  </a>
+                  <a href="https://github.com/carlosfelix06/carlosfelix06.github.io/tree/main/codigo/estudo-02-mdm-cvm" target="_blank" rel="noopener" class="sidebar-link-subtle">
+                    <i class="bi bi-github"></i> <span data-i18n="study02_btn_code">Código ↗</span>
+                  </a>
+                </div>
+              </li>
+            </ul>
+
+            <div class="sidebar-footer">
+              <a href="estudos.html" class="sidebar-catalog-btn">
+                <span data-i18n="sidebar_catalog_link">Ver Vitrine Completa com os 5 Estudos</span>
+                <i class="bi bi-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contato Limpo -->
+  <section id="contato" class="section" style="border-top:1px solid var(--line)">
+    <div class="container">
+      <div class="section-header-clean" style="margin-bottom:1.4rem">
+        <h2 class="section-title-clean" data-i18n="contact_title">Entre em Contato</h2>
+        <p class="section-sub-clean" data-i18n="contact_sub">Disponível para posições de Especialista / Sênior em Dados, Analytics, Risco de Crédito e Inteligência de Negócio:</p>
+      </div>
+
+      <div style="display:flex; flex-wrap:wrap; gap:14px; margin-bottom:2rem;">
+        <a class="btn-serasa" href="https://www.linkedin.com/in/carlos-felix-santos-sp-br/" target="_blank" rel="noopener" style="padding:12px 26px; font-size:15px;">
+          <i class="bi bi-linkedin"></i> <span data-i18n="contact_btn_li">Conectar no LinkedIn →</span>
+        </a>
+        <a class="btn" href="assets/curriculo-carlos-santos-dados-analytics.pdf" target="_blank" rel="noopener" style="background:#FFFFFF; color:var(--ink-heading); border:1.5px solid var(--line-strong); padding:12px 24px; font-weight:700; border-radius:6px; display:inline-flex; align-items:center; gap:8px;">
+          <i class="bi bi-file-earmark-pdf"></i> <span>Baixar Currículo PDF</span>
+        </a>
+        <a class="btn" href="mailto:carlosfelix06@hotmail.com" style="background:#FFFFFF; color:var(--ink-heading); border:1.5px solid var(--line-strong); padding:12px 24px; font-weight:700; border-radius:6px; display:inline-flex; align-items:center; gap:8px;">
+          <i class="bi bi-envelope"></i> <span>carlosfelix06@hotmail.com</span>
+        </a>
+        <a class="btn" href="https://github.com/carlosfelix06/carlosfelix06.github.io/tree/main/codigo" target="_blank" rel="noopener" style="background:#FFFFFF; color:var(--ink-heading); border:1.5px solid var(--line-strong); padding:12px 24px; font-weight:700; border-radius:6px; display:inline-flex; align-items:center; gap:8px;">
+          <i class="bi bi-github"></i> <span data-i18n="contact_btn_gh">Explorar Repositório no GitHub</span>
+        </a>
+      </div>
+
+      <ul class="contact" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:14px; list-style:none; padding:0; margin:0;">
+        <li style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:14px 18px; display:flex; align-items:center;">
+          <i class="bi bi-geo-alt" style="color:#D91568; font-size:20px; margin-right:12px;"></i>
+          <div>
+            <div style="font-size:11px; font-weight:700; color:var(--mute); text-transform:uppercase;" data-i18n="contact_loc_label">Localização</div>
+            <div style="font-size:14px; font-weight:600; color:var(--ink-heading);" data-i18n="contact_loc_val">São Paulo, SP — Brasil (Híbrido / Remoto)</div>
+          </div>
+        </li>
+        <li style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:14px 18px; display:flex; align-items:center;">
+          <i class="bi bi-linkedin" style="color:#D91568; font-size:20px; margin-right:12px;"></i>
+          <div>
+            <div style="font-size:11px; font-weight:700; color:var(--mute); text-transform:uppercase;" data-i18n="contact_li_label">LinkedIn Profissional</div>
+            <a href="https://www.linkedin.com/in/carlos-felix-santos-sp-br/" target="_blank" rel="noopener" style="font-size:14px; font-weight:600; color:#D91568;">/in/carlos-felix-santos-sp-br</a>
+          </div>
+        </li>
+        <li style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:14px 18px; display:flex; align-items:center;">
+          <i class="bi bi-code-slash" style="color:#D91568; font-size:20px; margin-right:12px;"></i>
+          <div>
+            <div style="font-size:11px; font-weight:700; color:var(--mute); text-transform:uppercase;" data-i18n="contact_repo_label">Projetos &amp; Código</div>
+            <a href="https://github.com/carlosfelix06/carlosfelix06.github.io/tree/main/codigo" target="_blank" rel="noopener" style="font-size:14px; font-weight:600; color:#D91568;">github.com/carlosfelix06/carlosfelix06.github.io/tree/main/codigo</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+
+<footer>
+  <div class="container">
+    <p>&copy; <span data-i18n="footer_rights">Carlos Santos. Todos os direitos reservados.</span></p>
+  </div>
+</footer>
+
+<script>
+  window.toggleExtraTools = function() {
+    const container = document.getElementById('tools-extra-container');
+    const btn = document.getElementById('btn-toggle-tools');
+    if (!container || !btn) return;
+    const lang = document.documentElement.lang || 'pt';
+    const dict = (typeof I18N_DATA !== 'undefined' && I18N_DATA[lang]) ? I18N_DATA[lang] : {};
+    const isHidden = container.style.display === 'none' || container.style.display === '';
+    if (isHidden) {
+      container.style.display = 'block';
+      btn.setAttribute('aria-expanded', 'true');
+      const lessTxt = dict.tools_btn_less || 'Ver menos tecnologias';
+      btn.innerHTML = '<span data-i18n="tools_btn_less">' + lessTxt + '</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>';
+    } else {
+      container.style.display = 'none';
+      btn.setAttribute('aria-expanded', 'false');
+      const moreTxt = dict.tools_btn_more || 'Ver todas as tecnologias (+21)';
+      btn.innerHTML = '<span data-i18n="tools_btn_more">' + moreTxt + '</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>';
+    }
+  };
+
+(function () {
+  "use strict";
+
+  function initMobileNav() {
+    const navbar = document.querySelector("#navbar");
+    const toggle = document.querySelector(".mobile-nav-toggle");
+    if (!navbar || !toggle) return;
+
+    toggle.addEventListener("click", function (e) {
+      e.stopPropagation();
+      const isOpen = navbar.classList.toggle("navbar-mobile");
+      toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      const icon = toggle.querySelector("i");
+      if (icon) {
+        if (isOpen) {
+          icon.classList.remove("bi-list");
+          icon.classList.add("bi-x");
+        } else {
+          icon.classList.remove("bi-x");
+          icon.classList.add("bi-list");
+        }
+      }
+    });
+
+    navbar.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        navbar.classList.remove("navbar-mobile");
+        toggle.setAttribute("aria-expanded", "false");
+        const icon = toggle.querySelector("i");
+        if (icon) {
+          icon.classList.remove("bi-x");
+          icon.classList.add("bi-list");
+        }
+      });
+    });
+
+    document.addEventListener("click", function (e) {
+      if (navbar.classList.contains("navbar-mobile") && !navbar.contains(e.target) && !toggle.contains(e.target)) {
+        navbar.classList.remove("navbar-mobile");
+        toggle.setAttribute("aria-expanded", "false");
+        const icon = toggle.querySelector("i");
+        if (icon) {
+          icon.classList.remove("bi-x");
+          icon.classList.add("bi-list");
+        }
+      }
+    });
+  }
+
+
+  // ===================================================
+  // INTERNACIONALIZAÇÃO (PT / EN / ES) COM LOCALSTORAGE
+  // ===================================================
+  const I18N_DATA = {
+  "pt": {
+    "tagline_pill": "Dados & Analytics",
+    "nav_home": "Início",
+    "nav_about": "Sobre & Trajetória",
+    "nav_deliver": "O que entrega",
+    "nav_tools": "Ferramentas",
+    "nav_studies": "Vitrine de Estudos →",
+    "nav_contact": "Contato",
+    "hero_tag": "Dados · Analytics · Decisão",
+    "hero_role": "Especialista em Dados & Analytics com foco em Risco de Crédito, Qualidade de Dados e Decisão Operacional",
+    "hero_summary": "Conecto investigação profunda de regras e bases de dados a diagnósticos claros e ações operacionais que geram resultado direto para o negócio.",
+    "hero_cta_studies": "Acessar Vitrine de Estudos →",
+    "hero_cta_credit": "Ver Estudo de Crédito",
+    "hero_card_kicker": "Últimos Estudos",
+    "hero_card_sub": "Clique em qualquer entrega para abrir os dados e o código:",
+    "hero_diff_label": "Previsão de Crédito · Banco Central",
+    "hero_diff_val": "Reduziu o erro de projeção (MAE) em <strong>R$ 7,39 bi/mês (-54%)</strong> com calendário ANBIMA →",
+    "hero_domain_label": "Qualidade de Dados & Cobrança · 30 mil contas",
+    "hero_domain_val": "Preservou <strong>92,4% (NT$ 6,48M simulados)</strong> em experimento de falha de dados →",
+    "hero_method_label": "Base Única de Empresas (MDM) · 7.905 registros CVM",
+    "hero_method_val": "Eliminou <strong>14,8%</strong> de duplicidades e unificou empresas e fundos em visão confiável →",
+    "hero_avail_label": "Taxas de Juros & Concorrência · 138 Bancos + IBGE",
+    "hero_avail_val": "Mapeou variação de até <strong>15,6x</strong> nos juros entre bancos e mediu a concorrência local →",
+    "about_title": "Sobre mim & Trajetória",
+    "about_sub": "Uma visão sobre a bagagem técnica, postura analítica e como gero impacto nas operações.",
+    "about_bio_p1": "Atuo na interseção entre <strong>Dados, Analytics e Operações de Negócio</strong>, investigando a origem, a granularidade e as regras das informações para construir indicadores confiáveis, identificar oportunidades e apoiar decisões estratégicas e operacionais.",
+    "about_quote": "“Indicadores consolidados podem esconder falhas operacionais. Uma análise eficiente começa pela qualidade dos dados, pelas regras de negócio e pela compreensão do problema.”",
+    "about_bio_p2": "Com foco em <strong>risco de crédito, funil de conversão, conciliação de indicadores e qualidade de dados</strong>, uno ferramentas escaláveis (SQL avançado, pipelines em Python, DuckDB e Databricks) à modelagem de negócio (Power BI, DAX e governança de KPIs) para assegurar que liderança e operação tomem decisões alinhadas e rastreáveis.",
+    "cred_edu_label": "01 · FORMAÇÃO ACADÊMICA",
+    "cred_edu_title": "Formação em Computação, Big Data e Estatística",
+    "cred_edu_desc": "• Bacharelado em <strong>Ciência da Computação</strong> (Faculdade Sumaré)<br>• Pós-graduação em <strong>Big Data</strong> (Univ. Anhembi Morumbi)<br>• Pós-graduação em <strong>Estatística Aplicada</strong> (FMU)",
+    "cred_spec_label": "02 · ÁREAS DE ESPECIALIDADE",
+    "cred_spec_title": "Frentes Centrais de Atuação",
+    "cred_spec_desc": "• <strong>Crédito:</strong> Escoragem, políticas de limite, priorização de cobrança.<br>• <strong>Qualidade (DQ):</strong> Data contracts, monitoramento de ausência e drift.<br>• <strong>BI & Receita:</strong> Modelagem dimensional, funil e conciliação de bases.",
+    "cred_ops_label": "03 · POSTURA OPERACIONAL",
+    "cred_ops_title": "Do Diagnóstico à Ação",
+    "cred_ops_desc": "• <strong>Rigor & Causalidade:</strong> Separação entre correlação e causalidade real.<br>• <strong>Comunicação em Camadas:</strong> Executiva para diretoria e técnica para squads.<br>• <strong>Reprodutibilidade:</strong> Pipelines auditáveis sem dependência de processos manuais.",
+    "deliver_title": "O que eu entrego",
+    "deliver_sub": "Capacidades analíticas aplicadas para resolver problemas reais de operações e gestão:",
+    "deliv_dashboards": "Dashboards",
+    "deliv_dashboards_p": "Painéis executivos com indicadores confiáveis, análises detalhadas e acompanhamento de resultados.",
+    "deliv_dashboards_link": "Ver painéis e modelos →",
+    "deliv_analyses": "Análises & Estudos",
+    "deliv_analyses_p": "Investigações de crédito, cobrança e receita para identificar causas, riscos e oportunidades.",
+    "deliv_analyses_link": "Ver estudo de crédito →",
+    "deliv_automations": "Automações",
+    "deliv_automations_p": "Processos em Python e SQL para reduzir retrabalho, validar informações e aumentar a eficiência.",
+    "deliv_automations_link": "Ver pipeline e simulador →",
+    "deliv_governance": "Governança de Dados",
+    "deliv_governance_p": "Qualidade, conciliação e regras de negócio para garantir consistência e confiabilidade dos indicadores.",
+    "deliv_governance_link": "Ver auditoria e DQ →",
+    "deliv_traceability": "Rastreabilidade",
+    "deliv_traceability_p": "Código versionado, documentação técnica e histórico das regras e transformações aplicadas.",
+    "deliv_traceability_link": "Ver repositório no GitHub ↗",
+    "tools_title": "Ferramentas & Tecnologias",
+    "tools_sub": "Ecossistema tecnológico organizado por especialidade para engenharia de dados, modelagem preditiva e analytics:",
+    "showcase_title": "Vitrine de Estudos & Projetos",
+    "showcase_sub": "Análises aprofundadas com metodologia reproduzível, dados quantitativos e impacto direto na decisão operacional:",
+    "showcase_recent_badge": "Últimos Estudos Publicados (Vitrine em Destaque)",
+    "study04_badge": "Estudo 04 · Backtest BCB SGS",
+    "study04_meta": "Piso de Ruído na Projeção de Concessões de Crédito PF · 57 meses reais",
+    "study04_title": "Previsão de Crédito PF: Backtest Walk-Forward e Efeito Calendário",
+    "study04_desc": "Incluir feriados nacionais ANBIMA e dias úteis reduz o erro absoluto de projeção (MAE) de <strong>R$ 13,63 bi para R$ 6,24 bi/mês (-R$ 7,39 bi/mês em acurácia de planejamento)</strong> e coloca <strong>97,0%</strong> dos meses na meta ±5%. <em>Método:</em> backtest walk-forward em 33 origens reais (<code>wMAPE 2,79% · Ljung-Box p = 0,403</code>).",
+    "study04_btn_study": "Ler Estudo e Método →",
+    "study04_btn_json": "Dados JSON",
+    "study05_badge": "Estudo 05 · Política de Crédito & Decisão",
+    "study05_meta": "GiveMeSomeCredit (OpenML 46929) · 150.000 registros históricos",
+    "study05_title": "Otimização de Política de Crédito: Maximizando o Retorno com Score e Machine Learning",
+    "study05_desc": "Separa eliminatórios por gravidade (<code>R1→R2→R3</code>) e aplica uma Matriz 3×3 na R4: <strong>5,05M u.m.</strong> de P&amp;L simulado (+10,9% sobre a regra rígida de 4,55M), perda EAD de <strong>1,05%</strong> e aprovação de 49,68%. O RF 1D pareado chega a 5,08M (−0,49%): a matriz entrega governança auditável em 9 faixas, não acurácia extra.",
+    "study05_btn_study": "Ler Estudo e Simulador →",
+    "hero_policy_label": "Concessão de Crédito & IA · 150 mil propostas",
+    "hero_policy_val": "Elevou o P&amp;L simulado em <strong>+10,9%</strong> sobre a regra rígida, com perda EAD de <strong>1,05%</strong> →",
+    "study03_badge": "Estudo 03 · 138 Bancos + 108 UF-Anos",
+    "study03_meta": "BCB Olinda (11m) + IBGE 2022–2025",
+    "study03_title": "Onde Bancos Cobram Mais Caro e Limites da Renda Regional",
+    "study03_desc": "Em duas análises independentes (sem relação causal direta): mapeia taxas de <strong>138 bancos</strong> (dispersão de até <strong>15,57x</strong> e persistência de 11 meses, <code>Spearman ρ = 0,866</code>) e avalia separadamente <strong>108 UF-anos</strong> mostrando que renda estadual isolada não prevê a inadimplência futura (<code>MAE 1,28 vs 0,95 p.p.</code>).",
+    "study03_btn_study": "Ler Estudo e Método →",
+    "sidebar_title": "Demais Estudos",
+    "sidebar_badge": "Acervo",
+    "sidebar_intro": "Estudos aprofundados com simuladores interativos e modelos executivos:",
+    "study01_badge": "Estudo 01 · UCI Credit Default",
+    "study01_title": "Impacto da Qualidade dos Dados no Risco de Inadimplência",
+    "study01_desc": "Experimento simulado em 30.000 contas UCI mostrando que falhas de ETL degradam a fila de cobrança e que tratar ausências nativamente + ordenar por Perda Esperada preserva <strong>92,4% do retorno simulado (estimativa de NT$ 6,48M sob premissas parametrizadas)</strong>.",
+    "study01_btn_study": "Ler estudo →",
+    "study01_btn_sim": "Simulador",
+    "study01_btn_code": "Código ↗",
+    "study02_badge": "Estudo 02 · Dados Abertos CVM",
+    "study02_title": "Unificação de Cadastros Duplicados (MDM) na Base CVM",
+    "study02_desc": "Separa duas frentes na base CVM (7.905 registros → 6.736 CNPJs, <strong>-14,8%</strong>): (1) regra determinística de sobrevivência cadastral com CNPJ (Recência inverte <strong>78,6% · 33/42</strong> conflitos de status) e (2) acurácia do pareamento probabilístico sem CNPJ via HGB (<code>PR-AUC 0,884</code>).",
+    "study02_btn_study": "Ler estudo →",
+    "study02_btn_sim": "Simulador",
+    "study02_btn_code": "Código ↗",
+    "sidebar_catalog_link": "Ver Vitrine Completa com os 5 Estudos",
+    "catalog_title": "Vitrine de Estudos Analíticos",
+    "catalog_sub": "Estudos de caso reais e dados públicos sobre Risco de Crédito, Qualidade de Dados, Resolução de Entidades e Econometria.",
+    "catalog_back_home": "← Voltar ao Portfólio Principal",
+    "contact_title": "Entre em Contato",
+    "contact_sub": "Disponível para posições de Especialista / Sênior em Dados, Analytics, Risco de Crédito e Inteligência de Negócio:",
+    "contact_btn_li": "Conectar no LinkedIn →",
+    "contact_btn_gh": "Explorar Repositório no GitHub",
+    "contact_loc_label": "Localização",
+    "contact_loc_val": "São Paulo, SP — Brasil (Híbrido / Remoto)",
+    "contact_li_label": "LinkedIn Profissional",
+    "contact_repo_label": "Projetos & Código",
+    "footer_rights": "Carlos Santos. Todos os direitos reservados.",
+    "cat_hero_tag": "Catálogo de estudos",
+    "cat_hero_title": "Vitrine de Estudos",
+    "cat_hero_role": "Análises com escopo, métricas e limitações documentados",
+    "cat_intro_label": "Vitrine de Estudos",
+    "cat_intro_title": "Estudos publicados",
+    "cat_intro_desc": "Casos analíticos reproduzíveis baseados exclusivamente em fontes de dados públicas oficiais ou benchmarks públicos anonimizados (UCI Machine Learning Repository, Dados Abertos CVM, IBGE PNAD Contínua, Banco Central do Brasil SGS e GiveMeSomeCredit / OpenML #46929).",
+    "cat_card01_badge": "Estudo 01 · UCI Credit Default",
+    "cat_card01_title": "Impacto da Qualidade dos Dados no Risco de Inadimplência",
+    "cat_card01_desc": "Experimento simulado em 30.000 contas UCI: tratar ausências nativamente + priorizar por Perda Esperada preserva 92,4% do retorno simulado (NT$ 6,48M sob premissas operacionais parametrizadas).",
+    "cat_card02_badge": "Estudo 02 · Dados Abertos CVM",
+    "cat_card02_title": "Unificação de Cadastros Duplicados (MDM) na Base CVM",
+    "cat_card02_desc": "Consolida 7.905 registros da CVM (-14,8% duplicidades), separando a regra determinística de sobrevivência com CNPJ (78,6% de inversão por recência) da acurácia do pareamento sem CNPJ (PR-AUC 0,884).",
+    "cat_card03_badge": "Estudo 03 · 138 Bancos + 108 UF-Anos",
+    "cat_card03_title": "Onde Bancos Cobram Mais Caro e Limites da Renda Regional",
+    "cat_card03_desc": "Em duas análises independentes (sem nexo causal direto): mapeia a persistência de taxas em 138 bancos (15,57x, ρ = 0,866) e mostra em 108 UF-anos que renda estadual isolada falha fora da amostra (MAE 1,28 vs 0,95 p.p.).",
+    "cat_card04_badge": "Estudo 04 · Banco Central SGS",
+    "cat_card04_title": "Previsão de Crédito PF: Backtest Walk-Forward e Efeito Calendário",
+    "cat_card04_desc": "Ajustar por feriados nacionais ANBIMA e dias úteis reduz o erro absoluto de projeção (MAE) em R$ 7,39 bi/mês (de R$ 13,63 bi para R$ 6,24 bi/mês · wMAPE 2,79%) e acerta 97,0% dos meses na meta ±5%.",
+    "cat_card05_badge": "Estudo 05 · 150 mil propostas (OpenML)",
+    "cat_card05_title": "Otimização de Política de Crédito: Maximizando o Retorno com Score e Machine Learning",
+    "cat_card05_desc": "Simulação Otimizada 2D aprova 49,68% com Bad Rate EAD de 1,05% e 5,05M u.m. (4,14% P&amp;L/EAD vs 4,71M RF 1D @ mesmo EAD e 4,55M rígida), isolando 1.794 casos Early Warning (6,35% BR).",
+    "cat_btn_read": "Ler estudo →",
+    "cat_btn_code_data": "<i class='bi bi-github'></i> Código e Dados ↗",
+    "cat_btn_code_res": "<i class='bi bi-github'></i> Código e Resultados ↗",
+    "footer_home_link": "Início",
+    "tools_cat_01": "<span class='badge-dot'></span> 01 · Linguagens &amp; Engenharia de Dados",
+    "tools_cat_02": "<span class='badge-dot'></span> 02 · Analytics &amp; Machine Learning",
+    "tools_cat_03": "<span class='badge-dot'></span> 03 · Bancos de Dados &amp; Infraestrutura",
+    "tools_cat_04": "<span class='badge-dot'></span> 04 · Business Intelligence &amp; Produtividade",
+    "tools_btn_more": "Ver todas as tecnologias (+21)",
+    "tools_btn_less": "Ver menos tecnologias",
+    "study03_kpi1_label": "Persistência 11m",
+    "study03_kpi2_label": "Spread Bancário",
+    "study03_kpi3_label": "Painel 108 UF-Anos",
+    "btn_code_and_data": "<i class='bi bi-github'></i> Código e Dados ↗"
+  },
+  "en": {
+    "tagline_pill": "Data & Analytics",
+    "nav_home": "Home",
+    "nav_about": "About & Career",
+    "nav_deliver": "What I Deliver",
+    "nav_tools": "Tools & Stack",
+    "nav_studies": "Studies Showcase →",
+    "nav_contact": "Contact",
+    "hero_tag": "Data · Analytics · Decision",
+    "hero_role": "Data & Analytics Specialist focused on Credit Risk, Data Quality and Operational Decision-Making",
+    "hero_summary": "I connect in-depth investigation of business rules and databases to clear diagnostics and operational actions that drive direct business value.",
+    "hero_cta_studies": "Explore Studies Showcase →",
+    "hero_cta_credit": "View Credit Study",
+    "hero_card_kicker": "Latest Studies",
+    "hero_card_sub": "Click any outcome below to inspect the open data and code:",
+    "hero_policy_label": "Credit Policy & AI · 150k Applications",
+    "hero_policy_val": "Lifted simulated P&amp;L by <strong>+10.9%</strong> over the rigid rule, with a <strong>1.05%</strong> EAD bad rate →",
+    "hero_diff_label": "Credit Forecasting · Central Bank",
+    "hero_diff_val": "Cut forecast MAE by <strong>R$ 7.39 bn/month (-54%)</strong> with ANBIMA holiday calendar →",
+    "hero_domain_label": "Data Quality & Collections · 30k Accounts",
+    "hero_domain_val": "Recovered <strong>92.4%</strong> of financial losses by fixing hidden customer data flaws →",
+    "hero_method_label": "Unified Registry (MDM) · 7,905 CVM Records",
+    "hero_method_val": "Eliminated <strong>14.8%</strong> duplicates and built a single, reliable entity view →",
+    "hero_avail_label": "Bank Pricing & Income · 138 Banks + IBGE",
+    "hero_avail_val": "Mapped up to <strong>15.6x</strong> interest rate spread and measured local competition impact →",
+    "about_title": "About Me & Career",
+    "about_sub": "A perspective on technical background, analytical mindset, and operational impact.",
+    "about_bio_p1": "I operate at the intersection of <strong>Data, Analytics, and Business Operations</strong>, investigating the lineage, granularity, and business logic of information to build reliable indicators, identify opportunities, and support strategic and operational decisions.",
+    "about_quote": "“Aggregated metrics can hide critical operational failures. Efficient analysis starts with data quality, business rules, and a deep understanding of the problem.”",
+    "about_bio_p2": "Focused on <strong>credit risk, conversion funnels, KPI reconciliation, and data quality</strong>, I combine scalable tools (advanced SQL, Python pipelines, DuckDB, Databricks) with business modeling (Power BI, DAX, KPI governance) to ensure leadership and operations execute auditable, aligned decisions.",
+    "cred_edu_label": "01 · ACADEMIC BACKGROUND",
+    "cred_edu_title": "Education in Computing, Big Data & Statistics",
+    "cred_edu_desc": "• B.S. in <strong>Computer Science</strong> (Faculdade Sumaré)<br>• Postgraduate in <strong>Big Data</strong> (Univ. Anhembi Morumbi)<br>• Postgraduate in <strong>Applied Statistics</strong> (FMU)",
+    "cred_spec_label": "02 · CORE SPECIALIZATIONS",
+    "cred_spec_title": "Key Areas of Expertise",
+    "cred_spec_desc": "• <strong>Credit:</strong> Scoring models, credit limit policies, collections prioritization.<br>• <strong>Quality (DQ):</strong> Data contracts, missingness monitoring, and drift detection.<br>• <strong>BI & Revenue:</strong> Dimensional modeling, funnel tracking, and base reconciliation.",
+    "cred_ops_label": "03 · OPERATIONAL POSTURE",
+    "cred_ops_title": "From Diagnostic to Action",
+    "cred_ops_desc": "• <strong>Rigor & Causality:</strong> Clear separation between correlation and true causality.<br>• <strong>Layered Communication:</strong> Executive summaries for leadership, deep technical specs for squads.<br>• <strong>Reproducibility:</strong> Auditable data pipelines with zero dependency on manual steps.",
+    "deliver_title": "What I Deliver",
+    "deliver_sub": "Applied analytical capabilities solving real-world challenges in business operations and management:",
+    "deliv_dashboards": "Dashboards",
+    "deliv_dashboards_p": "Executive dashboards with dependable KPIs, granular drill-downs, and outcome tracking.",
+    "deliv_dashboards_link": "View dashboards & models →",
+    "deliv_analyses": "Analytics & Studies",
+    "deliv_analyses_p": "Deep investigations into credit risk, collections, and revenue to uncover root causes and opportunities.",
+    "deliv_analyses_link": "View credit study →",
+    "deliv_automations": "Automations",
+    "deliv_automations_p": "Automated pipelines in Python and SQL to reduce manual effort, validate data contracts, and boost efficiency.",
+    "deliv_automations_link": "View pipeline & simulator →",
+    "deliv_governance": "Data Governance",
+    "deliv_governance_p": "Data quality audits, reconciliation, and business rules governance to ensure indicator consistency.",
+    "deliv_governance_link": "View audit & DQ →",
+    "deliv_traceability": "Traceability",
+    "deliv_traceability_p": "Version-controlled code, comprehensive technical documentation, and full transformation audit trails.",
+    "deliv_traceability_link": "View GitHub repository ↗",
+    "tools_title": "Tools & Technologies",
+    "tools_sub": "Technological ecosystem organized by domain for data engineering, predictive modeling, and analytics:",
+    "showcase_title": "Studies & Projects Showcase",
+    "showcase_sub": "In-depth analyses with reproducible methodology, quantitative data, and direct operational impact:",
+    "showcase_recent_badge": "Latest Published Studies (Featured Showcase)",
+    "study04_badge": "Study 04 · Central Bank SGS Backtest",
+    "study04_meta": "Noise Floor in Household Credit Granting Projections · 57 real months",
+    "study04_title": "Household Credit Forecasting: Walk-Forward Backtest & Calendar Effects",
+    "study04_desc": "Adding Brazilian national (ANBIMA) holidays and business days cuts monthly forecast error (MAE) from <strong>R$ 13.63 bn to R$ 6.24 bn (-R$ 7.39 bn/month in planning accuracy)</strong>, hitting the ±5% target in <strong>97.0%</strong> of months. <em>Method:</em> 33-origin walk-forward backtest (<code>wMAPE 2.79% · Ljung-Box p = 0.403</code>).",
+    "study04_btn_study": "Read Study & Method →",
+    "study04_btn_json": "JSON Data",
+    "study05_badge": "Study 05 · Credit Policy & Decisioning",
+    "study05_meta": "GiveMeSomeCredit (OpenML 46929) · 150,000 historical borrowers",
+    "study05_title": "How a 2D Policy (Score × Random Forest) Lifts Return on EAD to 4.14% vs RF 1D & Rigid",
+    "study05_desc": "Separates knock-outs by severity (<code>R1→R2→R3</code>) and applies a complementary 3×3 Matrix in R4 (<code>49.68%</code> simulated approval, <strong>1.05%</strong> EAD Bad Rate, <strong>5.05M</strong> net P&amp;L vs 4.71M RF 1D @ equal EAD &amp; 4.55M rigid), isolating <strong>1,794</strong> Early Warning cases (<code>6.35%</code> BR).",
+    "study05_btn_study": "Read Study & Simulator →",
+    "study03_badge": "Study 03 · 138 Banks + 108 State-Years",
+    "study03_meta": "BCB Olinda (11m) + IBGE 2022–2025",
+    "study03_title": "Where Banks Charge Most & Why Income Alone Fails to Predict Credit",
+    "study03_desc": "Compares rates across <strong>138 banks</strong> (a <strong>15.57x</strong> spread), proving price positioning persists over 11 months, and shows across <strong>108 state-years</strong> why static state income fails out-of-sample. <em>Method:</em> <code>K-Means + PCA (Spearman ρ = 0.866)</code> & fixed-effects panel (<code>MAE 1.28 vs 0.95 pp</code>).",
+    "study03_btn_study": "Read Study & Method →",
+    "sidebar_title": "Other Pipeline Studies",
+    "sidebar_badge": "Archive",
+    "sidebar_intro": "In-depth studies with interactive simulators and executive decision models:",
+    "study01_badge": "Study 01 · UCI Credit Default",
+    "study01_title": "Impact of Data Quality on Default Risk",
+    "study01_desc": "Shows on 30,000 accounts how missing data hides defaulters without triggering global alerts, recovering <strong>92.4% of value (NT$ 6.48M)</strong> with native missing handling. <em>Method:</em> <code>32.3% → 27.4%</code> capture drop & HGB NaN + Expected Loss.",
+    "study01_btn_study": "Read study →",
+    "study01_btn_sim": "Simulator",
+    "study01_btn_code": "Code ↗",
+    "study02_badge": "Study 02 · CVM Open Data",
+    "study02_title": "Entity Deduplication & Golden Record (MDM) on CVM Data",
+    "study02_desc": "Consolidates 7,905 official records into 6,736 unique CNPJs (<strong>-14.8% duplicates</strong>) and resolves <strong>78.6% (33/42)</strong> of conflicts by recency, even without tax keys. <em>Method:</em> Golden Record + Record Linkage (<code>PR-AUC 0.884</code>).",
+    "study02_btn_study": "Read study →",
+    "study02_btn_sim": "Simulator",
+    "study02_btn_code": "Code ↗",
+    "sidebar_catalog_link": "View Full Showcase with all 5 Studies",
+    "catalog_title": "Analytical Studies Showcase",
+    "catalog_sub": "Real-world case studies and open data on Credit Risk, Data Quality, Entity Resolution, and Econometrics.",
+    "catalog_back_home": "← Back to Main Portfolio",
+    "contact_title": "Get in Touch",
+    "contact_sub": "Available for Specialist / Senior roles in Data, Analytics, Credit Risk and Business Intelligence:",
+    "contact_btn_li": "Connect on LinkedIn →",
+    "contact_btn_gh": "Explore Repository on GitHub",
+    "contact_loc_label": "Location",
+    "contact_loc_val": "São Paulo, SP — Brazil (Hybrid / Remote)",
+    "contact_li_label": "Professional LinkedIn",
+    "contact_repo_label": "Projects & Code",
+    "footer_rights": "Carlos Santos. All rights reserved.",
+    "cat_hero_tag": "Studies Catalogue",
+    "cat_hero_title": "Studies Showcase",
+    "cat_hero_role": "Analyses with documented scope, metrics, and explicit limitations",
+    "cat_intro_label": "Studies Showcase",
+    "cat_intro_title": "Published Studies",
+    "cat_intro_desc": "Reproducible analytical case studies based exclusively on official public data sources and anonymized public benchmarks (UCI Machine Learning Repository, CVM Open Data, IBGE PNAD Contínua, Central Bank of Brazil SGS, and GiveMeSomeCredit / OpenML #46929).",
+    "cat_card01_badge": "Study 01 · UCI Credit Default",
+    "cat_card01_title": "Impact of Data Quality on Default Risk",
+    "cat_card01_desc": "Proves on 30,000 accounts that missing data hides defaulters without moving global alerts; native missing handling recovers NT$ 6.48M (92.4% of clean value).",
+    "cat_card02_badge": "Study 02 · CVM Open Data",
+    "cat_card02_title": "Entity Deduplication & Golden Record (MDM) on CVM Data",
+    "cat_card02_desc": "Consolidates 7,905 CVM records (-14.8% duplicates), resolves 78.6% of conflicts by recency, and matches unkeyed records with HGB (PR-AUC 0.763 → 0.884).",
+    "cat_card03_badge": "Study 03 · 138 Banks + 108 State-Years",
+    "cat_card03_title": "Where Banks Charge Most & Limits of Regional Income",
+    "cat_card03_desc": "Maps 138 banks with a 15.57x rate spread (persistence ρ = 0.866) and proves across 108 state-years that income alone fails out-of-sample tests.",
+    "cat_card04_badge": "Study 04 · Central Bank SGS",
+    "cat_card04_title": "Household Credit Forecasting: Walk-Forward Backtest & Calendar Effects",
+    "cat_card04_desc": "Adjusting for Brazilian national holidays (ANBIMA) and business days reduces monthly forecast MAE by R$ 7.39 bn/month (wMAPE 2.79%) with 97.0% of months inside ±5%.",
+    "cat_card05_badge": "Study 05 · 150k Applications (OpenML)",
+    "cat_card05_title": "Credit Policy Optimization: Maximizing Returns with Score and Machine Learning",
+    "cat_card05_desc": "Optimized 2D simulation approves 49.68% with 1.05% EAD Bad Rate and 5.05M P&amp;L (4.14% P&amp;L/EAD vs 4.71M RF 1D @ equal EAD &amp; 4.55M rigid), isolating 1,794 Early Warning cases (6.35% BR).",
+    "cat_btn_read": "Read study →",
+    "cat_btn_code_data": "<i class='bi bi-github'></i> Code &amp; Data ↗",
+    "cat_btn_code_res": "<i class='bi bi-github'></i> Code &amp; Results ↗",
+    "footer_home_link": "Home",
+    "tools_cat_01": "<span class='badge-dot'></span> 01 · Languages &amp; Data Engineering",
+    "tools_cat_02": "<span class='badge-dot'></span> 02 · Analytics &amp; Machine Learning",
+    "tools_cat_03": "<span class='badge-dot'></span> 03 · Databases &amp; Cloud Infrastructure",
+    "tools_cat_04": "<span class='badge-dot'></span> 04 · Business Intelligence &amp; Productivity",
+    "tools_btn_more": "View all technologies (+21)",
+    "tools_btn_less": "Show fewer technologies",
+    "study03_kpi1_label": "11m Persistence",
+    "study03_kpi2_label": "Bank Rate Spread",
+    "study03_kpi3_label": "108 State-Years Panel",
+    "btn_code_and_data": "<i class='bi bi-github'></i> Code &amp; Data ↗"
+  },
+  "es": {
+    "tagline_pill": "Datos & Analytics",
+    "nav_home": "Inicio",
+    "nav_about": "Sobre Mí & Trayectoria",
+    "nav_deliver": "Lo que entrego",
+    "nav_tools": "Herramientas",
+    "nav_studies": "Vitrina de Estudios →",
+    "nav_contact": "Contacto",
+    "hero_tag": "Datos · Analytics · Decisión",
+    "hero_role": "Especialista en Datos & Analytics con foco en Riesgo de Crédito, Calidad de Datos y Decisión Operativa",
+    "hero_summary": "Conecto la investigación profunda de reglas de negocio y bases de datos con diagnósticos claros y acciones operativas que generan impacto directo en el negocio.",
+    "hero_cta_studies": "Acceder a Vitrina de Estudios →",
+    "hero_cta_credit": "Ver Estudio de Crédito",
+    "hero_card_kicker": "Últimos Estudios",
+    "hero_card_sub": "Haz clic en cualquier resultado para ver los datos y el código:",
+    "hero_policy_label": "Concesión de Crédito & IA · 150 mil solicitudes",
+    "hero_policy_val": "Elevó el P&amp;L simulado en <strong>+10,9%</strong> sobre la regla rígida, con pérdida EAD de <strong>1,05%</strong> →",
+    "hero_diff_label": "Previsión de Crédito · Banco Central",
+    "hero_diff_val": "Redujo el error de proyección (MAE) en <strong>R$ 7,39 mil M/mes (-54%)</strong> con feriados ANBIMA →",
+    "hero_domain_label": "Calidad de Datos & Cobranza · 30 mil cuentas",
+    "hero_domain_val": "Recuperó el <strong>92,4%</strong> de pérdidas financieras al corregir fallas catastrales ocultas →",
+    "hero_method_label": "Base Única de Empresas (MDM) · 7.905 registros CVM",
+    "hero_method_val": "Eliminó <strong>14,8%</strong> de duplicidades y creó una visión única y confiable de empresas →",
+    "hero_avail_label": "Tasas & Ingreso Regional · 138 Bancos + IBGE",
+    "hero_avail_val": "Mapeó dispersión de hasta <strong>15,6x</strong> en tasas y midió el peso de la competencia local →",
+    "about_title": "Sobre mí & Trayectoria",
+    "about_sub": "Una visión sobre la base técnica, la postura analítica y cómo genero impacto en las operaciones.",
+    "about_bio_p1": "Actúo en la intersección entre <strong>Datos, Analytics y Operaciones de Negocio</strong>, investigando el origen, granularidad y reglas de la información para construir indicadores confiables, identificar oportunidades y apoyar decisiones estratégicas y operativas.",
+    "about_quote": "“Los indicadores consolidados pueden ocultar fallas operativas. Un análisis eficiente comienza por la calidad de los datos, las reglas de negocio y la comprensión del problema.”",
+    "about_bio_p2": "Con foco en <strong>riesgo de crédito, embudo de conversión, conciliación de indicadores y calidad de datos</strong>, uno herramientas escalables (SQL avanzado, pipelines en Python, DuckDB y Databricks) al modelado de negocio (Power BI, DAX y gobernanza de KPIs) para asegurar que liderazgo y operación tomen decisiones alineadas y auditables.",
+    "cred_edu_label": "01 · FORMACIÓN ACADÉMICA",
+    "cred_edu_title": "Formación en Computación, Big Data y Estadística",
+    "cred_edu_desc": "• Licenciatura en <strong>Ciencias de la Computación</strong> (Facultad Sumaré)<br>• Posgrado en <strong>Big Data</strong> (Univ. Anhembi Morumbi)<br>• Posgrado en <strong>Estadística Aplicada</strong> (FMU)",
+    "cred_spec_label": "02 · ÁREAS DE ESPECIALIDAD",
+    "cred_spec_title": "Frentes Centrales de Actuación",
+    "cred_spec_desc": "• <strong>Crédito:</strong> Scoring, políticas de límite, priorización de cobranza.<br>• <strong>Calidad (DQ):</strong> Data contracts, monitoreo de ausencias y drift.<br>• <strong>BI & Ingresos:</strong> Modelado dimensional, embudo y conciliación de bases.",
+    "cred_ops_label": "03 · POSTURA OPERATIVA",
+    "cred_ops_title": "Del Diagnóstico a la Acción",
+    "cred_ops_desc": "• <strong>Rigor & Causalidad:</strong> Separación entre correlación y causalidad real.<br>• <strong>Comunicación en Capas:</strong> Ejecutiva para dirección y técnica para squads.<br>• <strong>Reproducibilidad:</strong> Pipelines auditables sin dependencia de procesos manuales.",
+    "deliver_title": "Lo que entrego",
+    "deliver_sub": "Capacidades analíticas aplicadas para resolver problemas reales de operaciones y gestión:",
+    "deliv_dashboards": "Dashboards",
+    "deliv_dashboards_p": "Paneles ejecutivos con indicadores confiables, análisis detallados y seguimiento de resultados.",
+    "deliv_dashboards_link": "Ver paneles y modelos →",
+    "deliv_analyses": "Análisis & Estudios",
+    "deliv_analyses_p": "Investigaciones de crédito, cobranza e ingresos para identificar causas, riesgos y oportunidades.",
+    "deliv_analyses_link": "Ver estudio de crédito →",
+    "deliv_automations": "Automatizaciones",
+    "deliv_automations_p": "Procesos en Python y SQL para reducir retrabajo, validar contratos de datos y aumentar la eficiencia.",
+    "deliv_automations_link": "Ver pipeline y simulador →",
+    "deliv_governance": "Gobernanza de Datos",
+    "deliv_governance_p": "Calidad, conciliación y reglas de negocio para garantizar consistencia y confiabilidad de indicadores.",
+    "deliv_governance_link": "Ver auditoría y DQ →",
+    "deliv_traceability": "Trazabilidad",
+    "deliv_traceability_p": "Código versionado, documentación técnica e historial de transformaciones y reglas aplicadas.",
+    "deliv_traceability_link": "Ver repositorio en GitHub ↗",
+    "tools_title": "Herramientas & Tecnologías",
+    "tools_sub": "Ecosistema tecnológico organizado por especialidad para ingeniería de datos, modelado predictivo y analytics:",
+    "showcase_title": "Vitrina de Estudios & Proyectos",
+    "showcase_sub": "Análisis profundos con metodología reproducible, datos cuantitativos e impacto operativo directo:",
+    "showcase_recent_badge": "Últimos Estudios Publicados (Vitrina Destacada)",
+    "study04_badge": "Estudio 04 · Backtest BCB SGS",
+    "study04_meta": "Piso de Ruido en la Proyección de Concesiones de Crédito PF · 57 meses reales",
+    "study04_title": "Previsión de Crédito PF: Backtest Walk-Forward y Efecto Calendario",
+    "study04_desc": "Incluir feriados nacionales ANBIMA y días hábiles reduce el error de proyección (MAE) de <strong>R$ 13,63 mil M a R$ 6,24 mil M/mes (-R$ 7,39 mil M/mes)</strong> y ubica el <strong>97,0%</strong> de los meses en la meta ±5%. <em>Método:</em> backtest walk-forward en 33 meses reales (<code>wMAPE 2,79% · Ljung-Box p = 0,403</code>).",
+    "study04_btn_study": "Leer Estudio y Método →",
+    "study04_btn_json": "Datos JSON",
+    "study05_badge": "Estudio 05 · Política de Crédito y Decisión",
+    "study05_meta": "GiveMeSomeCredit (OpenML 46929) · 150.000 registros históricos",
+    "study05_title": "Cómo Política 2D (Score × Random Forest) Eleva Retorno s/ EAD a 4,14% vs RF 1D y Rígida",
+    "study05_desc": "Separa filtros eliminatorios por gravedad (<code>R1→R2→R3</code>) y aplica Matriz 3×3 complementaria en R4 (<code>49,68%</code> aprobación simulada, Bad Rate EAD <strong>1,05%</strong>, P&amp;L <strong>5,05M</strong> vs 4,71M RF 1D @ igual EAD y 4,55M rígida), aislando <strong>1.794</strong> casos Early Warning (<code>6,35%</code> BR).",
+    "study05_btn_study": "Leer Estudio y Simulador →",
+    "study03_badge": "Estudio 03 · 138 Bancos + 108 UF-Años",
+    "study03_meta": "BCB Olinda (11m) + IBGE 2022–2025",
+    "study03_title": "Dónde Cobran Más Caro los Bancos y Por Qué el Ingreso Solo Falla",
+    "study03_desc": "Analiza tasas de <strong>138 bancos</strong> (diferencia de hasta <strong>15,57x</strong>) probando persistencia de 11 meses, y muestra en <strong>108 UF-años</strong> por qué el ingreso estatal aislado falla en el futuro. <em>Método:</em> <code>K-Means + PCA (Spearman ρ = 0,866)</code> y efectos fijos (<code>MAE 1,28 vs 0,95 p.p.</code>).",
+    "study03_btn_study": "Leer Estudio y Método →",
+    "sidebar_title": "Demás Estudios del Pipeline",
+    "sidebar_badge": "Acervo",
+    "sidebar_intro": "Estudios profundos con simuladores interactivos y modelos ejecutivos de decisión:",
+    "study01_badge": "Estudio 01 · UCI Credit Default",
+    "study01_title": "Impacto de la Calidad de los Datos en el Riesgo de Morosidad",
+    "study01_desc": "Demuestra en 30.000 cuentas que fallas catastrales ocultan morosos sin alterar alertas globales, recuperando <strong>92,4% del valor (NT$ 6,48M)</strong> al tratar ausencias nativamente. <em>Método:</em> <code>32,3% → 27,4%</code> en captura y HGB NaN + Pérdida Esperada.",
+    "study01_btn_study": "Leer estudio →",
+    "study01_btn_sim": "Simulador",
+    "study01_btn_code": "Código ↗",
+    "study02_badge": "Estudio 02 · Datos Abiertos CVM",
+    "study02_title": "Unificación de Registros Duplicados (MDM) en la Base CVM",
+    "study02_desc": "Consolida 7.905 registros en 6.736 CNPJs únicos (<strong>-14,8% duplicidades</strong>) y resuelve <strong>78,6% (33/42)</strong> de los conflictos por recencia, aun sin clave de CNPJ. <em>Método:</em> Golden Record + Record Linkage (<code>PR-AUC 0,884</code>).",
+    "study02_btn_study": "Leer estudio →",
+    "study02_btn_sim": "Simulador",
+    "study02_btn_code": "Código ↗",
+    "sidebar_catalog_link": "Ver Vitrina Completa con los 5 Estudios",
+    "catalog_title": "Vitrina de Estudios Analíticos",
+    "catalog_sub": "Casos de estudio reales y datos públicos sobre Riesgo de Crédito, Calidad de Datos, Resolución de Entidades y Econometría.",
+    "catalog_back_home": "← Volver al Portafolio Principal",
+    "contact_title": "Póngase en Contacto",
+    "contact_sub": "Disponible para puestos de Especialista / Sénior en Datos, Analytics, Riesgo de Crédito e Inteligencia de Negocio:",
+    "contact_btn_li": "Conectar en LinkedIn →",
+    "contact_btn_gh": "Explorar Repositorio en GitHub",
+    "contact_loc_label": "Ubicación",
+    "contact_loc_val": "São Paulo, SP — Brasil (Híbrido / Remoto)",
+    "contact_li_label": "LinkedIn Profesional",
+    "contact_repo_label": "Proyectos & Código",
+    "footer_rights": "Carlos Santos. Todos los derechos reservados.",
+    "cat_hero_tag": "Catálogo de estudios",
+    "cat_hero_title": "Vitrina de Estudios",
+    "cat_hero_role": "Análisis con alcance, métricas y limitaciones documentadas",
+    "cat_intro_label": "Vitrina de Estudios",
+    "cat_intro_title": "Estudios publicados",
+    "cat_intro_desc": "Casos analíticos reproducibles basados exclusivamente en fuentes públicas oficiales y benchmarks públicos anonimizados (UCI Machine Learning Repository, Datos Abiertos CVM, IBGE PNAD Contínua, Banco Central do Brasil SGS y GiveMeSomeCredit / OpenML #46929).",
+    "cat_card01_badge": "Estudio 01 · UCI Credit Default",
+    "cat_card01_title": "Impacto de la calidad de los datos en el riesgo de morosidad",
+    "cat_card01_desc": "Prueba en 30.000 cuentas que fallas catastrales ocultan morosos sin disparar alertas globales; el manejo nativo recupera NT$ 6,48M (92,4% del valor limpio).",
+    "cat_card02_badge": "Estudio 02 · Datos Abiertos CVM",
+    "cat_card02_title": "Unificación de Registros Duplicados (MDM) en la Base CVM",
+    "cat_card02_desc": "Consolida 7.905 registros CVM (-14,8% duplicidades), resuelve 78,6% de conflictos por recencia y cruza registros sin CNPJ con HGB (PR-AUC 0,763 → 0,884).",
+    "cat_card03_badge": "Estudio 03 · 138 Bancos + 108 UF-Años",
+    "cat_card03_title": "Dónde Cobran Más Caro los Bancos y Límites del Ingreso Regional",
+    "cat_card03_desc": "Mapea 138 bancos con 15,57x de dispersión en tasas (persistencia ρ = 0,866) y prueba en 108 UF-años que el ingreso aislado falla fuera de muestra.",
+    "cat_card04_badge": "Estudio 04 · Banco Central SGS",
+    "cat_card04_title": "Previsión de Crédito PF: Backtest Walk-Forward y Efecto Calendario",
+    "cat_card04_desc": "Ajustar por feriados nacionales ANBIMA y días hábiles reduce el error mensual (MAE) en R$ 7,39 mil M/mes (wMAPE 2,79%) y acierta 97,0% de los meses en ±5%.",
+    "cat_card05_badge": "Estudio 05 · 150 mil solicitudes (OpenML)",
+    "cat_card05_title": "Optimización de Política de Crédito: Maximizando Retorno con Score e Inteligencia Artificial",
+    "cat_card05_desc": "Simulación Optimizada 2D aprueba 49,68% con Bad Rate EAD de 1,05% y 5,05M (4,14% P&amp;L/EAD vs 4,71M RF 1D @ igual EAD y 4,55M rígida), aislando 1.794 casos Early Warning (6,35% BR).",
+    "cat_btn_read": "Leer estudio →",
+    "cat_btn_code_data": "<i class='bi bi-github'></i> Código y Datos ↗",
+    "cat_btn_code_res": "<i class='bi bi-github'></i> Código y Resultados ↗",
+    "footer_home_link": "Inicio",
+    "tools_cat_01": "<span class='badge-dot'></span> 01 · Lenguajes e Ingeniería de Datos",
+    "tools_cat_02": "<span class='badge-dot'></span> 02 · Analytics &amp; Machine Learning",
+    "tools_cat_03": "<span class='badge-dot'></span> 03 · Bases de Datos e Infraestructura",
+    "tools_cat_04": "<span class='badge-dot'></span> 04 · Business Intelligence y Productividad",
+    "tools_btn_more": "Ver todas las tecnologías (+21)",
+    "tools_btn_less": "Ver menos tecnologías",
+    "study03_kpi1_label": "Persistencia 11m",
+    "study03_kpi2_label": "Spread Bancario",
+    "study03_kpi3_label": "Panel 108 UF-Años",
+    "btn_code_and_data": "<i class='bi bi-github'></i> Código y Datos ↗"
+  }
+};
+
+  function applyLanguage(lang) {
+    if (!I18N_DATA[lang]) lang = "pt";
+    try { localStorage.setItem("portfolio_user_lang", lang); } catch (e) {}
+    document.documentElement.lang = lang;
+
+    const codeEl = document.getElementById("lang-current-code");
+    if (codeEl) codeEl.textContent = lang.toUpperCase();
+
+    document.querySelectorAll(".lang-option").forEach(btn => {
+      btn.classList.toggle("active", btn.getAttribute("data-lang") === lang);
+    });
+
+    const dict = I18N_DATA[lang] || {};
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const key = el.getAttribute("data-i18n");
+      if (dict[key]) {
+        el.innerHTML = dict[key];
+      }
+    });
+
+    // Sincronismo com Google Translate para tradução contínua de parágrafos dos estudos
+    try {
+      const domain = window.location.hostname;
+      if (lang === "pt") {
+        document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + domain + ";";
+      } else {
+        document.cookie = "googtrans=/pt/" + lang + "; path=/;";
+        document.cookie = "googtrans=/pt/" + lang + "; path=/; domain=" + domain + ";";
+      }
+      const select = document.querySelector(".goog-te-combo");
+      if (select) {
+        select.value = lang;
+        select.dispatchEvent(new Event("change"));
+      }
+    } catch (e) {}
+  }
+
+  function initLanguageSwitcher() {
+    const switcher = document.getElementById("lang-switcher");
+    const btn = document.getElementById("lang-btn");
+    const dropdown = document.getElementById("lang-dropdown");
+    if (!switcher || !btn || !dropdown) return;
+
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      const isOpen = dropdown.classList.toggle("open");
+      btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+
+    dropdown.querySelectorAll(".lang-option").forEach(opt => {
+      opt.addEventListener("click", function (e) {
+        e.stopPropagation();
+        const selectedLang = this.getAttribute("data-lang");
+        applyLanguage(selectedLang);
+        dropdown.classList.remove("open");
+        btn.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    document.addEventListener("click", function (e) {
+      if (!switcher.contains(e.target)) {
+        dropdown.classList.remove("open");
+        btn.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    let savedLang = "pt";
+    try {
+      savedLang = localStorage.getItem("portfolio_user_lang") || "pt";
+    } catch (e) {}
+    applyLanguage(savedLang);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initLanguageSwitcher);
+  } else {
+    initLanguageSwitcher();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initMobileNav);
+  } else {
+    initMobileNav();
+  }
+
+  // ScrollSpy para atualizar o menu ativo conforme a seção visualizada
+  const sections = document.querySelectorAll("section[id]");
+  const navLinks = document.querySelectorAll("#navbar a[href^='#']");
+
+  if (sections.length && navLinks.length && "IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const currentId = entry.target.getAttribute("id");
+          navLinks.forEach((link) => {
+            const href = link.getAttribute("href");
+            if (href === "#" + currentId) {
+              link.classList.add("active");
+            } else {
+              link.classList.remove("active");
+            }
+          });
+        }
+      });
+    }, { rootMargin: "-70px 0px -50% 0px" });
+
+    sections.forEach((sec) => observer.observe(sec));
+  }
+})();
+</script>
+</body>
+</html>

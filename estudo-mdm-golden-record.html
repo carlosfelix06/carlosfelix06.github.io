@@ -1,0 +1,1813 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="alternate icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<title>Unificação de Cadastros Duplicados (MDM) na Base CVM | Carlos Santos</title>
+<meta name="description" content="Auditoria MDM em 7.905 registros públicos da CVM (6.736 CNPJs) e benchmark cego 5-fold de Record Linkage sem CNPJ entre Razão Social formal e drift comercial CRM.">
+<link rel="canonical" href="https://carlosfelix06.github.io/estudo-mdm-golden-record.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unificação de Cadastros Duplicados (MDM) na Base CVM | Carlos Santos">
+<meta property="og:description" content="Auditoria MDM em 7.905 registros da CVM (-14,8% duplicidades) e benchmark de Record Linkage sem CNPJ (PR-AUC 0,884).">
+<meta property="og:url" content="https://carlosfelix06.github.io/estudo-mdm-golden-record.html">
+<meta property="og:image" content="https://carlosfelix06.github.io/assets/img/vitrine_estudo_02_mdm.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Unificação de Cadastros Duplicados (MDM) na Base CVM | Carlos Santos">
+<meta name="twitter:description" content="Auditoria MDM em 7.905 registros da CVM (-14,8% duplicidades) e benchmark de Record Linkage sem CNPJ (PR-AUC 0,884).">
+<meta name="twitter:image" content="https://carlosfelix06.github.io/assets/img/vitrine_estudo_02_mdm.svg">
+<link rel="stylesheet" href="assets/vendor/bootstrap-icons/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/css/style.css?v=20261116_pillfix">
+<script src="https://cdn.jsdelivr.net/npm/plotly.js-basic-dist-min@2.35.2/plotly-basic.min.js" defer></script>
+<style>
+  /* Hero Compact Study */
+  #hero { padding: 82px 0 38px !important; }
+  #hero h1, #hero h1.study-title {
+    font-size: clamp(1.35rem, 2.2vw, 1.8rem) !important;
+    line-height: 1.22 !important;
+    letter-spacing: -0.3px !important;
+    margin: 0 0 10px !important;
+    font-weight: 800 !important;
+    max-width: 42ch;
+  }
+  .hero-role {
+    font-size: 1.02rem !important;
+    line-height: 1.4 !important;
+    margin: 0 0 12px !important;
+    color: #CBD5E1;
+  }
+  .hero-summary {
+    font-size: 14.5px !important;
+    line-height: 1.52 !important;
+    margin: 0 0 18px !important;
+    max-width: 58ch;
+  }
+
+  .study-article { max-width: 1180px; margin: 0 auto; }
+  .study-article h2 { color: var(--ink-heading); font-size: 1.5rem; margin: 2rem 0 0.8rem; border-bottom: 2px solid var(--line); padding-bottom: 0.45rem; }
+  .study-article p { color: var(--ink); line-height: 1.72; font-size: 15.5px; margin: 0.85em 0; }
+  .stage-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 1.2rem 0 1.8rem; }
+  .stage-card { background: #FFFFFF; border: 1px solid var(--line); border-top: 4px solid var(--secondary); border-radius: 8px; padding: 16px 18px; }
+  .stage-card h4 { margin: 0 0 6px; font-size: 15px; color: var(--ink-heading); font-weight: 700; }
+  .stage-card p { margin: 0; font-size: 13.5px; line-height: 1.55; color: var(--mute); }
+  .code-box { background: #F8FAFC; color: #404040; border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12.5px; line-height: 1.55; overflow-x: auto; margin: 1rem 0 0; box-shadow: inset 0 1px 3px rgba(0,0,0,0.02); }
+  .badge-win { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 700; background: #DCFCE7; color: #166534; }
+  .badge-warn { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 700; background: #FEF3C7; color: #92400E; }
+
+  /* Barra de Navegação Rápida (.files) no Desktop e Padrão Executivo */
+  .files, .study-article .files {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 10px !important;
+    padding: 12px 18px !important;
+    background: #F8FAFC !important;
+    border: 1px solid #E2E8F0 !important;
+    border-radius: 10px !important;
+    margin: 1.2rem 0 2rem !important;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04) !important;
+  }
+  .files a, .study-article .files a {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    padding: 7px 14px !important;
+    background: #FFFFFF !important;
+    border: 1px solid #CBD5E1 !important;
+    border-radius: 6px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: var(--ink-heading) !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease !important;
+    line-height: 1.25 !important;
+  }
+  .files a:hover, .study-article .files a:hover {
+    background: #F1F5F9 !important;
+    border-color: var(--primary) !important;
+    color: var(--primary) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06) !important;
+    text-decoration: none !important;
+  }
+  .files a:first-child, .study-article .files a:first-child {
+    background: #0B2038 !important;
+    color: #FFFFFF !important;
+    border-color: #0B2038 !important;
+    font-weight: 700 !important;
+  }
+  .files a:first-child:hover, .study-article .files a:first-child:hover {
+    background: var(--primary) !important;
+    border-color: var(--primary) !important;
+    color: #FFFFFF !important;
+  }
+
+  /* Prevenção estrita de quebra nos KPIs */
+  .study-kpi-value, .kpi-val {
+    white-space: nowrap !important;
+    font-size: clamp(1.05rem, 1.3vw, 1.32rem) !important;
+    letter-spacing: -0.2px;
+  }
+
+/* ======================================================== */
+/* OTIMIZAÇÃO ESPECÍFICA PARA DISPOSITIVOS MÓVEIS NOS ESTUDOS */
+/* ======================================================== */
+@media (max-width: 768px) {
+  /* Layout e Container Geral dos Estudos */
+  main.case-study, .study-article, main.catalog {
+    padding: 20px 14px 40px !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  main.case-study p, .study-article p {
+    font-size: 14.5px !important;
+    line-height: 1.65 !important;
+    margin: 0.75em 0 !important;
+  }
+
+  .lead-paragraph {
+    font-size: 15.5px !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Títulos dos Estudos */
+  .study-h2 {
+    font-size: 1.3rem !important;
+    line-height: 1.3 !important;
+    margin: 1.8rem 0 0.5rem !important;
+    padding-bottom: 0.4rem !important;
+  }
+
+  .study-sub {
+    font-size: 13.5px !important;
+    line-height: 1.5 !important;
+    margin-bottom: 1.2rem !important;
+  }
+
+  /* Barra de Navegação Rápida nos Estudos (.files) */
+  .files, .study-article .files {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    padding: 10px 12px !important;
+    margin: 1rem 0 1.5rem !important;
+  }
+  
+  .files a, .study-article .files a {
+    display: inline-flex !important;
+    align-items: center !important;
+    padding: 6px 10px !important;
+    background: #F8FAFC !important;
+    border: 1px solid var(--line) !important;
+    border-radius: 6px !important;
+    font-size: 12.5px !important;
+    text-decoration: none !important;
+  }
+
+  /* Grids de Pesquisa e Quantitativos nos Estudos */
+  .card-grid-2, .card-grid-3, .quant-grid, .stage-grid, .study-figures {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+    margin-bottom: 1.8rem !important;
+  }
+
+  .card-grid-2 > *, .card-grid-3 > *, .quant-grid > *, .stage-grid > *,
+  .study-figures > *, .study-kpis > *, #sim-kpis > *, #mdm-kpis > *, .kpi-grid > * {
+    min-width: 0 !important;
+  }
+
+  .research-card, .quant-card, .fig-analytic-card, .stage-card, .study-figure, .study-chart, .sim-box {
+    padding: 16px 14px !important;
+    border-radius: 8px !important;
+    margin-bottom: 1.5rem !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .research-card-title {
+    font-size: 1.05rem !important;
+  }
+
+  /* KPIs e Métricas nos Estudos */
+  .study-kpis, #sim-kpis, #mdm-kpis, .kpi-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+    margin: 1rem 0 1.5rem !important;
+  }
+
+  .study-kpi, .kpi-card {
+    padding: 10px 12px !important;
+    border-radius: 6px !important;
+    min-width: 0 !important;
+  }
+
+  .study-kpi-value, .kpi-val {
+    font-size: clamp(1.05rem, 4.5vw, 1.3rem) !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  .study-kpi-label, .kpi-label {
+    font-size: 10px !important;
+  }
+
+  /* Simuladores Interativos (Estudo 01 e Estudo 02) */
+  .sim-box {
+    padding: 16px 12px !important;
+    border-radius: 8px !important;
+  }
+
+  .sim-controls, .sim-box > div:first-child {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  .sim-controls select, .sim-box select {
+    font-size: 13.5px !important;
+    padding: 8px 10px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .sim-field label {
+    font-size: 11px !important;
+  }
+
+  /* Barra Dinâmica da Fila no Simulador */
+  #sim-bar-container .bar, .split-bar-box {
+    flex-direction: column !important;
+    height: auto !important;
+    min-height: 48px !important;
+    border-radius: 6px !important;
+    font-size: 11px !important;
+  }
+
+  #sim-bar-container .bar > div, .split-bar-box > div {
+    width: 100% !important;
+    padding: 8px 10px !important;
+    box-sizing: border-box !important;
+    text-align: left !important;
+  }
+
+  /* Caixas de Destaque / Diagnóstico Operacional */
+  .so, .fig-interp, .study-note {
+    padding: 12px 14px !important;
+    font-size: 13px !important;
+    line-height: 1.55 !important;
+    margin: 1rem 0 !important;
+  }
+
+  /* Bloco de Código e Pré-visualização JSON */
+  .code-box, pre, .repro-terminal {
+    font-size: 11px !important;
+    line-height: 1.45 !important;
+    padding: 10px 12px !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    word-break: break-word !important;
+    white-space: pre-wrap !important;
+    box-sizing: border-box !important;
+  }
+
+  pre code, .code-box code, .repro-terminal code {
+    padding: 0 !important;
+    background: transparent !important;
+    font-size: inherit !important;
+    white-space: inherit !important;
+  }
+
+  :not(pre) > code {
+    font-size: 0.88em !important;
+    padding: 1px 5px !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  /* Tabelas nos Estudos */
+  .quant-table, table {
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: 12.5px !important;
+    min-width: 0 !important;
+  }
+
+  .wrap > table:not(.quant-table), .table-responsive > table:not(.quant-table) {
+    min-width: 440px !important;
+    max-width: none !important;
+  }
+
+  .quant-table th, .quant-table td, table th, table td {
+    padding: 7px 8px !important;
+  }
+
+  .wrap, .table-responsive {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    display: block !important;
+    margin: 10px 0 !important;
+  }
+
+  .viz-interactive-shell, .viz-canvas {
+    max-width: 100% !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Passos Canônicos (Seções Expandidas) */
+  .canonical-step {
+    padding: 16px 14px !important;
+    margin-bottom: 1rem !important;
+    border-radius: 8px !important;
+  }
+
+  .canonical-step h3 {
+    font-size: 1.1rem !important;
+    line-height: 1.35 !important;
+  }
+
+  .canonical-content {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Figuras e Imagens */
+  .fig img, .fig-analytic-card img, .study-figure img, .study-chart img {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+    border-radius: 4px !important;
+  }
+
+  figcaption, .fig .meta {
+    font-size: 12px !important;
+    line-height: 1.45 !important;
+    margin-top: 6px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .study-kpis, #sim-kpis, #mdm-kpis, .kpi-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+  /* Micro-pílulas de Links Externos no Hero (Opção 2 - Imune a Cache de CSS) */
+  .btn-pill-compact, a.btn-pill-compact {
+    height: 38px !important;
+    padding: 0 14px !important;
+    border-radius: 6px !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    color: #F8FAFC !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 7px !important;
+    font-size: 12.5px !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease !important;
+    box-sizing: border-box !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+  }
+  .btn-pill-compact:hover, a.btn-pill-compact:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-color: #FFFFFF !important;
+    color: #FFFFFF !important;
+    transform: translateY(-1px) !important;
+    text-decoration: none !important;
+  }
+
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="container header-inner">
+    <div class="logo">
+        <a href="index.html">
+          Carlos Santos
+          <span class="tagline-pill" data-i18n="tagline_pill">Dados &amp; Analytics</span>
+        </a>
+      </div>
+    <div class="header-right">
+      <nav id="navbar">
+      <ul>
+        <li><a href="index.html#hero" data-i18n="nav_home">Início</a></li>
+        <li><a href="index.html#sobre" data-i18n="nav_about">Sobre &amp; Trajetória</a></li>
+        <li><a href="index.html#entrega" data-i18n="nav_deliver">O que entrega</a></li>
+        <li><a href="index.html#ferramentas" data-i18n="nav_tools">Ferramentas</a></li>
+        <li><a href="estudos.html" class="nav-cta active" data-i18n="nav_studies">Vitrine de Estudos →</a></li>
+        <li><a href="index.html#contato" data-i18n="nav_contact">Contato</a></li>
+      </ul>
+    </nav>
+      <div class="lang-switcher" id="lang-switcher">
+        <button type="button" class="lang-btn" id="lang-btn" aria-label="Selecionar idioma" aria-expanded="false">
+          <i class="bi bi-globe2" style="font-size:13px; color:#FFA5C8;"></i>
+          <span class="lang-code" id="lang-current-code">PT</span>
+          <i class="bi bi-chevron-down" style="font-size:9px; margin-left:1px; opacity:0.8;"></i>
+        </button>
+        <ul class="lang-dropdown" id="lang-dropdown">
+          <li><button type="button" class="lang-option active" data-lang="pt"><span class="lang-code-pill">PT</span> Português</button></li>
+          <li><button type="button" class="lang-option" data-lang="en"><span class="lang-code-pill">EN</span> English</button></li>
+          <li><button type="button" class="lang-option" data-lang="es"><span class="lang-code-pill">ES</span> Español</button></li>
+        </ul>
+      </div>
+      <button type="button" class="mobile-nav-toggle" aria-label="Menu" aria-expanded="false" style="display:none;">
+        <i class="bi bi-list"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<section id="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="hero-tag">Estudo 02 · Dados Abertos CVM</span>
+      <h1 class="study-title">Unificação de Cadastros Duplicados (MDM) na Base CVM</h1>
+      <div class="hero-role">
+        Resolução de Entidades, Survivorship e Golden Record em 6 Cadastros Públicos da CVM
+      </div>
+      <p class="hero-summary">
+        Auditoria quantitativa cruzando <strong>7.905 registros públicos regulatórios</strong> da Comissão de Valores Mobiliários (Companhias Abertas, Fundos, Administradores, Gestores, Custodiantes e Incentivadas) consolidados via motor <code>central/mdm.py</code>.
+      </p>
+      <div class="hero-cta-group">
+        <a class="btn-serasa" href="#simulador">Abrir Simulador Golden Record ↓</a>
+        <a class="btn-pill-compact" href="https://github.com/carlosfelix06/carlosfelix06.github.io/tree/main/codigo/estudo-02-mdm-cvm" target="_blank" rel="noopener">
+          <i class="bi bi-github"></i> GitHub ↗
+        </a>
+        <a class="btn-pill-compact" href="codigo/estudo-02-mdm-cvm/resultados/cvm_snapshot.json" target="_blank" rel="noopener">
+          <i class="bi bi-filetype-json"></i> JSON ↗
+        </a>
+        <a class="btn-pill-compact" href="https://dados.cvm.gov.br/" target="_blank" rel="noopener">
+          <i class="bi bi-bank"></i> CVM Dados ↗
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-quick-card">
+      <div class="quick-stat-item highlight-stat">
+        <div class="quick-stat-label">Achado Central na Base CVM</div>
+        <div class="quick-stat-val">Trocar Confiança Regulatória por Recência (DT_INI_SIT) inverte a situação ATIVO/CANCELADA em 33 de 42 conflitos (78,6%).</div>
+      </div>
+      <div class="quick-stat-item">
+        <div class="quick-stat-label">Deduplicação Real (CVM)</div>
+        <div class="quick-stat-val">7.905 registros brutos → 6.736 CNPJs únicos (-14,8% · 813 multi-papel)</div>
+      </div>
+      <div class="quick-stat-item">
+        <div class="quick-stat-label">Conflitos Auditados</div>
+        <div class="quick-stat-val">628 divergências de data · 42 conflitos de status · 3.449 nomes comerciais</div>
+      </div>
+      <div class="quick-stat-item">
+        <div class="quick-stat-label">Record Linkage Sem CNPJ (5-Fold Disjunto)</div>
+        <div class="quick-stat-val">Regra Exata vence no Social (F1 98,5%) · HGB Híbrido salta PR-AUC 0,763 → 0,884 no drift CRM</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main>
+  <section class="section" style="padding:2.5rem 0 4rem;">
+    <div class="container">
+      <div class="study-article">
+                <div class="files">
+          <span class="label-group"><i class="bi bi-compass"></i> Navegação Interna:</span>
+          <a href="estudos.html" class="nav-back"><i class="bi bi-arrow-left"></i> Voltar à Vitrine</a>
+          <a href="#sintese-executiva" class="nav-step"><i class="bi bi-file-earmark-text"></i> Síntese Executiva ↓</a>
+          <a href="#arquitetura" class="nav-step"><i class="bi bi-diagram-3"></i> Arquitetura 5 Etapas ↓</a>
+          <a href="#experimento" class="nav-step"><i class="bi bi-bar-chart-line"></i> Evidências CVM (7.905 reg.) ↓</a>
+          <a href="#simulador" class="nav-step"><i class="bi bi-sliders"></i> Simulador Interativo ↓</a>
+        </div>
+
+        <section id="sintese-executiva" class="exec-summary-box" aria-label="Síntese executiva e decisão">
+  <div class="exec-summary-eyebrow">Síntese Executiva &amp; Decisão Prática</div>
+  <p class="exec-summary-lead">Ao integrar 7.905 registros públicos da CVM em 6.736 CNPJs únicos (-14,8%), os sistemas divergem sobre status e nome. A regra comum de aceitar &#x27;a data mais recente&#x27; cancela emissores ativos por causa de papéis secundários encerrados.</p>
+  <div class="exec-summary-grid">
+    <div class="exec-takeaway">
+      <span class="exec-takeaway-title">Principal Descoberta</span>
+      <ul class="exec-takeaway-list"><li>Usar Recência (DT_INI_SIT) inverte ATIVO para CANCELADA em 33 de 42 conflitos reais (78,6%).</li><li>Sem CNPJ (5-fold disjunto): regra normalizada vence em nomes formais (F1 = 98,54%), mas HGB híbrido eleva o PR-AUC sob drift CRM de 0,7626 para 0,8835 (+12,1 p.p.).</li></ul>
+    </div>
+    <div class="exec-takeaway">
+      <span class="exec-takeaway-title">Aplicação Direta</span>
+      <ul class="exec-takeaway-list"><li>Ordenar sobrevivência por Confiança Regulatória antes da data e retornar ao CRM em Coexistência (+254 preenchimentos seguros).</li><li>Operar o pareamento sem chave em dois regimes dentro do motor central/mdm.py.</li></ul>
+    </div>
+  </div>
+</section>
+
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:14px; margin: 1.5rem 0 2rem;">
+          <div style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:16px 18px;">
+            <div style="font-size:11.5px; font-weight:700; color:var(--mute); text-transform:uppercase;">Cadastros CVM</div>
+            <div style="font-size:1.85rem; font-weight:800; color:var(--ink-heading); margin:4px 0 2px;">7.905</div>
+            <div style="font-size:12px; color:var(--mute);">6 fluxos públicos oficiais</div>
+          </div>
+          <div style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:16px 18px;">
+            <div style="font-size:11.5px; font-weight:700; color:var(--mute); text-transform:uppercase;">Deduplicação Efetiva</div>
+            <div style="font-size:1.85rem; font-weight:800; color:#6A1B9A; margin:4px 0 2px;">-14,8%</div>
+            <div style="font-size:12px; color:var(--mute);">6.736 CNPJs únicos (813 multi-papel)</div>
+          </div>
+          <div style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:16px 18px; border-left:4px solid #10B981;">
+            <div style="font-size:11.5px; font-weight:700; color:var(--mute); text-transform:uppercase;">Completude Média</div>
+            <div style="font-size:1.85rem; font-weight:800; color:#10B981; margin:4px 0 2px;">91,1%</div>
+            <div style="font-size:12px; color:var(--mute);">Origens: 66,7% a 99,4%</div>
+          </div>
+          <div style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:16px 18px; border-left:4px solid #D91568;">
+            <div style="font-size:11.5px; font-weight:700; color:var(--mute); text-transform:uppercase;">Pacotes de Retorno</div>
+            <div style="font-size:1.85rem; font-weight:800; color:#D91568; margin:4px 0 2px;">254 / 292</div>
+            <div style="font-size:12px; color:var(--mute);">Coexistência vs. Centralizado</div>
+          </div>
+        </div>
+
+        <h2 id="arquitetura">
+          Parte 1. Arquitetura Completa MDM &amp; Governança de Dados (5 Camadas)
+        </h2>
+
+        <div class="fig">
+          <img src="assets/img/arquitetura_mdm_central_ia.jpg" alt="CENTRAL-IA — Arquitetura Completa de MDM &amp; Governança de Dados (Golden Record 360°)">
+          <p class="meta">Figura 1. Arquitetura em 5 etapas no padrão CENTRAL-IA: fontes regulatórias heterogêneas, ingestão com blocking por CNPJ, qualidade/survivorship, Hub Golden Record e sincronismo de retorno.</p>
+        </div>
+
+        <div class="stage-grid">
+          <div class="stage-card">
+            <h4>1. Fontes Regulatórias</h4>
+            <p>6 cadastros públicos CVM (<code>cia_aberta</code>, <code>adm_fii</code>, <code>cia_incent</code> e papéis de <code>cad_fi</code>) com granularidades distintas.</p>
+          </div>
+          <div class="stage-card">
+            <h4>2. Ingestão &amp; Blocking</h4>
+            <p>Padronização de CNPJ 14 dígitos e Multi-Key Blocking evitando comparação quadrática.</p>
+          </div>
+          <div class="stage-card">
+            <h4>3. Qualidade &amp; Survivorship</h4>
+            <p>Auditoria de completude (UF/Nome Comercial ausentes nos papéis de fundos) e regras de desempate.</p>
+          </div>
+          <div class="stage-card">
+            <h4>4. Motor MDM Golden Record</h4>
+            <p>Consolidação em 6.736 CNPJs únicos com trilha SHA-256 nos modos Consolidação, Coexistência e Centralizado.</p>
+          </div>
+          <div class="stage-card">
+            <h4>5. Consumo 360° &amp; Retorno</h4>
+            <p>Exposição segura e devolução controlada às origens sem corromper papéis específicos de registro.</p>
+          </div>
+        </div>
+
+        <div class="so">
+          <strong>Benchmark GitHub (Regra 0 de Engenharia):</strong> Comparação entre <code>splink</code>, <code>dedupe</code>, <code>recordlinkage</code> e <code>zingg</code> fundamentou o motor offline zero-dependências <code>central/mdm.py</code>, validado agora sobre cadastros públicos oficiais de Pessoas Jurídicas da CVM (sem exposição de PII de pessoa física).
+        </div>
+
+        <h2 id="experimento">
+          Parte 2. Evidências Quantitativas em Dados Públicos da CVM (7.905 Registros)
+        </h2>
+        <p>
+          Cruzando os arquivos CSV abertos de <code>dados.cvm.gov.br</code>, consolidamos <strong>7.905 registros</strong> em <strong>6.736 CNPJs únicos (-14,8%)</strong>. Enquanto <strong>Companhias Abertas</strong> atingem <strong>99,4%</strong> de completude nos 6 atributos canônicos, os papéis extraídos de Fundos de Investimento (<strong>Admin FI</strong>, <strong>Gestor PJ</strong>, <strong>Custodiante</strong>) ficam em <strong>66,7%</strong> por omitirem UF e Nome Comercial. Entre os <strong>813 CNPJs multi-origem</strong>, <strong>42</strong> apresentam conflito direto de situação (<code>ATIVO</code> vs <code>CANCELADA</code>) e <strong>33 deles (78,6%)</strong> mudam de resultado ao trocar <em>Confiança Regulatória</em> por <em>Recência</em>.
+        </p>
+
+        <div class="fig">
+          
+    <div class="viz-interactive-shell" id="e2-mdm-shell">
+      <div class="viz-toolbar">
+        <div class="viz-pills" id="e2-mdm-pills">
+          <button type="button" class="viz-pill active" data-view="comp">Completude das 6 Fontes CVM (%)</button>
+          <button type="button" class="viz-pill" data-view="surv">Conflitos: Confiança vs Recência (%)</button>
+          <button type="button" class="viz-pill" data-view="sync">Impacto nas Origens (Eventos)</button>
+        </div>
+        <span class="viz-hint">7.905 registros CVM consolidados em 6.736 CNPJs únicos</span>
+      </div>
+      <div id="e2-mdm-plot" class="viz-canvas" style="min-height:365px;"></div>
+
+      <!-- Tabela Raio-X dos 6 Atributos Canônicos por Barra -->
+      <div class="mdm-audit-card" style="background:#FFFFFF; border:1px solid #CBD5E1; border-radius:8px; padding:14px 14px; margin:16px 0 10px; box-shadow:0 1px 4px rgba(0,0,0,0.03); max-width:100%; box-sizing:border-box; overflow:hidden;">
+        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; margin-bottom:12px; border-bottom:1px solid #E2E8F0; padding-bottom:10px;">
+          <div style="font-size:13px; font-weight:800; color:#0B2038; letter-spacing:0.4px;">
+            <i class="bi bi-ui-checks-grid" style="color:var(--primary); margin-right:6px;"></i>
+            Raio-X dos 6 Atributos Canônicos por Barra (O que há em cada fonte)
+          </div>
+          <span style="font-size:11.5px; font-weight:600; color:#64748B; background:#F1F5F9; padding:3px 8px; border-radius:4px;">
+            6 Atributos Avaliados · Peso 16,7% cada
+          </span>
+        </div>
+        <div class="wrap" style="margin:0; overflow-x:auto;">
+          <table style="font-size:12px; width:100%; border-collapse:collapse; line-height:1.45;">
+            <thead>
+              <tr style="background:#F8FAFC; border-bottom:2px solid #CBD5E1; text-align:left;">
+                <th style="padding:8px 10px; font-weight:700; color:#0B2038;">Barra / Fonte CVM</th>
+                <th style="padding:8px 10px; text-align:center; font-weight:700;">Volume</th>
+                <th style="padding:8px 6px; text-align:center;" title="Cadastro Nacional da Pessoa Jurídica">1. CNPJ</th>
+                <th style="padding:8px 6px; text-align:center;" title="Denominação Social">2. Razão</th>
+                <th style="padding:8px 6px; text-align:center;" title="Situação Cadastral (Ativo/Cancelada)">3. Situação</th>
+                <th style="padding:8px 6px; text-align:center;" title="Data Início Situação">4. Data</th>
+                <th style="padding:8px 6px; text-align:center;" title="Estado / Federação">5. UF</th>
+                <th style="padding:8px 6px; text-align:center;" title="Nome Fantasia / Comercial">6. Fantasia</th>
+                <th style="padding:8px 10px; text-align:center; font-weight:800; color:#0B2038;">Completude</th>
+                <th style="padding:8px 10px; font-weight:700;">Diagnóstico Cadastral</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid #E2E8F0;">
+                <td style="padding:8px 10px; font-weight:700; color:#2878E8;"><i class="bi bi-square-fill" style="font-size:9px; margin-right:4px;"></i> Companhias Abertas</td>
+                <td style="padding:8px 10px; text-align:center; font-weight:600;">2.680</td>
+                <td style="padding:8px 6px; text-align:center; color:#10B981; font-weight:700;">✔ 100%</td>
+                <td style="padding:8px 6px; text-align:center; color:#10B981; font-weight:700;">✔ 100%</td>
+                <td style="padding:8px 6px; text-align:center; color:#10B981; font-weight:700;">✔ 100%</td>
+                <td style="padding:8px 6px; text-align:center; color:#10B981; font-weight:700;">✔ 100%</td>
+                <td style="padding:8px 6px; text-align:center; color:#10B981; font-weight:700;">✔ 99,9%</td>
+                <td style="padding:8px 6px; text-align:center; color:#10B981; font-weight:700;">✔ 96,5%</td>
+                <td style="padding:8px 10px; text-align:center; font-weight:800; color:#2878E8;">99,4%</td>
+                <td style="padding:8px 10px; color:#334155;">Base mais rica: apenas 1 sem UF e 95 sem Nome Comercial.</td>
+              </tr>
+              <tr style="border-bottom:1px solid #E2E8F0; background:#F8FAFC;">
+                <td style="padding:8px 10px; font-weight:700; color:#2878E8;"><i class="bi bi-square-fill" style="font-size:9px; margin-right:4px;"></i> Cias. Incentivadas</td>
+                <td style="padding:8px 10px; text-align:center; font-weight:600;">3.570</td>
+                <td style="padding:8px 6px; text-align:center; color:#10B981; font-weight:700;">✔ 100%</td>
+                <td style="padding:8px 6px; text-align:center; color:#10B981; font-weight:700;">✔ 100%</td>
+                <td style="padding:8px 6px; text-align:center; color:#10B981; font-weight:700;">✔ 100%</td>
+                <td style="padding:8px 6px; text-align:center; color:#10B981; font-weight:700;">✔ 100%</td>
+                <td style="padding:8px 6px; text-align:center; color:#10B981; font-weight:700;">✔ 97,7%</td>
+                <td style="padding:8px 6px; text-align:center; color:#E11D48; font-weight:700;">✖ 64,4%</td>
+                <td style="padding:8px 10px; text-align:center; font-weight:800; color:#2878E8;">93,7%</td>
+                <td style="padding:8px 10px; color:#334155;">Alta cobertura cadastral; 35,6% não preenchem fantasia.</td>
+              </tr>
+              <tr style="border-bottom:1px solid #E2E8F0;">
+                <td style="padding:8px 10px; font-weight:700; color:#2878E8;"><i class="bi bi-square-fill" style="font-size:9px; margin-right:4px;"></i> Administradores FII</td>
+                <td style="padding:8px 10px; text-align:center; font-weight:600;">135</td>
+                <td style="padding:8px 6px; text-align:center; color:#10B981; font-weight:700;">✔ 100%</td>
+                <td style="padding:8px 6px; text-align:center; color:#10B981; font-weight:700;">✔ 100%</td>
+                <td style="padding:8px 6px; text-align:center; color:#10B981; font-weight:700;">✔ 100%</td>
+                <td style="padding:8px 6px; text-align:center; color:#10B981; font-weight:700;">✔ 100%</td>
+                <td style="padding:8px 6px; text-align:center; color:#E11D48; font-weight:700;">✖ 76,3%</td>
+                <td style="padding:8px 6px; text-align:center; color:#10B981; font-weight:700;">✔ 100%</td>
+                <td style="padding:8px 10px; text-align:center; font-weight:800; color:#2878E8;">96,0%</td>
+                <td style="padding:8px 10px; color:#334155;">Preenche fantasia integralmente; 32 registros sem UF (23,7%).</td>
+              </tr>
+              <tr style="border-bottom:1px solid #E2E8F0; background:#FFF1F2;">
+                <td style="padding:8px 10px; font-weight:700; color:#64748B;"><i class="bi bi-square-fill" style="font-size:9px; margin-right:4px;"></i> Administradores FI</td>
+                <td style="padding:8px 10px; text-align:center; font-weight:600;">243</td>
+                <td style="padding:8px 6px; text-align:center; color:#10B981; font-weight:700;">✔ 100%</td>
+                <td style="padding:8px 6px; text-align:center; color:#10B981; font-weight:700;">✔ 100%</td>
+                <td style="padding:8px 6px; text-align:center; color:#10B981; font-weight:700;">✔ 100%</td>
+                <td style="padding:8px 6px; text-align:center; color:#10B981; font-weight:700;">✔ 100%</td>
+                <td style="padding:8px 6px; text-align:center; color:#DC2626; font-weight:700;">✖ 0%</td>
+                <td style="padding:8px 6px; text-align:center; color:#DC2626; font-weight:700;">✖ 0%</td>
+                <td style="padding:8px 10px; text-align:center; font-weight:800; color:#64748B;">66,7% (4/6)</td>
+                <td style="padding:8px 10px; color:#BE123C; font-weight:600;">Base CVM de Fundos omite UF e Fantasia na origem para 100% dos registros.</td>
+              </tr>
+              <tr style="border-bottom:1px solid #E2E8F0; background:#FFF1F2;">
+                <td style="padding:8px 10px; font-weight:700; color:#64748B;"><i class="bi bi-square-fill" style="font-size:9px; margin-right:4px;"></i> Custodiantes FI</td>
+                <td style="padding:8px 10px; text-align:center; font-weight:600;">94</td>
+                <td style="padding:8px 6px; text-align:center; color:#10B981; font-weight:700;">✔ 100%</td>
+                <td style="padding:8px 6px; text-align:center; color:#10B981; font-weight:700;">✔ 100%</td>
+                <td style="padding:8px 6px; text-align:center; color:#10B981; font-weight:700;">✔ 100%</td>
+                <td style="padding:8px 6px; text-align:center; color:#10B981; font-weight:700;">✔ 100%</td>
+                <td style="padding:8px 6px; text-align:center; color:#DC2626; font-weight:700;">✖ 0%</td>
+                <td style="padding:8px 6px; text-align:center; color:#DC2626; font-weight:700;">✖ 0%</td>
+                <td style="padding:8px 10px; text-align:center; font-weight:800; color:#64748B;">66,7% (4/6)</td>
+                <td style="padding:8px 10px; color:#BE123C; font-weight:600;">Base CVM de Fundos omite UF e Fantasia na origem para 100% dos registros.</td>
+              </tr>
+              <tr style="border-bottom:1px solid #E2E8F0; background:#FFF1F2;">
+                <td style="padding:8px 10px; font-weight:700; color:#64748B;"><i class="bi bi-square-fill" style="font-size:9px; margin-right:4px;"></i> Gestores PJ FI</td>
+                <td style="padding:8px 10px; text-align:center; font-weight:600;">1.183</td>
+                <td style="padding:8px 6px; text-align:center; color:#10B981; font-weight:700;">✔ 100%</td>
+                <td style="padding:8px 6px; text-align:center; color:#10B981; font-weight:700;">✔ 100%</td>
+                <td style="padding:8px 6px; text-align:center; color:#10B981; font-weight:700;">✔ 100%</td>
+                <td style="padding:8px 6px; text-align:center; color:#10B981; font-weight:700;">✔ 100%</td>
+                <td style="padding:8px 6px; text-align:center; color:#DC2626; font-weight:700;">✖ 0%</td>
+                <td style="padding:8px 6px; text-align:center; color:#DC2626; font-weight:700;">✖ 0%</td>
+                <td style="padding:8px 10px; text-align:center; font-weight:800; color:#64748B;">66,7% (4/6)</td>
+                <td style="padding:8px 10px; color:#BE123C; font-weight:600;">Base CVM de Fundos omite UF e Fantasia na origem para 100% dos registros.</td>
+              </tr>
+              <tr style="background:#FAF5FF; border-top:2px solid #6A1B9A;">
+                <td style="padding:9px 10px; font-weight:800; color:#6A1B9A;"><i class="bi bi-award-fill" style="font-size:11px; margin-right:4px;"></i> Golden Record (Hub MDM)</td>
+                <td style="padding:9px 10px; text-align:center; font-weight:800; color:#6A1B9A;">6.736</td>
+                <td style="padding:9px 6px; text-align:center; color:#10B981; font-weight:800;">✔ 100%</td>
+                <td style="padding:9px 6px; text-align:center; color:#10B981; font-weight:800;">✔ 100%</td>
+                <td style="padding:9px 6px; text-align:center; color:#10B981; font-weight:800;">✔ 100%</td>
+                <td style="padding:9px 6px; text-align:center; color:#10B981; font-weight:800;">✔ 100%</td>
+                <td style="padding:9px 6px; text-align:center; color:#6A1B9A; font-weight:800;">✔ 94,2%</td>
+                <td style="padding:9px 6px; text-align:center; color:#6A1B9A; font-weight:800;">✔ 78,3%</td>
+                <td style="padding:9px 10px; text-align:center; font-weight:800; color:#6A1B9A; font-size:13px;">91,1%</td>
+                <td style="padding:9px 10px; color:#6A1B9A; font-weight:700;">Ganho MDM (+24,4 pp): Recupera UF e Fantasia cruzando fundos com Cias Abertas e FIIs.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <details class="svg-fallback-box" open>
+        <summary>Ver versões estáticas para download / impressão (SVG) ▾</summary>
+        <div style="display:grid; gap:14px; margin-top:10px;">
+          <img src="assets/mdm_fig1_qualidade_fontes.svg?v=10" alt="Completude Cadastral CVM vs Golden Record">
+          <img src="assets/mdm_fig2_survivorship_sync.svg?v=10" alt="Regra de Sobrevivência e Retorno MDM">
+        </div>
+      </details>
+    </div>
+    
+          <p class="meta">Figuras 2 e 3. Explore a completude nas 6 origens CVM vs Golden Record (91,1%), alternância Confiança vs Recência nos 813 CNPJs multi-papel e impacto dos modos Consolidação, Coexistência e Centralizado.</p>
+        </div>
+
+        <div class="wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Modelo de Sincronismo MDM</th>
+                <th>Comportamento nas Origens</th>
+                <th>Impacto Medido (CVM · 813 multi-papel)</th>
+                <th>Leitura Executiva</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Consolidação</strong></td>
+                <td>Somente leitura no Hub MDM (sem write-back).</td>
+                <td><strong>0 eventos</strong> gravados nas bases de origem.</td>
+                <td>Ideal para BI e Risco de Crédito sem risco às visões regulatórias locais.</td>
+              </tr>
+              <tr>
+                <td><strong>Coexistência</strong></td>
+                <td>Preenche apenas lacunas vazias (ex.: UF e Nome Comercial ausentes nos papéis de FI).</td>
+                <td><strong>254 pacotes</strong> enriquecendo origens incompletas.</td>
+                <td>Preserva o status específico do papel (ex.: custodiante cancelado) e melhora cobertura.</td>
+              </tr>
+              <tr>
+                <td><strong>Centralizado</strong></td>
+                <td>Impõe o Golden Record sobre divergências de situação e razão social.</td>
+                <td><strong>292 pacotes</strong> (incluindo <strong>38 sobrescritas corretivas</strong>).</td>
+                <td>Exige cautela: em registros multi-papel CVM, cancelar um papel de custódia não cancela o emissor aberto.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 style="margin-top:2rem; color:var(--ink-heading);">Pareamento Nominal Cego sem CNPJ (Validação Cruzada 5-Fold Disjunta)</h3>
+        <p>
+          Quando fluxos externos chegam sem chave fiscal, regras e modelos respondem de forma oposta conforme o padrão da origem: na <strong>Razão Social formal (41.616 pares)</strong> a <strong>Regra Exata Normalizada</strong> lidera (<strong>F1 = 98,54%</strong> vs 97,75% do ML). Porém, sob <strong>drift comercial/CRM real</strong> (<code>DENOM_COMERC</code> vs <code>DENOM_SOCIAL</code>, <strong>26.091 pares</strong>), a Regra Exata cai para <code>PR-AUC 0,7626</code> e o <strong>Matcher ML Híbrido (HistGradientBoosting)</strong> salta para <strong>PR-AUC = 0,8835 (+12,1 p.p.)</strong>, recuperando siglas como <code>SICOOB DTVM</code> (<code>score 0,965</code>) e <code>OSLO DTVM</code> (<code>0,908</code>).
+        </p>
+        <div class="fig">
+          
+    <div class="viz-interactive-shell" id="e2-rl-shell">
+      <div class="viz-toolbar">
+        <div class="viz-pills" id="e2-rl-pills">
+          <button type="button" class="viz-pill active" data-view="bars">F1-Score: Formal vs Nome Comercial CRM</button>
+          <button type="button" class="viz-pill" data-view="pr">Curva Precisão × Revocação (CRM Drift)</button>
+        </div>
+        <span class="viz-hint">Validação cruzada 5-fold disjunta por CNPJ</span>
+      </div>
+      <div id="e2-rl-plot" class="viz-canvas" style="min-height:365px;"></div>
+      <details class="svg-fallback-box" open>
+        <summary>Ver gráfico estático / baixar SVG ▾</summary>
+        <img src="assets/mdm_fig3_record_linkage_cv.svg?v=10" alt="Pareamento nominal sem CNPJ">
+      </details>
+    </div>
+    
+          <p class="meta">Figura 4. Benchmark cego sem CNPJ (5 folds disjuntos por entidade): alterne entre F1-Score por regime cadastral e a curva Precisão-Revocação no cenário de drift comercial/CRM.</p>
+        </div>
+
+        <h2 id="simulador">
+          Parte 3. Simulador Interativo com Casos Reais da CVM (<code>dados.cvm.gov.br</code>)
+        </h2>
+        <p>
+          Inspecione 3 CNPJs reais extraídos diretamente dos arquivos públicos da CVM. Alterne o caso, a regra de sobrevivência, o modo de sincronismo e a máscara documental para observar como o vencedor e os pacotes de retorno mudam:
+        </p>
+
+        <div class="sim-box" style="border: 1px solid var(--line); border-top: 4px solid var(--secondary); border-radius: 8px; padding: 22px; background: #FFFFFF; box-shadow: 0 2px 10px rgba(15, 23, 42, 0.03);">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 1.2rem;">
+            <div>
+              <label for="mdm-cluster" style="font-size: 11.5px; font-weight: 700; color: var(--mute); text-transform: uppercase;">1. Entidade Pública CVM</label>
+              <select id="mdm-cluster" style="width: 100%; padding: 9px 12px; font-weight: 600; border: 1px solid var(--line); border-radius: 4px; background: var(--bg); color: var(--ink-heading); font-size: 13.5px;">
+                <option value="bb" selected>Banco do Brasil S.A. (Multi-papel ATIVO/CANCELADA)</option>
+                <option value="brb">BRB Banco de Brasília S.A. (Multi-papel ATIVO/CANCELADA)</option>
+                <option value="lamsa">Linha Amarela S.A. - LAMSA (Histórico Cia. Aberta)</option>
+              </select>
+            </div>
+            <div>
+              <label for="mdm-strategy" style="font-size: 11.5px; font-weight: 700; color: var(--mute); text-transform: uppercase;">2. Regra de Sobrevivência</label>
+              <select id="mdm-strategy" style="width: 100%; padding: 9px 12px; font-weight: 600; border: 1px solid var(--line); border-radius: 4px; background: var(--bg); color: var(--ink-heading); font-size: 13.5px;">
+                <option value="confianca_recencia" selected>Confiança Regulatória + Recência</option>
+                <option value="recencia_primeiro">Data Mais Recente (DT_INI_SIT)</option>
+                <option value="completude_primeiro">Maior Completude do Cadastro</option>
+              </select>
+            </div>
+            <div>
+              <label for="mdm-sync" style="font-size: 11.5px; font-weight: 700; color: var(--mute); text-transform: uppercase;">3. Modelo de Sincronismo</label>
+              <select id="mdm-sync" style="width: 100%; padding: 9px 12px; font-weight: 600; border: 1px solid var(--line); border-radius: 4px; background: var(--bg); color: var(--ink-heading); font-size: 13.5px;">
+                <option value="coexistencia" selected>Coexistência (Preenche UF/Fantasia)</option>
+                <option value="centralizado">Centralizado (Impõe Golden Record)</option>
+                <option value="consolidacao">Consolidação (Somente leitura)</option>
+              </select>
+            </div>
+            <div>
+              <label for="mdm-lgpd" style="font-size: 11.5px; font-weight: 700; color: var(--mute); text-transform: uppercase;">4. Exibição do Documento</label>
+              <select id="mdm-lgpd" style="width: 100%; padding: 9px 12px; font-weight: 600; border: 1px solid var(--line); border-radius: 4px; background: var(--bg); color: var(--ink-heading); font-size: 13.5px;">
+                <option value="publico" selected>CNPJ Completo (Dado Público CVM)</option>
+                <option value="masked">CNPJ Parcialmente Mascarado</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="mdm-kpis" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin: 1.1rem 0;"></div>
+          <div id="mdm-table-wrap"></div>
+          <div id="mdm-diagnosis" class="so" style="margin-top: 1rem;"></div>
+          <div id="mdm-json-preview" class="code-box"></div>
+        </div>
+
+        <h2 style="margin-top:2.4rem;">
+          Nota Técnica &amp; Metodologia Completa
+        </h2>
+        <section id="etapa-1" class="canonical-step" style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:24px 26px; margin-bottom:1.5rem; box-shadow:0 1px 4px rgba(0,0,0,0.02);">  <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px; border-bottom:1px solid var(--line); padding-bottom:12px;">    <span style="background:var(--primary); color:#FFFFFF; font-size:12px; font-weight:800; width:26px; height:26px; border-radius:50%; display:grid; place-items:center;">1</span>    <h3 style="font-size:1.2rem; font-weight:800; color:var(--ink-heading); margin:0;">Resumo executivo</h3>  </div>  <div class="canonical-content" style="color:var(--ink); font-size:15px; line-height:1.7;"><p>Consolidar entidades jurídicas sem destruir a semântica de origem exige separar dois problemas frequentemente misturados em projetos de dados: <strong>(1) Sobrevivência e sincronismo quando há chave fiscal (CNPJ)</strong> e <strong>(2) Resolução nominal probabilística quando a chave está ausente ou corrompida</strong>.</p>
+<p>Sobre <strong>7.905 registros oficiais</strong> de 6 fluxos públicos da CVM (<code>dados.cvm.gov.br</code>), a consolidação por CNPJ reduz o acervo em <strong>-14,8%</strong> (<code>6.736</code> CNPJs únicos, <code>813</code> multi-papel) e eleva a completude para <strong>91,1%</strong>. Entre os 813 CNPJs multi-papel, <strong>42</strong> possuem conflito direto de situação (<code>ATIVO</code> vs <code>CANCELADA</code>), e <strong>78,6% deles (33 casos)</strong> mudam de resultado conforme a regra de sobrevivência adotada.</p>
+<p>Na segunda frente — <strong>benchmark cego ocultando totalmente o CNPJ</strong> em validação cruzada de <strong>5 folds disjuntos por entidade</strong> — testamos dois regimes reais extraídos da própria CVM:</p>
+<ul>
+<li><strong>Regime A (Razão Social formal padronizada via RFB, 41.616 pares):</strong> A <strong>Regra Exata Normalizada</strong> atinge <strong>F1 = 98,54%</strong> (<code>PR-AUC 0,971</code>), superando <code>TF-IDF Cosseno</code> (<code>98,05%</code>) e <code>HGB Híbrido</code> (<code>97,75%</code>).</li>
+<li><strong>Regime B (Drift real CRM/Nome Comercial <code>DENOM_COMERC</code> vs <code>DENOM_SOCIAL</code>, 26.091 pares):</strong> A Regra Exata despenca para <code>PR-AUC 0,7626</code>, enquanto o <strong>Matcher HGB Híbrido</strong> atinge <strong>PR-AUC = 0,8835 (<code>+12,09 p.p.</code>)</strong> e <strong>F1 = 87,87%</strong>, recuperando pares reais abreviados com baixa similaridade de texto como <code>SICOOB DTVM</code> (<code>TF-IDF = 0,531</code>) e <code>OSLO DTVM</code> (<code>0,447</code>).</li>
+</ul></div></section>
+<section id="etapa-2" class="canonical-step" style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:24px 26px; margin-bottom:1.5rem; box-shadow:0 1px 4px rgba(0,0,0,0.02);">  <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px; border-bottom:1px solid var(--line); padding-bottom:12px;">    <span style="background:var(--primary); color:#FFFFFF; font-size:12px; font-weight:800; width:26px; height:26px; border-radius:50%; display:grid; place-items:center;">2</span>    <h3 style="font-size:1.2rem; font-weight:800; color:var(--ink-heading); margin:0;">Contexto e dados</h3>  </div>  <div class="canonical-content" style="color:var(--ink); font-size:15px; line-height:1.7;"><p>Os dados provêm diretamente de arquivos abertos oficiais da CVM (<code>cad_cia_aberta.csv</code>, <code>cad_adm_fii.csv</code>, <code>cad_cia_incent.csv</code> e <code>cad_fi.csv</code> desdobrado nos papéis de Administrador, Custodiante e Gestor PJ):</p>
+<ul>
+<li><strong>Completude desigual por fluxo:</strong> Companhias Abertas alcançam <strong>99,4%</strong> de preenchimento; Administradores FII (<code>95,6%</code>); Companhias Incentivadas (<code>97,8%</code>); enquanto Administradores, Custodiantes e Gestores PJ de Fundos permanecem em <strong>66,7%</strong> por omitirem <code>UF</code> e <code>DENOM_COMERC</code>.</li>
+<li><strong>Assimetria comercial real:</strong> Em <code>3.449</code> entidades cadastradas com nome fantasia (<code>DENOM_COMERC</code>), o apelido de mercado diverge integralmente da razão social formal (ex.: <code>ADESENE</code> vs <code>ADESENE ADESIVOS NO NORDESTE SA</code>, <code>TAMAKAVY</code> vs <code>AGROPECUARIA TAMAKAVY SA</code>, <code>SICOOB DTVM</code> vs <code>SICOOB DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA</code>).</li>
+</ul></div></section>
+<section id="etapa-3" class="canonical-step" style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:24px 26px; margin-bottom:1.5rem; box-shadow:0 1px 4px rgba(0,0,0,0.02);">  <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px; border-bottom:1px solid var(--line); padding-bottom:12px;">    <span style="background:var(--primary); color:#FFFFFF; font-size:12px; font-weight:800; width:26px; height:26px; border-radius:50%; display:grid; place-items:center;">3</span>    <h3 style="font-size:1.2rem; font-weight:800; color:var(--ink-heading); margin:0;">Método e análise</h3>  </div>  <div class="canonical-content" style="color:var(--ink); font-size:15px; line-height:1.7;"><p>O estudo é executado no pipeline <code>src/experimento_mdm_cvm.py</code> sobre snapshot verificável da CVM (<code>resultados/cvm_snapshot.json</code>):</p>
+<p>1. <strong>Motor Determinístico Golden Record &amp; Sincronismo (<code>central/mdm.py</code>):</strong> Compara sobrevivência por <strong>Confiança Regulatória</strong> (hierarquia oficial Cia Aberta &gt; Admin FI &gt; Admin FII) versus <strong>Recência (<code>DT_INI_SIT</code>)</strong> e simula write-back em 3 modos (<code>Consolidação</code>, <code>Coexistência</code>, <code>Centralizado</code>).</p>
+<p>2. <strong>Benchmark Cego de Record Linkage (<code>5-fold</code> sem vazamento de CNPJ):</strong> Remove o <code>CNPJ</code> de todas as etapas (blocking e features). Gera blocos candidatos por tokens raros (<code>DF &lt;= 120</code>, excluindo stopwords jurídicas como <code>SA</code>, <code>LTDA</code>, <code>DTVM</code>, <code>FUNDO</code>) + prefixos de 6 e 4 caracteres, garantindo zero compartilhamento de componentes conectados de CNPJ entre treino e validação nos 5 folds. Compara <strong>3 modelos competitivos</strong>: (a) <code>Regra Exata Normalizada</code>, (b) <code>TF-IDF Caracteres (3-4 gramas) Cosseno</code> com limiar calibrado exclusivamente no fold de treino, e (c) <code>HistGradientBoosting Híbrido</code> usando <code>tfidf_cos</code>, <code>SequenceMatcher ratio</code>, <code>token_jaccard</code>, <code>token_overlap_min</code>, <code>substring_hit</code> e <code>uf_conflict</code>.</p></div></section>
+<section id="etapa-4" class="canonical-step" style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:24px 26px; margin-bottom:1.5rem; box-shadow:0 1px 4px rgba(0,0,0,0.02);">  <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px; border-bottom:1px solid var(--line); padding-bottom:12px;">    <span style="background:var(--primary); color:#FFFFFF; font-size:12px; font-weight:800; width:26px; height:26px; border-radius:50%; display:grid; place-items:center;">4</span>    <h3 style="font-size:1.2rem; font-weight:800; color:var(--ink-heading); margin:0;">Resultados e interpretação</h3>  </div>  <div class="canonical-content" style="color:var(--ink); font-size:15px; line-height:1.7;"><h3>Parte A — Conflitos de Sobrevivência e Write-Back (Com Chave CNPJ)</h3>
+<ul>
+<li><strong>Transferência de autoria em 813 CNPJs multi-origem:</strong> <code>Confiança</code> prioriza <code>CIA_INCENT</code> (<code>397</code>), <code>CIA_ABERTA</code> (<code>217</code>) e <code>FI_ADMIN</code> (<code>193</code>). <code>Recência</code> transfere <strong>92 vitórias para Admin FII</strong> e <strong>46 para Gestor FI</strong>, invertendo <strong>33 dos 42 conflitos de <code>SIT</code></strong> (<code>78,6%</code>).</li>
+<li><strong>Efeitos do retorno às origens:</strong> <code>Consolidação</code> realiza <code>0</code> gravações; <code>Coexistência</code> injeta <strong>254 pacotes</strong> preenchendo <code>UF</code> e <code>Nome Comercial</code> faltantes nos papéis de fundos; <code>Centralizado</code> dispara <strong>292 eventos com 38 sobrescritas</strong>, corrompendo papéis locais específicos quando uma custódia encerrada sobrescreve um emissor ativo.</li>
+</ul>
+<h3>Parte B — Pareamento Cego sem CNPJ (5-Fold Disjunto por Entidade)</h3>
+<div class="wrap"><table><thead><tr>
+<th>Regime Real da Fonte Externa</th>
+<th class="num">Modelo</th>
+<th class="num">Precisão</th>
+<th class="num">Revocação</th>
+<th class="num">F1 Out-of-Fold</th>
+<th class="num">PR-AUC</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>Regime A · Razão Social Formal</strong> (<code>41.616</code> pares)</td>
+<td class="num"><strong>Regra Exata Normalizada</strong></td>
+<td class="num"><strong>97,13%</strong></td>
+<td class="num"><strong>100,00%</strong></td>
+<td class="num"><strong>98,54%</strong></td>
+<td class="num"><strong>0,9713</strong></td>
+</tr>
+<tr>
+<td>Regime A · Razão Social Formal</td>
+<td class="num">TF-IDF Char (3-4g) Cosseno</td>
+<td class="num">97,10%</td>
+<td class="num">99,01%</td>
+<td class="num">98,05%</td>
+<td class="num">0,9544</td>
+</tr>
+<tr>
+<td>Regime A · Razão Social Formal</td>
+<td class="num">Matcher ML Híbrido (HGB)</td>
+<td class="num">95,75%</td>
+<td class="num">99,84%</td>
+<td class="num">97,75%</td>
+<td class="num">0,9457</td>
+</tr>
+<tr>
+<td><strong>Regime B · Drift Comercial/CRM</strong> (<code>26.091</code> pares)</td>
+<td class="num">Regra Exata Normalizada</td>
+<td class="num">90,15%</td>
+<td class="num">84,20%</td>
+<td class="num">87,07%</td>
+<td class="num">0,7626</td>
+</tr>
+<tr>
+<td>Regime B · Drift Comercial/CRM</td>
+<td class="num">TF-IDF Char (3-4g) Cosseno</td>
+<td class="num">90,06%</td>
+<td class="num">83,33%</td>
+<td class="num">86,56%</td>
+<td class="num">0,8208</td>
+</tr>
+<tr>
+<td><strong>Regime B · Drift Comercial/CRM</strong> (<code>26.091</code> pares)</td>
+<td class="num"><strong>Matcher ML Híbrido (HGB)</strong></td>
+<td class="num">88,97%</td>
+<td class="num"><strong>86,81%</strong></td>
+<td class="num"><strong>87,87%</strong></td>
+<td class="num"><strong>0,8835</strong></td>
+</tr>
+</tbody></table></div>
+<p>Exemplos reais de siglas comerciais recuperadas pelo <code>HGB Híbrido</code> onde a regra exata falha (<code>score ML &gt;= 0,90</code> apesar de cosseno baixo):</p>
+<ul>
+<li><code>SICOOB DTVM</code> (Admin FII) ↔ <code>SICOOB DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA.</code> (FI Admin/Gestor) → <strong><code>ml_score = 0,965</code></strong> (<code>tfidf = 0,531</code>).</li>
+<li><code>OSLO DTVM</code> (Admin FII) ↔ <code>OSLO CAPITAL DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS S.A.</code> (FI Admin) → <strong><code>ml_score = 0,908</code></strong> (<code>tfidf = 0,447</code>).</li>
+</ul></div></section>
+<section id="etapa-5" class="canonical-step" style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:24px 26px; margin-bottom:1.5rem; box-shadow:0 1px 4px rgba(0,0,0,0.02);">  <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px; border-bottom:1px solid var(--line); padding-bottom:12px;">    <span style="background:var(--primary); color:#FFFFFF; font-size:12px; font-weight:800; width:26px; height:26px; border-radius:50%; display:grid; place-items:center;">5</span>    <h3 style="font-size:1.2rem; font-weight:800; color:var(--ink-heading); margin:0;">Conclusão e implicação prática</h3>  </div>  <div class="canonical-content" style="color:var(--ink); font-size:15px; line-height:1.7;"><p>A arquitetura MDM vencedora é <strong>híbrida e condicionada ao regime de qualidade da origem</strong>:</p>
+<p>1. <strong>Chave fiscal íntegra:</strong> Resolver por <code>CNPJ</code>, usar <strong>Confiança Regulatória</strong> para atributos mestres sem deixar papéis secundários cancelados invalidarem companhias ativas, e restringir o write-back ao modo <strong>Coexistência</strong> (<code>254</code> enriquecimentos sem perda de contexto local).</p>
+<p>2. <strong>Sem CNPJ, com Razão Social formal:</strong> Manter <strong>Regra Exata Normalizada</strong> (<code>F1 = 98,54%</code>), evitando custo e opacidade de ML desnecessário.</p>
+<p>3. <strong>Sem CNPJ, com Nome Comercial/CRM abreviado:</strong> Empregar <strong>Matcher HGB Híbrido</strong> (<code>PR-AUC = 0,8835</code>, <code>+12,1 p.p.</code> vs regra exata) aproveitando features de contenção (<code>token_overlap_min</code>, <code>substring_hit</code>) e âncora geográfica (<code>uf_conflict</code>).</p></div></section>
+<section id="etapa-6" class="canonical-step" style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:24px 26px; margin-bottom:1.5rem; box-shadow:0 1px 4px rgba(0,0,0,0.02);">  <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px; border-bottom:1px solid var(--line); padding-bottom:12px;">    <span style="background:var(--primary); color:#FFFFFF; font-size:12px; font-weight:800; width:26px; height:26px; border-radius:50%; display:grid; place-items:center;">6</span>    <h3 style="font-size:1.2rem; font-weight:800; color:var(--ink-heading); margin:0;">Fronteiras de validade e síntese final</h3>  </div>  <div class="canonical-content" style="color:var(--ink); font-size:15px; line-height:1.7;"><ul>
+<li><strong>Fronteira de cobertura nominal (Blocking):</strong> O bloqueio cego puramente nominal recupera <strong>99,35%</strong> dos pares na Razão Social formal e <strong>93,96%</strong> sob drift comercial (<code>26.091</code> candidatos). Os ~<code>6%</code> restantes correspondem a mudanças totais de marca entre razão social e fantasia sem nenhum token ou prefixo comum (ex.: <code>AES TIETE ENERGIA S.A</code> vs <code>CIA BRASILIANA DE ENERGIA</code>), que nenhum pareador exclusivamente textual consegue unir sem histórico societário ou chave CNPJ/ISIN externa.</li>
+<li><strong>Reprodutibilidade offline:</strong> Todo o pipeline e o snapshot oficial (<code>resultados/cvm_snapshot.json</code>) rodam integralmente offline a partir de <code>codigo/estudo-02-mdm-cvm/src/experimento_mdm_cvm.py</code>.</li>
+</ul></div></section>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <p>&copy; Carlos Santos. Fonte: Dados Abertos CVM (dados.cvm.gov.br). · <a href="estudos.html">Vitrine de Estudos</a> · <a href="index.html">Voltar ao Início</a></p>
+  </div>
+</footer>
+
+<script>
+
+  window.toggleExtraTools = function() {
+    const container = document.getElementById('tools-extra-container');
+    const btn = document.getElementById('btn-toggle-tools');
+    if (!container || !btn) return;
+    const lang = document.documentElement.lang || 'pt';
+    const dict = (typeof I18N_DATA !== 'undefined' && I18N_DATA[lang]) ? I18N_DATA[lang] : {};
+    const isHidden = container.style.display === 'none' || container.style.display === '';
+    if (isHidden) {
+      container.style.display = 'block';
+      btn.setAttribute('aria-expanded', 'true');
+      const lessTxt = dict.tools_btn_less || 'Ver menos tecnologias';
+      btn.innerHTML = '<span data-i18n="tools_btn_less">' + lessTxt + '</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>';
+    } else {
+      container.style.display = 'none';
+      btn.setAttribute('aria-expanded', 'false');
+      const moreTxt = dict.tools_btn_more || 'Ver todas as tecnologias (+21)';
+      btn.innerHTML = '<span data-i18n="tools_btn_more">' + moreTxt + '</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>';
+    }
+  };
+
+(function () {
+  "use strict";
+
+  function initMobileNav() {
+    const navbar = document.querySelector("#navbar");
+    const toggle = document.querySelector(".mobile-nav-toggle");
+    if (!navbar || !toggle) return;
+
+    toggle.addEventListener("click", function (e) {
+      e.stopPropagation();
+      const isOpen = navbar.classList.toggle("navbar-mobile");
+      toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      const icon = toggle.querySelector("i");
+      if (icon) {
+        if (isOpen) {
+          icon.classList.remove("bi-list");
+          icon.classList.add("bi-x");
+        } else {
+          icon.classList.remove("bi-x");
+          icon.classList.add("bi-list");
+        }
+      }
+    });
+
+    navbar.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        navbar.classList.remove("navbar-mobile");
+        toggle.setAttribute("aria-expanded", "false");
+        const icon = toggle.querySelector("i");
+        if (icon) {
+          icon.classList.remove("bi-x");
+          icon.classList.add("bi-list");
+        }
+      });
+    });
+
+    document.addEventListener("click", function (e) {
+      if (navbar.classList.contains("navbar-mobile") && !navbar.contains(e.target) && !toggle.contains(e.target)) {
+        navbar.classList.remove("navbar-mobile");
+        toggle.setAttribute("aria-expanded", "false");
+        const icon = toggle.querySelector("i");
+        if (icon) {
+          icon.classList.remove("bi-x");
+          icon.classList.add("bi-list");
+        }
+      }
+    });
+  }
+
+
+  // ===================================================
+  // INTERNACIONALIZAÇÃO (PT / EN / ES) COM LOCALSTORAGE
+  // ===================================================
+  const I18N_DATA = {
+  "pt": {
+    "tagline_pill": "Dados & Analytics",
+    "nav_home": "Início",
+    "nav_about": "Sobre & Trajetória",
+    "nav_deliver": "O que entrega",
+    "nav_tools": "Ferramentas",
+    "nav_studies": "Vitrine de Estudos →",
+    "nav_contact": "Contato",
+    "hero_tag": "Dados · Analytics · Decisão",
+    "hero_role": "Especialista em Dados & Analytics com foco em Risco de Crédito, Qualidade de Dados e Decisão Operacional",
+    "hero_summary": "Conecto investigação profunda de regras e bases de dados a diagnósticos claros e ações operacionais que geram resultado direto para o negócio.",
+    "hero_cta_studies": "Acessar Vitrine de Estudos →",
+    "hero_cta_credit": "Ver Estudo de Crédito",
+    "hero_card_kicker": "Últimos Estudos",
+    "hero_card_sub": "Clique em qualquer entrega para abrir os dados e o código:",
+    "hero_diff_label": "Previsão de Crédito · Banco Central",
+    "hero_diff_val": "Reduziu o erro de projeção (MAE) em <strong>R$ 7,39 bi/mês (-54%)</strong> com calendário ANBIMA →",
+    "hero_domain_label": "Qualidade de Dados & Cobrança · 30 mil contas",
+    "hero_domain_val": "Preservou <strong>92,4% (NT$ 6,48M simulados)</strong> em experimento de falha de dados →",
+    "hero_method_label": "Base Única de Empresas (MDM) · 7.905 registros CVM",
+    "hero_method_val": "Eliminou <strong>14,8%</strong> de duplicidades e unificou empresas e fundos em visão confiável →",
+    "hero_avail_label": "Taxas de Juros & Concorrência · 138 Bancos + IBGE",
+    "hero_avail_val": "Mapeou variação de até <strong>15,6x</strong> nos juros entre bancos e mediu a concorrência local →",
+    "about_title": "Sobre mim & Trajetória",
+    "about_sub": "Uma visão sobre a bagagem técnica, postura analítica e como gero impacto nas operações.",
+    "about_bio_p1": "Atuo na interseção entre <strong>Dados, Analytics e Operações de Negócio</strong>, investigando a origem, a granularidade e as regras das informações para construir indicadores confiáveis, identificar oportunidades e apoiar decisões estratégicas e operacionais.",
+    "about_quote": "“Indicadores consolidados podem esconder falhas operacionais. Uma análise eficiente começa pela qualidade dos dados, pelas regras de negócio e pela compreensão do problema.”",
+    "about_bio_p2": "Com foco em <strong>risco de crédito, funil de conversão, conciliação de indicadores e qualidade de dados</strong>, uno ferramentas escaláveis (SQL avançado, pipelines em Python, DuckDB e Databricks) à modelagem de negócio (Power BI, DAX e governança de KPIs) para assegurar que liderança e operação tomem decisões alinhadas e rastreáveis.",
+    "cred_edu_label": "01 · FORMAÇÃO ACADÊMICA",
+    "cred_edu_title": "Formação em Computação, Big Data e Estatística",
+    "cred_edu_desc": "• Bacharelado em <strong>Ciência da Computação</strong> (Faculdade Sumaré)<br>• Pós-graduação em <strong>Big Data</strong> (Univ. Anhembi Morumbi)<br>• Pós-graduação em <strong>Estatística Aplicada</strong> (FMU)",
+    "cred_spec_label": "02 · ÁREAS DE ESPECIALIDADE",
+    "cred_spec_title": "Frentes Centrais de Atuação",
+    "cred_spec_desc": "• <strong>Crédito:</strong> Escoragem, políticas de limite, priorização de cobrança.<br>• <strong>Qualidade (DQ):</strong> Data contracts, monitoramento de ausência e drift.<br>• <strong>BI & Receita:</strong> Modelagem dimensional, funil e conciliação de bases.",
+    "cred_ops_label": "03 · POSTURA OPERACIONAL",
+    "cred_ops_title": "Do Diagnóstico à Ação",
+    "cred_ops_desc": "• <strong>Rigor & Causalidade:</strong> Separação entre correlação e causalidade real.<br>• <strong>Comunicação em Camadas:</strong> Executiva para diretoria e técnica para squads.<br>• <strong>Reprodutibilidade:</strong> Pipelines auditáveis sem dependência de processos manuais.",
+    "deliver_title": "O que eu entrego",
+    "deliver_sub": "Capacidades analíticas aplicadas para resolver problemas reais de operações e gestão:",
+    "deliv_dashboards": "Dashboards",
+    "deliv_dashboards_p": "Painéis executivos com indicadores confiáveis, análises detalhadas e acompanhamento de resultados.",
+    "deliv_dashboards_link": "Ver painéis e modelos →",
+    "deliv_analyses": "Análises & Estudos",
+    "deliv_analyses_p": "Investigações de crédito, cobrança e receita para identificar causas, riscos e oportunidades.",
+    "deliv_analyses_link": "Ver estudo de crédito →",
+    "deliv_automations": "Automações",
+    "deliv_automations_p": "Processos em Python e SQL para reduzir retrabalho, validar informações e aumentar a eficiência.",
+    "deliv_automations_link": "Ver pipeline e simulador →",
+    "deliv_governance": "Governança de Dados",
+    "deliv_governance_p": "Qualidade, conciliação e regras de negócio para garantir consistência e confiabilidade dos indicadores.",
+    "deliv_governance_link": "Ver auditoria e DQ →",
+    "deliv_traceability": "Rastreabilidade",
+    "deliv_traceability_p": "Código versionado, documentação técnica e histórico das regras e transformações aplicadas.",
+    "deliv_traceability_link": "Ver repositório no GitHub ↗",
+    "tools_title": "Ferramentas & Tecnologias",
+    "tools_sub": "Ecossistema tecnológico organizado por especialidade para engenharia de dados, modelagem preditiva e analytics:",
+    "showcase_title": "Vitrine de Estudos & Projetos",
+    "showcase_sub": "Análises aprofundadas com metodologia reproduzível, dados quantitativos e impacto direto na decisão operacional:",
+    "showcase_recent_badge": "Últimos Estudos Publicados (Vitrine em Destaque)",
+    "study04_badge": "Estudo 04 · Backtest BCB SGS",
+    "study04_meta": "Piso de Ruído na Projeção de Concessões de Crédito PF · 57 meses reais",
+    "study04_title": "Previsão de Crédito PF: Backtest Walk-Forward e Efeito Calendário",
+    "study04_desc": "Incluir feriados nacionais ANBIMA e dias úteis reduz o erro absoluto de projeção (MAE) de <strong>R$ 13,63 bi para R$ 6,24 bi/mês (-R$ 7,39 bi/mês em acurácia de planejamento)</strong> e coloca <strong>97,0%</strong> dos meses na meta ±5%. <em>Método:</em> backtest walk-forward em 33 origens reais (<code>wMAPE 2,79% · Ljung-Box p = 0,403</code>).",
+    "study04_btn_study": "Ler Estudo e Método →",
+    "study04_btn_json": "Dados JSON",
+    "study05_badge": "Estudo 05 · Política de Crédito & Decisão",
+    "study05_meta": "GiveMeSomeCredit (OpenML 46929) · 150.000 registros históricos",
+    "study05_title": "Otimização de Política de Crédito: Maximizando o Retorno com Score e Machine Learning",
+    "study05_desc": "Separa eliminatórios por gravidade (<code>R1→R2→R3</code>) e aplica uma Matriz 3×3 na R4: <strong>5,05M u.m.</strong> de P&amp;L simulado (+10,9% sobre a regra rígida de 4,55M), perda EAD de <strong>1,05%</strong> e aprovação de 49,68%. O RF 1D pareado chega a 5,08M (−0,49%): a matriz entrega governança auditável em 9 faixas, não acurácia extra.",
+    "study05_btn_study": "Ler Estudo e Simulador →",
+    "hero_policy_label": "Concessão de Crédito & IA · 150 mil propostas",
+    "hero_policy_val": "Elevou o P&amp;L simulado em <strong>+10,9%</strong> sobre a regra rígida, com perda EAD de <strong>1,05%</strong> →",
+    "study03_badge": "Estudo 03 · 138 Bancos + 108 UF-Anos",
+    "study03_meta": "BCB Olinda (11m) + IBGE 2022–2025",
+    "study03_title": "Onde Bancos Cobram Mais Caro e Limites da Renda Regional",
+    "study03_desc": "Em duas análises independentes (sem relação causal direta): mapeia taxas de <strong>138 bancos</strong> (dispersão de até <strong>15,57x</strong> e persistência de 11 meses, <code>Spearman ρ = 0,866</code>) e avalia separadamente <strong>108 UF-anos</strong> mostrando que renda estadual isolada não prevê a inadimplência futura (<code>MAE 1,28 vs 0,95 p.p.</code>).",
+    "study03_btn_study": "Ler Estudo e Método →",
+    "sidebar_title": "Demais Estudos",
+    "sidebar_badge": "Acervo",
+    "sidebar_intro": "Estudos aprofundados com simuladores interativos e modelos executivos:",
+    "study01_badge": "Estudo 01 · UCI Credit Default",
+    "study01_title": "Impacto da Qualidade dos Dados no Risco de Inadimplência",
+    "study01_desc": "Experimento simulado em 30.000 contas UCI mostrando que falhas de ETL degradam a fila de cobrança e que tratar ausências nativamente + ordenar por Perda Esperada preserva <strong>92,4% do retorno simulado (estimativa de NT$ 6,48M sob premissas parametrizadas)</strong>.",
+    "study01_btn_study": "Ler estudo →",
+    "study01_btn_sim": "Simulador",
+    "study01_btn_code": "Código ↗",
+    "study02_badge": "Estudo 02 · Dados Abertos CVM",
+    "study02_title": "Unificação de Cadastros Duplicados (MDM) na Base CVM",
+    "study02_desc": "Separa duas frentes na base CVM (7.905 registros → 6.736 CNPJs, <strong>-14,8%</strong>): (1) regra determinística de sobrevivência cadastral com CNPJ (Recência inverte <strong>78,6% · 33/42</strong> conflitos de status) e (2) acurácia do pareamento probabilístico sem CNPJ via HGB (<code>PR-AUC 0,884</code>).",
+    "study02_btn_study": "Ler estudo →",
+    "study02_btn_sim": "Simulador",
+    "study02_btn_code": "Código ↗",
+    "sidebar_catalog_link": "Ver Vitrine Completa com os 5 Estudos",
+    "catalog_title": "Vitrine de Estudos Analíticos",
+    "catalog_sub": "Estudos de caso reais e dados públicos sobre Risco de Crédito, Qualidade de Dados, Resolução de Entidades e Econometria.",
+    "catalog_back_home": "← Voltar ao Portfólio Principal",
+    "contact_title": "Entre em Contato",
+    "contact_sub": "Disponível para posições de Especialista / Sênior em Dados, Analytics, Risco de Crédito e Inteligência de Negócio:",
+    "contact_btn_li": "Conectar no LinkedIn →",
+    "contact_btn_gh": "Explorar Repositório no GitHub",
+    "contact_loc_label": "Localização",
+    "contact_loc_val": "São Paulo, SP — Brasil (Híbrido / Remoto)",
+    "contact_li_label": "LinkedIn Profissional",
+    "contact_repo_label": "Projetos & Código",
+    "footer_rights": "Carlos Santos. Todos os direitos reservados.",
+    "cat_hero_tag": "Catálogo de estudos",
+    "cat_hero_title": "Vitrine de Estudos",
+    "cat_hero_role": "Análises com escopo, métricas e limitações documentados",
+    "cat_intro_label": "Vitrine de Estudos",
+    "cat_intro_title": "Estudos publicados",
+    "cat_intro_desc": "Casos analíticos reproduzíveis baseados exclusivamente em fontes de dados públicas oficiais ou benchmarks públicos anonimizados (UCI Machine Learning Repository, Dados Abertos CVM, IBGE PNAD Contínua, Banco Central do Brasil SGS e GiveMeSomeCredit / OpenML #46929).",
+    "cat_card01_badge": "Estudo 01 · UCI Credit Default",
+    "cat_card01_title": "Impacto da Qualidade dos Dados no Risco de Inadimplência",
+    "cat_card01_desc": "Experimento simulado em 30.000 contas UCI: tratar ausências nativamente + priorizar por Perda Esperada preserva 92,4% do retorno simulado (NT$ 6,48M sob premissas operacionais parametrizadas).",
+    "cat_card02_badge": "Estudo 02 · Dados Abertos CVM",
+    "cat_card02_title": "Unificação de Cadastros Duplicados (MDM) na Base CVM",
+    "cat_card02_desc": "Consolida 7.905 registros da CVM (-14,8% duplicidades), separando a regra determinística de sobrevivência com CNPJ (78,6% de inversão por recência) da acurácia do pareamento sem CNPJ (PR-AUC 0,884).",
+    "cat_card03_badge": "Estudo 03 · 138 Bancos + 108 UF-Anos",
+    "cat_card03_title": "Onde Bancos Cobram Mais Caro e Limites da Renda Regional",
+    "cat_card03_desc": "Em duas análises independentes (sem nexo causal direto): mapeia a persistência de taxas em 138 bancos (15,57x, ρ = 0,866) e mostra em 108 UF-anos que renda estadual isolada falha fora da amostra (MAE 1,28 vs 0,95 p.p.).",
+    "cat_card04_badge": "Estudo 04 · Banco Central SGS",
+    "cat_card04_title": "Previsão de Crédito PF: Backtest Walk-Forward e Efeito Calendário",
+    "cat_card04_desc": "Ajustar por feriados nacionais ANBIMA e dias úteis reduz o erro absoluto de projeção (MAE) em R$ 7,39 bi/mês (de R$ 13,63 bi para R$ 6,24 bi/mês · wMAPE 2,79%) e acerta 97,0% dos meses na meta ±5%.",
+    "cat_card05_badge": "Estudo 05 · 150 mil propostas (OpenML)",
+    "cat_card05_title": "Otimização de Política de Crédito: Maximizando o Retorno com Score e Machine Learning",
+    "cat_card05_desc": "Simulação Otimizada 2D aprova 49,68% com Bad Rate EAD de 1,05% e 5,05M u.m. (4,14% P&amp;L/EAD vs 4,71M RF 1D @ mesmo EAD e 4,55M rígida), isolando 1.794 casos Early Warning (6,35% BR).",
+    "cat_btn_read": "Ler estudo →",
+    "cat_btn_code_data": "<i class='bi bi-github'></i> Código e Dados ↗",
+    "cat_btn_code_res": "<i class='bi bi-github'></i> Código e Resultados ↗",
+    "footer_home_link": "Início",
+    "tools_cat_01": "<span class='badge-dot'></span> 01 · Linguagens &amp; Engenharia de Dados",
+    "tools_cat_02": "<span class='badge-dot'></span> 02 · Analytics &amp; Machine Learning",
+    "tools_cat_03": "<span class='badge-dot'></span> 03 · Bancos de Dados &amp; Infraestrutura",
+    "tools_cat_04": "<span class='badge-dot'></span> 04 · Business Intelligence &amp; Produtividade",
+    "tools_btn_more": "Ver todas as tecnologias (+21)",
+    "tools_btn_less": "Ver menos tecnologias",
+    "study03_kpi1_label": "Persistência 11m",
+    "study03_kpi2_label": "Spread Bancário",
+    "study03_kpi3_label": "Painel 108 UF-Anos",
+    "btn_code_and_data": "<i class='bi bi-github'></i> Código e Dados ↗"
+  },
+  "en": {
+    "tagline_pill": "Data & Analytics",
+    "nav_home": "Home",
+    "nav_about": "About & Career",
+    "nav_deliver": "What I Deliver",
+    "nav_tools": "Tools & Stack",
+    "nav_studies": "Studies Showcase →",
+    "nav_contact": "Contact",
+    "hero_tag": "Data · Analytics · Decision",
+    "hero_role": "Data & Analytics Specialist focused on Credit Risk, Data Quality and Operational Decision-Making",
+    "hero_summary": "I connect in-depth investigation of business rules and databases to clear diagnostics and operational actions that drive direct business value.",
+    "hero_cta_studies": "Explore Studies Showcase →",
+    "hero_cta_credit": "View Credit Study",
+    "hero_card_kicker": "Latest Studies",
+    "hero_card_sub": "Click any outcome below to inspect the open data and code:",
+    "hero_policy_label": "Credit Policy & AI · 150k Applications",
+    "hero_policy_val": "Lifted simulated P&amp;L by <strong>+10.9%</strong> over the rigid rule, with a <strong>1.05%</strong> EAD bad rate →",
+    "hero_diff_label": "Credit Forecasting · Central Bank",
+    "hero_diff_val": "Cut forecast MAE by <strong>R$ 7.39 bn/month (-54%)</strong> with ANBIMA holiday calendar →",
+    "hero_domain_label": "Data Quality & Collections · 30k Accounts",
+    "hero_domain_val": "Recovered <strong>92.4%</strong> of financial losses by fixing hidden customer data flaws →",
+    "hero_method_label": "Unified Registry (MDM) · 7,905 CVM Records",
+    "hero_method_val": "Eliminated <strong>14.8%</strong> duplicates and built a single, reliable entity view →",
+    "hero_avail_label": "Bank Pricing & Income · 138 Banks + IBGE",
+    "hero_avail_val": "Mapped up to <strong>15.6x</strong> interest rate spread and measured local competition impact →",
+    "about_title": "About Me & Career",
+    "about_sub": "A perspective on technical background, analytical mindset, and operational impact.",
+    "about_bio_p1": "I operate at the intersection of <strong>Data, Analytics, and Business Operations</strong>, investigating the lineage, granularity, and business logic of information to build reliable indicators, identify opportunities, and support strategic and operational decisions.",
+    "about_quote": "“Aggregated metrics can hide critical operational failures. Efficient analysis starts with data quality, business rules, and a deep understanding of the problem.”",
+    "about_bio_p2": "Focused on <strong>credit risk, conversion funnels, KPI reconciliation, and data quality</strong>, I combine scalable tools (advanced SQL, Python pipelines, DuckDB, Databricks) with business modeling (Power BI, DAX, KPI governance) to ensure leadership and operations execute auditable, aligned decisions.",
+    "cred_edu_label": "01 · ACADEMIC BACKGROUND",
+    "cred_edu_title": "Education in Computing, Big Data & Statistics",
+    "cred_edu_desc": "• B.S. in <strong>Computer Science</strong> (Faculdade Sumaré)<br>• Postgraduate in <strong>Big Data</strong> (Univ. Anhembi Morumbi)<br>• Postgraduate in <strong>Applied Statistics</strong> (FMU)",
+    "cred_spec_label": "02 · CORE SPECIALIZATIONS",
+    "cred_spec_title": "Key Areas of Expertise",
+    "cred_spec_desc": "• <strong>Credit:</strong> Scoring models, credit limit policies, collections prioritization.<br>• <strong>Quality (DQ):</strong> Data contracts, missingness monitoring, and drift detection.<br>• <strong>BI & Revenue:</strong> Dimensional modeling, funnel tracking, and base reconciliation.",
+    "cred_ops_label": "03 · OPERATIONAL POSTURE",
+    "cred_ops_title": "From Diagnostic to Action",
+    "cred_ops_desc": "• <strong>Rigor & Causality:</strong> Clear separation between correlation and true causality.<br>• <strong>Layered Communication:</strong> Executive summaries for leadership, deep technical specs for squads.<br>• <strong>Reproducibility:</strong> Auditable data pipelines with zero dependency on manual steps.",
+    "deliver_title": "What I Deliver",
+    "deliver_sub": "Applied analytical capabilities solving real-world challenges in business operations and management:",
+    "deliv_dashboards": "Dashboards",
+    "deliv_dashboards_p": "Executive dashboards with dependable KPIs, granular drill-downs, and outcome tracking.",
+    "deliv_dashboards_link": "View dashboards & models →",
+    "deliv_analyses": "Analytics & Studies",
+    "deliv_analyses_p": "Deep investigations into credit risk, collections, and revenue to uncover root causes and opportunities.",
+    "deliv_analyses_link": "View credit study →",
+    "deliv_automations": "Automations",
+    "deliv_automations_p": "Automated pipelines in Python and SQL to reduce manual effort, validate data contracts, and boost efficiency.",
+    "deliv_automations_link": "View pipeline & simulator →",
+    "deliv_governance": "Data Governance",
+    "deliv_governance_p": "Data quality audits, reconciliation, and business rules governance to ensure indicator consistency.",
+    "deliv_governance_link": "View audit & DQ →",
+    "deliv_traceability": "Traceability",
+    "deliv_traceability_p": "Version-controlled code, comprehensive technical documentation, and full transformation audit trails.",
+    "deliv_traceability_link": "View GitHub repository ↗",
+    "tools_title": "Tools & Technologies",
+    "tools_sub": "Technological ecosystem organized by domain for data engineering, predictive modeling, and analytics:",
+    "showcase_title": "Studies & Projects Showcase",
+    "showcase_sub": "In-depth analyses with reproducible methodology, quantitative data, and direct operational impact:",
+    "showcase_recent_badge": "Latest Published Studies (Featured Showcase)",
+    "study04_badge": "Study 04 · Central Bank SGS Backtest",
+    "study04_meta": "Noise Floor in Household Credit Granting Projections · 57 real months",
+    "study04_title": "Household Credit Forecasting: Walk-Forward Backtest & Calendar Effects",
+    "study04_desc": "Adding Brazilian national (ANBIMA) holidays and business days cuts monthly forecast error (MAE) from <strong>R$ 13.63 bn to R$ 6.24 bn (-R$ 7.39 bn/month in planning accuracy)</strong>, hitting the ±5% target in <strong>97.0%</strong> of months. <em>Method:</em> 33-origin walk-forward backtest (<code>wMAPE 2.79% · Ljung-Box p = 0.403</code>).",
+    "study04_btn_study": "Read Study & Method →",
+    "study04_btn_json": "JSON Data",
+    "study05_badge": "Study 05 · Credit Policy & Decisioning",
+    "study05_meta": "GiveMeSomeCredit (OpenML 46929) · 150,000 historical borrowers",
+    "study05_title": "How a 2D Policy (Score × Random Forest) Lifts Return on EAD to 4.14% vs RF 1D & Rigid",
+    "study05_desc": "Separates knock-outs by severity (<code>R1→R2→R3</code>) and applies a complementary 3×3 Matrix in R4 (<code>49.68%</code> simulated approval, <strong>1.05%</strong> EAD Bad Rate, <strong>5.05M</strong> net P&amp;L vs 4.71M RF 1D @ equal EAD &amp; 4.55M rigid), isolating <strong>1,794</strong> Early Warning cases (<code>6.35%</code> BR).",
+    "study05_btn_study": "Read Study & Simulator →",
+    "study03_badge": "Study 03 · 138 Banks + 108 State-Years",
+    "study03_meta": "BCB Olinda (11m) + IBGE 2022–2025",
+    "study03_title": "Where Banks Charge Most & Why Income Alone Fails to Predict Credit",
+    "study03_desc": "Compares rates across <strong>138 banks</strong> (a <strong>15.57x</strong> spread), proving price positioning persists over 11 months, and shows across <strong>108 state-years</strong> why static state income fails out-of-sample. <em>Method:</em> <code>K-Means + PCA (Spearman ρ = 0.866)</code> & fixed-effects panel (<code>MAE 1.28 vs 0.95 pp</code>).",
+    "study03_btn_study": "Read Study & Method →",
+    "sidebar_title": "Other Pipeline Studies",
+    "sidebar_badge": "Archive",
+    "sidebar_intro": "In-depth studies with interactive simulators and executive decision models:",
+    "study01_badge": "Study 01 · UCI Credit Default",
+    "study01_title": "Impact of Data Quality on Default Risk",
+    "study01_desc": "Shows on 30,000 accounts how missing data hides defaulters without triggering global alerts, recovering <strong>92.4% of value (NT$ 6.48M)</strong> with native missing handling. <em>Method:</em> <code>32.3% → 27.4%</code> capture drop & HGB NaN + Expected Loss.",
+    "study01_btn_study": "Read study →",
+    "study01_btn_sim": "Simulator",
+    "study01_btn_code": "Code ↗",
+    "study02_badge": "Study 02 · CVM Open Data",
+    "study02_title": "Entity Deduplication & Golden Record (MDM) on CVM Data",
+    "study02_desc": "Consolidates 7,905 official records into 6,736 unique CNPJs (<strong>-14.8% duplicates</strong>) and resolves <strong>78.6% (33/42)</strong> of conflicts by recency, even without tax keys. <em>Method:</em> Golden Record + Record Linkage (<code>PR-AUC 0.884</code>).",
+    "study02_btn_study": "Read study →",
+    "study02_btn_sim": "Simulator",
+    "study02_btn_code": "Code ↗",
+    "sidebar_catalog_link": "View Full Showcase with all 5 Studies",
+    "catalog_title": "Analytical Studies Showcase",
+    "catalog_sub": "Real-world case studies and open data on Credit Risk, Data Quality, Entity Resolution, and Econometrics.",
+    "catalog_back_home": "← Back to Main Portfolio",
+    "contact_title": "Get in Touch",
+    "contact_sub": "Available for Specialist / Senior roles in Data, Analytics, Credit Risk and Business Intelligence:",
+    "contact_btn_li": "Connect on LinkedIn →",
+    "contact_btn_gh": "Explore Repository on GitHub",
+    "contact_loc_label": "Location",
+    "contact_loc_val": "São Paulo, SP — Brazil (Hybrid / Remote)",
+    "contact_li_label": "Professional LinkedIn",
+    "contact_repo_label": "Projects & Code",
+    "footer_rights": "Carlos Santos. All rights reserved.",
+    "cat_hero_tag": "Studies Catalogue",
+    "cat_hero_title": "Studies Showcase",
+    "cat_hero_role": "Analyses with documented scope, metrics, and explicit limitations",
+    "cat_intro_label": "Studies Showcase",
+    "cat_intro_title": "Published Studies",
+    "cat_intro_desc": "Reproducible analytical case studies based exclusively on official public data sources and anonymized public benchmarks (UCI Machine Learning Repository, CVM Open Data, IBGE PNAD Contínua, Central Bank of Brazil SGS, and GiveMeSomeCredit / OpenML #46929).",
+    "cat_card01_badge": "Study 01 · UCI Credit Default",
+    "cat_card01_title": "Impact of Data Quality on Default Risk",
+    "cat_card01_desc": "Proves on 30,000 accounts that missing data hides defaulters without moving global alerts; native missing handling recovers NT$ 6.48M (92.4% of clean value).",
+    "cat_card02_badge": "Study 02 · CVM Open Data",
+    "cat_card02_title": "Entity Deduplication & Golden Record (MDM) on CVM Data",
+    "cat_card02_desc": "Consolidates 7,905 CVM records (-14.8% duplicates), resolves 78.6% of conflicts by recency, and matches unkeyed records with HGB (PR-AUC 0.763 → 0.884).",
+    "cat_card03_badge": "Study 03 · 138 Banks + 108 State-Years",
+    "cat_card03_title": "Where Banks Charge Most & Limits of Regional Income",
+    "cat_card03_desc": "Maps 138 banks with a 15.57x rate spread (persistence ρ = 0.866) and proves across 108 state-years that income alone fails out-of-sample tests.",
+    "cat_card04_badge": "Study 04 · Central Bank SGS",
+    "cat_card04_title": "Household Credit Forecasting: Walk-Forward Backtest & Calendar Effects",
+    "cat_card04_desc": "Adjusting for Brazilian national holidays (ANBIMA) and business days reduces monthly forecast MAE by R$ 7.39 bn/month (wMAPE 2.79%) with 97.0% of months inside ±5%.",
+    "cat_card05_badge": "Study 05 · 150k Applications (OpenML)",
+    "cat_card05_title": "Credit Policy Optimization: Maximizing Returns with Score and Machine Learning",
+    "cat_card05_desc": "Optimized 2D simulation approves 49.68% with 1.05% EAD Bad Rate and 5.05M P&amp;L (4.14% P&amp;L/EAD vs 4.71M RF 1D @ equal EAD &amp; 4.55M rigid), isolating 1,794 Early Warning cases (6.35% BR).",
+    "cat_btn_read": "Read study →",
+    "cat_btn_code_data": "<i class='bi bi-github'></i> Code &amp; Data ↗",
+    "cat_btn_code_res": "<i class='bi bi-github'></i> Code &amp; Results ↗",
+    "footer_home_link": "Home",
+    "tools_cat_01": "<span class='badge-dot'></span> 01 · Languages &amp; Data Engineering",
+    "tools_cat_02": "<span class='badge-dot'></span> 02 · Analytics &amp; Machine Learning",
+    "tools_cat_03": "<span class='badge-dot'></span> 03 · Databases &amp; Cloud Infrastructure",
+    "tools_cat_04": "<span class='badge-dot'></span> 04 · Business Intelligence &amp; Productivity",
+    "tools_btn_more": "View all technologies (+21)",
+    "tools_btn_less": "Show fewer technologies",
+    "study03_kpi1_label": "11m Persistence",
+    "study03_kpi2_label": "Bank Rate Spread",
+    "study03_kpi3_label": "108 State-Years Panel",
+    "btn_code_and_data": "<i class='bi bi-github'></i> Code &amp; Data ↗"
+  },
+  "es": {
+    "tagline_pill": "Datos & Analytics",
+    "nav_home": "Inicio",
+    "nav_about": "Sobre Mí & Trayectoria",
+    "nav_deliver": "Lo que entrego",
+    "nav_tools": "Herramientas",
+    "nav_studies": "Vitrina de Estudios →",
+    "nav_contact": "Contacto",
+    "hero_tag": "Datos · Analytics · Decisión",
+    "hero_role": "Especialista en Datos & Analytics con foco en Riesgo de Crédito, Calidad de Datos y Decisión Operativa",
+    "hero_summary": "Conecto la investigación profunda de reglas de negocio y bases de datos con diagnósticos claros y acciones operativas que generan impacto directo en el negocio.",
+    "hero_cta_studies": "Acceder a Vitrina de Estudios →",
+    "hero_cta_credit": "Ver Estudio de Crédito",
+    "hero_card_kicker": "Últimos Estudios",
+    "hero_card_sub": "Haz clic en cualquier resultado para ver los datos y el código:",
+    "hero_policy_label": "Concesión de Crédito & IA · 150 mil solicitudes",
+    "hero_policy_val": "Elevó el P&amp;L simulado en <strong>+10,9%</strong> sobre la regla rígida, con pérdida EAD de <strong>1,05%</strong> →",
+    "hero_diff_label": "Previsión de Crédito · Banco Central",
+    "hero_diff_val": "Redujo el error de proyección (MAE) en <strong>R$ 7,39 mil M/mes (-54%)</strong> con feriados ANBIMA →",
+    "hero_domain_label": "Calidad de Datos & Cobranza · 30 mil cuentas",
+    "hero_domain_val": "Recuperó el <strong>92,4%</strong> de pérdidas financieras al corregir fallas catastrales ocultas →",
+    "hero_method_label": "Base Única de Empresas (MDM) · 7.905 registros CVM",
+    "hero_method_val": "Eliminó <strong>14,8%</strong> de duplicidades y creó una visión única y confiable de empresas →",
+    "hero_avail_label": "Tasas & Ingreso Regional · 138 Bancos + IBGE",
+    "hero_avail_val": "Mapeó dispersión de hasta <strong>15,6x</strong> en tasas y midió el peso de la competencia local →",
+    "about_title": "Sobre mí & Trayectoria",
+    "about_sub": "Una visión sobre la base técnica, la postura analítica y cómo genero impacto en las operaciones.",
+    "about_bio_p1": "Actúo en la intersección entre <strong>Datos, Analytics y Operaciones de Negocio</strong>, investigando el origen, granularidad y reglas de la información para construir indicadores confiables, identificar oportunidades y apoyar decisiones estratégicas y operativas.",
+    "about_quote": "“Los indicadores consolidados pueden ocultar fallas operativas. Un análisis eficiente comienza por la calidad de los datos, las reglas de negocio y la comprensión del problema.”",
+    "about_bio_p2": "Con foco en <strong>riesgo de crédito, embudo de conversión, conciliación de indicadores y calidad de datos</strong>, uno herramientas escalables (SQL avanzado, pipelines en Python, DuckDB y Databricks) al modelado de negocio (Power BI, DAX y gobernanza de KPIs) para asegurar que liderazgo y operación tomen decisiones alineadas y auditables.",
+    "cred_edu_label": "01 · FORMACIÓN ACADÉMICA",
+    "cred_edu_title": "Formación en Computación, Big Data y Estadística",
+    "cred_edu_desc": "• Licenciatura en <strong>Ciencias de la Computación</strong> (Facultad Sumaré)<br>• Posgrado en <strong>Big Data</strong> (Univ. Anhembi Morumbi)<br>• Posgrado en <strong>Estadística Aplicada</strong> (FMU)",
+    "cred_spec_label": "02 · ÁREAS DE ESPECIALIDAD",
+    "cred_spec_title": "Frentes Centrales de Actuación",
+    "cred_spec_desc": "• <strong>Crédito:</strong> Scoring, políticas de límite, priorización de cobranza.<br>• <strong>Calidad (DQ):</strong> Data contracts, monitoreo de ausencias y drift.<br>• <strong>BI & Ingresos:</strong> Modelado dimensional, embudo y conciliación de bases.",
+    "cred_ops_label": "03 · POSTURA OPERATIVA",
+    "cred_ops_title": "Del Diagnóstico a la Acción",
+    "cred_ops_desc": "• <strong>Rigor & Causalidad:</strong> Separación entre correlación y causalidad real.<br>• <strong>Comunicación en Capas:</strong> Ejecutiva para dirección y técnica para squads.<br>• <strong>Reproducibilidad:</strong> Pipelines auditables sin dependencia de procesos manuales.",
+    "deliver_title": "Lo que entrego",
+    "deliver_sub": "Capacidades analíticas aplicadas para resolver problemas reales de operaciones y gestión:",
+    "deliv_dashboards": "Dashboards",
+    "deliv_dashboards_p": "Paneles ejecutivos con indicadores confiables, análisis detallados y seguimiento de resultados.",
+    "deliv_dashboards_link": "Ver paneles y modelos →",
+    "deliv_analyses": "Análisis & Estudios",
+    "deliv_analyses_p": "Investigaciones de crédito, cobranza e ingresos para identificar causas, riesgos y oportunidades.",
+    "deliv_analyses_link": "Ver estudio de crédito →",
+    "deliv_automations": "Automatizaciones",
+    "deliv_automations_p": "Procesos en Python y SQL para reducir retrabajo, validar contratos de datos y aumentar la eficiencia.",
+    "deliv_automations_link": "Ver pipeline y simulador →",
+    "deliv_governance": "Gobernanza de Datos",
+    "deliv_governance_p": "Calidad, conciliación y reglas de negocio para garantizar consistencia y confiabilidad de indicadores.",
+    "deliv_governance_link": "Ver auditoría y DQ →",
+    "deliv_traceability": "Trazabilidad",
+    "deliv_traceability_p": "Código versionado, documentación técnica e historial de transformaciones y reglas aplicadas.",
+    "deliv_traceability_link": "Ver repositorio en GitHub ↗",
+    "tools_title": "Herramientas & Tecnologías",
+    "tools_sub": "Ecosistema tecnológico organizado por especialidad para ingeniería de datos, modelado predictivo y analytics:",
+    "showcase_title": "Vitrina de Estudios & Proyectos",
+    "showcase_sub": "Análisis profundos con metodología reproducible, datos cuantitativos e impacto operativo directo:",
+    "showcase_recent_badge": "Últimos Estudios Publicados (Vitrina Destacada)",
+    "study04_badge": "Estudio 04 · Backtest BCB SGS",
+    "study04_meta": "Piso de Ruido en la Proyección de Concesiones de Crédito PF · 57 meses reales",
+    "study04_title": "Previsión de Crédito PF: Backtest Walk-Forward y Efecto Calendario",
+    "study04_desc": "Incluir feriados nacionales ANBIMA y días hábiles reduce el error de proyección (MAE) de <strong>R$ 13,63 mil M a R$ 6,24 mil M/mes (-R$ 7,39 mil M/mes)</strong> y ubica el <strong>97,0%</strong> de los meses en la meta ±5%. <em>Método:</em> backtest walk-forward en 33 meses reales (<code>wMAPE 2,79% · Ljung-Box p = 0,403</code>).",
+    "study04_btn_study": "Leer Estudio y Método →",
+    "study04_btn_json": "Datos JSON",
+    "study05_badge": "Estudio 05 · Política de Crédito y Decisión",
+    "study05_meta": "GiveMeSomeCredit (OpenML 46929) · 150.000 registros históricos",
+    "study05_title": "Cómo Política 2D (Score × Random Forest) Eleva Retorno s/ EAD a 4,14% vs RF 1D y Rígida",
+    "study05_desc": "Separa filtros eliminatorios por gravedad (<code>R1→R2→R3</code>) y aplica Matriz 3×3 complementaria en R4 (<code>49,68%</code> aprobación simulada, Bad Rate EAD <strong>1,05%</strong>, P&amp;L <strong>5,05M</strong> vs 4,71M RF 1D @ igual EAD y 4,55M rígida), aislando <strong>1.794</strong> casos Early Warning (<code>6,35%</code> BR).",
+    "study05_btn_study": "Leer Estudio y Simulador →",
+    "study03_badge": "Estudio 03 · 138 Bancos + 108 UF-Años",
+    "study03_meta": "BCB Olinda (11m) + IBGE 2022–2025",
+    "study03_title": "Dónde Cobran Más Caro los Bancos y Por Qué el Ingreso Solo Falla",
+    "study03_desc": "Analiza tasas de <strong>138 bancos</strong> (diferencia de hasta <strong>15,57x</strong>) probando persistencia de 11 meses, y muestra en <strong>108 UF-años</strong> por qué el ingreso estatal aislado falla en el futuro. <em>Método:</em> <code>K-Means + PCA (Spearman ρ = 0,866)</code> y efectos fijos (<code>MAE 1,28 vs 0,95 p.p.</code>).",
+    "study03_btn_study": "Leer Estudio y Método →",
+    "sidebar_title": "Demás Estudios del Pipeline",
+    "sidebar_badge": "Acervo",
+    "sidebar_intro": "Estudios profundos con simuladores interactivos y modelos ejecutivos de decisión:",
+    "study01_badge": "Estudio 01 · UCI Credit Default",
+    "study01_title": "Impacto de la Calidad de los Datos en el Riesgo de Morosidad",
+    "study01_desc": "Demuestra en 30.000 cuentas que fallas catastrales ocultan morosos sin alterar alertas globales, recuperando <strong>92,4% del valor (NT$ 6,48M)</strong> al tratar ausencias nativamente. <em>Método:</em> <code>32,3% → 27,4%</code> en captura y HGB NaN + Pérdida Esperada.",
+    "study01_btn_study": "Leer estudio →",
+    "study01_btn_sim": "Simulador",
+    "study01_btn_code": "Código ↗",
+    "study02_badge": "Estudio 02 · Datos Abiertos CVM",
+    "study02_title": "Unificación de Registros Duplicados (MDM) en la Base CVM",
+    "study02_desc": "Consolida 7.905 registros en 6.736 CNPJs únicos (<strong>-14,8% duplicidades</strong>) y resuelve <strong>78,6% (33/42)</strong> de los conflictos por recencia, aun sin clave de CNPJ. <em>Método:</em> Golden Record + Record Linkage (<code>PR-AUC 0,884</code>).",
+    "study02_btn_study": "Leer estudio →",
+    "study02_btn_sim": "Simulador",
+    "study02_btn_code": "Código ↗",
+    "sidebar_catalog_link": "Ver Vitrina Completa con los 5 Estudios",
+    "catalog_title": "Vitrina de Estudios Analíticos",
+    "catalog_sub": "Casos de estudio reales y datos públicos sobre Riesgo de Crédito, Calidad de Datos, Resolución de Entidades y Econometría.",
+    "catalog_back_home": "← Volver al Portafolio Principal",
+    "contact_title": "Póngase en Contacto",
+    "contact_sub": "Disponible para puestos de Especialista / Sénior en Datos, Analytics, Riesgo de Crédito e Inteligencia de Negocio:",
+    "contact_btn_li": "Conectar en LinkedIn →",
+    "contact_btn_gh": "Explorar Repositorio en GitHub",
+    "contact_loc_label": "Ubicación",
+    "contact_loc_val": "São Paulo, SP — Brasil (Híbrido / Remoto)",
+    "contact_li_label": "LinkedIn Profesional",
+    "contact_repo_label": "Proyectos & Código",
+    "footer_rights": "Carlos Santos. Todos los derechos reservados.",
+    "cat_hero_tag": "Catálogo de estudios",
+    "cat_hero_title": "Vitrina de Estudios",
+    "cat_hero_role": "Análisis con alcance, métricas y limitaciones documentadas",
+    "cat_intro_label": "Vitrina de Estudios",
+    "cat_intro_title": "Estudios publicados",
+    "cat_intro_desc": "Casos analíticos reproducibles basados exclusivamente en fuentes públicas oficiales y benchmarks públicos anonimizados (UCI Machine Learning Repository, Datos Abiertos CVM, IBGE PNAD Contínua, Banco Central do Brasil SGS y GiveMeSomeCredit / OpenML #46929).",
+    "cat_card01_badge": "Estudio 01 · UCI Credit Default",
+    "cat_card01_title": "Impacto de la calidad de los datos en el riesgo de morosidad",
+    "cat_card01_desc": "Prueba en 30.000 cuentas que fallas catastrales ocultan morosos sin disparar alertas globales; el manejo nativo recupera NT$ 6,48M (92,4% del valor limpio).",
+    "cat_card02_badge": "Estudio 02 · Datos Abiertos CVM",
+    "cat_card02_title": "Unificación de Registros Duplicados (MDM) en la Base CVM",
+    "cat_card02_desc": "Consolida 7.905 registros CVM (-14,8% duplicidades), resuelve 78,6% de conflictos por recencia y cruza registros sin CNPJ con HGB (PR-AUC 0,763 → 0,884).",
+    "cat_card03_badge": "Estudio 03 · 138 Bancos + 108 UF-Años",
+    "cat_card03_title": "Dónde Cobran Más Caro los Bancos y Límites del Ingreso Regional",
+    "cat_card03_desc": "Mapea 138 bancos con 15,57x de dispersión en tasas (persistencia ρ = 0,866) y prueba en 108 UF-años que el ingreso aislado falla fuera de muestra.",
+    "cat_card04_badge": "Estudio 04 · Banco Central SGS",
+    "cat_card04_title": "Previsión de Crédito PF: Backtest Walk-Forward y Efecto Calendario",
+    "cat_card04_desc": "Ajustar por feriados nacionales ANBIMA y días hábiles reduce el error mensual (MAE) en R$ 7,39 mil M/mes (wMAPE 2,79%) y acierta 97,0% de los meses en ±5%.",
+    "cat_card05_badge": "Estudio 05 · 150 mil solicitudes (OpenML)",
+    "cat_card05_title": "Optimización de Política de Crédito: Maximizando Retorno con Score e Inteligencia Artificial",
+    "cat_card05_desc": "Simulación Optimizada 2D aprueba 49,68% con Bad Rate EAD de 1,05% y 5,05M (4,14% P&amp;L/EAD vs 4,71M RF 1D @ igual EAD y 4,55M rígida), aislando 1.794 casos Early Warning (6,35% BR).",
+    "cat_btn_read": "Leer estudio →",
+    "cat_btn_code_data": "<i class='bi bi-github'></i> Código y Datos ↗",
+    "cat_btn_code_res": "<i class='bi bi-github'></i> Código y Resultados ↗",
+    "footer_home_link": "Inicio",
+    "tools_cat_01": "<span class='badge-dot'></span> 01 · Lenguajes e Ingeniería de Datos",
+    "tools_cat_02": "<span class='badge-dot'></span> 02 · Analytics &amp; Machine Learning",
+    "tools_cat_03": "<span class='badge-dot'></span> 03 · Bases de Datos e Infraestructura",
+    "tools_cat_04": "<span class='badge-dot'></span> 04 · Business Intelligence y Productividad",
+    "tools_btn_more": "Ver todas las tecnologías (+21)",
+    "tools_btn_less": "Ver menos tecnologías",
+    "study03_kpi1_label": "Persistencia 11m",
+    "study03_kpi2_label": "Spread Bancario",
+    "study03_kpi3_label": "Panel 108 UF-Años",
+    "btn_code_and_data": "<i class='bi bi-github'></i> Código y Datos ↗"
+  }
+};
+
+  function applyLanguage(lang) {
+    if (!I18N_DATA[lang]) lang = "pt";
+    try { localStorage.setItem("portfolio_user_lang", lang); } catch (e) {}
+    document.documentElement.lang = lang;
+
+    const codeEl = document.getElementById("lang-current-code");
+    if (codeEl) codeEl.textContent = lang.toUpperCase();
+
+    document.querySelectorAll(".lang-option").forEach(btn => {
+      btn.classList.toggle("active", btn.getAttribute("data-lang") === lang);
+    });
+
+    const dict = I18N_DATA[lang] || {};
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const key = el.getAttribute("data-i18n");
+      if (dict[key]) {
+        el.innerHTML = dict[key];
+      }
+    });
+
+    // Sincronismo com Google Translate para tradução contínua de parágrafos dos estudos
+    try {
+      const domain = window.location.hostname;
+      if (lang === "pt") {
+        document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + domain + ";";
+      } else {
+        document.cookie = "googtrans=/pt/" + lang + "; path=/;";
+        document.cookie = "googtrans=/pt/" + lang + "; path=/; domain=" + domain + ";";
+      }
+      const select = document.querySelector(".goog-te-combo");
+      if (select) {
+        select.value = lang;
+        select.dispatchEvent(new Event("change"));
+      }
+    } catch (e) {}
+  }
+
+  function initLanguageSwitcher() {
+    const switcher = document.getElementById("lang-switcher");
+    const btn = document.getElementById("lang-btn");
+    const dropdown = document.getElementById("lang-dropdown");
+    if (!switcher || !btn || !dropdown) return;
+
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      const isOpen = dropdown.classList.toggle("open");
+      btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+
+    dropdown.querySelectorAll(".lang-option").forEach(opt => {
+      opt.addEventListener("click", function (e) {
+        e.stopPropagation();
+        const selectedLang = this.getAttribute("data-lang");
+        applyLanguage(selectedLang);
+        dropdown.classList.remove("open");
+        btn.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    document.addEventListener("click", function (e) {
+      if (!switcher.contains(e.target)) {
+        dropdown.classList.remove("open");
+        btn.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    let savedLang = "pt";
+    try {
+      savedLang = localStorage.getItem("portfolio_user_lang") || "pt";
+    } catch (e) {}
+    applyLanguage(savedLang);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initLanguageSwitcher);
+  } else {
+    initLanguageSwitcher();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initMobileNav);
+  } else {
+    initMobileNav();
+  }
+
+  // ScrollSpy para atualizar o menu ativo conforme a seção visualizada
+  const sections = document.querySelectorAll("section[id]");
+  const navLinks = document.querySelectorAll("#navbar a[href^='#']");
+
+  if (sections.length && navLinks.length && "IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const currentId = entry.target.getAttribute("id");
+          navLinks.forEach((link) => {
+            const href = link.getAttribute("href");
+            if (href === "#" + currentId) {
+              link.classList.add("active");
+            } else {
+              link.classList.remove("active");
+            }
+          });
+        }
+      });
+    }, { rootMargin: "-70px 0px -50% 0px" });
+
+    sections.forEach((sec) => observer.observe(sec));
+  }
+})();
+
+(function() {
+  const SCENARIOS = {
+    bb: {
+      goldenId: "CVM-GLD-00000000000191",
+      note: "Caso real da CVM: Banco do Brasil S.A. segue ATIVO em Companhias Abertas desde 1977-07-20, mas aparece CANCELADA em 2024-06-05 no papel de Custodiante FI. Em Recência pura, o cancelamento de um papel sobrescreveria o emissor ativo — ilustrando o risco de misturar papel regulatório com status da entidade.",
+      records: [
+        { id: "CIA-0001", system: "CVM_CIA_ABERTA", trust: 100, completeness: 100, updatedAt: "1977-07-20", quality: 100, name: "BANCO DO BRASIL S.A.", trade: "BANCO DO BRASIL S.A.", docRaw: "00.000.000/0001-91", docMasked: "00.***.***/0001-**", uf: "DF", sit: "ATIVO" },
+        { id: "FIC-0042", system: "CVM_FI_CUSTOD", trust: 70, completeness: 67, updatedAt: "2024-06-05", quality: 67, name: "BANCO DO BRASIL S.A.", trade: "", docRaw: "00.000.000/0001-91", docMasked: "00.***.***/0001-**", uf: "", sit: "CANCELADA" }
+      ]
+    },
+    brb: {
+      goldenId: "CVM-GLD-00000208000100",
+      note: "Caso real da CVM: BRB possui Nome Comercial ('BRB') e UF ('DF') completos em Cia. Aberta (ATIVO em 1993-09-24), enquanto o papel de Custodiante FI registra CANCELADA em 2023-05-15 sem UF nem Nome Comercial.",
+      records: [
+        { id: "CIA-0208", system: "CVM_CIA_ABERTA", trust: 100, completeness: 100, updatedAt: "1993-09-24", quality: 100, name: "BRB BANCO DE BRASILIA SA", trade: "BRB", docRaw: "00.000.208/0001-00", docMasked: "00.***.***/0001-**", uf: "DF", sit: "ATIVO" },
+        { id: "FIC-0118", system: "CVM_FI_CUSTOD", trust: 70, completeness: 67, updatedAt: "2023-05-15", quality: 67, name: "BRB BANCO DE BRASILIA SA", trade: "", docRaw: "00.000.208/0001-00", docMasked: "00.***.***/0001-**", uf: "", sit: "CANCELADA" }
+      ]
+    },
+    lamsa: {
+      goldenId: "CVM-GLD-00974211000125",
+      note: "Caso real da CVM: mesma companhia aberta com dois registros históricos no cadastro (registro CANCELADA em 2003-05-06 e registro ATIVO em 2020-04-08), além de divergência entre Razão Social e Nome Comercial.",
+      records: [
+        { id: "CIA-974A", system: "CVM_CIA_ABERTA (Reg. Atual)", trust: 100, completeness: 100, updatedAt: "2020-04-08", quality: 100, name: "LINHA AMARELA S.A.- LAMSA", trade: "LINHA AMARELA S./A.", docRaw: "00.974.211/0001-25", docMasked: "00.***.***/0001-**", uf: "RJ", sit: "ATIVO" },
+        { id: "CIA-974B", system: "CVM_CIA_ABERTA (Hist.)", trust: 80, completeness: 100, updatedAt: "2003-05-06", quality: 85, name: "LINHA AMARELA S.A.- LAMSA", trade: "LINHA AMARELA S./A.", docRaw: "00.974.211/0001-25", docMasked: "00.***.***/0001-**", uf: "RJ", sit: "CANCELADA" }
+      ]
+    }
+  };
+
+  function rankKey(rec, strategy) {
+    const ts = Date.parse(rec.updatedAt) || 0;
+    if (strategy === "recencia_primeiro") return [ts, rec.trust, rec.completeness];
+    if (strategy === "completude_primeiro") return [rec.completeness, rec.trust, ts];
+    return [rec.trust, ts, rec.completeness];
+  }
+
+  function electField(records, field, strategy) {
+    const valid = records.filter(r => Boolean(r[field]));
+    if (!valid.length) return { value: "", winner: null };
+    let best = valid[0];
+    let bestKey = rankKey(best, strategy);
+    for (let i = 1; i < valid.length; i++) {
+      const k = rankKey(valid[i], strategy);
+      if (k[0] > bestKey[0] || (k[0] === bestKey[0] && k[1] > bestKey[1]) || (k[0] === bestKey[0] && k[1] === bestKey[1] && k[2] > bestKey[2])) {
+        best = valid[i];
+        bestKey = k;
+      }
+    }
+    return { value: best[field], winner: best };
+  }
+
+  function computeSyncEvents(golden, records, syncMode) {
+    if (syncMode === "consolidacao") return [];
+    const overwrite = syncMode === "centralizado";
+    const events = [];
+    records.forEach(r => {
+      const delta = {};
+      ["name", "trade", "uf", "sit"].forEach(f => {
+        const gVal = golden[f].value;
+        if (gVal && (!r[f] || (overwrite && r[f] !== gVal))) {
+          delta[f] = gVal;
+        }
+      });
+      if (Object.keys(delta).length) {
+        events.push({ target_source: r.system, record_id: r.id, changed_fields: delta });
+      }
+    });
+    return events;
+  }
+
+  function renderSimulator() {
+    const clusterKey = document.getElementById("mdm-cluster").value;
+    const strategy = document.getElementById("mdm-strategy").value;
+    const syncMode = document.getElementById("mdm-sync").value;
+    const lgpdMode = document.getElementById("mdm-lgpd").value;
+
+    const scenario = SCENARIOS[clusterKey];
+    const records = scenario.records;
+    const masked = lgpdMode === "masked";
+
+    const fields = [
+      { key: "name", label: "Razão Social (DENOM_SOCIAL)" },
+      { key: "trade", label: "Nome Comercial (DENOM_COMERC)" },
+      { key: masked ? "docMasked" : "docRaw", label: "CNPJ" },
+      { key: "uf", label: "UF" },
+      { key: "sit", label: "Situação Cadastral (SIT)" }
+    ];
+
+    const elected = {
+      name: electField(records, "name", strategy),
+      trade: electField(records, "trade", strategy),
+      doc: electField(records, masked ? "docMasked" : "docRaw", strategy),
+      uf: electField(records, "uf", strategy),
+      sit: electField(records, "sit", strategy)
+    };
+
+    const syncEvents = computeSyncEvents(elected, records, syncMode);
+    const avgOriginQual = (records.reduce((s, r) => s + r.completeness, 0) / records.length).toFixed(1).replace(".", ",");
+    const sitFlipped = elected.sit.value === "CANCELADA";
+
+    document.getElementById("mdm-kpis").innerHTML = [
+      `<div class="kpi-card"><div class="kpi-label">Registros CVM</div><div class="kpi-val">${records.length} fluxos</div><div class="kpi-delta">Consolidados em 1 CNPJ</div></div>`,
+      `<div class="kpi-card"><div class="kpi-label">Completude Origens → Hub</div><div class="kpi-val">100,0%</div><div class="kpi-delta">Média origens: ${avgOriginQual}%</div></div>`,
+      `<div class="kpi-card"><div class="kpi-label">Situação Eleita</div><div class="kpi-val">${elected.sit.value}</div><div class="kpi-delta">${sitFlipped ? "Recência promoveu CANCELADA" : "Emissor ATIVO preservado"}</div></div>`,
+      `<div class="kpi-card"><div class="kpi-label">Pacotes Sync Retorno</div><div class="kpi-val">${syncEvents.length} eventos</div><div class="kpi-delta">${syncMode === "consolidacao" ? "Somente leitura" : "Atualização nas origens"}</div></div>`
+    ].join("");
+
+    const rowsHtml = fields.map(f => {
+      const wObj = f.label === "CNPJ" ? elected.doc : elected[f.key];
+      const wVal = wObj.value || "—";
+      const badgeCls = (f.key === "sit" && sitFlipped) ? "badge-warn" : "badge-win";
+      const winSource = `<span class="${badgeCls}">${wObj.winner ? wObj.winner.system : "—"} (${wObj.winner ? wObj.winner.updatedAt : ""})</span>`;
+      const originsText = records.map(r => `<div><strong>${r.system}:</strong> ${r[f.key] || "<em>ausente</em>"} <span style="color:var(--mute);font-size:11px">(${r.updatedAt})</span></div>`).join("");
+      return `<tr><td><strong>${f.label}</strong></td><td>${originsText}</td><td><strong>${wVal}</strong></td><td>${winSource}</td></tr>`;
+    }).join("");
+
+    document.getElementById("mdm-table-wrap").innerHTML =
+      `<div class="wrap"><table><thead><tr><th>Atributo Canônico</th><th>Registros Oficiais CVM</th><th>Golden Record Eleito</th><th>Origem Vencedora</th></tr></thead><tbody>${rowsHtml}</tbody></table></div>`;
+
+    document.getElementById("mdm-diagnosis").innerHTML =
+      `<strong>Diagnóstico MDM (${scenario.goldenId}):</strong> ${scenario.note}`;
+
+    const apiPayload = {
+      golden_id: scenario.goldenId,
+      source: "dados.cvm.gov.br",
+      sync_mode: syncMode,
+      survivorship_rule: strategy,
+      golden_record: {
+        cnpj: elected.doc.value,
+        denom_social: elected.name.value,
+        denom_comerc: elected.trade.value,
+        uf: elected.uf.value,
+        sit: elected.sit.value
+      },
+      sincronismo_retorno: syncEvents
+    };
+
+    document.getElementById("mdm-json-preview").textContent =
+      "// Saida estruturada Golden Record (central/mdm.py · base CVM)\n" + JSON.stringify(apiPayload, null, 2);
+  }
+
+  ["mdm-cluster", "mdm-strategy", "mdm-sync", "mdm-lgpd"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener("change", renderSimulator);
+  });
+  renderSimulator();
+})();
+</script>
+
+<script>
+(function() {
+  const E2_DATA = {"sources": [{"label": "Companhias Abertas", "comp": 99.4, "records": 2680, "missing_uf": 1, "bar_text": "99,4% · 6/6 atributos (2.680 reg.)", "attrs_count": "6/6 atributos", "present_text": "CNPJ, Razão, Situação, Data (100%), UF (99,9%), Fantasia (96,5%)", "missing_text": "Apenas 1 sem UF e 95 sem Nome Comercial", "diag": "Base mais completa e formal da CVM", "color": "#2878E8"}, {"label": "Administradores FI", "comp": 66.7, "records": 243, "missing_uf": 243, "bar_text": "66,7% · 4/6 atributos (Sem UF e Fantasia)", "attrs_count": "4/6 atributos", "present_text": "CNPJ, Razão, Situação, Data (100% presentes)", "missing_text": "100% sem UF (243) e 100% sem Fantasia (243)", "diag": "Base CVM de Fundos omite UF e Fantasia na fonte", "color": "#64748B"}, {"label": "Administradores FII", "comp": 96.0, "records": 135, "missing_uf": 32, "bar_text": "96,0% · 5/6 atributos (135 reg.)", "attrs_count": "5/6 atributos", "present_text": "CNPJ, Razão, Situação, Data, Fantasia (100%)", "missing_text": "32 registros sem UF (23,7%)", "diag": "Preenche fantasia, mas 24% omitem UF", "color": "#2878E8"}, {"label": "Custodiantes FI", "comp": 66.7, "records": 94, "missing_uf": 94, "bar_text": "66,7% · 4/6 atributos (Sem UF e Fantasia)", "attrs_count": "4/6 atributos", "present_text": "CNPJ, Razão, Situação, Data (100% presentes)", "missing_text": "100% sem UF (94) e 100% sem Fantasia (94)", "diag": "Base CVM de Fundos omite UF e Fantasia na fonte", "color": "#64748B"}, {"label": "Gestores PJ FI", "comp": 66.7, "records": 1183, "missing_uf": 1183, "bar_text": "66,7% · 4/6 atributos (Sem UF e Fantasia)", "attrs_count": "4/6 atributos", "present_text": "CNPJ, Razão, Situação, Data (100% presentes)", "missing_text": "100% sem UF (1.183) e 100% sem Fantasia (1.183)", "diag": "Base CVM de Fundos omite UF e Fantasia na fonte", "color": "#64748B"}, {"label": "Cias. Incentivadas", "comp": 93.7, "records": 3570, "missing_uf": 82, "bar_text": "93,7% · 6/6 atributos (3.570 reg.)", "attrs_count": "6/6 atributos", "present_text": "CNPJ, Razão, Situação, Data (100%), UF (97,7%), Fantasia (64,4%)", "missing_text": "82 sem UF e 1.270 sem Fantasia", "diag": "Alta cobertura cadastral; 35,6% sem Nome Fantasia", "color": "#2878E8"}, {"label": "Golden Record (Hub MDM)", "comp": 91.1, "records": 6736, "missing_uf": 0, "bar_text": "91,1% · Hub MDM (+24,4 pp recuperados)", "attrs_count": "Hub Consolidado", "present_text": "CNPJ, Razão, Situação, Data (100%), UF (94,2%), Fantasia (78,3%)", "missing_text": "UF e Fantasia recuperados por sobrevivência de outras fontes", "diag": "Motor MDM preenche vazios dos fundos (+24,4 pp de ganho)", "color": "#6A1B9A"}], "surv": [{"label": "Cia. Aberta", "trust": 26.7, "recency": 22.4}, {"label": "Admin. FI", "trust": 23.7, "recency": 8.2}, {"label": "Admin. FII", "trust": 0.5, "recency": 11.3}, {"label": "Custod. FI", "trust": 0.2, "recency": 1.7}, {"label": "Gestor FI", "trust": 0.0, "recency": 5.7}], "sync": [{"label": "Consolidação (Só Hub)", "val": 0}, {"label": "Coexistência (Preenche Vazios)", "val": 254}, {"label": "Centralizado (Padroniza Tudo)", "val": 292}], "rl": {"legal_name": {"candidate_pairs": 41616, "candidate_positives": 609, "candidate_negatives": 41007, "blocking_recall": 0.9935, "models": {"exact_normalized": {"precision": 0.9713, "recall": 1.0, "end_to_end_recall": 0.9935, "f1": 0.9854, "pr_auc": 0.9713, "predicted_positives": 627}, "tfidf_cosine": {"precision": 0.971, "recall": 0.9901, "end_to_end_recall": 0.9837, "f1": 0.9805, "pr_auc": 0.9544, "predicted_positives": 621, "pr_curve": {"precision": [0.0146, 0.0149, 0.0151, 0.0154, 0.0157, 0.0159, 0.0162, 0.0165, 0.0168, 0.0171, 0.0175, 0.0178, 0.0182, 0.0185, 0.0189, 0.0193, 0.0197, 0.0201, 0.0206, 0.021, 0.0215, 0.022, 0.0226, 0.0231, 0.0237, 0.0243, 0.025, 0.0257, 0.0264, 0.0272, 0.028, 0.0289, 0.0299, 0.0309, 0.0321, 0.0332, 0.0345, 0.0358, 0.0373, 0.0389, 0.0407, 0.0427, 0.0449, 0.0473, 0.05, 0.0529, 0.0562, 0.06, 0.0644, 0.0694, 0.0754, 0.0827, 0.0912, 0.1022, 0.1153, 0.1336, 0.1587, 0.1972, 0.2598, 0.3896, 0.9712, 1.0], "recall": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.9984, 0.0]}}, "hybrid_logistic": {"precision": 0.9575, "recall": 0.9984, "end_to_end_recall": 0.9918, "f1": 0.9775, "pr_auc": 0.9457, "predicted_positives": 635, "pr_curve": {"precision": [0.0146, 0.0146, 0.0146, 0.0147, 0.0147, 0.0147, 0.0147, 0.0147, 0.0147, 0.0147, 0.0147, 0.956, 0.9575, 0.9575, 0.9574, 0.9573, 0.9571, 0.9563, 0.9562, 0.9561, 0.9547, 0.9545, 0.9542, 0.9532, 0.952, 0.9511, 0.9494, 0.9488, 0.9465, 0.9463, 0.9457, 0.9453, 0.9447, 0.9437, 0.9436, 1.0, 1.0], "recall": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.9984, 0.9967, 0.9951, 0.9885, 0.9704, 0.9672, 0.9655, 0.9343, 0.931, 0.9245, 0.9031, 0.8801, 0.8621, 0.8325, 0.821, 0.7849, 0.7816, 0.7718, 0.7668, 0.757, 0.7438, 0.7422, 0.0, 0.0]}}}, "feature_coefficients": {"tfidf_char_cos": 0.8188, "seq_ratio": 0.8425, "token_jaccard": 0.5487, "token_overlap_min": 0.3756, "substring_hit": 0.9206, "uf_conflict": -0.2387}, "recovered_nominal_drift_examples": []}, "commercial_drift": {"candidate_pairs": 26091, "candidate_positives": 576, "candidate_negatives": 25515, "blocking_recall": 0.9396, "models": {"exact_normalized": {"precision": 0.9015, "recall": 0.842, "end_to_end_recall": 0.7912, "f1": 0.8707, "pr_auc": 0.7626, "predicted_positives": 538}, "tfidf_cosine": {"precision": 0.9006, "recall": 0.8333, "end_to_end_recall": 0.783, "f1": 0.8656, "pr_auc": 0.8208, "predicted_positives": 533, "pr_curve": {"precision": [0.0221, 0.0224, 0.0228, 0.0232, 0.0236, 0.024, 0.0244, 0.0249, 0.0253, 0.0258, 0.0263, 0.0268, 0.0273, 0.0279, 0.0285, 0.029, 0.0297, 0.0304, 0.031, 0.0317, 0.0325, 0.0332, 0.034, 0.0348, 0.0357, 0.0366, 0.0376, 0.0386, 0.0397, 0.0409, 0.0421, 0.0434, 0.0449, 0.0465, 0.0481, 0.0498, 0.0518, 0.0538, 0.056, 0.0582, 0.0609, 0.0638, 0.067, 0.0701, 0.074, 0.0782, 0.0828, 0.0883, 0.0944, 0.1013, 0.1095, 0.1194, 0.13, 0.1441, 0.1611, 0.1836, 0.2123, 0.2534, 0.3234, 0.4528, 0.8426, 1.0], "recall": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.9948, 0.9948, 0.9948, 0.9948, 0.9913, 0.9913, 0.9913, 0.9878, 0.9878, 0.9861, 0.9861, 0.9861, 0.9861, 0.974, 0.974, 0.9688, 0.9601, 0.9462, 0.9323, 0.9219, 0.8993, 0.8455, 0.0]}}, "hybrid_logistic": {"precision": 0.8897, "recall": 0.8681, "end_to_end_recall": 0.8157, "f1": 0.8787, "pr_auc": 0.8835, "predicted_positives": 562, "pr_curve": {"precision": [0.0221, 0.0221, 0.0222, 0.0222, 0.0222, 0.0222, 0.0226, 0.0228, 0.0229, 0.0232, 0.0239, 0.0246, 0.0248, 0.0304, 0.0313, 0.032, 0.0364, 0.0368, 0.037, 0.0372, 0.0374, 0.0381, 0.0409, 0.0412, 0.0424, 0.0439, 0.0442, 0.0449, 0.0458, 0.0495, 0.0571, 0.0619, 0.0987, 0.1268, 0.1314, 0.1327, 0.14, 0.1556, 0.1679, 0.1755, 0.1917, 0.2579, 0.3072, 0.3206, 0.3269, 0.3443, 0.3798, 0.3914, 0.4873, 0.5274, 0.535, 0.5452, 0.5688, 0.5874, 0.6172, 0.6485, 0.7026, 0.7551, 0.7663, 0.8182, 0.86, 0.8913, 0.9116, 0.9429, 0.9421, 0.9348, 1.0], "recall": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.9948, 0.9948, 0.9948, 0.9948, 0.9948, 0.9948, 0.9948, 0.9948, 0.9948, 0.9948, 0.9948, 0.9948, 0.9774, 0.9774, 0.9774, 0.9757, 0.9757, 0.9705, 0.9705, 0.9705, 0.967, 0.967, 0.967, 0.967, 0.9531, 0.9462, 0.9462, 0.9462, 0.941, 0.9358, 0.9358, 0.9358, 0.9149, 0.9115, 0.9115, 0.9097, 0.9097, 0.9097, 0.9062, 0.8993, 0.8993, 0.8906, 0.8854, 0.8681, 0.8594, 0.8316, 0.7066, 0.5972, 0.0]}}}, "feature_coefficients": {"tfidf_char_cos": 0.7529, "seq_ratio": 0.6707, "token_jaccard": 0.6327, "token_overlap_min": 0.4908, "substring_hit": 0.7838, "uf_conflict": -0.3725}, "recovered_nominal_drift_examples": [{"cnpj": "07397614000106", "source_a": "CVM_ADM_FII", "name_a": "SICOOB DTVM", "source_b": "CVM_FI_GESTOR", "name_b": "SICOOB DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA.", "ml_score": 0.965, "tfidf_cos": 0.531}, {"cnpj": "07397614000106", "source_a": "CVM_ADM_FII", "name_a": "SICOOB DTVM", "source_b": "CVM_FI_ADMIN", "name_b": "SICOOB DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA.", "ml_score": 0.965, "tfidf_cos": 0.531}, {"cnpj": "13673855000125", "source_a": "CVM_ADM_FII", "name_a": "OSLO DTVM", "source_b": "CVM_FI_ADMIN", "name_b": "OSLO CAPITAL DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS S.A.", "ml_score": 0.908, "tfidf_cos": 0.447}, {"cnpj": "13673855000125", "source_a": "CVM_ADM_FII", "name_a": "OSLO DTVM", "source_b": "CVM_FI_CUSTOD", "name_b": "OSLO CAPITAL DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS S.A.", "ml_score": 0.908, "tfidf_cos": 0.447}]}}};
+  let curMdm = "comp";
+  let curRl = "bars";
+
+  function renderMdm() {
+    const el = document.getElementById("e2-mdm-plot");
+    if (!el || !window.Plotly) return;
+    const isMob = window.innerWidth < 680;
+    if (curMdm === "comp") {
+      const rows = [...E2_DATA.sources].reverse();
+      Plotly.react(el, [{
+        type: "bar", orientation: "h",
+        y: rows.map(r => r.label), x: rows.map(r => r.comp),
+        marker: { color: rows.map(r => r.color) },
+        text: rows.map(r => isMob ? (r.comp.toFixed(1) + "%") : r.bar_text), textposition: "outside",
+        customdata: rows.map(r => [r.records, r.present_text, r.missing_text, r.diag]),
+        hovertemplate: "<b>%{y}</b><br>• Completude: %{x:.1f}%<br>• Registros CVM: %{customdata[0]:,}<br>• Presentes: %{customdata[1]}<br>• Ausentes: %{customdata[2]}<br>• Diagnóstico: %{customdata[3]}<extra></extra>"
+      }], {
+        title: { text: isMob ? "Completude Cadastral CVM<br>vs Hub Golden Record" : "Completude Cadastral nos 6 Fluxos CVM vs Hub Golden Record", font: { size: isMob ? 11.5 : 15, color: "#0B2038" } },
+        paper_bgcolor: "#FFFFFF", plot_bgcolor: "#F8FAFC",
+        margin: { t: isMob ? 64 : 54, r: isMob ? 28 : 250, b: 48, l: isMob ? 108 : 175 },
+        xaxis: { title: "Completude (% de 6 atributos canônicos)", range: [0, 150], gridcolor: "#E2E8F0" },
+        yaxis: { tickfont: { size: isMob ? 10 : 12 } }
+      }, { responsive: true, displayModeBar: false });
+    } else if (curMdm === "surv") {
+      const s = E2_DATA.surv;
+      Plotly.react(el, [
+        { type: "bar", name: "Confiança Regulatória", x: s.map(r => r.label), y: s.map(r => r.trust), marker: { color: "#6A1B9A" }, text: s.map(r => r.trust.toFixed(1) + "%"), textposition: "outside", hovertemplate: "<b>%{x}</b><br>Vitória por Confiança: %{y:.1f}%<extra>Regra Regulatória</extra>" },
+        { type: "bar", name: "Recência (DT_INI_SIT)", x: s.map(r => r.label), y: s.map(r => r.recency), marker: { color: "#D91568" }, text: s.map(r => r.recency.toFixed(1) + "%"), textposition: "outside", hovertemplate: "<b>%{x}</b><br>Vitória por Recência: %{y:.1f}%<extra>Regra Temporal</extra>" }
+      ], {
+        title: { text: isMob ? "813 CNPJs Multi-Origem:<br>Confiança vs Recência" : "Quem Vence nos 813 CNPJs Multi-Origem: Confiança vs Recência", font: { size: isMob ? 11.5 : 15, color: "#0B2038" } },
+        barmode: "group", paper_bgcolor: "#FFFFFF", plot_bgcolor: "#F8FAFC",
+        margin: { t: isMob ? 86 : 70, r: isMob ? 12 : 24, b: 48, l: isMob ? 46 : 58 },
+        legend: { orientation: "h", y: isMob ? 1.16 : 1.13, x: 0.5, xanchor: "center", font: { size: isMob ? 10 : 12 } },
+        yaxis: { title: "% dos Clusters Multi-Origem", range: [0, 36], gridcolor: "#E2E8F0" }
+      }, { responsive: true, displayModeBar: false });
+    } else {
+      const b = E2_DATA.sync;
+      Plotly.react(el, [{
+        type: "bar", x: b.map(r => r.label), y: b.map(r => r.val),
+        marker: { color: ["#64748B", "#2878E8", "#D91568"] },
+        text: b.map(r => r.val + " eventos"), textposition: "outside",
+        hovertemplate: "<b>%{x}</b><br>Pacotes sincronizados: %{y} eventos<extra></extra>"
+      }], {
+        title: { text: isMob ? "Impacto de Retorno às Origens<br>(813 CNPJs Multi-Origem)" : "Impacto de Retorno às Origens nos 813 CNPJs Multi-Origem", font: { size: isMob ? 11.5 : 15, color: "#0B2038" } },
+        paper_bgcolor: "#FFFFFF", plot_bgcolor: "#F8FAFC",
+        margin: { t: isMob ? 64 : 54, r: isMob ? 12 : 24, b: 54, l: isMob ? 48 : 64 },
+        yaxis: { title: "Atributos / Registros Sincronizados", range: [0, 340], gridcolor: "#E2E8F0" }
+      }, { responsive: true, displayModeBar: false });
+    }
+  }
+
+  function renderRl() {
+    const el = document.getElementById("e2-rl-plot");
+    if (!el || !window.Plotly) return;
+    const rl = E2_DATA.rl;
+    const isMob = window.innerWidth < 680;
+    if (curRl === "bars") {
+      const methods = [
+        ["exact_normalized", "Regra Exata Normalizada"],
+        ["tfidf_cosine", "TF-IDF Char (3-4 gramas)"],
+        ["hybrid_logistic", "Matcher ML Híbrido (HGB)"]
+      ];
+      Plotly.react(el, [
+        {
+          type: "bar", name: "Razão Social Formal (RFB/CVM)",
+          x: methods.map(m => m[1]), y: methods.map(m => +(rl.legal_name.models[m[0]].f1 * 100).toFixed(2)),
+          marker: { color: "#2878E8" }, text: methods.map(m => (rl.legal_name.models[m[0]].f1 * 100).toFixed(1) + "%"), textposition: "outside"
+        },
+        {
+          type: "bar", name: "Nome Comercial CRM vs Social (Drift Real)",
+          x: methods.map(m => m[1]), y: methods.map(m => +(rl.commercial_drift.models[m[0]].f1 * 100).toFixed(2)),
+          marker: { color: "#D91568" }, text: methods.map(m => (rl.commercial_drift.models[m[0]].f1 * 100).toFixed(1) + "%"), textposition: "outside"
+        }
+      ], {
+        title: { text: isMob ? "Pareamento Nominal Sem CNPJ:<br>Formal vs Drift Comercial" : "Pareamento Nominal Sem CNPJ: Formal vs Drift Comercial", font: { size: isMob ? 11.5 : 15, color: "#0B2038" } },
+        barmode: "group", paper_bgcolor: "#FFFFFF", plot_bgcolor: "#F8FAFC",
+        margin: { t: isMob ? 94 : 72, r: isMob ? 12 : 24, b: 52, l: isMob ? 46 : 60 },
+        legend: { orientation: "h", y: isMob ? 1.16 : 1.13, x: 0.5, xanchor: "center", font: { size: isMob ? 10 : 12 } },
+        yaxis: { title: "F1-Score (%)", range: [0, 114], gridcolor: "#E2E8F0" }
+      }, { responsive: true, displayModeBar: false });
+    } else {
+      const comm = rl.commercial_drift.models;
+      const ex = comm.exact_normalized;
+      Plotly.react(el, [
+        { x: comm.hybrid_logistic.pr_curve.recall, y: comm.hybrid_logistic.pr_curve.precision, mode: "lines", name: "ML Híbrido (PR-AUC " + comm.hybrid_logistic.pr_auc.toFixed(3) + ")", line: { color: "#D91568", width: 3 }, hovertemplate: "Revocação: %{x:.1%}<br>Precisão: %{y:.1%}<extra>ML Híbrido</extra>" },
+        { x: comm.tfidf_cosine.pr_curve.recall, y: comm.tfidf_cosine.pr_curve.precision, mode: "lines", name: "TF-IDF Char (PR-AUC " + comm.tfidf_cosine.pr_auc.toFixed(3) + ")", line: { color: "#2878E8", width: 2.5, dash: "dash" }, hovertemplate: "Revocação: %{x:.1%}<br>Precisão: %{y:.1%}<extra>TF-IDF</extra>" },
+        { x: [ex.recall], y: [ex.precision], mode: "markers", name: "Regra Exata (F1 " + (ex.f1 * 100).toFixed(1) + "%)", marker: { color: "#6A1B9A", size: 12 }, hovertemplate: "Regra Exata — Rec: %{x:.1%}, Prec: %{y:.1%}<extra></extra>" }
+      ], {
+        title: { text: isMob ? "Curva Precisão × Revocação<br>(Cenário CRM Comercial)" : "Curva Precisão × Revocação no Cenário CRM Comercial", font: { size: isMob ? 11.5 : 15, color: "#0B2038" } },
+        paper_bgcolor: "#FFFFFF", plot_bgcolor: "#F8FAFC",
+        margin: { t: isMob ? 94 : 70, r: isMob ? 12 : 24, b: 54, l: isMob ? 48 : 60 },
+        legend: { orientation: "h", y: isMob ? 1.16 : 1.13, x: 0.5, xanchor: "center", font: { size: isMob ? 10 : 12 } },
+        xaxis: { title: "Revocação", range: [0, 1.03], tickformat: ".0%", gridcolor: "#E2E8F0" },
+        yaxis: { title: "Precisão", range: [0, 1.06], tickformat: ".0%", gridcolor: "#E2E8F0" }
+      }, { responsive: true, displayModeBar: false });
+    }
+  }
+
+  function boot() {
+    if (!window.Plotly) return;
+    document.querySelectorAll("#e2-mdm-shell .svg-fallback-box, #e2-rl-shell .svg-fallback-box").forEach(d => d.removeAttribute("open"));
+    document.querySelectorAll("#e2-mdm-pills .viz-pill").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll("#e2-mdm-pills .viz-pill").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        curMdm = btn.dataset.view;
+        renderMdm();
+      });
+    });
+    document.querySelectorAll("#e2-rl-pills .viz-pill").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll("#e2-rl-pills .viz-pill").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        curRl = btn.dataset.view;
+        renderRl();
+      });
+    });
+    renderMdm();
+    renderRl();
+  }
+  window.addEventListener("load", boot);
+})();
+</script>
+
+</body>
+</html>

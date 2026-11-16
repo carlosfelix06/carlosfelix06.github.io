@@ -1,0 +1,4172 @@
+{
+  "window": {
+    "ibge_panel_years": "2022–2025",
+    "bcb_uf_latest": "01/09/2026",
+    "olinda_current": "2026-10-23 a 2026-10-29",
+    "olinda_previous": "2025-11-12 a 2025-11-18"
+  },
+  "bank_dispersion": {
+    "unique_institutions": 138,
+    "total_quotes": 450,
+    "modalities": [
+      {
+        "modalidade": "Aquisição de veículos",
+        "n_bancos": 39,
+        "p10_aa": 13.27,
+        "mediana_aa": 22.48,
+        "p90_aa": 40.26,
+        "iqr_pp": 8.55,
+        "ratio_p90_p10": 3.03,
+        "min_inst": "BCO RNX S.A.",
+        "min_aa": 0.0,
+        "max_inst": "OMNI SA CFI",
+        "max_aa": 49.13
+      },
+      {
+        "modalidade": "Crédito pessoal consignado INSS",
+        "n_bancos": 38,
+        "p10_aa": 20.65,
+        "mediana_aa": 23.7,
+        "p90_aa": 24.98,
+        "iqr_pp": 2.81,
+        "ratio_p90_p10": 1.21,
+        "min_inst": "BANCOSEGURO S.A.",
+        "min_aa": 19.67,
+        "max_inst": "PORTOSEG S.A. CFI",
+        "max_aa": 29.15
+      },
+      {
+        "modalidade": "Crédito pessoal consignado público",
+        "n_bancos": 44,
+        "p10_aa": 21.14,
+        "mediana_aa": 23.8,
+        "p90_aa": 41.74,
+        "iqr_pp": 5.24,
+        "ratio_p90_p10": 1.97,
+        "min_inst": "BANCO COOPERATIVO SICREDI",
+        "min_aa": 19.6,
+        "max_inst": "VALOR S/A SCFI",
+        "max_aa": 123.3
+      },
+      {
+        "modalidade": "Aquisição de outros bens",
+        "n_bancos": 39,
+        "p10_aa": 18.07,
+        "mediana_aa": 35.35,
+        "p90_aa": 140.51,
+        "iqr_pp": 54.9,
+        "ratio_p90_p10": 7.78,
+        "min_inst": "SINOSSERRA S/A - SCFI",
+        "min_aa": 2.49,
+        "max_inst": "COBUCCIO S.A. SCFI",
+        "max_aa": 191.31
+      },
+      {
+        "modalidade": "Crédito pessoal consignado privado",
+        "n_bancos": 53,
+        "p10_aa": 29.23,
+        "mediana_aa": 48.07,
+        "p90_aa": 75.43,
+        "iqr_pp": 26.44,
+        "ratio_p90_p10": 2.58,
+        "min_inst": "COMPREV CFI S.A.",
+        "min_aa": 8.61,
+        "max_inst": "NEGRESCO S.A. - CFI",
+        "max_aa": 92.6
+      },
+      {
+        "modalidade": "Crédito pessoal não consignado",
+        "n_bancos": 81,
+        "p10_aa": 24.74,
+        "mediana_aa": 82.23,
+        "p90_aa": 385.29,
+        "iqr_pp": 195.75,
+        "ratio_p90_p10": 15.57,
+        "min_inst": "DM SCFI",
+        "min_aa": 14.94,
+        "max_inst": "SUMUP SCFI S.A",
+        "max_aa": 826.61
+      },
+      {
+        "modalidade": "Cheque especial",
+        "n_bancos": 31,
+        "p10_aa": 31.65,
+        "mediana_aa": 139.75,
+        "p90_aa": 159.55,
+        "iqr_pp": 85.9,
+        "ratio_p90_p10": 5.04,
+        "min_inst": "BANCO PAN",
+        "min_aa": 22.56,
+        "max_inst": "BCO DAYCOVAL S.A",
+        "max_aa": 176.12
+      },
+      {
+        "modalidade": "Cartão de crédito - parcelado",
+        "n_bancos": 61,
+        "p10_aa": 63.89,
+        "mediana_aa": 141.13,
+        "p90_aa": 309.96,
+        "iqr_pp": 124.43,
+        "ratio_p90_p10": 4.85,
+        "min_inst": "ZEMA CFI S/A",
+        "min_aa": 14.14,
+        "max_inst": "BCO DO EST. DE SE S.A.",
+        "max_aa": 747.34
+      },
+      {
+        "modalidade": "Cartão de crédito - rotativo total",
+        "n_bancos": 61,
+        "p10_aa": 217.79,
+        "mediana_aa": 497.48,
+        "p90_aa": 890.16,
+        "iqr_pp": 404.57,
+        "ratio_p90_p10": 4.09,
+        "min_inst": "BCO INDUSTRIAL DO BRASIL S.A.",
+        "min_aa": 75.78,
+        "max_inst": "PEFISA S.A. - C.F.I.",
+        "max_aa": 1354.02
+      }
+    ],
+    "clustering": {
+      "clustered_banks_min3_mods": 74,
+      "silhouette_by_k": {
+        "2": 0.3033,
+        "3": 0.2418,
+        "4": 0.2556
+      },
+      "silhouette_k3": 0.2418,
+      "pca_explained_variance": [
+        0.36,
+        0.256
+      ],
+      "archetypes": [
+        {
+          "cluster_id": 0,
+          "name": "Arquétipo 1: Competidores de Baixo Custo",
+          "n_bancos": 27,
+          "avg_pct_rank": 0.349,
+          "avg_modalidades": 5.4,
+          "avg_secured_share": 0.487,
+          "sample_bancos": [
+            "ASA SCFI S.A.",
+            "BANCO BARI S.A.",
+            "BANCO BTG PACTUAL S.A."
+          ]
+        },
+        {
+          "cluster_id": 1,
+          "name": "Arquétipo 2: Bancos Universais / Portfólio Amplo",
+          "n_bancos": 31,
+          "avg_pct_rank": 0.533,
+          "avg_modalidades": 5.0,
+          "avg_secured_share": 0.668,
+          "sample_bancos": [
+            "BANCO DIGIO",
+            "BANCO INTER",
+            "BANCO PAN"
+          ]
+        },
+        {
+          "cluster_id": 2,
+          "name": "Arquétipo 3: Segmento Caro / Alta Extração",
+          "n_bancos": 16,
+          "avg_pct_rank": 0.804,
+          "avg_modalidades": 3.4,
+          "avg_secured_share": 0.421,
+          "sample_bancos": [
+            "AGORACRED S/A SCFI",
+            "BANCO SEMEAR",
+            "BCO AFINZ S.A. - BM"
+          ]
+        }
+      ],
+      "bank_points": [
+        {
+          "instituicao": "AGORACRED S/A SCFI",
+          "n_modalidades": 3,
+          "mean_pct_rank": 0.7993421052631579,
+          "spread_std_pct": 0.08539970385359981,
+          "secured_share": 0.6666666666666666,
+          "cluster_id": 2,
+          "cluster_name": "Arquétipo 3: Segmento Caro / Alta Extração",
+          "pca_1": -1.643,
+          "pca_2": 1.062
+        },
+        {
+          "instituicao": "ASA SCFI S.A.",
+          "n_modalidades": 3,
+          "mean_pct_rank": 0.3680555555555556,
+          "spread_std_pct": 0.13247699544067135,
+          "secured_share": 0.3333333333333333,
+          "cluster_id": 0,
+          "cluster_name": "Arquétipo 1: Competidores de Baixo Custo",
+          "pca_1": -0.906,
+          "pca_2": -0.796
+        },
+        {
+          "instituicao": "BANCO BARI S.A.",
+          "n_modalidades": 5,
+          "mean_pct_rank": 0.3602880787764509,
+          "spread_std_pct": 0.1412251357061523,
+          "secured_share": 0.6,
+          "cluster_id": 0,
+          "cluster_name": "Arquétipo 1: Competidores de Baixo Custo",
+          "pca_1": 0.199,
+          "pca_2": -0.419
+        },
+        {
+          "instituicao": "BANCO BTG PACTUAL S.A.",
+          "n_modalidades": 5,
+          "mean_pct_rank": 0.33544871794871794,
+          "spread_std_pct": 0.21101290580632984,
+          "secured_share": 0.4,
+          "cluster_id": 0,
+          "cluster_name": "Arquétipo 1: Competidores de Baixo Custo",
+          "pca_1": 0.329,
+          "pca_2": -0.895
+        },
+        {
+          "instituicao": "BANCO DIGIO",
+          "n_modalidades": 6,
+          "mean_pct_rank": 0.6317038080119475,
+          "spread_std_pct": 0.24669606177911724,
+          "secured_share": 0.6666666666666666,
+          "cluster_id": 1,
+          "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo",
+          "pca_1": 0.579,
+          "pca_2": 0.468
+        },
+        {
+          "instituicao": "BANCO GENIAL",
+          "n_modalidades": 3,
+          "mean_pct_rank": 0.08333333333333333,
+          "spread_std_pct": 0.05931710140017395,
+          "secured_share": 0.0,
+          "cluster_id": 0,
+          "cluster_name": "Arquétipo 1: Competidores de Baixo Custo",
+          "pca_1": -1.23,
+          "pca_2": -2.696
+        },
+        {
+          "instituicao": "BANCO INBURSA",
+          "n_modalidades": 3,
+          "mean_pct_rank": 0.12846298892810523,
+          "spread_std_pct": 0.07658745298908626,
+          "secured_share": 1.0,
+          "cluster_id": 0,
+          "cluster_name": "Arquétipo 1: Competidores de Baixo Custo",
+          "pca_1": 0.475,
+          "pca_2": 0.619
+        },
+        {
+          "instituicao": "BANCO INTER",
+          "n_modalidades": 9,
+          "mean_pct_rank": 0.5123559276252054,
+          "spread_std_pct": 0.28718093608360434,
+          "secured_share": 0.5555555555555556,
+          "cluster_id": 1,
+          "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo",
+          "pca_1": 1.782,
+          "pca_2": -0.736
+        },
+        {
+          "instituicao": "BANCO PAN",
+          "n_modalidades": 8,
+          "mean_pct_rank": 0.6277642613838299,
+          "spread_std_pct": 0.30507962501346997,
+          "secured_share": 0.625,
+          "cluster_id": 1,
+          "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo",
+          "pca_1": 1.442,
+          "pca_2": 0.029
+        },
+        {
+          "instituicao": "BANCO SEMEAR",
+          "n_modalidades": 3,
+          "mean_pct_rank": 0.8954065908013277,
+          "spread_std_pct": 0.03959549681533541,
+          "secured_share": 0.6666666666666666,
+          "cluster_id": 2,
+          "cluster_name": "Arquétipo 3: Segmento Caro / Alta Extração",
+          "pca_1": -2.143,
+          "pca_2": 1.134
+        },
+        {
+          "instituicao": "BANCO SICOOB S.A.",
+          "n_modalidades": 7,
+          "mean_pct_rank": 0.23719448866327691,
+          "spread_std_pct": 0.08902388900886411,
+          "secured_share": 0.42857142857142855,
+          "cluster_id": 0,
+          "cluster_name": "Arquétipo 1: Competidores de Baixo Custo",
+          "pca_1": 0.47,
+          "pca_2": -1.864
+        },
+        {
+          "instituicao": "BANCOSEGURO S.A.",
+          "n_modalidades": 3,
+          "mean_pct_rank": 0.36185897435897435,
+          "spread_std_pct": 0.27710590178143785,
+          "secured_share": 1.0,
+          "cluster_id": 1,
+          "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo",
+          "pca_1": 1.104,
+          "pca_2": 1.737
+        },
+        {
+          "instituicao": "BARU SCFI S/A",
+          "n_modalidades": 3,
+          "mean_pct_rank": 0.5398255813953488,
+          "spread_std_pct": 0.28491407447851247,
+          "secured_share": 0.6666666666666666,
+          "cluster_id": 1,
+          "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo",
+          "pca_1": 0.155,
+          "pca_2": 1.096
+        },
+        {
+          "instituicao": "BCO AFINZ S.A. - BM",
+          "n_modalidades": 4,
+          "mean_pct_rank": 0.6385901162790697,
+          "spread_std_pct": 0.17363500733175896,
+          "secured_share": 0.5,
+          "cluster_id": 2,
+          "cluster_name": "Arquétipo 3: Segmento Caro / Alta Extração",
+          "pca_1": -0.734,
+          "pca_2": 0.211
+        },
+        {
+          "instituicao": "BCO AGIBANK S.A.",
+          "n_modalidades": 6,
+          "mean_pct_rank": 0.3517673867964565,
+          "spread_std_pct": 0.2667139139078898,
+          "secured_share": 0.6666666666666666,
+          "cluster_id": 1,
+          "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo",
+          "pca_1": 1.365,
+          "pca_2": -0.085
+        },
+        {
+          "instituicao": "BCO ARBI S.A.",
+          "n_modalidades": 5,
+          "mean_pct_rank": 0.39002573517873396,
+          "spread_std_pct": 0.2704649591274053,
+          "secured_share": 0.6,
+          "cluster_id": 1,
+          "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo",
+          "pca_1": 0.893,
+          "pca_2": 0.037
+        },
+        {
+          "instituicao": "BCO BANESTES S.A.",
+          "n_modalidades": 8,
+          "mean_pct_rank": 0.38759555266593215,
+          "spread_std_pct": 0.16036138522093163,
+          "secured_share": 0.5,
+          "cluster_id": 0,
+          "cluster_name": "Arquétipo 1: Competidores de Baixo Custo",
+          "pca_1": 0.945,
+          "pca_2": -1.331
+        },
+        {
+          "instituicao": "BCO BMG S.A.",
+          "n_modalidades": 6,
+          "mean_pct_rank": 0.5668863854910366,
+          "spread_std_pct": 0.23071970212870374,
+          "secured_share": 0.6666666666666666,
+          "cluster_id": 1,
+          "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo",
+          "pca_1": 0.639,
+          "pca_2": 0.278
+        },
+        {
+          "instituicao": "BCO BRADESCO FINANC. S.A.",
+          "n_modalidades": 3,
+          "mean_pct_rank": 0.5173245614035088,
+          "spread_std_pct": 0.19525205474335475,
+          "secured_share": 0.6666666666666666,
+          "cluster_id": 1,
+          "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo",
+          "pca_1": -0.321,
+          "pca_2": 0.776
+        },
+        {
+          "instituicao": "BCO BRADESCO S.A.",
+          "n_modalidades": 9,
+          "mean_pct_rank": 0.4465454226470138,
+          "spread_std_pct": 0.11707699698869968,
+          "secured_share": 0.5555555555555556,
+          "cluster_id": 0,
+          "cluster_name": "Arquétipo 1: Competidores de Baixo Custo",
+          "pca_1": 0.934,
+          "pca_2": -1.394
+        },
+        {
+          "instituicao": "BCO BV S.A.",
+          "n_modalidades": 5,
+          "mean_pct_rank": 0.521497975708502,
+          "spread_std_pct": 0.21632803708610318,
+          "secured_share": 0.2,
+          "cluster_id": 0,
+          "cluster_name": "Arquétipo 1: Competidores de Baixo Custo",
+          "pca_1": -0.425,
+          "pca_2": -1.104
+        },
+        {
+          "instituicao": "BCO C6 CONSIG",
+          "n_modalidades": 4,
+          "mean_pct_rank": 0.5921905973504812,
+          "spread_std_pct": 0.3394956950225233,
+          "secured_share": 1.0,
+          "cluster_id": 1,
+          "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo",
+          "pca_1": 1.213,
+          "pca_2": 2.192
+        },
+        {
+          "instituicao": "BCO C6 S.A.",
+          "n_modalidades": 5,
+          "mean_pct_rank": 0.4971052631578948,
+          "spread_std_pct": 0.2974573690910898,
+          "secured_share": 0.4,
+          "cluster_id": 1,
+          "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo",
+          "pca_1": 0.455,
+          "pca_2": -0.279
+        },
+        {
+          "instituicao": "BCO CREFISA S.A.",
+          "n_modalidades": 3,
+          "mean_pct_rank": 0.8777777777777778,
+          "spread_std_pct": 0.05665577237325315,
+          "secured_share": 0.0,
+          "cluster_id": 2,
+          "cluster_name": "Arquétipo 3: Segmento Caro / Alta Extração",
+          "pca_1": -3.141,
+          "pca_2": -0.962
+        },
+        {
+          "instituicao": "BCO CSF S.A.",
+          "n_modalidades": 3,
+          "mean_pct_rank": 0.8298798798798798,
+          "spread_std_pct": 0.10322055663549282,
+          "secured_share": 0.3333333333333333,
+          "cluster_id": 2,
+          "cluster_name": "Arquétipo 3: Segmento Caro / Alta Extração",
+          "pca_1": -2.181,
+          "pca_2": 0.128
+        },
+        {
+          "instituicao": "BCO DA AMAZONIA S.A.",
+          "n_modalidades": 4,
+          "mean_pct_rank": 0.24539473684210525,
+          "spread_std_pct": 0.24383785637193736,
+          "secured_share": 0.5,
+          "cluster_id": 0,
+          "cluster_name": "Arquétipo 1: Competidores de Baixo Custo",
+          "pca_1": 0.619,
+          "pca_2": -0.439
+        },
+        {
+          "instituicao": "BCO DAYCOVAL S.A",
+          "n_modalidades": 8,
+          "mean_pct_rank": 0.6500013478842273,
+          "spread_std_pct": 0.3898774458558826,
+          "secured_share": 0.625,
+          "cluster_id": 1,
+          "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo",
+          "pca_1": 1.89,
+          "pca_2": 0.334
+        },
+        {
+          "instituicao": "BCO DO BRASIL S.A.",
+          "n_modalidades": 9,
+          "mean_pct_rank": 0.38525168139611227,
+          "spread_std_pct": 0.14085353059574024,
+          "secured_share": 0.5555555555555556,
+          "cluster_id": 0,
+          "cluster_name": "Arquétipo 1: Competidores de Baixo Custo",
+          "pca_1": 1.22,
+          "pca_2": -1.457
+        },
+        {
+          "instituicao": "BCO DO EST. DE SE S.A.",
+          "n_modalidades": 7,
+          "mean_pct_rank": 0.5731398917445428,
+          "spread_std_pct": 0.3074480169940541,
+          "secured_share": 0.5714285714285714,
+          "cluster_id": 1,
+          "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo",
+          "pca_1": 1.205,
+          "pca_2": -0.016
+        },
+        {
+          "instituicao": "BCO DO EST. DO PA S.A.",
+          "n_modalidades": 8,
+          "mean_pct_rank": 0.42446666195901206,
+          "spread_std_pct": 0.12783517709312134,
+          "secured_share": 0.5,
+          "cluster_id": 0,
+          "cluster_name": "Arquétipo 1: Competidores de Baixo Custo",
+          "pca_1": 0.665,
+          "pca_2": -1.348
+        },
+        {
+          "instituicao": "BCO DO ESTADO DO RS S.A.",
+          "n_modalidades": 8,
+          "mean_pct_rank": 0.32338408428907206,
+          "spread_std_pct": 0.07823316614749357,
+          "secured_share": 0.5,
+          "cluster_id": 0,
+          "cluster_name": "Arquétipo 1: Competidores de Baixo Custo",
+          "pca_1": 0.613,
+          "pca_2": -1.72
+        },
+        {
+          "instituicao": "BCO DO NORDESTE DO BRASIL S.A.",
+          "n_modalidades": 6,
+          "mean_pct_rank": 0.34258099781355594,
+          "spread_std_pct": 0.12291828874454278,
+          "secured_share": 0.5,
+          "cluster_id": 0,
+          "cluster_name": "Arquétipo 1: Competidores de Baixo Custo",
+          "pca_1": 0.252,
+          "pca_2": -1.067
+        },
+        {
+          "instituicao": "BCO INDUSTRIAL DO BRASIL S.A.",
+          "n_modalidades": 5,
+          "mean_pct_rank": 0.2780828861061419,
+          "spread_std_pct": 0.29633998155138735,
+          "secured_share": 0.6,
+          "cluster_id": 1,
+          "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo",
+          "pca_1": 1.313,
+          "pca_2": -0.13
+        },
+        {
+          "instituicao": "BCO MERCANTIL DO BRASIL S.A.",
+          "n_modalidades": 6,
+          "mean_pct_rank": 0.6351654539154539,
+          "spread_std_pct": 0.30093471592532667,
+          "secured_share": 0.5,
+          "cluster_id": 1,
+          "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo",
+          "pca_1": 0.607,
+          "pca_2": 0.113
+        },
+        {
+          "instituicao": "BCO PAULISTA S.A.",
+          "n_modalidades": 3,
+          "mean_pct_rank": 0.569086528388854,
+          "spread_std_pct": 0.3902924723980335,
+          "secured_share": 1.0,
+          "cluster_id": 1,
+          "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo",
+          "pca_1": 1.279,
+          "pca_2": 2.533
+        },
+        {
+          "instituicao": "BCO PINE S.A.",
+          "n_modalidades": 3,
+          "mean_pct_rank": 0.4448564843913681,
+          "spread_std_pct": 0.3705951710023296,
+          "secured_share": 0.6666666666666666,
+          "cluster_id": 1,
+          "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo",
+          "pca_1": 0.888,
+          "pca_2": 1.147
+        },
+        {
+          "instituicao": "BCO RENDIMENTO S.A.",
+          "n_modalidades": 4,
+          "mean_pct_rank": 0.38749999999999996,
+          "spread_std_pct": 0.20047686206199014,
+          "secured_share": 0.25,
+          "cluster_id": 0,
+          "cluster_name": "Arquétipo 1: Competidores de Baixo Custo",
+          "pca_1": -0.404,
+          "pca_2": -1.049
+        },
+        {
+          "instituicao": "BCO SAFRA S.A.",
+          "n_modalidades": 7,
+          "mean_pct_rank": 0.2488069912488517,
+          "spread_std_pct": 0.21844059607381316,
+          "secured_share": 0.5714285714285714,
+          "cluster_id": 0,
+          "cluster_name": "Arquétipo 1: Competidores de Baixo Custo",
+          "pca_1": 1.452,
+          "pca_2": -0.996
+        },
+        {
+          "instituicao": "BCO SANTANDER (BRASIL) S.A.",
+          "n_modalidades": 7,
+          "mean_pct_rank": 0.5290256203046901,
+          "spread_std_pct": 0.19944295227721168,
+          "secured_share": 0.5714285714285714,
+          "cluster_id": 0,
+          "cluster_name": "Arquétipo 1: Competidores de Baixo Custo",
+          "pca_1": 0.672,
+          "pca_2": -0.439
+        },
+        {
+          "instituicao": "BCO SENFF S.A.",
+          "n_modalidades": 5,
+          "mean_pct_rank": 0.7075342874180083,
+          "spread_std_pct": 0.30426287837475496,
+          "secured_share": 0.6,
+          "cluster_id": 1,
+          "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo",
+          "pca_1": 0.335,
+          "pca_2": 0.835
+        },
+        {
+          "instituicao": "BCO SOFISA S.A.",
+          "n_modalidades": 5,
+          "mean_pct_rank": 0.5319298245614036,
+          "spread_std_pct": 0.2622701986983449,
+          "secured_share": 0.2,
+          "cluster_id": 0,
+          "cluster_name": "Arquétipo 1: Competidores de Baixo Custo",
+          "pca_1": -0.179,
+          "pca_2": -0.942
+        },
+        {
+          "instituicao": "BCO VOLKSWAGEN S.A",
+          "n_modalidades": 3,
+          "mean_pct_rank": 0.1771255060728745,
+          "spread_std_pct": 0.12049494890251947,
+          "secured_share": 0.6666666666666666,
+          "cluster_id": 0,
+          "cluster_name": "Arquétipo 1: Competidores de Baixo Custo",
+          "pca_1": 0.048,
+          "pca_2": -0.196
+        },
+        {
+          "instituicao": "BCO VOLVO BRASIL S.A.",
+          "n_modalidades": 3,
+          "mean_pct_rank": 0.1594298245614035,
+          "spread_std_pct": 0.10745569280250515,
+          "secured_share": 0.6666666666666666,
+          "cluster_id": 0,
+          "cluster_name": "Arquétipo 1: Competidores de Baixo Custo",
+          "pca_1": 0.013,
+          "pca_2": -0.274
+        },
+        {
+          "instituicao": "BCO XP S.A.",
+          "n_modalidades": 5,
+          "mean_pct_rank": 0.2430128205128205,
+          "spread_std_pct": 0.13882437028730701,
+          "secured_share": 0.4,
+          "cluster_id": 0,
+          "cluster_name": "Arquétipo 1: Competidores de Baixo Custo",
+          "pca_1": 0.123,
+          "pca_2": -1.316
+        },
+        {
+          "instituicao": "BECKER FINANCEIRA SA - CFI",
+          "n_modalidades": 4,
+          "mean_pct_rank": 0.49741082175292695,
+          "spread_std_pct": 0.17151523104954813,
+          "secured_share": 0.75,
+          "cluster_id": 1,
+          "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo",
+          "pca_1": 0.018,
+          "pca_2": 0.686
+        },
+        {
+          "instituicao": "BRB - BCO DE BRASILIA S.A.",
+          "n_modalidades": 4,
+          "mean_pct_rank": 0.43049903100775194,
+          "spread_std_pct": 0.14878340939027304,
+          "secured_share": 0.5,
+          "cluster_id": 0,
+          "cluster_name": "Arquétipo 1: Competidores de Baixo Custo",
+          "pca_1": -0.384,
+          "pca_2": -0.32
+        },
+        {
+          "instituicao": "BRB - CFI S/A",
+          "n_modalidades": 4,
+          "mean_pct_rank": 0.45204108637401175,
+          "spread_std_pct": 0.2578190645007084,
+          "secured_share": 0.75,
+          "cluster_id": 1,
+          "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo",
+          "pca_1": 0.637,
+          "pca_2": 0.847
+        },
+        {
+          "instituicao": "CAIXA ECONOMICA FEDERAL",
+          "n_modalidades": 8,
+          "mean_pct_rank": 0.38066234500789276,
+          "spread_std_pct": 0.2304686147275267,
+          "secured_share": 0.625,
+          "cluster_id": 0,
+          "cluster_name": "Arquétipo 1: Competidores de Baixo Custo",
+          "pca_1": 1.59,
+          "pca_2": -0.739
+        },
+        {
+          "instituicao": "CALCRED S.A.",
+          "n_modalidades": 3,
+          "mean_pct_rank": 0.9430555555555555,
+          "spread_std_pct": 0.019344983718311295,
+          "secured_share": 0.3333333333333333,
+          "cluster_id": 2,
+          "cluster_name": "Arquétipo 3: Segmento Caro / Alta Extração",
+          "pca_1": -2.947,
+          "pca_2": 0.123
+        },
+        {
+          "instituicao": "CLOUDWALK FINANCEIRA S.A. CFI",
+          "n_modalidades": 3,
+          "mean_pct_rank": 0.6930555555555555,
+          "spread_std_pct": 0.14127123461057123,
+          "secured_share": 0.3333333333333333,
+          "cluster_id": 2,
+          "cluster_name": "Arquétipo 3: Segmento Caro / Alta Extração",
+          "pca_1": -1.63,
+          "pca_2": -0.057
+        },
+        {
+          "instituicao": "COBUCCIO S.A. SCFI",
+          "n_modalidades": 6,
+          "mean_pct_rank": 0.831609494109494,
+          "spread_std_pct": 0.14967733377767783,
+          "secured_share": 0.5,
+          "cluster_id": 2,
+          "cluster_name": "Arquétipo 3: Segmento Caro / Alta Extração",
+          "pca_1": -0.756,
+          "pca_2": 0.086
+        },
+        {
+          "instituicao": "DM SCFI",
+          "n_modalidades": 3,
+          "mean_pct_rank": 0.5833333333333334,
+          "spread_std_pct": 0.42185656681265843,
+          "secured_share": 0.3333333333333333,
+          "cluster_id": 1,
+          "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo",
+          "pca_1": 0.291,
+          "pca_2": 0.551
+        },
+        {
+          "instituicao": "FACTA S.A. CFI",
+          "n_modalidades": 4,
+          "mean_pct_rank": 0.7337822728811101,
+          "spread_std_pct": 0.19026911556022544,
+          "secured_share": 1.0,
+          "cluster_id": 1,
+          "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo",
+          "pca_1": -0.007,
+          "pca_2": 2.052
+        },
+        {
+          "instituicao": "GAZINCRED S.A. SCFI",
+          "n_modalidades": 4,
+          "mean_pct_rank": 0.7192123362181502,
+          "spread_std_pct": 0.15433812877463107,
+          "secured_share": 1.0,
+          "cluster_id": 1,
+          "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo",
+          "pca_1": -0.185,
+          "pca_2": 1.911
+        },
+        {
+          "instituicao": "HS FINANCEIRA",
+          "n_modalidades": 5,
+          "mean_pct_rank": 0.47431511470985155,
+          "spread_std_pct": 0.20557777761764545,
+          "secured_share": 0.4,
+          "cluster_id": 0,
+          "cluster_name": "Arquétipo 1: Competidores de Baixo Custo",
+          "pca_1": -0.034,
+          "pca_2": -0.607
+        },
+        {
+          "instituicao": "ITAÚ UNIBANCO HOLDING S.A.",
+          "n_modalidades": 3,
+          "mean_pct_rank": 0.6099415204678363,
+          "spread_std_pct": 0.16351644771114018,
+          "secured_share": 0.3333333333333333,
+          "cluster_id": 2,
+          "cluster_name": "Arquétipo 3: Segmento Caro / Alta Extração",
+          "pca_1": -1.3,
+          "pca_2": -0.172
+        },
+        {
+          "instituicao": "ITAÚ UNIBANCO S.A.",
+          "n_modalidades": 5,
+          "mean_pct_rank": 0.44267171912520753,
+          "spread_std_pct": 0.10473838432330812,
+          "secured_share": 0.8,
+          "cluster_id": 0,
+          "cluster_name": "Arquétipo 1: Competidores de Baixo Custo",
+          "pca_1": 0.129,
+          "pca_2": 0.284
+        },
+        {
+          "instituicao": "KREDILIG S.A. - CFI",
+          "n_modalidades": 4,
+          "mean_pct_rank": 0.4338815789473684,
+          "spread_std_pct": 0.21824029347571933,
+          "secured_share": 0.25,
+          "cluster_id": 0,
+          "cluster_name": "Arquétipo 1: Competidores de Baixo Custo",
+          "pca_1": -0.409,
+          "pca_2": -0.894
+        },
+        {
+          "instituicao": "LUIZACRED S.A. SCFI",
+          "n_modalidades": 3,
+          "mean_pct_rank": 0.7105263157894738,
+          "spread_std_pct": 0.11041022400293729,
+          "secured_share": 0.0,
+          "cluster_id": 2,
+          "cluster_name": "Arquétipo 3: Segmento Caro / Alta Extração",
+          "pca_1": -2.424,
+          "pca_2": -1.166
+        },
+        {
+          "instituicao": "MERCADO CRÉDITO SCFI S.A.",
+          "n_modalidades": 5,
+          "mean_pct_rank": 0.7106781376518219,
+          "spread_std_pct": 0.21282183870378055,
+          "secured_share": 0.4,
+          "cluster_id": 2,
+          "cluster_name": "Arquétipo 3: Segmento Caro / Alta Extração",
+          "pca_1": -0.555,
+          "pca_2": -0.067
+        },
+        {
+          "instituicao": "MIDWAY S.A. - SCFI",
+          "n_modalidades": 6,
+          "mean_pct_rank": 0.6833516991947223,
+          "spread_std_pct": 0.18189761480916927,
+          "secured_share": 0.6666666666666666,
+          "cluster_id": 1,
+          "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo",
+          "pca_1": 0.073,
+          "pca_2": 0.386
+        },
+        {
+          "instituicao": "NEGRESCO S.A. - CFI",
+          "n_modalidades": 3,
+          "mean_pct_rank": 0.9057017543859649,
+          "spread_std_pct": 0.06801781762838081,
+          "secured_share": 0.6666666666666666,
+          "cluster_id": 2,
+          "cluster_name": "Arquétipo 3: Segmento Caro / Alta Extração",
+          "pca_1": -2.0,
+          "pca_2": 1.242
+        },
+        {
+          "instituicao": "NEON FINANCEIRA - SCFI S.A.",
+          "n_modalidades": 3,
+          "mean_pct_rank": 0.7152777777777777,
+          "spread_std_pct": 0.13089494892592682,
+          "secured_share": 0.3333333333333333,
+          "cluster_id": 2,
+          "cluster_name": "Arquétipo 3: Segmento Caro / Alta Extração",
+          "pca_1": -1.744,
+          "pca_2": -0.04
+        },
+        {
+          "instituicao": "NU FINANCEIRA S.A. CFI",
+          "n_modalidades": 6,
+          "mean_pct_rank": 0.37618626005253913,
+          "spread_std_pct": 0.25982758737183803,
+          "secured_share": 0.6666666666666666,
+          "cluster_id": 1,
+          "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo",
+          "pca_1": 1.266,
+          "pca_2": -0.052
+        },
+        {
+          "instituicao": "PARANA BCO S.A.",
+          "n_modalidades": 5,
+          "mean_pct_rank": 0.5334469532143951,
+          "spread_std_pct": 0.3877102321578225,
+          "secured_share": 0.8,
+          "cluster_id": 1,
+          "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo",
+          "pca_1": 1.586,
+          "pca_2": 1.339
+        },
+        {
+          "instituicao": "PEFISA S.A. - C.F.I.",
+          "n_modalidades": 3,
+          "mean_pct_rank": 0.8041666666666666,
+          "spread_std_pct": 0.14589284500009664,
+          "secured_share": 0.3333333333333333,
+          "cluster_id": 2,
+          "cluster_name": "Arquétipo 3: Segmento Caro / Alta Extração",
+          "pca_1": -1.867,
+          "pca_2": 0.201
+        },
+        {
+          "instituicao": "PICPAY BANK - BANCO MÚLTIPLO S.A",
+          "n_modalidades": 6,
+          "mean_pct_rank": 0.5446500615105266,
+          "spread_std_pct": 0.23776618587462622,
+          "secured_share": 0.6666666666666666,
+          "cluster_id": 1,
+          "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo",
+          "pca_1": 0.734,
+          "pca_2": 0.25
+        },
+        {
+          "instituicao": "PORTOSEG S.A. CFI",
+          "n_modalidades": 7,
+          "mean_pct_rank": 0.5324079429342587,
+          "spread_std_pct": 0.2565486742821521,
+          "secured_share": 0.5714285714285714,
+          "cluster_id": 1,
+          "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo",
+          "pca_1": 1.001,
+          "pca_2": -0.259
+        },
+        {
+          "instituicao": "REALIZE SCFI S.A.",
+          "n_modalidades": 3,
+          "mean_pct_rank": 0.9402777777777778,
+          "spread_std_pct": 0.02050669869476863,
+          "secured_share": 0.3333333333333333,
+          "cluster_id": 2,
+          "cluster_name": "Arquétipo 3: Segmento Caro / Alta Extração",
+          "pca_1": -2.933,
+          "pca_2": 0.12
+        },
+        {
+          "instituicao": "SANTANDER SCFI S.A.",
+          "n_modalidades": 3,
+          "mean_pct_rank": 0.3861842105263158,
+          "spread_std_pct": 0.1748127543305664,
+          "secured_share": 0.6666666666666666,
+          "cluster_id": 0,
+          "cluster_name": "Arquétipo 1: Competidores de Baixo Custo",
+          "pca_1": -0.129,
+          "pca_2": 0.426
+        },
+        {
+          "instituicao": "SINOSSERRA S/A - SCFI",
+          "n_modalidades": 3,
+          "mean_pct_rank": 0.20964912280701756,
+          "spread_std_pct": 0.2619298833151131,
+          "secured_share": 0.6666666666666666,
+          "cluster_id": 1,
+          "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo",
+          "pca_1": 0.807,
+          "pca_2": 0.303
+        },
+        {
+          "instituicao": "VALOR S/A SCFI",
+          "n_modalidades": 3,
+          "mean_pct_rank": 0.9641025641025641,
+          "spread_std_pct": 0.025576842747769248,
+          "secured_share": 1.0,
+          "cluster_id": 2,
+          "cluster_name": "Arquétipo 3: Segmento Caro / Alta Extração",
+          "pca_1": -1.82,
+          "pca_2": 2.297
+        },
+        {
+          "instituicao": "VIA CERTA FINANCIADORA S.A. - CFI",
+          "n_modalidades": 4,
+          "mean_pct_rank": 0.6379934210526316,
+          "spread_std_pct": 0.31633942484109534,
+          "secured_share": 0.25,
+          "cluster_id": 1,
+          "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo",
+          "pca_1": -0.316,
+          "pca_2": -0.15
+        },
+        {
+          "instituicao": "ZEMA CFI S/A",
+          "n_modalidades": 4,
+          "mean_pct_rank": 0.5882591093117409,
+          "spread_std_pct": 0.35185106660748566,
+          "secured_share": 0.5,
+          "cluster_id": 1,
+          "cluster_name": "Arquétipo 2: Bancos Universais / Portfólio Amplo",
+          "pca_1": 0.44,
+          "pca_2": 0.639
+        }
+      ]
+    },
+    "persistence_11m": {
+      "matched_bank_modality_pairs": 370,
+      "spearman_rho": 0.8656,
+      "spearman_p": 1.4168831557437257e-112,
+      "cheapest_quartile_retention_pct": 80.2,
+      "priciest_quartile_retention_pct": 82.6,
+      "median_delta_pp": -0.06,
+      "scatter_points": [
+        {
+          "prev": 0.558,
+          "curr": 0.5
+        },
+        {
+          "prev": 0.214,
+          "curr": 0.183
+        },
+        {
+          "prev": 0.073,
+          "curr": 0.217
+        },
+        {
+          "prev": 0.304,
+          "curr": 0.2
+        },
+        {
+          "prev": 0.485,
+          "curr": 0.378
+        },
+        {
+          "prev": 0.667,
+          "curr": 0.581
+        },
+        {
+          "prev": 0.471,
+          "curr": 0.425
+        },
+        {
+          "prev": 0.382,
+          "curr": 0.533
+        },
+        {
+          "prev": 0.732,
+          "curr": 0.683
+        },
+        {
+          "prev": 0.164,
+          "curr": 0.267
+        },
+        {
+          "prev": 0.196,
+          "curr": 0.1
+        },
+        {
+          "prev": 0.64,
+          "curr": 0.7
+        },
+        {
+          "prev": 0.605,
+          "curr": 0.423
+        },
+        {
+          "prev": 0.265,
+          "curr": 0.188
+        },
+        {
+          "prev": 0.211,
+          "curr": 0.316
+        },
+        {
+          "prev": 0.411,
+          "curr": 0.5
+        },
+        {
+          "prev": 0.333,
+          "curr": 0.351
+        },
+        {
+          "prev": 0.0,
+          "curr": 0.0
+        },
+        {
+          "prev": 0.836,
+          "curr": 0.9
+        },
+        {
+          "prev": 0.804,
+          "curr": 0.767
+        },
+        {
+          "prev": 0.697,
+          "curr": 0.851
+        },
+        {
+          "prev": 0.372,
+          "curr": 0.173
+        },
+        {
+          "prev": 0.564,
+          "curr": 0.512
+        },
+        {
+          "prev": 0.109,
+          "curr": 0.167
+        },
+        {
+          "prev": 0.089,
+          "curr": 0.05
+        },
+        {
+          "prev": 0.079,
+          "curr": 0.184
+        },
+        {
+          "prev": 0.0,
+          "curr": 0.108
+        },
+        {
+          "prev": 0.07,
+          "curr": 0.231
+        },
+        {
+          "prev": 0.282,
+          "curr": 0.047
+        },
+        {
+          "prev": 0.878,
+          "curr": 0.974
+        },
+        {
+          "prev": 0.395,
+          "curr": 0.5
+        },
+        {
+          "prev": 0.491,
+          "curr": 0.75
+        },
+        {
+          "prev": 0.536,
+          "curr": 0.533
+        },
+        {
+          "prev": 0.52,
+          "curr": 0.8
+        },
+        {
+          "prev": 0.061,
+          "curr": 0.216
+        },
+        {
+          "prev": 0.651,
+          "curr": 0.577
+        },
+        {
+          "prev": 0.154,
+          "curr": 0.186
+        },
+        {
+          "prev": 0.088,
+          "curr": 0.075
+        },
+        {
+          "prev": 0.782,
+          "curr": 0.883
+        },
+        {
+          "prev": 0.607,
+          "curr": 0.617
+        },
+        {
+          "prev": 0.0,
+          "curr": 0.167
+        },
+        {
+          "prev": 0.147,
+          "curr": 0.087
+        },
+        {
+          "prev": 0.947,
+          "curr": 0.921
+        },
+        {
+          "prev": 0.764,
+          "curr": 0.85
+        },
+        {
+          "prev": 0.893,
+          "curr": 0.867
+        },
+        {
+          "prev": 0.08,
+          "curr": 0.0
+        },
+        {
+          "prev": 0.273,
+          "curr": 0.297
+        },
+        {
+          "prev": 0.767,
+          "curr": 0.827
+        },
+        {
+          "prev": 0.718,
+          "curr": 0.698
+        },
+        {
+          "prev": 0.603,
+          "curr": 0.562
+        },
+        {
+          "prev": 0.854,
+          "curr": 0.947
+        },
+        {
+          "prev": 0.824,
+          "curr": 0.887
+        },
+        {
+          "prev": 0.122,
+          "curr": 0.237
+        },
+        {
+          "prev": 0.327,
+          "curr": 0.2
+        },
+        {
+          "prev": 0.161,
+          "curr": 0.117
+        },
+        {
+          "prev": 0.04,
+          "curr": 0.233
+        },
+        {
+          "prev": 0.182,
+          "curr": 0.324
+        },
+        {
+          "prev": 0.14,
+          "curr": 0.154
+        },
+        {
+          "prev": 0.436,
+          "curr": 0.395
+        },
+        {
+          "prev": 0.22,
+          "curr": 0.105
+        },
+        {
+          "prev": 0.158,
+          "curr": 0.263
+        },
+        {
+          "prev": 0.059,
+          "curr": 0.412
+        },
+        {
+          "prev": 0.488,
+          "curr": 0.5
+        },
+        {
+          "prev": 0.949,
+          "curr": 0.907
+        },
+        {
+          "prev": 0.235,
+          "curr": 0.212
+        },
+        {
+          "prev": 0.873,
+          "curr": 0.717
+        },
+        {
+          "prev": 0.679,
+          "curr": 0.883
+        },
+        {
+          "prev": 0.882,
+          "curr": 0.512
+        },
+        {
+          "prev": 0.018,
+          "curr": 0.05
+        },
+        {
+          "prev": 0.054,
+          "curr": 0.217
+        },
+        {
+          "prev": 0.242,
+          "curr": 0.162
+        },
+        {
+          "prev": 0.744,
+          "curr": 0.788
+        },
+        {
+          "prev": 0.385,
+          "curr": 0.256
+        },
+        {
+          "prev": 0.632,
+          "curr": 0.637
+        },
+        {
+          "prev": 0.051,
+          "curr": 0.116
+        },
+        {
+          "prev": 0.317,
+          "curr": 0.263
+        },
+        {
+          "prev": 0.127,
+          "curr": 0.117
+        },
+        {
+          "prev": 1.0,
+          "curr": 0.731
+        },
+        {
+          "prev": 0.026,
+          "curr": 0.14
+        },
+        {
+          "prev": 0.366,
+          "curr": 0.474
+        },
+        {
+          "prev": 0.655,
+          "curr": 0.667
+        },
+        {
+          "prev": 0.339,
+          "curr": 0.317
+        },
+        {
+          "prev": 0.24,
+          "curr": 0.367
+        },
+        {
+          "prev": 0.364,
+          "curr": 0.459
+        },
+        {
+          "prev": 0.116,
+          "curr": 0.077
+        },
+        {
+          "prev": 0.359,
+          "curr": 0.291
+        },
+        {
+          "prev": 0.485,
+          "curr": 0.45
+        },
+        {
+          "prev": 0.036,
+          "curr": 0.15
+        },
+        {
+          "prev": 0.554,
+          "curr": 0.467
+        },
+        {
+          "prev": 0.606,
+          "curr": 0.568
+        },
+        {
+          "prev": 0.907,
+          "curr": 0.596
+        },
+        {
+          "prev": 0.692,
+          "curr": 0.721
+        },
+        {
+          "prev": 0.956,
+          "curr": 0.9
+        },
+        {
+          "prev": 0.463,
+          "curr": 0.553
+        },
+        {
+          "prev": 0.632,
+          "curr": 0.737
+        },
+        {
+          "prev": 0.309,
+          "curr": 0.263
+        },
+        {
+          "prev": 0.293,
+          "curr": 0.316
+        },
+        {
+          "prev": 0.342,
+          "curr": 0.395
+        },
+        {
+          "prev": 0.436,
+          "curr": 0.3
+        },
+        {
+          "prev": 0.393,
+          "curr": 0.367
+        },
+        {
+          "prev": 0.92,
+          "curr": 0.533
+        },
+        {
+          "prev": 0.667,
+          "curr": 0.703
+        },
+        {
+          "prev": 0.488,
+          "curr": 0.442
+        },
+        {
+          "prev": 0.333,
+          "curr": 0.488
+        },
+        {
+          "prev": 0.515,
+          "curr": 0.475
+        },
+        {
+          "prev": 0.658,
+          "curr": 0.684
+        },
+        {
+          "prev": 0.39,
+          "curr": 0.342
+        },
+        {
+          "prev": 0.691,
+          "curr": 0.783
+        },
+        {
+          "prev": 0.696,
+          "curr": 0.667
+        },
+        {
+          "prev": 0.545,
+          "curr": 0.919
+        },
+        {
+          "prev": 0.884,
+          "curr": 0.808
+        },
+        {
+          "prev": 0.231,
+          "curr": 0.605
+        },
+        {
+          "prev": 0.176,
+          "curr": 0.037
+        },
+        {
+          "prev": 0.737,
+          "curr": 0.711
+        },
+        {
+          "prev": 0.218,
+          "curr": 0.133
+        },
+        {
+          "prev": 0.518,
+          "curr": 0.483
+        },
+        {
+          "prev": 0.88,
+          "curr": 0.933
+        },
+        {
+          "prev": 0.221,
+          "curr": 0.225
+        },
+        {
+          "prev": 0.049,
+          "curr": 0.079
+        },
+        {
+          "prev": 0.727,
+          "curr": 0.8
+        },
+        {
+          "prev": 0.982,
+          "curr": 0.933
+        },
+        {
+          "prev": 0.84,
+          "curr": 0.9
+        },
+        {
+          "prev": 0.564,
+          "curr": 0.733
+        },
+        {
+          "prev": 0.768,
+          "curr": 0.783
+        },
+        {
+          "prev": 0.939,
+          "curr": 0.973
+        },
+        {
+          "prev": 0.053,
+          "curr": 0.132
+        },
+        {
+          "prev": 0.48,
+          "curr": 0.667
+        },
+        {
+          "prev": 0.294,
+          "curr": 0.1
+        },
+        {
+          "prev": 0.974,
+          "curr": 0.974
+        },
+        {
+          "prev": 0.091,
+          "curr": 0.033
+        },
+        {
+          "prev": 0.018,
+          "curr": 0.017
+        },
+        {
+          "prev": 1.0,
+          "curr": 1.0
+        },
+        {
+          "prev": 0.394,
+          "curr": 0.514
+        },
+        {
+          "prev": 0.977,
+          "curr": 0.885
+        },
+        {
+          "prev": 0.769,
+          "curr": 0.791
+        },
+        {
+          "prev": 0.941,
+          "curr": 0.988
+        },
+        {
+          "prev": 0.268,
+          "curr": 0.053
+        },
+        {
+          "prev": 0.537,
+          "curr": 0.605
+        },
+        {
+          "prev": 0.842,
+          "curr": 0.158
+        },
+        {
+          "prev": 0.6,
+          "curr": 0.35
+        },
+        {
+          "prev": 0.321,
+          "curr": 0.3
+        },
+        {
+          "prev": 0.56,
+          "curr": 0.6
+        },
+        {
+          "prev": 0.576,
+          "curr": 0.486
+        },
+        {
+          "prev": 0.442,
+          "curr": 0.327
+        },
+        {
+          "prev": 0.641,
+          "curr": 0.291
+        },
+        {
+          "prev": 0.441,
+          "curr": 0.35
+        },
+        {
+          "prev": 1.0,
+          "curr": 1.0
+        },
+        {
+          "prev": 0.786,
+          "curr": 0.8
+        },
+        {
+          "prev": 0.72,
+          "curr": 0.767
+        },
+        {
+          "prev": 0.0,
+          "curr": 0.038
+        },
+        {
+          "prev": 0.846,
+          "curr": 0.674
+        },
+        {
+          "prev": 0.195,
+          "curr": 0.158
+        },
+        {
+          "prev": 0.447,
+          "curr": 0.421
+        },
+        {
+          "prev": 0.527,
+          "curr": 0.5
+        },
+        {
+          "prev": 0.661,
+          "curr": 0.6
+        },
+        {
+          "prev": 0.36,
+          "curr": 0.433
+        },
+        {
+          "prev": 0.419,
+          "curr": 0.385
+        },
+        {
+          "prev": 0.513,
+          "curr": 0.349
+        },
+        {
+          "prev": 0.544,
+          "curr": 0.55
+        },
+        {
+          "prev": 0.707,
+          "curr": 0.211
+        },
+        {
+          "prev": 0.145,
+          "curr": 0.333
+        },
+        {
+          "prev": 0.75,
+          "curr": 0.333
+        },
+        {
+          "prev": 0.44,
+          "curr": 0.467
+        },
+        {
+          "prev": 0.121,
+          "curr": 0.27
+        },
+        {
+          "prev": 0.628,
+          "curr": 0.365
+        },
+        {
+          "prev": 0.41,
+          "curr": 0.233
+        },
+        {
+          "prev": 0.368,
+          "curr": 0.375
+        },
+        {
+          "prev": 0.291,
+          "curr": 0.417
+        },
+        {
+          "prev": 0.25,
+          "curr": 0.233
+        },
+        {
+          "prev": 0.12,
+          "curr": 0.267
+        },
+        {
+          "prev": 0.233,
+          "curr": 0.192
+        },
+        {
+          "prev": 0.5,
+          "curr": 0.4
+        },
+        {
+          "prev": 0.263,
+          "curr": 0.211
+        },
+        {
+          "prev": 0.634,
+          "curr": 0.684
+        },
+        {
+          "prev": 0.868,
+          "curr": 0.816
+        },
+        {
+          "prev": 0.0,
+          "curr": 0.067
+        },
+        {
+          "prev": 0.0,
+          "curr": 0.0
+        },
+        {
+          "prev": 0.093,
+          "curr": 0.212
+        },
+        {
+          "prev": 0.821,
+          "curr": 0.837
+        },
+        {
+          "prev": 0.206,
+          "curr": 0.275
+        },
+        {
+          "prev": 0.055,
+          "curr": 0.083
+        },
+        {
+          "prev": 0.036,
+          "curr": 0.45
+        },
+        {
+          "prev": 0.96,
+          "curr": 0.967
+        },
+        {
+          "prev": 0.515,
+          "curr": 0.608
+        },
+        {
+          "prev": 0.698,
+          "curr": 0.865
+        },
+        {
+          "prev": 0.75,
+          "curr": 0.838
+        },
+        {
+          "prev": 0.0,
+          "curr": 0.026
+        },
+        {
+          "prev": 0.132,
+          "curr": 0.237
+        },
+        {
+          "prev": 0.16,
+          "curr": 0.3
+        },
+        {
+          "prev": 0.105,
+          "curr": 0.105
+        },
+        {
+          "prev": 0.309,
+          "curr": 0.25
+        },
+        {
+          "prev": 0.125,
+          "curr": 0.133
+        },
+        {
+          "prev": 0.68,
+          "curr": 0.567
+        },
+        {
+          "prev": 0.588,
+          "curr": 0.6
+        },
+        {
+          "prev": 0.421,
+          "curr": 0.553
+        },
+        {
+          "prev": 0.2,
+          "curr": 0.5
+        },
+        {
+          "prev": 0.091,
+          "curr": 0.189
+        },
+        {
+          "prev": 0.302,
+          "curr": 0.308
+        },
+        {
+          "prev": 0.179,
+          "curr": 0.07
+        },
+        {
+          "prev": 0.015,
+          "curr": 0.025
+        },
+        {
+          "prev": 0.618,
+          "curr": 0.517
+        },
+        {
+          "prev": 0.5,
+          "curr": 0.55
+        },
+        {
+          "prev": 0.76,
+          "curr": 0.867
+        },
+        {
+          "prev": 0.727,
+          "curr": 0.73
+        },
+        {
+          "prev": 0.465,
+          "curr": 0.25
+        },
+        {
+          "prev": 0.462,
+          "curr": 0.465
+        },
+        {
+          "prev": 0.324,
+          "curr": 0.325
+        },
+        {
+          "prev": 0.909,
+          "curr": 0.983
+        },
+        {
+          "prev": 0.714,
+          "curr": 0.85
+        },
+        {
+          "prev": 0.023,
+          "curr": 0.115
+        },
+        {
+          "prev": 0.615,
+          "curr": 0.814
+        },
+        {
+          "prev": 0.662,
+          "curr": 0.775
+        },
+        {
+          "prev": 0.709,
+          "curr": 0.817
+        },
+        {
+          "prev": 0.286,
+          "curr": 0.283
+        },
+        {
+          "prev": 0.32,
+          "curr": 0.833
+        },
+        {
+          "prev": 0.345,
+          "curr": 0.45
+        },
+        {
+          "prev": 0.107,
+          "curr": 0.067
+        },
+        {
+          "prev": 0.553,
+          "curr": 0.605
+        },
+        {
+          "prev": 0.529,
+          "curr": 0.175
+        },
+        {
+          "prev": 0.582,
+          "curr": 0.583
+        },
+        {
+          "prev": 1.0,
+          "curr": 0.967
+        },
+        {
+          "prev": 0.316,
+          "curr": 0.342
+        },
+        {
+          "prev": 0.047,
+          "curr": 0.058
+        },
+        {
+          "prev": 0.073,
+          "curr": 0.026
+        },
+        {
+          "prev": 0.816,
+          "curr": 0.789
+        },
+        {
+          "prev": 0.279,
+          "curr": 0.25
+        },
+        {
+          "prev": 0.455,
+          "curr": 0.4
+        },
+        {
+          "prev": 0.179,
+          "curr": 0.15
+        },
+        {
+          "prev": 0.4,
+          "curr": 0.333
+        },
+        {
+          "prev": 0.338,
+          "curr": 0.312
+        },
+        {
+          "prev": 0.895,
+          "curr": 0.868
+        },
+        {
+          "prev": 0.103,
+          "curr": 0.013
+        },
+        {
+          "prev": 0.585,
+          "curr": 0.395
+        },
+        {
+          "prev": 0.636,
+          "curr": 0.676
+        },
+        {
+          "prev": 0.256,
+          "curr": 0.269
+        },
+        {
+          "prev": 0.721,
+          "curr": 0.65
+        },
+        {
+          "prev": 0.026,
+          "curr": 0.053
+        },
+        {
+          "prev": 0.236,
+          "curr": 0.233
+        },
+        {
+          "prev": 0.28,
+          "curr": 0.4
+        },
+        {
+          "prev": 0.256,
+          "curr": 0.651
+        },
+        {
+          "prev": 0.456,
+          "curr": 0.438
+        },
+        {
+          "prev": 0.244,
+          "curr": 0.184
+        },
+        {
+          "prev": 0.5,
+          "curr": 0.658
+        },
+        {
+          "prev": 0.879,
+          "curr": 0.757
+        },
+        {
+          "prev": 0.308,
+          "curr": 0.209
+        },
+        {
+          "prev": 0.526,
+          "curr": 0.079
+        },
+        {
+          "prev": 0.418,
+          "curr": 0.55
+        },
+        {
+          "prev": 0.232,
+          "curr": 0.25
+        },
+        {
+          "prev": 0.6,
+          "curr": 0.733
+        },
+        {
+          "prev": 0.455,
+          "curr": 0.649
+        },
+        {
+          "prev": 0.349,
+          "curr": 0.404
+        },
+        {
+          "prev": 0.128,
+          "curr": 0.093
+        },
+        {
+          "prev": 0.382,
+          "curr": 0.287
+        },
+        {
+          "prev": 0.927,
+          "curr": 0.917
+        },
+        {
+          "prev": 0.946,
+          "curr": 0.95
+        },
+        {
+          "prev": 0.268,
+          "curr": 0.267
+        },
+        {
+          "prev": 0.683,
+          "curr": 0.737
+        },
+        {
+          "prev": 0.794,
+          "curr": 0.725
+        },
+        {
+          "prev": 0.809,
+          "curr": 0.863
+        },
+        {
+          "prev": 0.951,
+          "curr": 1.0
+        },
+        {
+          "prev": 0.848,
+          "curr": 0.811
+        },
+        {
+          "prev": 0.279,
+          "curr": 0.904
+        },
+        {
+          "prev": 0.971,
+          "curr": 0.975
+        },
+        {
+          "prev": 0.186,
+          "curr": 0.0
+        },
+        {
+          "prev": 0.795,
+          "curr": 0.884
+        },
+        {
+          "prev": 0.589,
+          "curr": 0.65
+        },
+        {
+          "prev": 0.735,
+          "curr": 0.812
+        },
+        {
+          "prev": 0.985,
+          "curr": 0.825
+        },
+        {
+          "prev": 0.8,
+          "curr": 0.767
+        },
+        {
+          "prev": 0.911,
+          "curr": 0.983
+        },
+        {
+          "prev": 0.818,
+          "curr": 0.541
+        },
+        {
+          "prev": 0.791,
+          "curr": 0.923
+        },
+        {
+          "prev": 0.872,
+          "curr": 0.547
+        },
+        {
+          "prev": 0.779,
+          "curr": 0.925
+        },
+        {
+          "prev": 0.745,
+          "curr": 0.833
+        },
+        {
+          "prev": 0.571,
+          "curr": 0.567
+        },
+        {
+          "prev": 0.909,
+          "curr": 0.946
+        },
+        {
+          "prev": 0.535,
+          "curr": 0.538
+        },
+        {
+          "prev": 0.744,
+          "curr": 0.767
+        },
+        {
+          "prev": 0.691,
+          "curr": 0.625
+        },
+        {
+          "prev": 0.255,
+          "curr": 0.483
+        },
+        {
+          "prev": 0.455,
+          "curr": 0.433
+        },
+        {
+          "prev": 0.756,
+          "curr": 0.763
+        },
+        {
+          "prev": 0.706,
+          "curr": 0.713
+        },
+        {
+          "prev": 0.763,
+          "curr": 0.763
+        },
+        {
+          "prev": 0.4,
+          "curr": 0.683
+        },
+        {
+          "prev": 0.375,
+          "curr": 0.383
+        },
+        {
+          "prev": 0.8,
+          "curr": 0.633
+        },
+        {
+          "prev": 0.303,
+          "curr": 0.405
+        },
+        {
+          "prev": 0.326,
+          "curr": 0.462
+        },
+        {
+          "prev": 0.538,
+          "curr": 0.326
+        },
+        {
+          "prev": 0.412,
+          "curr": 0.388
+        },
+        {
+          "prev": 0.78,
+          "curr": 0.711
+        },
+        {
+          "prev": 0.2,
+          "curr": 0.283
+        },
+        {
+          "prev": 0.429,
+          "curr": 0.167
+        },
+        {
+          "prev": 0.574,
+          "curr": 0.575
+        },
+        {
+          "prev": 0.61,
+          "curr": 0.658
+        },
+        {
+          "prev": 0.974,
+          "curr": 0.86
+        },
+        {
+          "prev": 0.818,
+          "curr": 0.867
+        },
+        {
+          "prev": 0.643,
+          "curr": 0.633
+        },
+        {
+          "prev": 1.0,
+          "curr": 0.921
+        },
+        {
+          "prev": 0.902,
+          "curr": 0.895
+        },
+        {
+          "prev": 0.509,
+          "curr": 0.95
+        },
+        {
+          "prev": 0.152,
+          "curr": 0.135
+        },
+        {
+          "prev": 0.581,
+          "curr": 0.481
+        },
+        {
+          "prev": 0.964,
+          "curr": 0.933
+        },
+        {
+          "prev": 0.875,
+          "curr": 0.833
+        },
+        {
+          "prev": 0.395,
+          "curr": 0.519
+        },
+        {
+          "prev": 0.205,
+          "curr": 0.419
+        },
+        {
+          "prev": 0.838,
+          "curr": 0.787
+        },
+        {
+          "prev": 0.805,
+          "curr": 0.842
+        },
+        {
+          "prev": 0.93,
+          "curr": 1.0
+        },
+        {
+          "prev": 0.853,
+          "curr": 0.875
+        },
+        {
+          "prev": 0.636,
+          "curr": 0.633
+        },
+        {
+          "prev": 0.929,
+          "curr": 0.9
+        },
+        {
+          "prev": 0.618,
+          "curr": 0.613
+        },
+        {
+          "prev": 0.97,
+          "curr": 0.784
+        },
+        {
+          "prev": 0.473,
+          "curr": 0.6
+        },
+        {
+          "prev": 0.357,
+          "curr": 0.35
+        },
+        {
+          "prev": 0.03,
+          "curr": 0.054
+        },
+        {
+          "prev": 0.163,
+          "curr": 0.692
+        },
+        {
+          "prev": 0.103,
+          "curr": 0.023
+        },
+        {
+          "prev": 0.559,
+          "curr": 0.537
+        },
+        {
+          "prev": 1.0,
+          "curr": 1.0
+        },
+        {
+          "prev": 0.397,
+          "curr": 0.362
+        },
+        {
+          "prev": 0.674,
+          "curr": 0.712
+        },
+        {
+          "prev": 0.162,
+          "curr": 0.125
+        },
+        {
+          "prev": 0.945,
+          "curr": 0.65
+        },
+        {
+          "prev": 0.964,
+          "curr": 1.0
+        },
+        {
+          "prev": 0.676,
+          "curr": 0.762
+        },
+        {
+          "prev": 0.364,
+          "curr": 0.317
+        },
+        {
+          "prev": 0.839,
+          "curr": 0.817
+        },
+        {
+          "prev": 0.212,
+          "curr": 0.243
+        },
+        {
+          "prev": 0.721,
+          "curr": 0.769
+        },
+        {
+          "prev": 0.487,
+          "curr": 0.372
+        },
+        {
+          "prev": 0.647,
+          "curr": 0.75
+        },
+        {
+          "prev": 0.191,
+          "curr": 0.113
+        },
+        {
+          "prev": 0.415,
+          "curr": 0.421
+        },
+        {
+          "prev": 0.789,
+          "curr": 0.526
+        },
+        {
+          "prev": 0.545,
+          "curr": 0.467
+        },
+        {
+          "prev": 0.625,
+          "curr": 0.717
+        },
+        {
+          "prev": 0.982,
+          "curr": 0.967
+        },
+        {
+          "prev": 0.821,
+          "curr": 0.917
+        },
+        {
+          "prev": 0.897,
+          "curr": 0.938
+        },
+        {
+          "prev": 0.814,
+          "curr": 0.962
+        },
+        {
+          "prev": 0.474,
+          "curr": 0.447
+        },
+        {
+          "prev": 0.341,
+          "curr": 0.289
+        },
+        {
+          "prev": 0.579,
+          "curr": 0.632
+        },
+        {
+          "prev": 0.25,
+          "curr": 0.237
+        },
+        {
+          "prev": 0.512,
+          "curr": 0.135
+        },
+        {
+          "prev": 0.59,
+          "curr": 0.744
+        },
+        {
+          "prev": 0.273,
+          "curr": 0.367
+        },
+        {
+          "prev": 0.455,
+          "curr": 0.4
+        },
+        {
+          "prev": 0.024,
+          "curr": 0.0
+        },
+        {
+          "prev": 0.605,
+          "curr": 0.579
+        },
+        {
+          "prev": 0.353,
+          "curr": 0.05
+        },
+        {
+          "prev": 0.659,
+          "curr": 0.368
+        },
+        {
+          "prev": 0.368,
+          "curr": 0.368
+        },
+        {
+          "prev": 0.044,
+          "curr": 0.062
+        },
+        {
+          "prev": 0.439,
+          "curr": 0.447
+        },
+        {
+          "prev": 0.953,
+          "curr": 0.942
+        },
+        {
+          "prev": 1.0,
+          "curr": 1.0
+        },
+        {
+          "prev": 1.0,
+          "curr": 0.95
+        },
+        {
+          "prev": 0.829,
+          "curr": 0.789
+        },
+        {
+          "prev": 0.182,
+          "curr": 0.1
+        },
+        {
+          "prev": 0.857,
+          "curr": 0.75
+        },
+        {
+          "prev": 0.868,
+          "curr": 0.912
+        },
+        {
+          "prev": 0.976,
+          "curr": 0.868
+        },
+        {
+          "prev": 0.891,
+          "curr": 0.0
+        },
+        {
+          "prev": 0.209,
+          "curr": 0.635
+        }
+      ]
+    }
+  },
+  "uf_analysis": {
+    "n_ufs": 27,
+    "n_panel_obs": 108,
+    "panel_years": [
+      "2022",
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "panel_pooled_r2": 0.0529,
+    "panel_fe_r2": 0.5504,
+    "panel_beta_log_p90": -1.8034,
+    "panel_beta_ratio_p90_p50": 1.1485,
+    "oos_2025_ridge_r2": -2.6465,
+    "oos_2025_ridge_mae_pp": 1.278,
+    "oos_2025_persist_mae_pp": 0.953,
+    "spearman_2026_rho": -0.4171,
+    "spearman_2026_p": 0.030425475657427915,
+    "cross_2026_r2": 0.1618,
+    "convergence_2022_2026_slope": -1.164,
+    "convergence_2022_2026_p": 0.0023092427938965565,
+    "lowest_residual_ufs": [
+      {
+        "uf": "PB",
+        "uf_name": "Paraíba",
+        "p50": 986.0,
+        "p90": 3013.0,
+        "p95": 4982.0,
+        "p99": 11154.0,
+        "p90_p50_ratio": 3.056,
+        "inad_latest": 5.13,
+        "inad_12m_avg": 4.932,
+        "inad_2022_01": 3.93,
+        "delta_2022_2026_pp": 1.2,
+        "pred_inad": 7.09,
+        "residual_pp": -1.96
+      },
+      {
+        "uf": "ES",
+        "uf_name": "Espírito Santo",
+        "p50": 1515.0,
+        "p90": 4392.0,
+        "p95": 6550.0,
+        "p99": 13514.0,
+        "p90_p50_ratio": 2.899,
+        "inad_latest": 4.58,
+        "inad_12m_avg": 4.228,
+        "inad_2022_01": 2.92,
+        "delta_2022_2026_pp": 1.66,
+        "pred_inad": 6.41,
+        "residual_pp": -1.83
+      },
+      {
+        "uf": "SC",
+        "uf_name": "Santa Catarina",
+        "p50": 1989.0,
+        "p90": 5094.0,
+        "p95": 7461.0,
+        "p99": 15320.0,
+        "p90_p50_ratio": 2.561,
+        "inad_latest": 4.53,
+        "inad_12m_avg": 4.135,
+        "inad_2022_01": 2.27,
+        "delta_2022_2026_pp": 2.26,
+        "pred_inad": 6.15,
+        "residual_pp": -1.62
+      },
+      {
+        "uf": "CE",
+        "uf_name": "Ceará",
+        "p50": 870.0,
+        "p90": 2499.0,
+        "p95": 3976.0,
+        "p99": 10549.0,
+        "p90_p50_ratio": 2.872,
+        "inad_latest": 5.99,
+        "inad_12m_avg": 5.55,
+        "inad_2022_01": 3.92,
+        "delta_2022_2026_pp": 2.07,
+        "pred_inad": 7.42,
+        "residual_pp": -1.43
+      }
+    ],
+    "highest_residual_ufs": [
+      {
+        "uf": "TO",
+        "uf_name": "Tocantins",
+        "p50": 1360.0,
+        "p90": 3876.0,
+        "p95": 5591.0,
+        "p99": 11745.0,
+        "p90_p50_ratio": 2.85,
+        "inad_latest": 10.65,
+        "inad_12m_avg": 9.376,
+        "inad_2022_01": 2.28,
+        "delta_2022_2026_pp": 8.37,
+        "pred_inad": 6.63,
+        "residual_pp": 4.02
+      },
+      {
+        "uf": "MS",
+        "uf_name": "Mato Grosso do Sul",
+        "p50": 1590.0,
+        "p90": 4964.0,
+        "p95": 6911.0,
+        "p99": 13581.0,
+        "p90_p50_ratio": 3.122,
+        "inad_latest": 8.56,
+        "inad_12m_avg": 7.314,
+        "inad_2022_01": 2.07,
+        "delta_2022_2026_pp": 6.49,
+        "pred_inad": 6.19,
+        "residual_pp": 2.37
+      },
+      {
+        "uf": "MA",
+        "uf_name": "Maranhão",
+        "p50": 793.0,
+        "p90": 2363.0,
+        "p95": 3551.0,
+        "p99": 8844.0,
+        "p90_p50_ratio": 2.98,
+        "inad_latest": 9.7,
+        "inad_12m_avg": 8.909,
+        "inad_2022_01": 3.31,
+        "delta_2022_2026_pp": 6.39,
+        "pred_inad": 7.52,
+        "residual_pp": 2.18
+      },
+      {
+        "uf": "GO",
+        "uf_name": "Goiás",
+        "p50": 1537.0,
+        "p90": 4770.0,
+        "p95": 6703.0,
+        "p99": 14497.0,
+        "p90_p50_ratio": 3.103,
+        "inad_latest": 7.99,
+        "inad_12m_avg": 7.192,
+        "inad_2022_01": 2.44,
+        "delta_2022_2026_pp": 5.55,
+        "pred_inad": 6.26,
+        "residual_pp": 1.73
+      }
+    ],
+    "panel_rows": [
+      {
+        "uf": "AC",
+        "uf_name": "Acre",
+        "year": 2022,
+        "p50": 623.0,
+        "p90": 2198.0,
+        "p99": 6603.0,
+        "p90_p50_ratio": 3.528,
+        "inad_yr": 3.039
+      },
+      {
+        "uf": "AC",
+        "uf_name": "Acre",
+        "year": 2023,
+        "p50": 660.0,
+        "p90": 2362.0,
+        "p99": 6409.0,
+        "p90_p50_ratio": 3.579,
+        "inad_yr": 3.433
+      },
+      {
+        "uf": "AC",
+        "uf_name": "Acre",
+        "year": 2024,
+        "p50": 750.0,
+        "p90": 2582.0,
+        "p99": 7681.0,
+        "p90_p50_ratio": 3.443,
+        "inad_yr": 3.493
+      },
+      {
+        "uf": "AC",
+        "uf_name": "Acre",
+        "year": 2025,
+        "p50": 842.0,
+        "p90": 2812.0,
+        "p99": 9044.0,
+        "p90_p50_ratio": 3.34,
+        "inad_yr": 4.429
+      },
+      {
+        "uf": "AL",
+        "uf_name": "Alagoas",
+        "year": 2022,
+        "p50": 601.0,
+        "p90": 1727.0,
+        "p99": 6349.0,
+        "p90_p50_ratio": 2.874,
+        "inad_yr": 4.588
+      },
+      {
+        "uf": "AL",
+        "uf_name": "Alagoas",
+        "year": 2023,
+        "p50": 728.0,
+        "p90": 2089.0,
+        "p99": 7394.0,
+        "p90_p50_ratio": 2.87,
+        "inad_yr": 5.113
+      },
+      {
+        "uf": "AL",
+        "uf_name": "Alagoas",
+        "year": 2024,
+        "p50": 795.0,
+        "p90": 2441.0,
+        "p99": 9178.0,
+        "p90_p50_ratio": 3.07,
+        "inad_yr": 4.576
+      },
+      {
+        "uf": "AL",
+        "uf_name": "Alagoas",
+        "year": 2025,
+        "p50": 865.0,
+        "p90": 2689.0,
+        "p99": 10056.0,
+        "p90_p50_ratio": 3.109,
+        "inad_yr": 5.294
+      },
+      {
+        "uf": "AP",
+        "uf_name": "Amapá",
+        "year": 2022,
+        "p50": 664.0,
+        "p90": 2434.0,
+        "p99": 9973.0,
+        "p90_p50_ratio": 3.666,
+        "inad_yr": 3.974
+      },
+      {
+        "uf": "AP",
+        "uf_name": "Amapá",
+        "year": 2023,
+        "p50": 968.0,
+        "p90": 3073.0,
+        "p99": 9653.0,
+        "p90_p50_ratio": 3.175,
+        "inad_yr": 4.122
+      },
+      {
+        "uf": "AP",
+        "uf_name": "Amapá",
+        "year": 2024,
+        "p50": 916.0,
+        "p90": 2966.0,
+        "p99": 8831.0,
+        "p90_p50_ratio": 3.238,
+        "inad_yr": 4.062
+      },
+      {
+        "uf": "AP",
+        "uf_name": "Amapá",
+        "year": 2025,
+        "p50": 1033.0,
+        "p90": 3592.0,
+        "p99": 9109.0,
+        "p90_p50_ratio": 3.477,
+        "inad_yr": 5.113
+      },
+      {
+        "uf": "AM",
+        "uf_name": "Amazonas",
+        "year": 2022,
+        "p50": 582.0,
+        "p90": 1982.0,
+        "p99": 6699.0,
+        "p90_p50_ratio": 3.405,
+        "inad_yr": 4.713
+      },
+      {
+        "uf": "AM",
+        "uf_name": "Amazonas",
+        "year": 2023,
+        "p50": 692.0,
+        "p90": 2342.0,
+        "p99": 7414.0,
+        "p90_p50_ratio": 3.384,
+        "inad_yr": 5.833
+      },
+      {
+        "uf": "AM",
+        "uf_name": "Amazonas",
+        "year": 2024,
+        "p50": 814.0,
+        "p90": 2531.0,
+        "p99": 7395.0,
+        "p90_p50_ratio": 3.109,
+        "inad_yr": 5.067
+      },
+      {
+        "uf": "AM",
+        "uf_name": "Amazonas",
+        "year": 2025,
+        "p50": 938.0,
+        "p90": 2818.0,
+        "p99": 9958.0,
+        "p90_p50_ratio": 3.004,
+        "inad_yr": 5.508
+      },
+      {
+        "uf": "BA",
+        "uf_name": "Bahia",
+        "year": 2022,
+        "p50": 626.0,
+        "p90": 1821.0,
+        "p99": 6558.0,
+        "p90_p50_ratio": 2.909,
+        "inad_yr": 4.401
+      },
+      {
+        "uf": "BA",
+        "uf_name": "Bahia",
+        "year": 2023,
+        "p50": 728.0,
+        "p90": 2105.0,
+        "p99": 6906.0,
+        "p90_p50_ratio": 2.891,
+        "inad_yr": 5.109
+      },
+      {
+        "uf": "BA",
+        "uf_name": "Bahia",
+        "year": 2024,
+        "p50": 903.0,
+        "p90": 2502.0,
+        "p99": 8435.0,
+        "p90_p50_ratio": 2.771,
+        "inad_yr": 4.462
+      },
+      {
+        "uf": "BA",
+        "uf_name": "Bahia",
+        "year": 2025,
+        "p50": 1011.0,
+        "p90": 2944.0,
+        "p99": 8857.0,
+        "p90_p50_ratio": 2.912,
+        "inad_yr": 5.022
+      },
+      {
+        "uf": "CE",
+        "uf_name": "Ceará",
+        "year": 2022,
+        "p50": 628.0,
+        "p90": 1859.0,
+        "p99": 7458.0,
+        "p90_p50_ratio": 2.96,
+        "inad_yr": 4.543
+      },
+      {
+        "uf": "CE",
+        "uf_name": "Ceará",
+        "year": 2023,
+        "p50": 692.0,
+        "p90": 2028.0,
+        "p99": 8482.0,
+        "p90_p50_ratio": 2.931,
+        "inad_yr": 5.225
+      },
+      {
+        "uf": "CE",
+        "uf_name": "Ceará",
+        "year": 2024,
+        "p50": 792.0,
+        "p90": 2259.0,
+        "p99": 7778.0,
+        "p90_p50_ratio": 2.852,
+        "inad_yr": 4.523
+      },
+      {
+        "uf": "CE",
+        "uf_name": "Ceará",
+        "year": 2025,
+        "p50": 870.0,
+        "p90": 2499.0,
+        "p99": 10549.0,
+        "p90_p50_ratio": 2.872,
+        "inad_yr": 4.83
+      },
+      {
+        "uf": "DF",
+        "uf_name": "Distrito Federal",
+        "year": 2022,
+        "p50": 1515.0,
+        "p90": 6669.0,
+        "p99": 15383.0,
+        "p90_p50_ratio": 4.402,
+        "inad_yr": 3.447
+      },
+      {
+        "uf": "DF",
+        "uf_name": "Distrito Federal",
+        "year": 2023,
+        "p50": 1722.0,
+        "p90": 7477.0,
+        "p99": 19616.0,
+        "p90_p50_ratio": 4.342,
+        "inad_yr": 4.076
+      },
+      {
+        "uf": "DF",
+        "uf_name": "Distrito Federal",
+        "year": 2024,
+        "p50": 1788.0,
+        "p90": 7680.0,
+        "p99": 20395.0,
+        "p90_p50_ratio": 4.295,
+        "inad_yr": 3.682
+      },
+      {
+        "uf": "DF",
+        "uf_name": "Distrito Federal",
+        "year": 2025,
+        "p50": 2162.0,
+        "p90": 10479.0,
+        "p99": 29899.0,
+        "p90_p50_ratio": 4.847,
+        "inad_yr": 3.766
+      },
+      {
+        "uf": "ES",
+        "uf_name": "Espírito Santo",
+        "year": 2022,
+        "p50": 1099.0,
+        "p90": 3165.0,
+        "p99": 10246.0,
+        "p90_p50_ratio": 2.88,
+        "inad_yr": 3.221
+      },
+      {
+        "uf": "ES",
+        "uf_name": "Espírito Santo",
+        "year": 2023,
+        "p50": 1271.0,
+        "p90": 3644.0,
+        "p99": 12277.0,
+        "p90_p50_ratio": 2.867,
+        "inad_yr": 3.484
+      },
+      {
+        "uf": "ES",
+        "uf_name": "Espírito Santo",
+        "year": 2024,
+        "p50": 1398.0,
+        "p90": 4013.0,
+        "p99": 13138.0,
+        "p90_p50_ratio": 2.871,
+        "inad_yr": 3.073
+      },
+      {
+        "uf": "ES",
+        "uf_name": "Espírito Santo",
+        "year": 2025,
+        "p50": 1515.0,
+        "p90": 4392.0,
+        "p99": 13514.0,
+        "p90_p50_ratio": 2.899,
+        "inad_yr": 3.556
+      },
+      {
+        "uf": "GO",
+        "uf_name": "Goiás",
+        "year": 2022,
+        "p50": 1129.0,
+        "p90": 2965.0,
+        "p99": 9049.0,
+        "p90_p50_ratio": 2.626,
+        "inad_yr": 2.691
+      },
+      {
+        "uf": "GO",
+        "uf_name": "Goiás",
+        "year": 2023,
+        "p50": 1311.0,
+        "p90": 3874.0,
+        "p99": 11730.0,
+        "p90_p50_ratio": 2.955,
+        "inad_yr": 3.136
+      },
+      {
+        "uf": "GO",
+        "uf_name": "Goiás",
+        "year": 2024,
+        "p50": 1402.0,
+        "p90": 4003.0,
+        "p99": 11748.0,
+        "p90_p50_ratio": 2.855,
+        "inad_yr": 3.422
+      },
+      {
+        "uf": "GO",
+        "uf_name": "Goiás",
+        "year": 2025,
+        "p50": 1537.0,
+        "p90": 4770.0,
+        "p99": 14497.0,
+        "p90_p50_ratio": 3.103,
+        "inad_yr": 5.19
+      },
+      {
+        "uf": "MA",
+        "uf_name": "Maranhão",
+        "year": 2022,
+        "p50": 569.0,
+        "p90": 1586.0,
+        "p99": 5281.0,
+        "p90_p50_ratio": 2.787,
+        "inad_yr": 3.645
+      },
+      {
+        "uf": "MA",
+        "uf_name": "Maranhão",
+        "year": 2023,
+        "p50": 655.0,
+        "p90": 1847.0,
+        "p99": 6653.0,
+        "p90_p50_ratio": 2.82,
+        "inad_yr": 4.197
+      },
+      {
+        "uf": "MA",
+        "uf_name": "Maranhão",
+        "year": 2024,
+        "p50": 717.0,
+        "p90": 1991.0,
+        "p99": 6097.0,
+        "p90_p50_ratio": 2.777,
+        "inad_yr": 4.252
+      },
+      {
+        "uf": "MA",
+        "uf_name": "Maranhão",
+        "year": 2025,
+        "p50": 793.0,
+        "p90": 2363.0,
+        "p99": 8844.0,
+        "p90_p50_ratio": 2.98,
+        "inad_yr": 6.042
+      },
+      {
+        "uf": "MT",
+        "uf_name": "Mato Grosso",
+        "year": 2022,
+        "p50": 1186.0,
+        "p90": 3053.0,
+        "p99": 8678.0,
+        "p90_p50_ratio": 2.574,
+        "inad_yr": 1.698
+      },
+      {
+        "uf": "MT",
+        "uf_name": "Mato Grosso",
+        "year": 2023,
+        "p50": 1332.0,
+        "p90": 3744.0,
+        "p99": 11328.0,
+        "p90_p50_ratio": 2.811,
+        "inad_yr": 1.987
+      },
+      {
+        "uf": "MT",
+        "uf_name": "Mato Grosso",
+        "year": 2024,
+        "p50": 1608.0,
+        "p90": 4193.0,
+        "p99": 11626.0,
+        "p90_p50_ratio": 2.608,
+        "inad_yr": 2.556
+      },
+      {
+        "uf": "MT",
+        "uf_name": "Mato Grosso",
+        "year": 2025,
+        "p50": 1561.0,
+        "p90": 4502.0,
+        "p99": 12129.0,
+        "p90_p50_ratio": 2.884,
+        "inad_yr": 4.757
+      },
+      {
+        "uf": "MS",
+        "uf_name": "Mato Grosso do Sul",
+        "year": 2022,
+        "p50": 1191.0,
+        "p90": 3499.0,
+        "p99": 11460.0,
+        "p90_p50_ratio": 2.938,
+        "inad_yr": 2.222
+      },
+      {
+        "uf": "MS",
+        "uf_name": "Mato Grosso do Sul",
+        "year": 2023,
+        "p50": 1307.0,
+        "p90": 3987.0,
+        "p99": 11580.0,
+        "p90_p50_ratio": 3.05,
+        "inad_yr": 2.716
+      },
+      {
+        "uf": "MS",
+        "uf_name": "Mato Grosso do Sul",
+        "year": 2024,
+        "p50": 1440.0,
+        "p90": 4167.0,
+        "p99": 11647.0,
+        "p90_p50_ratio": 2.894,
+        "inad_yr": 3.472
+      },
+      {
+        "uf": "MS",
+        "uf_name": "Mato Grosso do Sul",
+        "year": 2025,
+        "p50": 1590.0,
+        "p90": 4964.0,
+        "p99": 13581.0,
+        "p90_p50_ratio": 3.122,
+        "inad_yr": 5.432
+      },
+      {
+        "uf": "MG",
+        "uf_name": "Minas Gerais",
+        "year": 2022,
+        "p50": 1061.0,
+        "p90": 2878.0,
+        "p99": 9007.0,
+        "p90_p50_ratio": 2.713,
+        "inad_yr": 2.86
+      },
+      {
+        "uf": "MG",
+        "uf_name": "Minas Gerais",
+        "year": 2023,
+        "p50": 1303.0,
+        "p90": 3446.0,
+        "p99": 11921.0,
+        "p90_p50_ratio": 2.645,
+        "inad_yr": 3.243
+      },
+      {
+        "uf": "MG",
+        "uf_name": "Minas Gerais",
+        "year": 2024,
+        "p50": 1409.0,
+        "p90": 3723.0,
+        "p99": 11289.0,
+        "p90_p50_ratio": 2.642,
+        "inad_yr": 3.129
+      },
+      {
+        "uf": "MG",
+        "uf_name": "Minas Gerais",
+        "year": 2025,
+        "p50": 1523.0,
+        "p90": 4301.0,
+        "p99": 14176.0,
+        "p90_p50_ratio": 2.824,
+        "inad_yr": 3.965
+      },
+      {
+        "uf": "PA",
+        "uf_name": "Pará",
+        "year": 2022,
+        "p50": 662.0,
+        "p90": 2001.0,
+        "p99": 7562.0,
+        "p90_p50_ratio": 3.023,
+        "inad_yr": 3.704
+      },
+      {
+        "uf": "PA",
+        "uf_name": "Pará",
+        "year": 2023,
+        "p50": 780.0,
+        "p90": 2507.0,
+        "p99": 8446.0,
+        "p90_p50_ratio": 3.214,
+        "inad_yr": 4.278
+      },
+      {
+        "uf": "PA",
+        "uf_name": "Pará",
+        "year": 2024,
+        "p50": 838.0,
+        "p90": 2508.0,
+        "p99": 8768.0,
+        "p90_p50_ratio": 2.993,
+        "inad_yr": 4.15
+      },
+      {
+        "uf": "PA",
+        "uf_name": "Pará",
+        "year": 2025,
+        "p50": 929.0,
+        "p90": 2691.0,
+        "p99": 9907.0,
+        "p90_p50_ratio": 2.897,
+        "inad_yr": 5.195
+      },
+      {
+        "uf": "PB",
+        "uf_name": "Paraíba",
+        "year": 2022,
+        "p50": 604.0,
+        "p90": 1813.0,
+        "p99": 6690.0,
+        "p90_p50_ratio": 3.002,
+        "inad_yr": 4.438
+      },
+      {
+        "uf": "PB",
+        "uf_name": "Paraíba",
+        "year": 2023,
+        "p50": 714.0,
+        "p90": 2364.0,
+        "p99": 9753.0,
+        "p90_p50_ratio": 3.311,
+        "inad_yr": 4.951
+      },
+      {
+        "uf": "PB",
+        "uf_name": "Paraíba",
+        "year": 2024,
+        "p50": 864.0,
+        "p90": 2678.0,
+        "p99": 9018.0,
+        "p90_p50_ratio": 3.1,
+        "inad_yr": 4.223
+      },
+      {
+        "uf": "PB",
+        "uf_name": "Paraíba",
+        "year": 2025,
+        "p50": 986.0,
+        "p90": 3013.0,
+        "p99": 11154.0,
+        "p90_p50_ratio": 3.056,
+        "inad_yr": 4.318
+      },
+      {
+        "uf": "PR",
+        "uf_name": "Paraná",
+        "year": 2022,
+        "p50": 1203.0,
+        "p90": 3481.0,
+        "p99": 10942.0,
+        "p90_p50_ratio": 2.894,
+        "inad_yr": 2.549
+      },
+      {
+        "uf": "PR",
+        "uf_name": "Paraná",
+        "year": 2023,
+        "p50": 1375.0,
+        "p90": 3955.0,
+        "p99": 11821.0,
+        "p90_p50_ratio": 2.876,
+        "inad_yr": 2.909
+      },
+      {
+        "uf": "PR",
+        "uf_name": "Paraná",
+        "year": 2024,
+        "p50": 1587.0,
+        "p90": 4691.0,
+        "p99": 14754.0,
+        "p90_p50_ratio": 2.956,
+        "inad_yr": 2.856
+      },
+      {
+        "uf": "PR",
+        "uf_name": "Paraná",
+        "year": 2025,
+        "p50": 1788.0,
+        "p90": 5271.0,
+        "p99": 15485.0,
+        "p90_p50_ratio": 2.948,
+        "inad_yr": 3.717
+      },
+      {
+        "uf": "PE",
+        "uf_name": "Pernambuco",
+        "year": 2022,
+        "p50": 623.0,
+        "p90": 1826.0,
+        "p99": 7189.0,
+        "p90_p50_ratio": 2.931,
+        "inad_yr": 5.261
+      },
+      {
+        "uf": "PE",
+        "uf_name": "Pernambuco",
+        "year": 2023,
+        "p50": 696.0,
+        "p90": 2025.0,
+        "p99": 7423.0,
+        "p90_p50_ratio": 2.909,
+        "inad_yr": 5.875
+      },
+      {
+        "uf": "PE",
+        "uf_name": "Pernambuco",
+        "year": 2024,
+        "p50": 829.0,
+        "p90": 2691.0,
+        "p99": 10471.0,
+        "p90_p50_ratio": 3.246,
+        "inad_yr": 5.032
+      },
+      {
+        "uf": "PE",
+        "uf_name": "Pernambuco",
+        "year": 2025,
+        "p50": 956.0,
+        "p90": 3229.0,
+        "p99": 11069.0,
+        "p90_p50_ratio": 3.378,
+        "inad_yr": 5.304
+      },
+      {
+        "uf": "PI",
+        "uf_name": "Piauí",
+        "year": 2022,
+        "p50": 662.0,
+        "p90": 2179.0,
+        "p99": 7906.0,
+        "p90_p50_ratio": 3.292,
+        "inad_yr": 4.287
+      },
+      {
+        "uf": "PI",
+        "uf_name": "Piauí",
+        "year": 2023,
+        "p50": 730.0,
+        "p90": 2478.0,
+        "p99": 12132.0,
+        "p90_p50_ratio": 3.395,
+        "inad_yr": 4.574
+      },
+      {
+        "uf": "PI",
+        "uf_name": "Piauí",
+        "year": 2024,
+        "p50": 858.0,
+        "p90": 2536.0,
+        "p99": 10292.0,
+        "p90_p50_ratio": 2.956,
+        "inad_yr": 4.156
+      },
+      {
+        "uf": "PI",
+        "uf_name": "Piauí",
+        "year": 2025,
+        "p50": 987.0,
+        "p90": 2877.0,
+        "p99": 11662.0,
+        "p90_p50_ratio": 2.915,
+        "inad_yr": 4.848
+      },
+      {
+        "uf": "RJ",
+        "uf_name": "Rio de Janeiro",
+        "year": 2022,
+        "p50": 1156.0,
+        "p90": 4111.0,
+        "p99": 13907.0,
+        "p90_p50_ratio": 3.556,
+        "inad_yr": 5.619
+      },
+      {
+        "uf": "RJ",
+        "uf_name": "Rio de Janeiro",
+        "year": 2023,
+        "p50": 1318.0,
+        "p90": 5015.0,
+        "p99": 15492.0,
+        "p90_p50_ratio": 3.805,
+        "inad_yr": 5.993
+      },
+      {
+        "uf": "RJ",
+        "uf_name": "Rio de Janeiro",
+        "year": 2024,
+        "p50": 1422.0,
+        "p90": 5269.0,
+        "p99": 16297.0,
+        "p90_p50_ratio": 3.705,
+        "inad_yr": 5.024
+      },
+      {
+        "uf": "RJ",
+        "uf_name": "Rio de Janeiro",
+        "year": 2025,
+        "p50": 1520.0,
+        "p90": 5625.0,
+        "p99": 19980.0,
+        "p90_p50_ratio": 3.701,
+        "inad_yr": 5.467
+      },
+      {
+        "uf": "RN",
+        "uf_name": "Rio Grande do Norte",
+        "year": 2022,
+        "p50": 724.0,
+        "p90": 2466.0,
+        "p99": 8838.0,
+        "p90_p50_ratio": 3.406,
+        "inad_yr": 4.603
+      },
+      {
+        "uf": "RN",
+        "uf_name": "Rio Grande do Norte",
+        "year": 2023,
+        "p50": 786.0,
+        "p90": 2647.0,
+        "p99": 9904.0,
+        "p90_p50_ratio": 3.368,
+        "inad_yr": 5.376
+      },
+      {
+        "uf": "RN",
+        "uf_name": "Rio Grande do Norte",
+        "year": 2024,
+        "p50": 939.0,
+        "p90": 3324.0,
+        "p99": 9871.0,
+        "p90_p50_ratio": 3.54,
+        "inad_yr": 4.474
+      },
+      {
+        "uf": "RN",
+        "uf_name": "Rio Grande do Norte",
+        "year": 2025,
+        "p50": 1020.0,
+        "p90": 3414.0,
+        "p99": 15144.0,
+        "p90_p50_ratio": 3.347,
+        "inad_yr": 4.902
+      },
+      {
+        "uf": "RS",
+        "uf_name": "Rio Grande do Sul",
+        "year": 2022,
+        "p50": 1345.0,
+        "p90": 3963.0,
+        "p99": 12015.0,
+        "p90_p50_ratio": 2.946,
+        "inad_yr": 2.328
+      },
+      {
+        "uf": "RS",
+        "uf_name": "Rio Grande do Sul",
+        "year": 2023,
+        "p50": 1506.0,
+        "p90": 4415.0,
+        "p99": 13545.0,
+        "p90_p50_ratio": 2.932,
+        "inad_yr": 2.625
+      },
+      {
+        "uf": "RS",
+        "uf_name": "Rio Grande do Sul",
+        "year": 2024,
+        "p50": 1692.0,
+        "p90": 4973.0,
+        "p99": 14532.0,
+        "p90_p50_ratio": 2.939,
+        "inad_yr": 2.515
+      },
+      {
+        "uf": "RS",
+        "uf_name": "Rio Grande do Sul",
+        "year": 2025,
+        "p50": 1833.0,
+        "p90": 5304.0,
+        "p99": 17671.0,
+        "p90_p50_ratio": 2.894,
+        "inad_yr": 3.651
+      },
+      {
+        "uf": "RO",
+        "uf_name": "Rondônia",
+        "year": 2022,
+        "p50": 991.0,
+        "p90": 2499.0,
+        "p99": 7329.0,
+        "p90_p50_ratio": 2.522,
+        "inad_yr": 2.035
+      },
+      {
+        "uf": "RO",
+        "uf_name": "Rondônia",
+        "year": 2023,
+        "p50": 1093.0,
+        "p90": 2773.0,
+        "p99": 9101.0,
+        "p90_p50_ratio": 2.537,
+        "inad_yr": 2.576
+      },
+      {
+        "uf": "RO",
+        "uf_name": "Rondônia",
+        "year": 2024,
+        "p50": 1254.0,
+        "p90": 3422.0,
+        "p99": 9206.0,
+        "p90_p50_ratio": 2.729,
+        "inad_yr": 3.066
+      },
+      {
+        "uf": "RO",
+        "uf_name": "Rondônia",
+        "year": 2025,
+        "p50": 1430.0,
+        "p90": 3893.0,
+        "p99": 10297.0,
+        "p90_p50_ratio": 2.722,
+        "inad_yr": 4.642
+      },
+      {
+        "uf": "RR",
+        "uf_name": "Roraima",
+        "year": 2022,
+        "p50": 704.0,
+        "p90": 2536.0,
+        "p99": 9501.0,
+        "p90_p50_ratio": 3.602,
+        "inad_yr": 3.297
+      },
+      {
+        "uf": "RR",
+        "uf_name": "Roraima",
+        "year": 2023,
+        "p50": 904.0,
+        "p90": 3185.0,
+        "p99": 8807.0,
+        "p90_p50_ratio": 3.523,
+        "inad_yr": 3.839
+      },
+      {
+        "uf": "RR",
+        "uf_name": "Roraima",
+        "year": 2024,
+        "p50": 879.0,
+        "p90": 3500.0,
+        "p99": 10156.0,
+        "p90_p50_ratio": 3.982,
+        "inad_yr": 3.875
+      },
+      {
+        "uf": "RR",
+        "uf_name": "Roraima",
+        "year": 2025,
+        "p50": 1127.0,
+        "p90": 4162.0,
+        "p99": 11900.0,
+        "p90_p50_ratio": 3.693,
+        "inad_yr": 4.84
+      },
+      {
+        "uf": "SC",
+        "uf_name": "Santa Catarina",
+        "year": 2022,
+        "p50": 1434.0,
+        "p90": 3676.0,
+        "p99": 9984.0,
+        "p90_p50_ratio": 2.563,
+        "inad_yr": 2.563
+      },
+      {
+        "uf": "SC",
+        "uf_name": "Santa Catarina",
+        "year": 2023,
+        "p50": 1644.0,
+        "p90": 4151.0,
+        "p99": 11612.0,
+        "p90_p50_ratio": 2.525,
+        "inad_yr": 2.966
+      },
+      {
+        "uf": "SC",
+        "uf_name": "Santa Catarina",
+        "year": 2024,
+        "p50": 1812.0,
+        "p90": 4936.0,
+        "p99": 13549.0,
+        "p90_p50_ratio": 2.724,
+        "inad_yr": 2.791
+      },
+      {
+        "uf": "SC",
+        "uf_name": "Santa Catarina",
+        "year": 2025,
+        "p50": 1989.0,
+        "p90": 5094.0,
+        "p99": 15320.0,
+        "p90_p50_ratio": 2.561,
+        "inad_yr": 3.429
+      },
+      {
+        "uf": "SP",
+        "uf_name": "São Paulo",
+        "year": 2022,
+        "p50": 1300.0,
+        "p90": 4131.0,
+        "p99": 14310.0,
+        "p90_p50_ratio": 3.178,
+        "inad_yr": 3.139
+      },
+      {
+        "uf": "SP",
+        "uf_name": "São Paulo",
+        "year": 2023,
+        "p50": 1499.0,
+        "p90": 4755.0,
+        "p99": 16587.0,
+        "p90_p50_ratio": 3.172,
+        "inad_yr": 3.696
+      },
+      {
+        "uf": "SP",
+        "uf_name": "São Paulo",
+        "year": 2024,
+        "p50": 1660.0,
+        "p90": 5022.0,
+        "p99": 16964.0,
+        "p90_p50_ratio": 3.025,
+        "inad_yr": 3.392
+      },
+      {
+        "uf": "SP",
+        "uf_name": "São Paulo",
+        "year": 2025,
+        "p50": 1797.0,
+        "p90": 5508.0,
+        "p99": 19198.0,
+        "p90_p50_ratio": 3.065,
+        "inad_yr": 3.962
+      },
+      {
+        "uf": "SE",
+        "uf_name": "Sergipe",
+        "year": 2022,
+        "p50": 697.0,
+        "p90": 2179.0,
+        "p99": 8200.0,
+        "p90_p50_ratio": 3.126,
+        "inad_yr": 3.776
+      },
+      {
+        "uf": "SE",
+        "uf_name": "Sergipe",
+        "year": 2023,
+        "p50": 745.0,
+        "p90": 2436.0,
+        "p99": 7657.0,
+        "p90_p50_ratio": 3.27,
+        "inad_yr": 4.407
+      },
+      {
+        "uf": "SE",
+        "uf_name": "Sergipe",
+        "year": 2024,
+        "p50": 923.0,
+        "p90": 2872.0,
+        "p99": 9144.0,
+        "p90_p50_ratio": 3.112,
+        "inad_yr": 3.977
+      },
+      {
+        "uf": "SE",
+        "uf_name": "Sergipe",
+        "year": 2025,
+        "p50": 996.0,
+        "p90": 3551.0,
+        "p99": 11731.0,
+        "p90_p50_ratio": 3.565,
+        "inad_yr": 4.541
+      },
+      {
+        "uf": "TO",
+        "uf_name": "Tocantins",
+        "year": 2022,
+        "p50": 860.0,
+        "p90": 2551.0,
+        "p99": 8263.0,
+        "p90_p50_ratio": 2.966,
+        "inad_yr": 2.482
+      },
+      {
+        "uf": "TO",
+        "uf_name": "Tocantins",
+        "year": 2023,
+        "p50": 1079.0,
+        "p90": 3134.0,
+        "p99": 9408.0,
+        "p90_p50_ratio": 2.905,
+        "inad_yr": 2.741
+      },
+      {
+        "uf": "TO",
+        "uf_name": "Tocantins",
+        "year": 2024,
+        "p50": 1161.0,
+        "p90": 3569.0,
+        "p99": 10391.0,
+        "p90_p50_ratio": 3.074,
+        "inad_yr": 3.137
+      },
+      {
+        "uf": "TO",
+        "uf_name": "Tocantins",
+        "year": 2025,
+        "p50": 1360.0,
+        "p90": 3876.0,
+        "p99": 11745.0,
+        "p90_p50_ratio": 2.85,
+        "inad_yr": 6.444
+      }
+    ],
+    "rows_2026": [
+      {
+        "uf": "DF",
+        "uf_name": "Distrito Federal",
+        "p50": 2162.0,
+        "p90": 10479.0,
+        "p95": 15078.0,
+        "p99": 29899.0,
+        "p90_p50_ratio": 4.847,
+        "inad_latest": 4.53,
+        "inad_12m_avg": 4.197,
+        "inad_2022_01": 2.93,
+        "delta_2022_2026_pp": 1.6,
+        "pred_inad": 4.85,
+        "residual_pp": -0.32
+      },
+      {
+        "uf": "RJ",
+        "uf_name": "Rio de Janeiro",
+        "p50": 1520.0,
+        "p90": 5625.0,
+        "p95": 9099.0,
+        "p99": 19980.0,
+        "p90_p50_ratio": 3.701,
+        "inad_latest": 6.57,
+        "inad_12m_avg": 6.205,
+        "inad_2022_01": 4.9,
+        "delta_2022_2026_pp": 1.67,
+        "pred_inad": 5.97,
+        "residual_pp": 0.6
+      },
+      {
+        "uf": "SP",
+        "uf_name": "São Paulo",
+        "p50": 1797.0,
+        "p90": 5508.0,
+        "p95": 8239.0,
+        "p99": 19198.0,
+        "p90_p50_ratio": 3.065,
+        "inad_latest": 5.11,
+        "inad_12m_avg": 4.676,
+        "inad_2022_01": 2.83,
+        "delta_2022_2026_pp": 2.28,
+        "pred_inad": 6.01,
+        "residual_pp": -0.9
+      },
+      {
+        "uf": "RS",
+        "uf_name": "Rio Grande do Sul",
+        "p50": 1833.0,
+        "p90": 5304.0,
+        "p95": 7984.0,
+        "p99": 17671.0,
+        "p90_p50_ratio": 2.894,
+        "inad_latest": 5.72,
+        "inad_12m_avg": 5.212,
+        "inad_2022_01": 2.13,
+        "delta_2022_2026_pp": 3.59,
+        "pred_inad": 6.07,
+        "residual_pp": -0.35
+      },
+      {
+        "uf": "PR",
+        "uf_name": "Paraná",
+        "p50": 1788.0,
+        "p90": 5271.0,
+        "p95": 7639.0,
+        "p99": 15485.0,
+        "p90_p50_ratio": 2.948,
+        "inad_latest": 5.15,
+        "inad_12m_avg": 4.686,
+        "inad_2022_01": 2.36,
+        "delta_2022_2026_pp": 2.79,
+        "pred_inad": 6.08,
+        "residual_pp": -0.93
+      },
+      {
+        "uf": "SC",
+        "uf_name": "Santa Catarina",
+        "p50": 1989.0,
+        "p90": 5094.0,
+        "p95": 7461.0,
+        "p99": 15320.0,
+        "p90_p50_ratio": 2.561,
+        "inad_latest": 4.53,
+        "inad_12m_avg": 4.135,
+        "inad_2022_01": 2.27,
+        "delta_2022_2026_pp": 2.26,
+        "pred_inad": 6.15,
+        "residual_pp": -1.62
+      },
+      {
+        "uf": "MS",
+        "uf_name": "Mato Grosso do Sul",
+        "p50": 1590.0,
+        "p90": 4964.0,
+        "p95": 6911.0,
+        "p99": 13581.0,
+        "p90_p50_ratio": 3.122,
+        "inad_latest": 8.56,
+        "inad_12m_avg": 7.314,
+        "inad_2022_01": 2.07,
+        "delta_2022_2026_pp": 6.49,
+        "pred_inad": 6.19,
+        "residual_pp": 2.37
+      },
+      {
+        "uf": "GO",
+        "uf_name": "Goiás",
+        "p50": 1537.0,
+        "p90": 4770.0,
+        "p95": 6703.0,
+        "p99": 14497.0,
+        "p90_p50_ratio": 3.103,
+        "inad_latest": 7.99,
+        "inad_12m_avg": 7.192,
+        "inad_2022_01": 2.44,
+        "delta_2022_2026_pp": 5.55,
+        "pred_inad": 6.26,
+        "residual_pp": 1.73
+      },
+      {
+        "uf": "MT",
+        "uf_name": "Mato Grosso",
+        "p50": 1561.0,
+        "p90": 4502.0,
+        "p95": 6487.0,
+        "p99": 12129.0,
+        "p90_p50_ratio": 2.884,
+        "inad_latest": 7.15,
+        "inad_12m_avg": 6.504,
+        "inad_2022_01": 1.75,
+        "delta_2022_2026_pp": 5.4,
+        "pred_inad": 6.37,
+        "residual_pp": 0.78
+      },
+      {
+        "uf": "ES",
+        "uf_name": "Espírito Santo",
+        "p50": 1515.0,
+        "p90": 4392.0,
+        "p95": 6550.0,
+        "p99": 13514.0,
+        "p90_p50_ratio": 2.899,
+        "inad_latest": 4.58,
+        "inad_12m_avg": 4.228,
+        "inad_2022_01": 2.92,
+        "delta_2022_2026_pp": 1.66,
+        "pred_inad": 6.41,
+        "residual_pp": -1.83
+      },
+      {
+        "uf": "MG",
+        "uf_name": "Minas Gerais",
+        "p50": 1523.0,
+        "p90": 4301.0,
+        "p95": 6376.0,
+        "p99": 14176.0,
+        "p90_p50_ratio": 2.824,
+        "inad_latest": 5.57,
+        "inad_12m_avg": 5.016,
+        "inad_2022_01": 2.57,
+        "delta_2022_2026_pp": 3.0,
+        "pred_inad": 6.45,
+        "residual_pp": -0.88
+      },
+      {
+        "uf": "RR",
+        "uf_name": "Roraima",
+        "p50": 1127.0,
+        "p90": 4162.0,
+        "p95": 5817.0,
+        "p99": 11900.0,
+        "p90_p50_ratio": 3.693,
+        "inad_latest": 7.15,
+        "inad_12m_avg": 6.294,
+        "inad_2022_01": 3.0,
+        "delta_2022_2026_pp": 4.15,
+        "pred_inad": 6.51,
+        "residual_pp": 0.64
+      },
+      {
+        "uf": "RO",
+        "uf_name": "Rondônia",
+        "p50": 1430.0,
+        "p90": 3893.0,
+        "p95": 5518.0,
+        "p99": 10297.0,
+        "p90_p50_ratio": 2.722,
+        "inad_latest": 7.03,
+        "inad_12m_avg": 6.409,
+        "inad_2022_01": 1.86,
+        "delta_2022_2026_pp": 5.17,
+        "pred_inad": 6.63,
+        "residual_pp": 0.4
+      },
+      {
+        "uf": "TO",
+        "uf_name": "Tocantins",
+        "p50": 1360.0,
+        "p90": 3876.0,
+        "p95": 5591.0,
+        "p99": 11745.0,
+        "p90_p50_ratio": 2.85,
+        "inad_latest": 10.65,
+        "inad_12m_avg": 9.376,
+        "inad_2022_01": 2.28,
+        "delta_2022_2026_pp": 8.37,
+        "pred_inad": 6.63,
+        "residual_pp": 4.02
+      },
+      {
+        "uf": "AP",
+        "uf_name": "Amapá",
+        "p50": 1033.0,
+        "p90": 3592.0,
+        "p95": 5618.0,
+        "p99": 9109.0,
+        "p90_p50_ratio": 3.477,
+        "inad_latest": 7.0,
+        "inad_12m_avg": 6.413,
+        "inad_2022_01": 3.53,
+        "delta_2022_2026_pp": 3.47,
+        "pred_inad": 6.77,
+        "residual_pp": 0.23
+      },
+      {
+        "uf": "SE",
+        "uf_name": "Sergipe",
+        "p50": 996.0,
+        "p90": 3551.0,
+        "p95": 5397.0,
+        "p99": 11731.0,
+        "p90_p50_ratio": 3.565,
+        "inad_latest": 6.08,
+        "inad_12m_avg": 5.352,
+        "inad_2022_01": 3.31,
+        "delta_2022_2026_pp": 2.77,
+        "pred_inad": 6.79,
+        "residual_pp": -0.71
+      },
+      {
+        "uf": "RN",
+        "uf_name": "Rio Grande do Norte",
+        "p50": 1020.0,
+        "p90": 3414.0,
+        "p95": 5854.0,
+        "p99": 15144.0,
+        "p90_p50_ratio": 3.347,
+        "inad_latest": 5.91,
+        "inad_12m_avg": 5.483,
+        "inad_2022_01": 4.09,
+        "delta_2022_2026_pp": 1.82,
+        "pred_inad": 6.86,
+        "residual_pp": -0.95
+      },
+      {
+        "uf": "PE",
+        "uf_name": "Pernambuco",
+        "p50": 956.0,
+        "p90": 3229.0,
+        "p95": 5008.0,
+        "p99": 11069.0,
+        "p90_p50_ratio": 3.378,
+        "inad_latest": 6.31,
+        "inad_12m_avg": 5.973,
+        "inad_2022_01": 4.63,
+        "delta_2022_2026_pp": 1.68,
+        "pred_inad": 6.96,
+        "residual_pp": -0.65
+      },
+      {
+        "uf": "PB",
+        "uf_name": "Paraíba",
+        "p50": 986.0,
+        "p90": 3013.0,
+        "p95": 4982.0,
+        "p99": 11154.0,
+        "p90_p50_ratio": 3.056,
+        "inad_latest": 5.13,
+        "inad_12m_avg": 4.932,
+        "inad_2022_01": 3.93,
+        "delta_2022_2026_pp": 1.2,
+        "pred_inad": 7.09,
+        "residual_pp": -1.96
+      },
+      {
+        "uf": "BA",
+        "uf_name": "Bahia",
+        "p50": 1011.0,
+        "p90": 2944.0,
+        "p95": 4281.0,
+        "p99": 8857.0,
+        "p90_p50_ratio": 2.912,
+        "inad_latest": 7.3,
+        "inad_12m_avg": 6.503,
+        "inad_2022_01": 3.8,
+        "delta_2022_2026_pp": 3.5,
+        "pred_inad": 7.13,
+        "residual_pp": 0.17
+      },
+      {
+        "uf": "PI",
+        "uf_name": "Piauí",
+        "p50": 987.0,
+        "p90": 2877.0,
+        "p95": 4434.0,
+        "p99": 11662.0,
+        "p90_p50_ratio": 2.915,
+        "inad_latest": 6.82,
+        "inad_12m_avg": 6.16,
+        "inad_2022_01": 3.72,
+        "delta_2022_2026_pp": 3.1,
+        "pred_inad": 7.17,
+        "residual_pp": -0.35
+      },
+      {
+        "uf": "AM",
+        "uf_name": "Amazonas",
+        "p50": 938.0,
+        "p90": 2818.0,
+        "p95": 4251.0,
+        "p99": 9958.0,
+        "p90_p50_ratio": 3.004,
+        "inad_latest": 7.09,
+        "inad_12m_avg": 6.609,
+        "inad_2022_01": 4.02,
+        "delta_2022_2026_pp": 3.07,
+        "pred_inad": 7.21,
+        "residual_pp": -0.12
+      },
+      {
+        "uf": "AC",
+        "uf_name": "Acre",
+        "p50": 842.0,
+        "p90": 2812.0,
+        "p95": 4173.0,
+        "p99": 9044.0,
+        "p90_p50_ratio": 3.34,
+        "inad_latest": 7.19,
+        "inad_12m_avg": 6.102,
+        "inad_2022_01": 2.71,
+        "delta_2022_2026_pp": 4.48,
+        "pred_inad": 7.21,
+        "residual_pp": -0.02
+      },
+      {
+        "uf": "PA",
+        "uf_name": "Pará",
+        "p50": 929.0,
+        "p90": 2691.0,
+        "p95": 4307.0,
+        "p99": 9907.0,
+        "p90_p50_ratio": 2.897,
+        "inad_latest": 7.52,
+        "inad_12m_avg": 6.657,
+        "inad_2022_01": 3.28,
+        "delta_2022_2026_pp": 4.24,
+        "pred_inad": 7.29,
+        "residual_pp": 0.23
+      },
+      {
+        "uf": "AL",
+        "uf_name": "Alagoas",
+        "p50": 865.0,
+        "p90": 2689.0,
+        "p95": 4243.0,
+        "p99": 10056.0,
+        "p90_p50_ratio": 3.109,
+        "inad_latest": 6.95,
+        "inad_12m_avg": 6.219,
+        "inad_2022_01": 4.09,
+        "delta_2022_2026_pp": 2.86,
+        "pred_inad": 7.29,
+        "residual_pp": -0.34
+      },
+      {
+        "uf": "CE",
+        "uf_name": "Ceará",
+        "p50": 870.0,
+        "p90": 2499.0,
+        "p95": 3976.0,
+        "p99": 10549.0,
+        "p90_p50_ratio": 2.872,
+        "inad_latest": 5.99,
+        "inad_12m_avg": 5.55,
+        "inad_2022_01": 3.92,
+        "delta_2022_2026_pp": 2.07,
+        "pred_inad": 7.42,
+        "residual_pp": -1.43
+      },
+      {
+        "uf": "MA",
+        "uf_name": "Maranhão",
+        "p50": 793.0,
+        "p90": 2363.0,
+        "p95": 3551.0,
+        "p99": 8844.0,
+        "p90_p50_ratio": 2.98,
+        "inad_latest": 9.7,
+        "inad_12m_avg": 8.909,
+        "inad_2022_01": 3.31,
+        "delta_2022_2026_pp": 6.39,
+        "pred_inad": 7.52,
+        "residual_pp": 2.18
+      }
+    ]
+  },
+  "national_context": {
+    "ibge_brasil": {
+      "P10": 451.0,
+      "P50": 1490.0,
+      "P70": 2158.0,
+      "P80": 2958.0,
+      "P90": 4609.0,
+      "P95": 6900.0,
+      "P99": 15214.0
+    },
+    "endividamento_08_2026": 50.11,
+    "comprometimento_08_2026": 28.99,
+    "saldo_total_livres_bi": 2582.2,
+    "modalities": [
+      {
+        "label": "Consignado Total",
+        "saldo_bi": 798.2,
+        "inad_pct": 3.84,
+        "juros_aa_pct": 23.22
+      },
+      {
+        "label": "Veículos PF",
+        "saldo_bi": 417.4,
+        "inad_pct": 6.76,
+        "juros_aa_pct": 26.18
+      },
+      {
+        "label": "Cartão Total PF",
+        "saldo_bi": 741.6,
+        "inad_pct": 10.04,
+        "juros_aa_pct": 100.28
+      },
+      {
+        "label": "Não-Consignado",
+        "saldo_bi": 398.7,
+        "inad_pct": 11.06,
+        "juros_aa_pct": 110.94
+      },
+      {
+        "label": "Cheque Especial",
+        "saldo_bi": 46.0,
+        "inad_pct": 15.96,
+        "juros_aa_pct": 139.02
+      }
+    ]
+  }
+}

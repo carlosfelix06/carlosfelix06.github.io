@@ -1,0 +1,946 @@
+{
+  "source": "Banco Central do Brasil — SGS API (api.bcb.gov.br)",
+  "unit": "R$ milhões (concessões mensais nominais PF)",
+  "window": "01/01/2022 a 01/09/2026",
+  "design": {
+    "modalities": 5,
+    "months": 57,
+    "initial_training_months": 12,
+    "benchmark_start_month": 24,
+    "forecast_horizon": 1
+  },
+  "metrics": {
+    "months": 57,
+    "forecast_origins": 45,
+    "noise_mom_percent": 11.228075670006257,
+    "aggregate_mom_std_percent": 6.025738365489071,
+    "tolerance_percent": 5.0,
+    "product_mape_percent": 7.204544573646854,
+    "aggregate_mape_percent": 4.330547303644885,
+    "product_within_tolerance_count": 16,
+    "aggregate_within_tolerance_count": 31,
+    "product_within_tolerance_percent": 35.55555555555556,
+    "aggregate_within_tolerance_percent": 68.88888888888889,
+    "product_mase": 0.9831534015895352,
+    "aggregate_mase": 0.9987962908881954,
+    "paired_t_statistic": 6.6306781710364415,
+    "paired_t_p_value": 3.9846210030474405e-08,
+    "ljung_box_lag": 4,
+    "ljung_box_statistic": 16.888031829180118,
+    "ljung_box_p_value": 0.0020322034927407187,
+    "dm_statistic": 5.535160519860301,
+    "dm_p_value": 1.6190593022176657e-06,
+    "dm_hac_lag": 4,
+    "per_modality": [
+      {
+        "id": 20671,
+        "key": "consignado",
+        "label": "Crédito Pessoal Consignado",
+        "mom_std_percent": 18.313278286888345,
+        "mape_percent": 11.028994799061536
+      },
+      {
+        "id": 20666,
+        "key": "nao_consignado",
+        "label": "Crédito Pessoal Não-Consignado",
+        "mom_std_percent": 10.722643746407305,
+        "mape_percent": 8.346091602826464
+      },
+      {
+        "id": 20673,
+        "key": "veiculos",
+        "label": "Aquisição de Veículos PF",
+        "mom_std_percent": 10.200455272367618,
+        "mape_percent": 8.088606532823993
+      },
+      {
+        "id": 20682,
+        "key": "cartao_credito",
+        "label": "Cartão de Crédito Total PF",
+        "mom_std_percent": 5.946892343232134,
+        "mape_percent": 4.2515251922851185
+      },
+      {
+        "id": 20665,
+        "key": "cheque_especial",
+        "label": "Cheque Especial PF",
+        "mom_std_percent": 6.785310120418201,
+        "mape_percent": 4.307504741237161
+      }
+    ],
+    "benchmark": {
+      "window": "01/01/2024 a 01/09/2026",
+      "origins": 33,
+      "models": [
+        {
+          "key": "naive_t1",
+          "label": "Baseline Ingênuo (t-1)",
+          "unweighted_product_mape_pct": 6.55,
+          "weighted_product_wmape_pct": 4.52,
+          "bottomup_mape_pct": 3.79,
+          "bottomup_mae_brl_bi": 13.63,
+          "bottomup_within_5pct": 75.8,
+          "bottomup_within_5_count": 25,
+          "bottomup_ljung_box_stat": 12.97,
+          "bottomup_ljung_box_p": 0.0114,
+          "direct_mape_pct": 3.79,
+          "direct_mae_brl_bi": 13.63,
+          "direct_within_5pct": 75.8,
+          "direct_ljung_box_p": 0.0114
+        },
+        {
+          "key": "seasonal_t12",
+          "label": "Sazonal Ingênuo (t-12)",
+          "unweighted_product_mape_pct": 12.82,
+          "weighted_product_wmape_pct": 11.01,
+          "bottomup_mape_pct": 10.64,
+          "bottomup_mae_brl_bi": 38.02,
+          "bottomup_within_5pct": 0.0,
+          "bottomup_within_5_count": 0,
+          "bottomup_ljung_box_stat": 15.24,
+          "bottomup_ljung_box_p": 0.0042,
+          "direct_mape_pct": 10.64,
+          "direct_mae_brl_bi": 38.02,
+          "direct_within_5pct": 0.0,
+          "direct_ljung_box_p": 0.0042
+        },
+        {
+          "key": "ets_hw",
+          "label": "Holt-Winters Aditivo (ETS)",
+          "unweighted_product_mape_pct": 7.3,
+          "weighted_product_wmape_pct": 4.5,
+          "bottomup_mape_pct": 3.52,
+          "bottomup_mae_brl_bi": 12.04,
+          "bottomup_within_5pct": 72.7,
+          "bottomup_within_5_count": 24,
+          "bottomup_ljung_box_stat": 12.7,
+          "bottomup_ljung_box_p": 0.0128,
+          "direct_mape_pct": 3.8,
+          "direct_mae_brl_bi": 12.99,
+          "direct_within_5pct": 72.7,
+          "direct_ljung_box_p": 0.0111
+        },
+        {
+          "key": "ridge_cal",
+          "label": "Ridge Sazonal + Calendário Bancário",
+          "unweighted_product_mape_pct": 4.72,
+          "weighted_product_wmape_pct": 2.79,
+          "bottomup_mape_pct": 1.77,
+          "bottomup_mae_brl_bi": 6.24,
+          "bottomup_within_5pct": 97.0,
+          "bottomup_within_5_count": 32,
+          "bottomup_ljung_box_stat": 4.03,
+          "bottomup_ljung_box_p": 0.4026,
+          "direct_mape_pct": 1.86,
+          "direct_mae_brl_bi": 6.57,
+          "direct_within_5pct": 93.9,
+          "direct_ljung_box_p": 0.4406
+        }
+      ],
+      "per_modality_naive_vs_ridge": [
+        {
+          "label": "Crédito Pessoal Consignado",
+          "share_pct": 5.4,
+          "naive_mape_pct": 10.49,
+          "ridge_mape_pct": 8.9,
+          "delta_pp": -1.59
+        },
+        {
+          "label": "Crédito Pessoal Não-Consignado",
+          "share_pct": 5.8,
+          "naive_mape_pct": 7.84,
+          "ridge_mape_pct": 5.52,
+          "delta_pp": -2.32
+        },
+        {
+          "label": "Aquisição de Veículos PF",
+          "share_pct": 5.3,
+          "naive_mape_pct": 7.08,
+          "ridge_mape_pct": 4.28,
+          "delta_pp": -2.8
+        },
+        {
+          "label": "Cartão de Crédito Total PF",
+          "share_pct": 71.0,
+          "naive_mape_pct": 3.76,
+          "ridge_mape_pct": 2.05,
+          "delta_pp": -1.71
+        },
+        {
+          "label": "Cheque Especial PF",
+          "share_pct": 12.5,
+          "naive_mape_pct": 3.6,
+          "ridge_mape_pct": 2.86,
+          "delta_pp": -0.75
+        }
+      ],
+      "dm_ridge_vs_naive_stat": 2.55,
+      "dm_ridge_vs_naive_p": 0.015649191974251183,
+      "mae_reduction_brl_bi_month": 7.39,
+      "budget_saving_brl_bi_month": 7.39,
+      "origin_series": [
+        {
+          "date": "01/01/2024",
+          "actual_bi": 321.46,
+          "naive_bu_bi": 308.4,
+          "ridge_bu_bi": 301.61,
+          "naive_ape_pct": 4.06,
+          "ridge_ape_pct": 6.17
+        },
+        {
+          "date": "01/02/2024",
+          "actual_bi": 298.15,
+          "naive_bu_bi": 321.46,
+          "ridge_bu_bi": 293.97,
+          "naive_ape_pct": 7.82,
+          "ridge_ape_pct": 1.4
+        },
+        {
+          "date": "01/03/2024",
+          "actual_bi": 305.62,
+          "naive_bu_bi": 298.15,
+          "ridge_bu_bi": 305.06,
+          "naive_ape_pct": 2.45,
+          "ridge_ape_pct": 0.19
+        },
+        {
+          "date": "01/04/2024",
+          "actual_bi": 320.71,
+          "naive_bu_bi": 305.62,
+          "ridge_bu_bi": 306.62,
+          "naive_ape_pct": 4.7,
+          "ridge_ape_pct": 4.39
+        },
+        {
+          "date": "01/05/2024",
+          "actual_bi": 326.36,
+          "naive_bu_bi": 320.71,
+          "ridge_bu_bi": 313.26,
+          "naive_ape_pct": 1.73,
+          "ridge_ape_pct": 4.01
+        },
+        {
+          "date": "01/06/2024",
+          "actual_bi": 310.68,
+          "naive_bu_bi": 326.36,
+          "ridge_bu_bi": 313.07,
+          "naive_ape_pct": 5.05,
+          "ridge_ape_pct": 0.77
+        },
+        {
+          "date": "01/07/2024",
+          "actual_bi": 342.05,
+          "naive_bu_bi": 310.68,
+          "ridge_bu_bi": 326.46,
+          "naive_ape_pct": 9.17,
+          "ridge_ape_pct": 4.56
+        },
+        {
+          "date": "01/08/2024",
+          "actual_bi": 329.11,
+          "naive_bu_bi": 342.05,
+          "ridge_bu_bi": 336.09,
+          "naive_ape_pct": 3.93,
+          "ridge_ape_pct": 2.12
+        },
+        {
+          "date": "01/09/2024",
+          "actual_bi": 330.33,
+          "naive_bu_bi": 329.11,
+          "ridge_bu_bi": 327.9,
+          "naive_ape_pct": 0.37,
+          "ridge_ape_pct": 0.74
+        },
+        {
+          "date": "01/10/2024",
+          "actual_bi": 347.71,
+          "naive_bu_bi": 330.33,
+          "ridge_bu_bi": 348.38,
+          "naive_ape_pct": 5.0,
+          "ridge_ape_pct": 0.19
+        },
+        {
+          "date": "01/11/2024",
+          "actual_bi": 342.8,
+          "naive_bu_bi": 347.71,
+          "ridge_bu_bi": 335.34,
+          "naive_ape_pct": 1.43,
+          "ridge_ape_pct": 2.17
+        },
+        {
+          "date": "01/12/2024",
+          "actual_bi": 355.62,
+          "naive_bu_bi": 342.8,
+          "ridge_bu_bi": 348.18,
+          "naive_ape_pct": 3.6,
+          "ridge_ape_pct": 2.09
+        },
+        {
+          "date": "01/01/2025",
+          "actual_bi": 346.89,
+          "naive_bu_bi": 355.62,
+          "ridge_bu_bi": 357.66,
+          "naive_ape_pct": 2.52,
+          "ridge_ape_pct": 3.1
+        },
+        {
+          "date": "01/02/2025",
+          "actual_bi": 335.48,
+          "naive_bu_bi": 346.89,
+          "ridge_bu_bi": 335.34,
+          "naive_ape_pct": 3.4,
+          "ridge_ape_pct": 0.04
+        },
+        {
+          "date": "01/03/2025",
+          "actual_bi": 347.81,
+          "naive_bu_bi": 335.48,
+          "ridge_bu_bi": 332.91,
+          "naive_ape_pct": 3.55,
+          "ridge_ape_pct": 4.29
+        },
+        {
+          "date": "01/04/2025",
+          "actual_bi": 352.75,
+          "naive_bu_bi": 347.81,
+          "ridge_bu_bi": 345.63,
+          "naive_ape_pct": 1.4,
+          "ridge_ape_pct": 2.02
+        },
+        {
+          "date": "01/05/2025",
+          "actual_bi": 351.22,
+          "naive_bu_bi": 352.75,
+          "ridge_bu_bi": 355.39,
+          "naive_ape_pct": 0.44,
+          "ridge_ape_pct": 1.19
+        },
+        {
+          "date": "01/06/2025",
+          "actual_bi": 349.91,
+          "naive_bu_bi": 351.22,
+          "ridge_bu_bi": 344.72,
+          "naive_ape_pct": 0.37,
+          "ridge_ape_pct": 1.48
+        },
+        {
+          "date": "01/07/2025",
+          "actual_bi": 367.07,
+          "naive_bu_bi": 349.91,
+          "ridge_bu_bi": 369.47,
+          "naive_ape_pct": 4.68,
+          "ridge_ape_pct": 0.65
+        },
+        {
+          "date": "01/08/2025",
+          "actual_bi": 361.68,
+          "naive_bu_bi": 367.07,
+          "ridge_bu_bi": 361.83,
+          "naive_ape_pct": 1.49,
+          "ridge_ape_pct": 0.04
+        },
+        {
+          "date": "01/09/2025",
+          "actual_bi": 371.92,
+          "naive_bu_bi": 361.68,
+          "ridge_bu_bi": 371.06,
+          "naive_ape_pct": 2.75,
+          "ridge_ape_pct": 0.23
+        },
+        {
+          "date": "01/10/2025",
+          "actual_bi": 392.34,
+          "naive_bu_bi": 371.92,
+          "ridge_bu_bi": 390.18,
+          "naive_ape_pct": 5.21,
+          "ridge_ape_pct": 0.55
+        },
+        {
+          "date": "01/11/2025",
+          "actual_bi": 384.79,
+          "naive_bu_bi": 392.34,
+          "ridge_bu_bi": 376.67,
+          "naive_ape_pct": 1.96,
+          "ridge_ape_pct": 2.11
+        },
+        {
+          "date": "01/12/2025",
+          "actual_bi": 411.81,
+          "naive_bu_bi": 384.79,
+          "ridge_bu_bi": 401.05,
+          "naive_ape_pct": 6.56,
+          "ridge_ape_pct": 2.61
+        },
+        {
+          "date": "01/01/2026",
+          "actual_bi": 385.01,
+          "naive_bu_bi": 411.81,
+          "ridge_bu_bi": 392.85,
+          "naive_ape_pct": 6.96,
+          "ridge_ape_pct": 2.04
+        },
+        {
+          "date": "01/02/2026",
+          "actual_bi": 354.44,
+          "naive_bu_bi": 385.01,
+          "ridge_bu_bi": 363.39,
+          "naive_ape_pct": 8.62,
+          "ridge_ape_pct": 2.52
+        },
+        {
+          "date": "01/03/2026",
+          "actual_bi": 405.82,
+          "naive_bu_bi": 354.44,
+          "ridge_bu_bi": 390.36,
+          "naive_ape_pct": 12.66,
+          "ridge_ape_pct": 3.81
+        },
+        {
+          "date": "01/04/2026",
+          "actual_bi": 391.76,
+          "naive_bu_bi": 405.82,
+          "ridge_bu_bi": 393.23,
+          "naive_ape_pct": 3.59,
+          "ridge_ape_pct": 0.38
+        },
+        {
+          "date": "01/05/2026",
+          "actual_bi": 386.35,
+          "naive_bu_bi": 391.76,
+          "ridge_bu_bi": 386.74,
+          "naive_ape_pct": 1.4,
+          "ridge_ape_pct": 0.1
+        },
+        {
+          "date": "01/06/2026",
+          "actual_bi": 388.6,
+          "naive_bu_bi": 386.35,
+          "ridge_bu_bi": 390.03,
+          "naive_ape_pct": 0.58,
+          "ridge_ape_pct": 0.37
+        },
+        {
+          "date": "01/07/2026",
+          "actual_bi": 408.58,
+          "naive_bu_bi": 388.6,
+          "ridge_bu_bi": 408.31,
+          "naive_ape_pct": 4.89,
+          "ridge_ape_pct": 0.07
+        },
+        {
+          "date": "01/08/2026",
+          "actual_bi": 401.84,
+          "naive_bu_bi": 408.58,
+          "ridge_bu_bi": 402.72,
+          "naive_ape_pct": 1.68,
+          "ridge_ape_pct": 0.22
+        },
+        {
+          "date": "01/09/2026",
+          "actual_bi": 398.16,
+          "naive_bu_bi": 401.84,
+          "ridge_bu_bi": 405.84,
+          "naive_ape_pct": 0.93,
+          "ridge_ape_pct": 1.93
+        }
+      ]
+    }
+  },
+  "walk_forward": [
+    {
+      "month": 13,
+      "date": "01/01/2023",
+      "actual": 280986.0,
+      "product_forecast": 286735.0,
+      "aggregate_forecast": 286735.0,
+      "product_ape": 0.08682818052318679,
+      "product_wmape": 0.06692504252880926,
+      "aggregate_ape": 0.02046009409721483,
+      "aggregate_error": 5749.0
+    },
+    {
+      "month": 14,
+      "date": "01/02/2023",
+      "actual": 254493.0,
+      "product_forecast": 280986.0,
+      "aggregate_forecast": 280986.0,
+      "product_ape": 0.16095156456303203,
+      "product_wmape": 0.10410109511852979,
+      "aggregate_ape": 0.10410109511852972,
+      "aggregate_error": 26493.0
+    },
+    {
+      "month": 15,
+      "date": "01/03/2023",
+      "actual": 289373.0,
+      "product_forecast": 254493.0,
+      "aggregate_forecast": 254493.0,
+      "product_ape": 0.15591311327457413,
+      "product_wmape": 0.13030241245727833,
+      "aggregate_ape": 0.12053647023046377,
+      "aggregate_error": -34880.0
+    },
+    {
+      "month": 16,
+      "date": "01/04/2023",
+      "actual": 262100.0,
+      "product_forecast": 289373.0,
+      "aggregate_forecast": 289373.0,
+      "product_ape": 0.1389361450081325,
+      "product_wmape": 0.1040557039297978,
+      "aggregate_ape": 0.1040557039297978,
+      "aggregate_error": 27273.0
+    },
+    {
+      "month": 17,
+      "date": "01/05/2023",
+      "actual": 291320.0,
+      "product_forecast": 262100.0,
+      "aggregate_forecast": 262100.0,
+      "product_ape": 0.12918705789137544,
+      "product_wmape": 0.10030207332143347,
+      "aggregate_ape": 0.10030207332143348,
+      "aggregate_error": -29220.0
+    },
+    {
+      "month": 18,
+      "date": "01/06/2023",
+      "actual": 282599.0,
+      "product_forecast": 291320.0,
+      "aggregate_forecast": 291320.0,
+      "product_ape": 0.05677480941344541,
+      "product_wmape": 0.031043988124515656,
+      "aggregate_ape": 0.0308599818116837,
+      "aggregate_error": 8721.0
+    },
+    {
+      "month": 19,
+      "date": "01/07/2023",
+      "actual": 281583.0,
+      "product_forecast": 282599.0,
+      "aggregate_forecast": 282599.0,
+      "product_ape": 0.02590301680316116,
+      "product_wmape": 0.010732181985418154,
+      "aggregate_ape": 0.0036081723683603073,
+      "aggregate_error": 1016.0
+    },
+    {
+      "month": 20,
+      "date": "01/08/2023",
+      "actual": 296787.0,
+      "product_forecast": 281583.0,
+      "aggregate_forecast": 281583.0,
+      "product_ape": 0.10001984038684886,
+      "product_wmape": 0.0512286589372176,
+      "aggregate_ape": 0.05122865893721762,
+      "aggregate_error": -15204.0
+    },
+    {
+      "month": 21,
+      "date": "01/09/2023",
+      "actual": 287072.0,
+      "product_forecast": 296787.0,
+      "aggregate_forecast": 296787.0,
+      "product_ape": 0.05704397190538011,
+      "product_wmape": 0.04068317355924646,
+      "aggregate_ape": 0.03384168431612977,
+      "aggregate_error": 9715.0
+    },
+    {
+      "month": 22,
+      "date": "01/10/2023",
+      "actual": 302264.0,
+      "product_forecast": 287072.0,
+      "aggregate_forecast": 287072.0,
+      "product_ape": 0.04707681097796259,
+      "product_wmape": 0.05026069925627928,
+      "aggregate_ape": 0.050260699256279295,
+      "aggregate_error": -15192.0
+    },
+    {
+      "month": 23,
+      "date": "01/11/2023",
+      "actual": 317916.0,
+      "product_forecast": 302264.0,
+      "aggregate_forecast": 302264.0,
+      "product_ape": 0.03635937291923099,
+      "product_wmape": 0.05557442846538079,
+      "aggregate_ape": 0.049233130764101185,
+      "aggregate_error": -15652.0
+    },
+    {
+      "month": 24,
+      "date": "01/12/2023",
+      "actual": 308404.0,
+      "product_forecast": 317916.0,
+      "aggregate_forecast": 317916.0,
+      "product_ape": 0.08451745433357197,
+      "product_wmape": 0.03938989118169674,
+      "aggregate_ape": 0.030842660925279874,
+      "aggregate_error": 9512.0
+    },
+    {
+      "month": 25,
+      "date": "01/01/2024",
+      "actual": 321456.0,
+      "product_forecast": 308404.0,
+      "aggregate_forecast": 308404.0,
+      "product_ape": 0.11469056314514744,
+      "product_wmape": 0.04068363944054552,
+      "aggregate_ape": 0.04060275745358621,
+      "aggregate_error": -13052.0
+    },
+    {
+      "month": 26,
+      "date": "01/02/2024",
+      "actual": 298148.0,
+      "product_forecast": 321456.0,
+      "aggregate_forecast": 321456.0,
+      "product_ape": 0.08360637303615506,
+      "product_wmape": 0.07817593946630533,
+      "aggregate_ape": 0.0781759394663053,
+      "aggregate_error": 23308.0
+    },
+    {
+      "month": 27,
+      "date": "01/03/2024",
+      "actual": 305623.0,
+      "product_forecast": 298148.0,
+      "aggregate_forecast": 298148.0,
+      "product_ape": 0.03878545315382331,
+      "product_wmape": 0.035033358091504894,
+      "aggregate_ape": 0.024458237763519075,
+      "aggregate_error": -7475.0
+    },
+    {
+      "month": 28,
+      "date": "01/04/2024",
+      "actual": 320710.0,
+      "product_forecast": 305623.0,
+      "aggregate_forecast": 305623.0,
+      "product_ape": 0.07730933896360218,
+      "product_wmape": 0.047042499454335696,
+      "aggregate_ape": 0.047042499454335696,
+      "aggregate_error": -15087.0
+    },
+    {
+      "month": 29,
+      "date": "01/05/2024",
+      "actual": 326359.0,
+      "product_forecast": 320710.0,
+      "aggregate_forecast": 320710.0,
+      "product_ape": 0.04307525028800285,
+      "product_wmape": 0.03891726595558878,
+      "aggregate_ape": 0.017309159545163433,
+      "aggregate_error": -5649.0
+    },
+    {
+      "month": 30,
+      "date": "01/06/2024",
+      "actual": 310679.0,
+      "product_forecast": 326359.0,
+      "aggregate_forecast": 326359.0,
+      "product_ape": 0.04762645992900838,
+      "product_wmape": 0.05082416256007004,
+      "aggregate_ape": 0.05047009936300806,
+      "aggregate_error": 15680.0
+    },
+    {
+      "month": 31,
+      "date": "01/07/2024",
+      "actual": 342048.0,
+      "product_forecast": 310679.0,
+      "aggregate_forecast": 310679.0,
+      "product_ape": 0.11395352146221434,
+      "product_wmape": 0.09170935073439986,
+      "aggregate_ape": 0.0917093507343999,
+      "aggregate_error": -31369.0
+    },
+    {
+      "month": 32,
+      "date": "01/08/2024",
+      "actual": 329112.0,
+      "product_forecast": 342048.0,
+      "aggregate_forecast": 342048.0,
+      "product_ape": 0.02739149819441431,
+      "product_wmape": 0.04082500790004619,
+      "aggregate_ape": 0.0393057682491067,
+      "aggregate_error": 12936.0
+    },
+    {
+      "month": 33,
+      "date": "01/09/2024",
+      "actual": 330327.0,
+      "product_forecast": 329112.0,
+      "aggregate_forecast": 329112.0,
+      "product_ape": 0.022863222454697317,
+      "product_wmape": 0.013329216200916061,
+      "aggregate_ape": 0.0036781734463122717,
+      "aggregate_error": -1215.0
+    },
+    {
+      "month": 34,
+      "date": "01/10/2024",
+      "actual": 347709.0,
+      "product_forecast": 330327.0,
+      "aggregate_forecast": 330327.0,
+      "product_ape": 0.05888270066789518,
+      "product_wmape": 0.05221032530075437,
+      "aggregate_ape": 0.04999007790997645,
+      "aggregate_error": -17382.0
+    },
+    {
+      "month": 35,
+      "date": "01/11/2024",
+      "actual": 342799.0,
+      "product_forecast": 347709.0,
+      "aggregate_forecast": 347709.0,
+      "product_ape": 0.08199681123061664,
+      "product_wmape": 0.03077021811615553,
+      "aggregate_ape": 0.014323262319901664,
+      "aggregate_error": 4910.0
+    },
+    {
+      "month": 36,
+      "date": "01/12/2024",
+      "actual": 355616.0,
+      "product_forecast": 342799.0,
+      "aggregate_forecast": 342799.0,
+      "product_ape": 0.06852390878220763,
+      "product_wmape": 0.05067544767389544,
+      "aggregate_ape": 0.03604168541347974,
+      "aggregate_error": -12817.0
+    },
+    {
+      "month": 37,
+      "date": "01/01/2025",
+      "actual": 346889.0,
+      "product_forecast": 355616.0,
+      "aggregate_forecast": 355616.0,
+      "product_ape": 0.11126856499993551,
+      "product_wmape": 0.06879145778620827,
+      "aggregate_ape": 0.02515790353686631,
+      "aggregate_error": 8727.0
+    },
+    {
+      "month": 38,
+      "date": "01/02/2025",
+      "actual": 335480.0,
+      "product_forecast": 346889.0,
+      "aggregate_forecast": 346889.0,
+      "product_ape": 0.05231213013860807,
+      "product_wmape": 0.034007988553714084,
+      "aggregate_ape": 0.03400798855371412,
+      "aggregate_error": 11409.0
+    },
+    {
+      "month": 39,
+      "date": "01/03/2025",
+      "actual": 347814.0,
+      "product_forecast": 335480.0,
+      "aggregate_forecast": 335480.0,
+      "product_ape": 0.02303403108982316,
+      "product_wmape": 0.03742805062475921,
+      "aggregate_ape": 0.03546148228650947,
+      "aggregate_error": -12334.0
+    },
+    {
+      "month": 40,
+      "date": "01/04/2025",
+      "actual": 352754.0,
+      "product_forecast": 347814.0,
+      "aggregate_forecast": 347814.0,
+      "product_ape": 0.03999695540802992,
+      "product_wmape": 0.01400409350425509,
+      "aggregate_ape": 0.014004093504255133,
+      "aggregate_error": -4940.0
+    },
+    {
+      "month": 41,
+      "date": "01/05/2025",
+      "actual": 351223.0,
+      "product_forecast": 352754.0,
+      "aggregate_forecast": 352754.0,
+      "product_ape": 0.11665857226012573,
+      "product_wmape": 0.03395278782995419,
+      "aggregate_ape": 0.004359053934394952,
+      "aggregate_error": 1531.0
+    },
+    {
+      "month": 42,
+      "date": "01/06/2025",
+      "actual": 349911.0,
+      "product_forecast": 351223.0,
+      "aggregate_forecast": 351223.0,
+      "product_ape": 0.010800998858791067,
+      "product_wmape": 0.004446845054885385,
+      "aggregate_ape": 0.0037495248791836744,
+      "aggregate_error": 1312.0
+    },
+    {
+      "month": 43,
+      "date": "01/07/2025",
+      "actual": 367073.0,
+      "product_forecast": 349911.0,
+      "aggregate_forecast": 349911.0,
+      "product_ape": 0.0896886894995131,
+      "product_wmape": 0.04675364300833894,
+      "aggregate_ape": 0.04675364300833895,
+      "aggregate_error": -17162.0
+    },
+    {
+      "month": 44,
+      "date": "01/08/2025",
+      "actual": 361677.0,
+      "product_forecast": 367073.0,
+      "aggregate_forecast": 367073.0,
+      "product_ape": 0.03792237895705115,
+      "product_wmape": 0.018043724096362224,
+      "aggregate_ape": 0.014919389399934202,
+      "aggregate_error": 5396.0
+    },
+    {
+      "month": 45,
+      "date": "01/09/2025",
+      "actual": 371919.0,
+      "product_forecast": 361677.0,
+      "aggregate_forecast": 361677.0,
+      "product_ape": 0.07706003439791406,
+      "product_wmape": 0.027543631812303217,
+      "aggregate_ape": 0.02753825429730672,
+      "aggregate_error": -10242.0
+    },
+    {
+      "month": 46,
+      "date": "01/10/2025",
+      "actual": 392344.0,
+      "product_forecast": 371919.0,
+      "aggregate_forecast": 371919.0,
+      "product_ape": 0.04003456811890025,
+      "product_wmape": 0.052058907489346086,
+      "aggregate_ape": 0.05205890748934605,
+      "aggregate_error": -20425.0
+    },
+    {
+      "month": 47,
+      "date": "01/11/2025",
+      "actual": 384792.0,
+      "product_forecast": 392344.0,
+      "aggregate_forecast": 392344.0,
+      "product_ape": 0.12166853297302165,
+      "product_wmape": 0.04774007775629431,
+      "aggregate_ape": 0.01962618765462909,
+      "aggregate_error": 7552.0
+    },
+    {
+      "month": 48,
+      "date": "01/12/2025",
+      "actual": 411807.0,
+      "product_forecast": 384792.0,
+      "aggregate_forecast": 384792.0,
+      "product_ape": 0.0725077996286497,
+      "product_wmape": 0.0662713358442183,
+      "aggregate_ape": 0.06560111897078003,
+      "aggregate_error": -27015.0
+    },
+    {
+      "month": 49,
+      "date": "01/01/2026",
+      "actual": 385011.0,
+      "product_forecast": 411807.0,
+      "aggregate_forecast": 411807.0,
+      "product_ape": 0.09909362200795165,
+      "product_wmape": 0.09222074174504105,
+      "aggregate_ape": 0.06959801148538602,
+      "aggregate_error": 26796.0
+    },
+    {
+      "month": 50,
+      "date": "01/02/2026",
+      "actual": 354445.0,
+      "product_forecast": 385011.0,
+      "aggregate_forecast": 385011.0,
+      "product_ape": 0.07782556330880923,
+      "product_wmape": 0.08623622846986133,
+      "aggregate_ape": 0.08623622846986123,
+      "aggregate_error": 30566.0
+    },
+    {
+      "month": 51,
+      "date": "01/03/2026",
+      "actual": 405819.0,
+      "product_forecast": 354445.0,
+      "aggregate_forecast": 354445.0,
+      "product_ape": 0.14426297038408922,
+      "product_wmape": 0.12659338276423726,
+      "aggregate_ape": 0.12659338276423726,
+      "aggregate_error": -51374.0
+    },
+    {
+      "month": 52,
+      "date": "01/04/2026",
+      "actual": 391759.0,
+      "product_forecast": 405819.0,
+      "aggregate_forecast": 405819.0,
+      "product_ape": 0.07184034873152707,
+      "product_wmape": 0.03588941160254136,
+      "aggregate_ape": 0.03588941160254144,
+      "aggregate_error": 14060.0
+    },
+    {
+      "month": 53,
+      "date": "01/05/2026",
+      "actual": 386345.0,
+      "product_forecast": 391759.0,
+      "aggregate_forecast": 391759.0,
+      "product_ape": 0.05248999522839211,
+      "product_wmape": 0.016627625567821505,
+      "aggregate_ape": 0.01401338182194678,
+      "aggregate_error": 5414.0
+    },
+    {
+      "month": 54,
+      "date": "01/06/2026",
+      "actual": 388596.0,
+      "product_forecast": 386345.0,
+      "aggregate_forecast": 386345.0,
+      "product_ape": 0.018671196552622595,
+      "product_wmape": 0.006708766945619615,
+      "aggregate_ape": 0.005792648406056644,
+      "aggregate_error": -2251.0
+    },
+    {
+      "month": 55,
+      "date": "01/07/2026",
+      "actual": 408583.0,
+      "product_forecast": 388596.0,
+      "aggregate_forecast": 388596.0,
+      "product_ape": 0.06501950625702187,
+      "product_wmape": 0.048917845333751035,
+      "aggregate_ape": 0.04891784533375099,
+      "aggregate_error": -19987.0
+    },
+    {
+      "month": 56,
+      "date": "01/08/2026",
+      "actual": 401842.0,
+      "product_forecast": 408583.0,
+      "aggregate_forecast": 408583.0,
+      "product_ape": 0.018842755960501646,
+      "product_wmape": 0.019383240178975816,
+      "aggregate_ape": 0.016775249973870254,
+      "aggregate_error": 6741.0
+    },
+    {
+      "month": 57,
+      "date": "01/09/2026",
+      "actual": 398157.0,
+      "product_forecast": 401842.0,
+      "aggregate_forecast": 401842.0,
+      "product_ape": 0.04282940407211908,
+      "product_wmape": 0.031507671596882635,
+      "aggregate_ape": 0.009255143071702943,
+      "aggregate_error": 3685.0
+    }
+  ]
+}

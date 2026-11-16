@@ -1,0 +1,27 @@
+{
+  "source": "OpenML public dataset (sklearn.datasets.fetch_openml)",
+  "dataset_name": "GiveMeSomeCredit",
+  "openml_data_id": 46929,
+  "url": "https://www.openml.org/d/46929",
+  "target_column": "FinancialDistressNextTwoYears",
+  "positive_class": "Yes",
+  "n_rows": 150000,
+  "n_columns": 11,
+  "columns": [
+    "FinancialDistressNextTwoYears",
+    "RevolvingUtilizationOfUnsecuredLines",
+    "age",
+    "NumberOfTime30-59DaysPastDueNotWorse",
+    "DebtRatio",
+    "MonthlyIncome",
+    "NumberOfOpenCreditLinesAndLoans",
+    "NumberOfTimes90DaysLate",
+    "NumberRealEstateLoansOrLines",
+    "NumberOfTime60-89DaysPastDueNotWorse",
+    "NumberOfDependents"
+  ],
+  "bad_rate_global": 0.06684,
+  "pii_present": false,
+  "synthetic_data": false,
+  "snapshot_file": "dados/givemesomecredit_openml_46929.csv.gz"
+}
