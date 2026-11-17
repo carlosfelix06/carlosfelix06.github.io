@@ -25,8 +25,8 @@ jobs:
       - name: Instalar Dependências Científicas
         run: |
           python -m pip install --upgrade pip
-          pip install pytest numpy scipy pandas scikit-learn statsmodels matplotlib
+          pip install pytest numpy scipy pandas scikit-learn statsmodels matplotlib pydantic
 
-      - name: Executar Bateria de Testes dos Estudos (22 Testes)
+      - name: Executar Bateria de Testes dos Estudos (33 Testes)
         run: |
           python -m pytest codigo -v --durations=10

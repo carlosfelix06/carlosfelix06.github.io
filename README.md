@@ -1,7 +1,7 @@
 # Portfólio de Dados, Analytics & Risco de Crédito — Carlos Santos
 
 [![CI - Testes e Validação Científica dos Estudos](https://github.com/carlosfelix06/carlosfelix06.github.io/actions/workflows/ci.yml/badge.svg)](https://github.com/carlosfelix06/carlosfelix06.github.io/actions/workflows/ci.yml)
-[![Pytest](https://img.shields.io/badge/pytest-22%20passed%20(100%25)-success?logo=pytest)](https://github.com/carlosfelix06/carlosfelix06.github.io/tree/main/codigo)
+[![Pytest](https://img.shields.io/badge/pytest-33%20passed%20(100%25)-success?logo=pytest)](https://github.com/carlosfelix06/carlosfelix06.github.io/tree/main/codigo)
 [![Python](https://img.shields.io/badge/python-3.11-blue?logo=python)](https://www.python.org/)
 [![GitHub Pages](https://img.shields.io/badge/pages-live%20production-success?logo=github)](https://carlosfelix06.github.io/)
 [![Currículo Oficial PDF](https://img.shields.io/badge/Curr%C3%ADculo-PDF%20(441%20KB)-D91568?logo=adobeacrobatreader)](https://carlosfelix06.github.io/assets/curriculo-carlos-santos-dados-analytics.pdf)
@@ -42,7 +42,7 @@ Este repositório contém os códigos-fonte, datasets e pipelines de **5 estudos
 | **02 · MDM & Golden Record** | Dados Abertos CVM (7.905 registros) | 81,57% recall fim a fim; 33 de 42 conflitos de status divergentes entre recência e regras. | Record Linkage Híbrido (HGB) + Survivorship | [`codigo/estudo-02`](codigo/estudo-02-mdm-cvm) |
 | **03 · Taxas & Renda Regional** | BCB SGS & IBGE PNADc (138 bancos) | Dispersão de 15,57x nos juros (Spearman ρ = 0,8656); 3 clusters macroeconômicos. | K-Means + Efeitos Fixos UF | [`codigo/estudo-03`](codigo/estudo-03-alta-renda-credito-pf) |
 | **04 · Forecast de Crédito PF** | Banco Central SGS (180 meses) | MAE cai de R$ 13,63 bi para R$ 6,24 bi/mês (-54,2%); -R$ 1,23 bi/mês atribuído aos feriados ANBIMA. | Ridge Sazonal + Walk-Forward (33 origens) | [`codigo/estudo-04`](codigo/estudo-04-backtest-credito-pf) |
-| **05 · Política de Crédito** | GiveMeSomeCredit (150k registros) | +10,94% P&L simulado (+5,05M u.m.); Bad Rate EAD de 1,054% (0,685% perda LGD 65%). | Esteira 2D (Score LP × RF CP) + Matriz 3×3 | [`codigo/estudo-05`](codigo/estudo-05-funil-politica-credito) |
+| **05 · Política de Crédito & Decision Lab** | GiveMeSomeCredit (150k registros) | +10,94% P&L simulado (+5,05M u.m.); Bad Rate EAD de 1,054%. Esteira operacional em tempo real (< 20ms), monitoramento de drift (PSI/KS) e otimização SciPy. | Esteira 2D + Matriz 3×3 + Pydantic v2 + PSI + SciPy HiGHS | [`codigo/estudo-05`](codigo/estudo-05-funil-politica-credito) |
 
 ---
 
