@@ -126,6 +126,36 @@ class TestExperimentoMdmCvm(unittest.TestCase):
         self.assertGreaterEqual(best_th, 0.4)
         self.assertLessEqual(best_th, 0.8)
 
+    def test_07_pipeline_medalhao_duckdb_execution(self):
+        """Auditoria de Engenharia: Executa e valida o pipeline Medalhao (Bronze -> Silver -> Gold) no DuckDB."""
+        import sys
+        import pytest
+        pytest.importorskip("duckdb", reason="DuckDB não instalado neste ambiente")
+        sys.path.insert(0, str(STUDY_ROOT / "src"))
+        import pipeline_medalhao_duckdb as pmd
+        import duckdb
+
+        summary = pmd.run_pipeline(refresh_db=False)
+        self.assertIn("layers", summary)
+        self.assertEqual(summary["layers"]["bronze"]["total_rows"], 7905)
+        self.assertEqual(summary["layers"]["gold"]["golden_records"], 6736)
+        self.assertEqual(summary["layers"]["gold"]["multi_papel_records"], 813)
+        self.assertGreater(summary["layers"]["gold"]["financial_impact"]["concentrated_credit_exposure_brl"], 100_000_000.0)
+
+        # Valida conexao e consultas SQL diretas nas camadas
+        con = duckdb.connect(str(pmd.LAKEHOUSE_DB), read_only=True)
+        bronze_cnt = con.execute("SELECT count(*) FROM bronze_cvm_cadastros").fetchone()[0]
+        silver_cnt = con.execute("SELECT count(*) FROM silver_cvm_entidades_conformed").fetchone()[0]
+        gold_cnt = con.execute("SELECT count(*) FROM gold_dim_empresa_golden_record").fetchone()[0]
+        con.close()
+
+        self.assertEqual(bronze_cnt, 7905)
+        self.assertEqual(silver_cnt, 7905)
+        self.assertEqual(gold_cnt, 6736)
+        self.assertTrue((pmd.RESULTS_DIR / "bronze_cvm_cadastros.parquet").is_file())
+        self.assertTrue((pmd.RESULTS_DIR / "silver_cvm_entidades.parquet").is_file())
+        self.assertTrue((pmd.RESULTS_DIR / "gold_dim_empresa_golden_record.parquet").is_file())
+
 
 if __name__ == "__main__":
     unittest.main()

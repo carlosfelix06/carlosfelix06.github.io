@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Estudo 06 — IA, evidência e decisão</title>
+  <desc id="desc">Resultados de dois benchmarks independentes: no UCI o AUC cai sob falha de dados simulada; no OpenML a combinação de modelos melhora o AUC em 0,0071 sobre o Random Forest.</desc>
+  <rect width="1200" height="675" fill="#0B2038"/>
+  <text x="64" y="77" fill="#F9A8D4" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="2">ESTUDO 06 · EVIDÊNCIA PÚBLICA</text>
+  <text x="64" y="137" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="39" font-weight="700">IA melhora decisões?</text>
+  <text x="64" y="177" fill="#CBD5E1" font-family="Arial, sans-serif" font-size="20">Dois benchmarks mostram por que o ganho depende de dados e contexto econômico.</text>
+
+  <rect x="64" y="223" width="520" height="360" rx="18" fill="#FFFFFF"/>
+  <text x="96" y="273" fill="#64748B" font-family="Arial, sans-serif" font-size="17" font-weight="700">UCI · FALHA DE DADOS SIMULADA</text>
+  <text x="96" y="322" fill="#0F172A" font-family="Arial, sans-serif" font-size="22" font-weight="700">ROC-AUC</text>
+  <line x1="120" y1="500" x2="526" y2="500" stroke="#CBD5E1" stroke-width="2"/>
+  <rect x="161" y="353" width="92" height="147" rx="8" fill="#0284C7"/>
+  <rect x="293" y="368" width="92" height="132" rx="8" fill="#D91568"/>
+  <rect x="425" y="363" width="92" height="137" rx="8" fill="#10B981"/>
+  <text x="207" y="342" text-anchor="middle" fill="#0F172A" font-family="Arial, sans-serif" font-size="21" font-weight="700">0,7853</text>
+  <text x="339" y="357" text-anchor="middle" fill="#0F172A" font-family="Arial, sans-serif" font-size="21" font-weight="700">0,7034</text>
+  <text x="471" y="352" text-anchor="middle" fill="#0F172A" font-family="Arial, sans-serif" font-size="21" font-weight="700">0,7293</text>
+  <text x="207" y="531" text-anchor="middle" fill="#334155" font-family="Arial, sans-serif" font-size="15">Sem falha</text>
+  <text x="339" y="531" text-anchor="middle" fill="#334155" font-family="Arial, sans-serif" font-size="15">Choque 50%</text>
+  <text x="471" y="531" text-anchor="middle" fill="#334155" font-family="Arial, sans-serif" font-size="15">HGB robusto</text>
+  <text x="96" y="565" fill="#64748B" font-family="Arial, sans-serif" font-size="14">OpenML não incluído neste painel; evidências separadas.</text>
+
+  <rect x="616" y="223" width="520" height="360" rx="18" fill="#FFFFFF"/>
+  <text x="648" y="273" fill="#64748B" font-family="Arial, sans-serif" font-size="17" font-weight="700">OPENML · TESTE FORA DA AMOSTRA</text>
+  <text x="648" y="322" fill="#0F172A" font-family="Arial, sans-serif" font-size="22" font-weight="700">AUC na população elegível R4</text>
+  <line x1="672" y1="500" x2="1078" y2="500" stroke="#CBD5E1" stroke-width="2"/>
+  <rect x="724" y="358" width="112" height="142" rx="8" fill="#64748B"/>
+  <rect x="898" y="351" width="112" height="149" rx="8" fill="#0284C7"/>
+  <text x="780" y="345" text-anchor="middle" fill="#0F172A" font-family="Arial, sans-serif" font-size="21" font-weight="700">0,8044</text>
+  <text x="954" y="338" text-anchor="middle" fill="#0F172A" font-family="Arial, sans-serif" font-size="21" font-weight="700">0,8116</text>
+  <text x="780" y="531" text-anchor="middle" fill="#334155" font-family="Arial, sans-serif" font-size="16">Random Forest</text>
+  <text x="954" y="531" text-anchor="middle" fill="#334155" font-family="Arial, sans-serif" font-size="16">Score + RF</text>
+  <rect x="648" y="547" width="238" height="26" rx="13" fill="#E0F2FE"/>
+  <text x="767" y="565" text-anchor="middle" fill="#075985" font-family="Arial, sans-serif" font-size="14" font-weight="700">Incremento: +0,0071 AUC</text>
+</svg>

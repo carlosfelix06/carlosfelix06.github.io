@@ -442,7 +442,7 @@
       <span class="hero-tag">Estudo 03 · 138 Bancos + 108 UF-Anos</span>
       <h1 class="study-title">Onde Bancos Cobram Mais Caro e Limites da Renda Regional</h1>
       <p class="hero-role">Estrutura Competitiva de Juros em 138 Bancos e Painel de 108 UF-Anos (IBGE × BCB)</p>
-      <p class="hero-summary">Separa estritamente o grão de instituição financeira do grão estadual: prova que a dispersão de 15,57x entre bancos é persistente em 11 meses (Spearman ρ = 0,866) e refuta fora da amostra a previsão temporal de inadimplência estadual baseada apenas em renda (MAE 1,28 vs 0,95 p.p.).</p>
+      <p class="hero-summary">Reúne duas análises independentes, sem inferência causal: descreve a persistência de 11 meses no posicionamento das taxas de 138 bancos (Spearman ρ = 0,866) e testa, separadamente, a renda estadual como preditora de inadimplência (MAE 1,28 vs 0,95 p.p. da inércia em 2025).</p>
       <div class="hero-cta-group">
         <a class="btn-serasa" href="#sintese-executiva">Explorar Análise e Gráficos ↓</a>
         <a class="btn-pill-compact" href="https://github.com/carlosfelix06/carlosfelix06.github.io/tree/main/codigo/estudo-03-alta-renda-credito-pf" target="_blank" rel="noopener">
@@ -492,7 +492,7 @@
         01 · Problema de Negócio
       </div>
       <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: var(--ink);">
-        Forte dispersão nas taxas cobradas entre bancos e risco de precificação inadequada por confiar em renda estadual agregada para prever inadimplência futura.
+        A dispersão entre taxas bancárias e o desempenho preditivo limitado da renda estadual são perguntas distintas, observadas em grãos diferentes.
       </p>
     </div>
 
@@ -501,7 +501,7 @@
         02 · Decisão / Ação Prática
       </div>
       <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: var(--ink);">
-        Segmentar as 27 UFs em 3 clusters macroeconômicos e concentrar originação nos nichos de alta persistência de spread bancário, descartando renda isolada como preditor de risco futuro.
+        Tratar a persistência de taxas como evidência descritiva de posicionamento bancário; não usar renda estadual isolada como previsão temporal de inadimplência, pois não supera a inércia.
       </p>
     </div>
 
@@ -510,7 +510,7 @@
         03 · Três Indicadores-Chave
       </div>
       <ul style="margin: 0; padding-left: 0; list-style: none; font-size: 13px; line-height: 1.5; color: var(--ink);">
-        <li style='margin-bottom:6px; display:flex; gap:6px;'><strong>•</strong> <span>Dispersão de 15,57x entre taxas do banco mais barato e do mais caro em crédito pessoal.</span></li><li style='margin-bottom:6px; display:flex; gap:6px;'><strong>•</strong> <span>Persistência temporal de taxas com rho = 0,8656 (Spearman em 370 pares banco/modalidade ao longo de 11 meses).</span></li><li style='margin-bottom:6px; display:flex; gap:6px;'><strong>•</strong> <span>Efeitos fixos de UF (MAE 0,95 p.p.) superam projeção baseada em renda estadual (MAE 1,28 p.p.).</span></li>
+        <li style='margin-bottom:6px; display:flex; gap:6px;'><strong>•</strong> <span>Análise 1 · dispersão de 15,57x entre taxas bancárias e persistência de posicionamento (Spearman ρ = 0,8656).</span></li><li style='margin-bottom:6px; display:flex; gap:6px;'><strong>•</strong> <span>Análise 2 · renda estadual isolada não supera a inércia ao prever inadimplência em 2025 (MAE 1,28 vs 0,95 p.p.).</span></li><li style='margin-bottom:6px; display:flex; gap:6px;'><strong>•</strong> <span>As duas análises são independentes, usam grãos distintos e não identificam relação causal entre taxas e renda regional.</span></li>
       </ul>
     </div>
 
@@ -625,10 +625,9 @@ python src/estudo_alta_renda_publico.py</pre>
   <section id="metodologia" style="margin-top:2.5rem">
     <h2 class="study-h2" style="margin-bottom:0.6rem;">Metodologia, Limites Analíticos &amp; Documentação</h2>
     <p class="study-sub" style="margin:0 0 14px; font-size:15.5px; font-weight:600; color:#0F172A; line-height:1.5;">Nota Técnica, Partições dos Dados e Reprodutibilidade do Experimento</p>
-    <section id="etapa-1" class="canonical-step" style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:24px 26px; margin-bottom:1.5rem; box-shadow:0 1px 4px rgba(0,0,0,0.02);">  <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px; border-bottom:1px solid var(--line); padding-bottom:12px;">    <span style="background:var(--primary); color:#FFFFFF; font-size:12px; font-weight:800; width:26px; height:26px; border-radius:50%; display:grid; place-items:center;">1</span>    <h3 style="font-size:1.2rem; font-weight:800; color:var(--ink-heading); margin:0;">Resumo executivo</h3>  </div>  <div class="canonical-content" style="color:var(--ink); font-size:15px; line-height:1.7;"><p>Analisamos o mercado brasileiro de crédito à Pessoa Física estritamente nos grãos em que dados públicos oficiais existem — <strong>Instituição Financeira</strong> (BCB Olinda) e <strong>Unidade da Federação</strong> (IBGE + BCB SGS) — sem extrapolações indevidas para CPFs individuais.</p>
-<p>Dois resultados centrais alteram decisões de precificação e expansão geográfica:</p>
-<p>1. <strong>A estrutura de preços entre bancos é estrutural e persistente (138 bancos · 370 pares em 11 meses):</strong> A amplitude <code>P90/P10</code> atinge <strong>15,57x</strong> no Crédito Pessoal Não-Consignado (<code>24,74%</code> vs <code>385,29% a.a.</code>) e <strong>5,04x</strong> no Cheque Especial. Rastreando exatamente os mesmos pares <code>(instituição, modalidade)</code> entre <code>11/2025</code> e <code>10/2026</code>, a correlação de postos é <strong>Spearman ρ = 0,8656 (<code>p = 1,4e-112</code>)</strong>: <strong>80,2%</strong> dos bancos do quartil mais barato e <strong>82,6%</strong> do quartil mais caro permanecem nas mesmas faixas após 11 meses (<code>Δ mediano = -0,06 p.p.</code>). Via <code>K-Means (k=3)</code> em <code>74</code> bancos multi-produto, identificam-se claramente 3 arquétipos: Competidores de Baixo Custo (<code>27</code>), Bancos Universais Colateralizados (<code>31</code>) e Segmento de Alta Extração (<code>16</code>).</p>
-<p>2. <strong>A renda estadual explica o corte transversal, mas falha em prever o ano seguinte:</strong> Em um painel de <strong>108 UF-anos (<code>2022–2025</code>)</strong>, adicionar efeitos fixos anuais eleva o <code>R²</code> de <strong>0,053</strong> (<code>OLS pooled</code>) para <strong>0,550</strong> — provando que choques macro anuais (Selic/ciclo) dominam metade da variância. Quando treinado de <code>2022–2024</code> para prever <code>2025</code> fora da amostra, o modelo de renda estadual obtém <code>MAE = 1,278 p.p.</code> (<code>R² = -2,65</code>), <strong>pior que a persistência inercial do próprio estado (<code>MAE = 0,953 p.p.</code>)</strong>, embora revele forte <strong>β-convergência</strong> regional entre 2022 e 2026 (<code>inclinação = -1,164, p = 0,0023</code>).</p></div></section>
+    <section id="etapa-1" class="canonical-step" style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:24px 26px; margin-bottom:1.5rem; box-shadow:0 1px 4px rgba(0,0,0,0.02);">  <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px; border-bottom:1px solid var(--line); padding-bottom:12px;">    <span style="background:var(--primary); color:#FFFFFF; font-size:12px; font-weight:800; width:26px; height:26px; border-radius:50%; display:grid; place-items:center;">1</span>    <h3 style="font-size:1.2rem; font-weight:800; color:var(--ink-heading); margin:0;">Resumo executivo</h3>  </div>  <div class="canonical-content" style="color:var(--ink); font-size:15px; line-height:1.7;"><p>Este estudo reúne <strong>duas análises independentes, sem teste de relação causal entre elas</strong>, nos grãos disponíveis em fontes públicas — <strong>Instituição Financeira</strong> (BCB Olinda) e <strong>Unidade da Federação</strong> (IBGE + BCB SGS) — sem extrapolações para CPFs individuais.</p>
+<p>1. <strong>Posicionamento das taxas bancárias (138 bancos · 370 pares em 11 meses):</strong> A amplitude <code>P90/P10</code> atinge <strong>15,57x</strong> no Crédito Pessoal Não-Consignado (<code>24,74%</code> vs <code>385,29% a.a.</code>) e <strong>5,04x</strong> no Cheque Especial. Nos mesmos pares <code>(instituição, modalidade)</code> entre <code>11/2025</code> e <code>10/2026</code>, a correlação de postos é <strong>Spearman ρ = 0,8656 (<code>p = 1,4e-112</code>)</strong>: <strong>80,2%</strong> dos bancos do quartil mais barato e <strong>82,6%</strong> do mais caro permanecem nas mesmas faixas. É evidência descritiva de persistência do posicionamento, não de suas causas.</p>
+<p>2. <strong>Poder explicativo/preditivo da renda regional (108 UF-anos, <code>2022–2025</code>):</strong> Os efeitos fixos anuais elevam o <code>R²</code> de <strong>0,053</strong> (<code>OLS pooled</code>) para <strong>0,550</strong>, uma associação do painel que não identifica causalidade. Na avaliação retrospectiva de <code>2022–2024</code> para prever <code>2025</code>, o modelo de renda estadual obtém <code>MAE = 1,278 p.p.</code> (<code>R² = -2,65</code>), <strong>pior que a persistência inercial do próprio estado (<code>MAE = 0,953 p.p.</code>)</strong>. Esse resultado limita o poder preditivo da renda isolada; não atribui causa à inadimplência.</p></div></section>
 <section id="etapa-2" class="canonical-step" style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:24px 26px; margin-bottom:1.5rem; box-shadow:0 1px 4px rgba(0,0,0,0.02);">  <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px; border-bottom:1px solid var(--line); padding-bottom:12px;">    <span style="background:var(--primary); color:#FFFFFF; font-size:12px; font-weight:800; width:26px; height:26px; border-radius:50%; display:grid; place-items:center;">2</span>    <h3 style="font-size:1.2rem; font-weight:800; color:var(--ink-heading); margin:0;">Contexto e dados</h3>  </div>  <div class="canonical-content" style="color:var(--ink); font-size:15px; line-height:1.7;"><p>Todas as fontes são abertas, auditáveis via API e reproduzidas offline pelo snapshot em <code>resultados/snapshot_publico.json</code>:</p>
 <ul>
 <li><strong>Microdados de Precificação Bancária (<code>BCB Olinda TaxasJurosDiariaPorInicioPeriodo</code>):</strong> Coleta de duas janelas fechadas — <strong><code>2025-11-12 a 2025-11-18</code></strong> e <strong><code>2026-10-23 a 2026-10-29</code></strong> — cobrindo <strong>138 instituições</strong>, <strong>548 cotações</strong> na janela atual e <strong>370 pareamentos idênticos</strong> ao longo de 11 meses.</li>
@@ -673,7 +672,7 @@ python src/estudo_alta_renda_publico.py</pre>
 </tr>
 </tbody></table></div>
 <p><em>Justificativa do número de clusters (Trade-off de Silhueta):</em> Os coeficientes de silhueta medidos foram <code>k=2 (0,3033)</code>, <code>k=3 (0,2418)</code> e <code>k=4 (0,2556)</code>. Embora <code>k=2</code> apresente maior separação geométrica estrita, ele aglutina os bancos universais e os de alta extração em um único grupo indistinto. A escolha de <code>k=3</code> equilibra coerência estatística com a interpretabilidade estratégica de negócio (baixo spread, carteiras garantidas e alta extração), viabilizando ações operacionais de portabilidade.</p>
-<p>Nas linhas sem garantia direta, a amplitude entre percentis de instituições é drástica (<code>P90/P10 = 15,57x</code> no Não-Consignado, <code>5,04x</code> no Cheque Especial, <code>4,85x</code> no Cartão Parcelado e <code>4,09x</code> no Rotativo <code>217,8%</code> vs <code>890,2% a.a.</code>), ao contrário do <strong>Consignado INSS</strong> regulado por teto (<code>1,21x</code>, <code>20,65%</code> vs <code>24,98%</code>). O coeficiente <strong>Spearman ρ = 0,8656 (<code>370</code> pares)</strong> prova que essa dispersão reflete posicionamento estratégico de balanço e funding persistente ao longo de quase um ano.</p>
+<p>Nas linhas sem garantia direta, a amplitude entre percentis de instituições é drástica (<code>P90/P10 = 15,57x</code> no Não-Consignado, <code>5,04x</code> no Cheque Especial, <code>4,85x</code> no Cartão Parcelado e <code>4,09x</code> no Rotativo <code>217,8%</code> vs <code>890,2% a.a.</code>), ao contrário do <strong>Consignado INSS</strong> regulado por teto (<code>1,21x</code>, <code>20,65%</code> vs <code>24,98%</code>). O coeficiente <strong>Spearman ρ = 0,8656 (<code>370</code> pares)</strong> indica persistência descritiva do posicionamento relativo dos bancos ao longo de quase um ano; não identifica as causas dessa diferença de taxas.</p>
 <h3>2. Painel Regional (<code>108</code> UF-Anos · <code>2022–2025</code>) e Rejeição do Modelo Puro de Renda</h3>
 <div class="wrap"><table><thead><tr>
 <th>Modelo Avaliado no Grão UF</th>
@@ -708,8 +707,8 @@ python src/estudo_alta_renda_publico.py</pre>
 </tbody></table></div>
 <p><em>Ressalvas metodológicas:</em> (1) O teste fora da amostra de 2025 utiliza a renda domiciliar anual consolidada do IBGE, configurando uma avaliação retrospectiva de consistência e não um forecast prospectivo em tempo de execução com defasagem de publicação; (2) A β-convergência regional carrega o risco de artefato de regressão à média (estados com taxas extremas tendem mecanicamente a flutuar em direção à média nacional).</p>
 <p>Em setembro de 2026, embora o corte transversal ainda guarde associação negativa (<code>Spearman ρ = -0,417, p = 0,030</code>), os maiores desvios positivos (risco muito acima do previsto pela renda) permanecem concentrados em <code>MA</code>, <code>MS</code>, <code>TO</code> e <code>PE</code>, enquanto <code>SC</code>, <code>RS</code>, <code>AL</code> e <code>CE</code> registram resíduos negativos favoráveis.</p></div></section>
-<section id="etapa-5" class="canonical-step" style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:24px 26px; margin-bottom:1.5rem; box-shadow:0 1px 4px rgba(0,0,0,0.02);">  <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px; border-bottom:1px solid var(--line); padding-bottom:12px;">    <span style="background:var(--primary); color:#FFFFFF; font-size:12px; font-weight:800; width:26px; height:26px; border-radius:50%; display:grid; place-items:center;">5</span>    <h3 style="font-size:1.2rem; font-weight:800; color:var(--ink-heading); margin:0;">Conclusão e implicação prática</h3>  </div>  <div class="canonical-content" style="color:var(--ink); font-size:15px; line-height:1.7;"><p>1. <strong>Inteligência Competitiva &amp; Portabilidade:</strong> Como <strong>80,2%</strong> dos bancos baratos mantêm posicionamento de preço por um ano (<code>ρ = 0,8656</code>), estratégias de portabilidade e crédito com garantia (Consignado Privado, Home/Auto Equity) sobre clientes atualmente tomadores no Arquétipo 3 (<code>80,4º percentil</code>) capturam spreads reais de <strong>5x a 15x</strong> sem assumir o risco cego do balcão sem garantia.</p>
-<p>2. <strong>Política Regional de Crédito:</strong> O <strong>fracasso out-of-sample do modelo puramente baseado em renda (<code>MAE 1,28</code> vs <code>0,95 p.p.</code>)</strong> encerra a tentação de alocar risco estadual estaticamente por PIB/P90 do IBGE. Decisões de limite por praça precisam ancorar-se na série temporal local de inadimplência do próprio banco/UF acrescida de macroeconomia de taxas, corrigindo para desvios persistentes em praças como <code>TO</code>, <code>MA</code> e <code>MS</code>.</p></div></section>
+<section id="etapa-5" class="canonical-step" style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:24px 26px; margin-bottom:1.5rem; box-shadow:0 1px 4px rgba(0,0,0,0.02);">  <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px; border-bottom:1px solid var(--line); padding-bottom:12px;">    <span style="background:var(--primary); color:#FFFFFF; font-size:12px; font-weight:800; width:26px; height:26px; border-radius:50%; display:grid; place-items:center;">5</span>    <h3 style="font-size:1.2rem; font-weight:800; color:var(--ink-heading); margin:0;">Conclusão e implicação prática</h3>  </div>  <div class="canonical-content" style="color:var(--ink); font-size:15px; line-height:1.7;"><p>1. <strong>Posicionamento de taxas bancárias:</strong> A persistência observada (<code>ρ = 0,8656</code>) permite comparar instituições e acompanhar oportunidades de portabilidade, mas é descritiva: não identifica causas para diferenças de taxas nem garante que um cliente obterá determinado spread.</p>
+<p>2. <strong>Poder preditivo da renda regional:</strong> O modelo baseado apenas em renda estadual não superou a inércia na avaliação de 2025 (<code>MAE 1,28</code> vs <code>0,95 p.p.</code>). Portanto, renda agregada isolada não sustenta previsão temporal de inadimplência; esse resultado não é uma estimativa causal.</p></div></section>
 <section id="etapa-6" class="canonical-step" style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:24px 26px; margin-bottom:1.5rem; box-shadow:0 1px 4px rgba(0,0,0,0.02);">  <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px; border-bottom:1px solid var(--line); padding-bottom:12px;">    <span style="background:var(--primary); color:#FFFFFF; font-size:12px; font-weight:800; width:26px; height:26px; border-radius:50%; display:grid; place-items:center;">6</span>    <h3 style="font-size:1.2rem; font-weight:800; color:var(--ink-heading); margin:0;">Fronteiras de validade e síntese final</h3>  </div>  <div class="canonical-content" style="color:var(--ink); font-size:15px; line-height:1.7;"><ul>
 <li><strong>Fronteira estrita de granularidade (Proteção contra Falácia Ecológica):</strong> As fontes públicas do BCB e IBGE não expõem score de CPF nem inadimplência por faixa de renda dentro de um mesmo banco. Conclui-se sobre posicionamento institucional (<code>138</code> bancos) e dinâmica estadual (<code>108</code> UF-anos); extrapolar taxas estaduais de inadimplência diretamente para perfis individuais intra-UF é metodologicamente inválido e explicitamente descartado neste estudo.</li>
 <li><strong>Reprodutibilidade completa:</strong> O código-fonte em <code>codigo/estudo-03-alta-renda-credito-pf/src/estudo_alta_renda_publico.py</code> executa localmente a partir de <code>resultados/snapshot_publico.json</code> e permite atualização ao vivo via <code>--refresh</code>.</li>
@@ -813,11 +812,11 @@ python src/estudo_alta_renda_publico.py</pre>
     "hero_diff_label": "Previsão de Crédito · Banco Central",
     "hero_diff_val": "Reduziu o erro de projeção (MAE) em <strong>R$ 7,39 bi/mês (-54%)</strong> com calendário ANBIMA →",
     "hero_domain_label": "Qualidade de Dados & Cobrança · 30 mil contas",
-    "hero_domain_val": "Preservou <strong>97,6% (NT$ 6,48M simulados)</strong> em experimento de falha de dados →",
+    "hero_domain_val": "Estima <strong>NT$ 6,48M (97,6%)</strong> em simulação sob premissas operacionais; não é recuperação real →",
     "hero_method_label": "Base Única de Empresas (MDM) · 7.905 registros CVM",
     "hero_method_val": "Eliminou <strong>14,8%</strong> de duplicidades e unificou empresas e fundos em visão confiável →",
-    "hero_avail_label": "Taxas de Juros & Concorrência · 138 Bancos + IBGE",
-    "hero_avail_val": "Mapeou variação de até <strong>15,6x</strong> nos juros entre bancos e mediu a concorrência local →",
+    "hero_avail_label": "Taxas Bancárias & Renda Regional · 138 Bancos + IBGE",
+    "hero_avail_val": "Mapeou dispersão de até <strong>15,6x</strong> entre bancos e avaliou a renda regional separadamente →",
     "about_title": "Sobre mim & Trajetória",
     "about_sub": "Uma visão sobre a bagagem técnica, postura analítica e como gero impacto nas operações.",
     "about_bio_p1": "Atuo na interseção entre <strong>Dados, Analytics e Operações de Negócio</strong>, investigando a origem, a granularidade e as regras das informações para construir indicadores confiáveis, identificar oportunidades e apoiar decisões estratégicas e operacionais.",
@@ -865,29 +864,34 @@ python src/estudo_alta_renda_publico.py</pre>
     "study05_title": "Otimização de Política de Crédito: Maximizando o Retorno com Score e Machine Learning",
     "study05_desc": "Separa eliminatórios por gravidade (<code>R1→R2→R3</code>) e aplica Matriz 3×3 na R4: <strong>5,05M u.m.</strong> de P&amp;L simulado (+10,9% sobre a regra rígida de 4,55M). O ganho decorre da precificação de risco no Cluster B (+739k u.m.), exigindo adesão mínima de 75,9%. O RF 1D pareado rende 5,08M (−0,49%): a matriz entrega 9 células auditáveis.",
     "study05_btn_study": "Ler Estudo e Simulador →",
+    "study06_badge": "Estudo 06 · IA, evidência e decisão",
+    "study06_meta": "Síntese dos Estudos 01 (UCI) e 05 (OpenML) · dados públicos",
+    "study06_title": "A Inteligência Artificial está realmente melhorando as decisões?",
+    "study06_desc": "Dois benchmarks mostram ganhos condicionais, não um efeito de implantação empresarial: sob falha de dados simulada, o AUC cai de 0,7853 para 0,7034; no OpenML, a combinação soma 0,0071 de AUC, enquanto o retorno depende de premissas comerciais.",
+    "study06_btn_study": "Ler Estudo e Evidências →",
     "hero_policy_label": "Concessão de Crédito & IA · 150 mil registros históricos",
     "hero_policy_val": "Elevou o P&amp;L simulado em <strong>+10,9%</strong> sobre a regra rígida, com Bad Rate EAD de <strong>1,05%</strong> (perda bruta de 0,69%) →",
     "study03_badge": "Estudo 03 · 138 Bancos + 108 UF-Anos",
     "study03_meta": "BCB Olinda (11m) + IBGE 2022–2025",
     "study03_title": "Onde Bancos Cobram Mais Caro e Limites da Renda Regional",
-    "study03_desc": "Em duas análises independentes (sem relação causal direta): mapeia taxas de <strong>138 bancos</strong> (dispersão de até <strong>15,57x</strong> e persistência de 11 meses, <code>Spearman ρ = 0,866</code>) e avalia separadamente <strong>108 UF-anos</strong> mostrando que renda estadual isolada não prevê a inadimplência futura (<code>MAE 1,28 vs 0,95 p.p.</code>).",
+    "study03_desc": "Duas conclusões independentes, sem inferência causal: o posicionamento das taxas de <strong>138 bancos</strong> persiste por 11 meses (<code>ρ = 0,866</code>); em <strong>108 UF-anos</strong>, renda estadual isolada não supera a inércia ao prever inadimplência (<code>MAE 1,28 vs 0,95 p.p.</code>).",
     "study03_btn_study": "Ler Estudo e Método →",
     "sidebar_title": "Demais Estudos",
     "sidebar_badge": "Acervo",
     "sidebar_intro": "Estudos aprofundados com simuladores interativos e modelos executivos:",
     "study01_badge": "Estudo 01 · UCI Credit Default",
     "study01_title": "Impacto da Qualidade dos Dados no Risco de Inadimplência",
-    "study01_desc": "Experimento simulado em 30.000 contas UCI mostrando que falhas de ETL degradam a fila de cobrança e que tratar ausências nativamente + ordenar por Perda Esperada preserva <strong>97,6% do retorno simulado (estimativa de NT$ 6,48M sob premissas parametrizadas)</strong>.",
+    "study01_desc": "Em experimento simulado com 30.000 contas UCI, tratamento nativo de ausências + Perda Esperada estima <strong>NT$ 6,48M (97,6%) sob premissas operacionais</strong>; não é recuperação efetiva observada em operação real.",
     "study01_btn_study": "Ler estudo →",
     "study01_btn_sim": "Simulador",
     "study01_btn_code": "Código ↗",
     "study02_badge": "Estudo 02 · Dados Abertos CVM",
     "study02_title": "Unificação de Cadastros Duplicados (MDM) na Base CVM",
-    "study02_desc": "Separa duas frentes na base CVM (7.905 registros → 6.736 CNPJs, <strong>-14,8%</strong>): (1) regra determinística de sobrevivência cadastral com CNPJ (Recência inverte <strong>78,6% · 33/42</strong> conflitos de status) e (2) acurácia do pareamento probabilístico sem CNPJ via HGB (<code>PR-AUC 0,884</code>).",
+    "study02_desc": "Separa sobrevivência determinística e pareamento: a regra de Recência diverge em <strong>33/42</strong> conflitos de status (<strong>78,6%</strong>), não uma medida de acurácia; Entity Resolution sem CNPJ é avaliada à parte (<code>PR-AUC 0,884</code>).",
     "study02_btn_study": "Ler estudo →",
     "study02_btn_sim": "Simulador",
     "study02_btn_code": "Código ↗",
-    "sidebar_catalog_link": "Ver Vitrine Completa com os 5 Estudos",
+    "sidebar_catalog_link": "Ver Vitrine Completa com os 6 Estudos",
     "catalog_title": "Vitrine de Estudos Analíticos",
     "catalog_sub": "Estudos de caso reais e dados públicos sobre Risco de Crédito, Qualidade de Dados, Resolução de Entidades e Econometria.",
     "catalog_back_home": "← Voltar ao Portfólio Principal",
@@ -908,19 +912,22 @@ python src/estudo_alta_renda_publico.py</pre>
     "cat_intro_desc": "Casos analíticos reproduzíveis baseados exclusivamente em fontes de dados públicas oficiais ou benchmarks públicos anonimizados (UCI Machine Learning Repository, Dados Abertos CVM, IBGE PNAD Contínua, Banco Central do Brasil SGS e GiveMeSomeCredit / OpenML #46929).",
     "cat_card01_badge": "Estudo 01 · UCI Credit Default",
     "cat_card01_title": "Impacto da Qualidade dos Dados no Risco de Inadimplência",
-    "cat_card01_desc": "Experimento simulado em 30.000 contas UCI: tratar ausências nativamente + priorizar por Perda Esperada preserva 97,6% do retorno simulado (NT$ 6,48M sob premissas operacionais parametrizadas).",
+    "cat_card01_desc": "Experimento simulado em 30.000 contas UCI estima NT$ 6,48M (97,6%) sob premissas operacionais; é retorno contrafactual, não recuperação efetiva em operação real.",
     "cat_card02_badge": "Estudo 02 · Dados Abertos CVM",
     "cat_card02_title": "Unificação de Cadastros Duplicados (MDM) na Base CVM",
-    "cat_card02_desc": "Consolida 7.905 registros da CVM (-14,8% duplicidades), separando a regra determinística de sobrevivência com CNPJ (78,6% de inversão por recência) da acurácia do pareamento sem CNPJ (PR-AUC 0,884).",
+    "cat_card02_desc": "Separa a regra determinística de sobrevivência com CNPJ (33/42 status divergentes por recência) da acurácia de pareamento sem CNPJ (Entity Resolution, PR-AUC 0,884).",
     "cat_card03_badge": "Estudo 03 · 138 Bancos + 108 UF-Anos",
     "cat_card03_title": "Onde Bancos Cobram Mais Caro e Limites da Renda Regional",
-    "cat_card03_desc": "Em duas análises independentes (sem nexo causal direto): mapeia a persistência de taxas em 138 bancos (15,57x, ρ = 0,866) e mostra em 108 UF-anos que renda estadual isolada falha fora da amostra (MAE 1,28 vs 0,95 p.p.).",
+    "cat_card03_desc": "Duas conclusões independentes, sem inferência causal: há persistência no posicionamento das taxas de 138 bancos; renda estadual isolada não supera a inércia na previsão para 2025 (MAE 1,28 vs 0,95 p.p.).",
     "cat_card04_badge": "Estudo 04 · Banco Central SGS",
     "cat_card04_title": "Previsão de Crédito PF: Backtest Walk-Forward e Efeito Calendário",
     "cat_card04_desc": "Ajustar por feriados nacionais ANBIMA e dias úteis reduz o erro absoluto de projeção (MAE) em R$ 7,39 bi/mês (de R$ 13,63 bi para R$ 6,24 bi/mês · wMAPE 2,79%) e acerta 97,0% dos meses na meta ±5%.",
     "cat_card05_badge": "Estudo 05 · 150 mil registros históricos (OpenML)",
     "cat_card05_title": "Otimização de Política de Crédito: Maximizando o Retorno com Score e Machine Learning",
     "cat_card05_desc": "Simulação Otimizada 2D aprova 49,68% com Bad Rate EAD de 1,05% e 5,05M u.m. (+10,9% vs rígida). P&amp;L decomposto em -255k + 14k + 739k (Cluster B @ 7%), com break-even em 75,9% de adesão.",
+    "cat_card06_badge": "Estudo 06 · IA, evidência e decisão",
+    "cat_card06_title": "A Inteligência Artificial está realmente melhorando as decisões?",
+    "cat_card06_desc": "Síntese de dois benchmarks públicos: o ganho preditivo é condicional e o retorno econômico é simulado; não há inferência de impacto empresarial real.",
     "cat_btn_read": "Ler estudo →",
     "cat_btn_code_data": "<i class='bi bi-github'></i> Código e Dados ↗",
     "cat_btn_code_res": "<i class='bi bi-github'></i> Código e Resultados ↗",
@@ -979,7 +986,7 @@ python src/estudo_alta_renda_publico.py</pre>
     "case2_kpi": "81,57% Recall Fim a Fim",
     "case2_title": "Resolução de Entidades &amp; Golden Record Cadastral (Dados Abertos CVM / 7.905 registros)",
     "case2_prob": "<strong>Problema:</strong> Múltiplos sistemas legados e cadastros públicos divergentes geravam duplicidade e quebra de relacionamento B2B.",
-    "case2_act": "<strong>Atuação no Experimento:</strong> Pipeline de Entity Resolution com deduplicação probabilística, blocagem fonética e sobrevivência temporal mapeando 33 de 42 conflitos reais de status.",
+    "case2_act": "<strong>Atuação no Experimento:</strong> Benchmark de Entity Resolution para medir acurácia de pareamento e, separadamente, auditoria das regras de sobrevivência determinística, que divergem em 33 de 42 conflitos de status.",
     "case2_stack": "<strong>Stack do Estudo:</strong> Python, Scikit-learn (HistGradientBoosting), Jaro-Winkler, Levenshtein",
     "case3_badge": "Benchmark 02 · Forecasting &amp; Finanças",
     "case3_kpi": "-54% Erro de Previsão",
@@ -1008,11 +1015,11 @@ python src/estudo_alta_renda_publico.py</pre>
     "hero_diff_label": "Credit Forecasting · Central Bank",
     "hero_diff_val": "Cut forecast MAE by <strong>R$ 7.39 bn/month (-54%)</strong> with ANBIMA holiday calendar →",
     "hero_domain_label": "Data Quality & Collections · 30k Accounts",
-    "hero_domain_val": "Recovered <strong>97.6%</strong> of financial value (NT$ 6.48M) in simulated data failure experiment →",
+    "hero_domain_val": "Estimated <strong>NT$ 6.48M (97.6%)</strong> in a simulated experiment under operating assumptions; not actual recovery →",
     "hero_method_label": "Unified Registry (MDM) · 7,905 CVM Records",
     "hero_method_val": "Eliminated <strong>14.8%</strong> duplicates and built a single, reliable entity view →",
-    "hero_avail_label": "Bank Pricing & Income · 138 Banks + IBGE",
-    "hero_avail_val": "Mapped up to <strong>15.6x</strong> interest rate spread and measured local competition impact →",
+    "hero_avail_label": "Bank Rates & Regional Income · 138 Banks + IBGE",
+    "hero_avail_val": "Mapped rate spreads up to <strong>15.6x</strong> and separately tested regional income →",
     "about_title": "About Me & Career",
     "about_sub": "A perspective on technical background, analytical mindset, and operational impact.",
     "about_bio_p1": "I operate at the intersection of <strong>Data, Analytics, and Business Operations</strong>, investigating the lineage, granularity, and business logic of information to build reliable indicators, identify opportunities, and support strategic and operational decisions.",
@@ -1060,27 +1067,32 @@ python src/estudo_alta_renda_publico.py</pre>
     "study05_title": "How a 2D Policy (Score × Random Forest) Lifts Return on EAD to 4.14% vs RF 1D & Rigid",
     "study05_desc": "Separates knock-outs by severity (<code>R1→R2→R3</code>) and applies a 3×3 Matrix in R4 (<strong>5.05M</strong> net P&amp;L, +10.9% vs rigid). Gain is driven by Cluster B pricing (+739k u.m.) with a 75.9% acceptance break-even threshold. Paired RF 1D yields 5.08M (-0.49%): matrix trades 0.49% for 9 auditable cells.",
     "study05_btn_study": "Read Study & Simulator →",
+    "study06_badge": "Study 06 · AI, evidence & decisions",
+    "study06_meta": "Synthesis of Studies 01 (UCI) and 05 (OpenML) · public data",
+    "study06_title": "Is Artificial Intelligence Really Improving Decisions?",
+    "study06_desc": "Two benchmarks show conditional gains, not a business deployment effect: under simulated data failure, AUC falls from 0.7853 to 0.7034; on OpenML, the blend adds 0.0071 AUC while returns depend on commercial assumptions.",
+    "study06_btn_study": "Read Study & Evidence →",
     "study03_badge": "Study 03 · 138 Banks + 108 State-Years",
     "study03_meta": "BCB Olinda (11m) + IBGE 2022–2025",
     "study03_title": "Where Banks Charge Most & Why Income Alone Fails to Predict Credit",
-    "study03_desc": "Compares rates across <strong>138 banks</strong> (a <strong>15.57x</strong> spread), proving price positioning persists over 11 months, and shows across <strong>108 state-years</strong> why static state income fails out-of-sample. <em>Method:</em> <code>K-Means + PCA (Spearman ρ = 0.866)</code> & fixed-effects panel (<code>MAE 1.28 vs 0.95 pp</code>).",
+    "study03_desc": "Two independent conclusions, without causal inference: rate positioning across <strong>138 banks</strong> persists for 11 months (<code>ρ = 0.866</code>); across <strong>108 state-years</strong>, state income alone does not beat inertia in predicting defaults (<code>MAE 1.28 vs 0.95 pp</code>).",
     "study03_btn_study": "Read Study & Method →",
     "sidebar_title": "Other Pipeline Studies",
     "sidebar_badge": "Archive",
     "sidebar_intro": "In-depth studies with interactive simulators and executive decision models:",
     "study01_badge": "Study 01 · UCI Credit Default",
     "study01_title": "Impact of Data Quality on Default Risk",
-    "study01_desc": "Shows on 30,000 accounts how missing data hides defaulters without triggering global alerts, recovering <strong>97.6% of value (NT$ 6.48M)</strong> with native missing handling. <em>Method:</em> <code>32.3% → 27.4%</code> capture drop & HGB NaN + Expected Loss.",
+    "study01_desc": "In a simulation on 30,000 UCI accounts, native missing-value handling + Expected Loss estimates <strong>NT$ 6.48M (97.6%) under operating assumptions</strong>; this is not recovery observed in real operations.",
     "study01_btn_study": "Read study →",
     "study01_btn_sim": "Simulator",
     "study01_btn_code": "Code ↗",
     "study02_badge": "Study 02 · CVM Open Data",
     "study02_title": "Entity Deduplication & Golden Record (MDM) on CVM Data",
-    "study02_desc": "Consolidates 7,905 official records into 6,736 unique CNPJs (<strong>-14.8% duplicates</strong>) and resolves <strong>78.6% (33/42)</strong> of conflicts by recency, even without tax keys. <em>Method:</em> Golden Record + Record Linkage (<code>PR-AUC 0.884</code>).",
+    "study02_desc": "Separates deterministic survivorship from matching: the recency rule yields <strong>33/42</strong> conflicting statuses (<strong>78.6%</strong>), not a matching-accuracy score; Entity Resolution without CNPJ is evaluated separately (<code>PR-AUC 0.884</code>).",
     "study02_btn_study": "Read study →",
     "study02_btn_sim": "Simulator",
     "study02_btn_code": "Code ↗",
-    "sidebar_catalog_link": "View Full Showcase with all 5 Studies",
+    "sidebar_catalog_link": "View Full Showcase with all 6 Studies",
     "catalog_title": "Analytical Studies Showcase",
     "catalog_sub": "Real-world case studies and open data on Credit Risk, Data Quality, Entity Resolution, and Econometrics.",
     "catalog_back_home": "← Back to Main Portfolio",
@@ -1101,19 +1113,22 @@ python src/estudo_alta_renda_publico.py</pre>
     "cat_intro_desc": "Reproducible analytical case studies based exclusively on official public data sources and anonymized public benchmarks (UCI Machine Learning Repository, CVM Open Data, IBGE PNAD Contínua, Central Bank of Brazil SGS, and GiveMeSomeCredit / OpenML #46929).",
     "cat_card01_badge": "Study 01 · UCI Credit Default",
     "cat_card01_title": "Impact of Data Quality on Default Risk",
-    "cat_card01_desc": "Proves on 30,000 accounts that missing data hides defaulters without moving global alerts; native missing handling recovers NT$ 6.48M (97.6% of clean value).",
+    "cat_card01_desc": "Simulation on 30,000 UCI accounts estimates NT$ 6.48M (97.6%) under operating assumptions; this is a counterfactual estimate, not actual recovery in real operations.",
     "cat_card02_badge": "Study 02 · CVM Open Data",
     "cat_card02_title": "Entity Deduplication & Golden Record (MDM) on CVM Data",
-    "cat_card02_desc": "Consolidates 7,905 CVM records (-14.8% duplicates), resolves 78.6% of conflicts by recency, and matches unkeyed records with HGB (PR-AUC 0.763 → 0.884).",
+    "cat_card02_desc": "Separates deterministic survivorship (33/42 status conflicts under recency) from matching accuracy without CNPJ (Entity Resolution, PR-AUC 0.884).",
     "cat_card03_badge": "Study 03 · 138 Banks + 108 State-Years",
     "cat_card03_title": "Where Banks Charge Most & Limits of Regional Income",
-    "cat_card03_desc": "Maps 138 banks with a 15.57x rate spread (persistence ρ = 0.866) and proves across 108 state-years that income alone fails out-of-sample tests.",
+    "cat_card03_desc": "Two independent findings, without causal inference: bank rate positioning persists across 138 institutions; state income alone does not beat inertia in the 2025 default prediction test.",
     "cat_card04_badge": "Study 04 · Central Bank SGS",
     "cat_card04_title": "Household Credit Forecasting: Walk-Forward Backtest & Calendar Effects",
     "cat_card04_desc": "Adjusting for Brazilian national holidays (ANBIMA) and business days reduces monthly forecast MAE by R$ 7.39 bn/month (wMAPE 2.79%) with 97.0% of months inside ±5%.",
     "cat_card05_badge": "Study 05 · 150k Historical Records (OpenML)",
     "cat_card05_title": "Credit Policy Optimization: Maximizing Returns with Score and Machine Learning",
     "cat_card05_desc": "Optimized 2D simulation approves 49.68% with 1.05% EAD Bad Rate and 5.05M P&amp;L (+10.9% vs rigid). P&amp;L bridge decomposes into -255k + 14k + 739k (Cluster B @ 7%), with a 75.9% acceptance break-even.",
+    "cat_card06_badge": "Study 06 · AI, evidence & decisions",
+    "cat_card06_title": "Is Artificial Intelligence Really Improving Decisions?",
+    "cat_card06_desc": "Synthesis of two public benchmarks: predictive gains are conditional and returns are simulated; no real business impact is inferred.",
     "cat_btn_read": "Read study →",
     "cat_btn_code_data": "<i class='bi bi-github'></i> Code &amp; Data ↗",
     "cat_btn_code_res": "<i class='bi bi-github'></i> Code &amp; Results ↗",
@@ -1172,7 +1187,7 @@ python src/estudo_alta_renda_publico.py</pre>
     "case2_kpi": "81.57% End-to-End Recall",
     "case2_title": "Entity Resolution &amp; Golden Record Architecture (CVM Open Data / 7,905 records)",
     "case2_prob": "<strong>Problem:</strong> Multiple legacy systems and diverging public records generated entity duplication and broke B2B relationship tracking.",
-    "case2_act": "<strong>Action in Benchmark:</strong> Entity Resolution pipeline with probabilistic deduplication, phonetic blocking, and temporal survivorship mapping 33 of 42 real status conflicts.",
+    "case2_act": "<strong>Action in Benchmark:</strong> Entity Resolution benchmark measuring matching accuracy, plus a separate audit of deterministic survivorship rules that diverge in 33 of 42 status conflicts.",
     "case2_stack": "<strong>Study Stack:</strong> Python, Scikit-learn (HistGradientBoosting), Jaro-Winkler, Levenshtein",
     "case3_badge": "Benchmark 02 · Forecasting &amp; Finance",
     "case3_kpi": "-54% Forecast Error",
@@ -1201,11 +1216,11 @@ python src/estudo_alta_renda_publico.py</pre>
     "hero_diff_label": "Previsión de Crédito · Banco Central",
     "hero_diff_val": "Redujo el error de proyección (MAE) en <strong>R$ 7,39 mil M/mes (-54%)</strong> con feriados ANBIMA →",
     "hero_domain_label": "Calidad de Datos & Cobranza · 30 mil cuentas",
-    "hero_domain_val": "Preservó el <strong>97,6% (NT$ 6,48M)</strong> del valor simulado en fallo de datos →",
+    "hero_domain_val": "Estimación de <strong>NT$ 6,48M (97,6%)</strong> en una simulación bajo supuestos operativos; no es recuperación real →",
     "hero_method_label": "Base Única de Empresas (MDM) · 7.905 registros CVM",
     "hero_method_val": "Eliminó <strong>14,8%</strong> de duplicidades y creó una visión única y confiable de empresas →",
-    "hero_avail_label": "Tasas & Ingreso Regional · 138 Bancos + IBGE",
-    "hero_avail_val": "Mapeó dispersión de hasta <strong>15,6x</strong> en tasas y midió el peso de la competencia local →",
+    "hero_avail_label": "Tasas Bancarias e Ingreso Regional · 138 Bancos + IBGE",
+    "hero_avail_val": "Mapeó una dispersión de hasta <strong>15,6x</strong> entre bancos y evaluó el ingreso regional por separado →",
     "about_title": "Sobre mí & Trayectoria",
     "about_sub": "Una visión sobre la base técnica, la postura analítica y cómo genero impacto en las operaciones.",
     "about_bio_p1": "Actúo en la intersección entre <strong>Datos, Analytics y Operaciones de Negocio</strong>, investigando el origen, granularidad y reglas de la información para construir indicadores confiables, identificar oportunidades y apoyar decisiones estratégicas y operativas.",
@@ -1253,27 +1268,32 @@ python src/estudo_alta_renda_publico.py</pre>
     "study05_title": "Cómo Política 2D (Score × Random Forest) Eleva Retorno s/ EAD a 4,14% vs RF 1D y Rígida",
     "study05_desc": "Separa filtros por gravedad (<code>R1→R2→R3</code>) y aplica Matriz 3×3 en R4: <strong>5,05M</strong> P&amp;L (+10,9% vs rígida). El beneficio proviene del precio en Cluster B (+739k), con umbral de aceptación del 75,9%. RF 1D rinde 5,08M (-0,49%): la matriz entrega 9 celdas auditables.",
     "study05_btn_study": "Leer Estudio y Simulador →",
+    "study06_badge": "Estudio 06 · IA, evidencia y decisión",
+    "study06_meta": "Síntesis de los Estudios 01 (UCI) y 05 (OpenML) · datos públicos",
+    "study06_title": "¿La Inteligencia Artificial realmente mejora las decisiones?",
+    "study06_desc": "Dos benchmarks muestran ganancias condicionales, no un efecto de implantación empresarial: ante una falla de datos simulada, el AUC cae de 0,7853 a 0,7034; en OpenML, la combinación suma 0,0071 de AUC y el retorno depende de supuestos comerciales.",
+    "study06_btn_study": "Leer Estudio y Evidencias →",
     "study03_badge": "Estudio 03 · 138 Bancos + 108 UF-Años",
     "study03_meta": "BCB Olinda (11m) + IBGE 2022–2025",
     "study03_title": "Dónde Cobran Más Caro los Bancos y Por Qué el Ingreso Solo Falla",
-    "study03_desc": "Analiza tasas de <strong>138 bancos</strong> (diferencia de hasta <strong>15,57x</strong>) probando persistencia de 11 meses, y muestra en <strong>108 UF-años</strong> por qué el ingreso estatal aislado falla en el futuro. <em>Método:</em> <code>K-Means + PCA (Spearman ρ = 0,866)</code> y efectos fijos (<code>MAE 1,28 vs 0,95 p.p.</code>).",
+    "study03_desc": "Dos conclusiones independientes, sin inferencia causal: el posicionamiento de tasas en <strong>138 bancos</strong> persiste 11 meses (<code>ρ = 0,866</code>); en <strong>108 UF-años</strong>, el ingreso estatal aislado no supera la inercia al predecir morosidad (<code>MAE 1,28 vs 0,95 p.p.</code>).",
     "study03_btn_study": "Leer Estudio y Método →",
     "sidebar_title": "Demás Estudios del Pipeline",
     "sidebar_badge": "Acervo",
     "sidebar_intro": "Estudios profundos con simuladores interactivos y modelos ejecutivos de decisión:",
     "study01_badge": "Estudio 01 · UCI Credit Default",
     "study01_title": "Impacto de la Calidad de los Datos en el Riesgo de Morosidad",
-    "study01_desc": "Demuestra en 30.000 cuentas que fallas catastrales ocultan morosos sin alterar alertas globales, recuperando <strong>97,6% del valor (NT$ 6,48M)</strong> al tratar ausencias nativamente. <em>Método:</em> <code>32,3% → 27,4%</code> en captura y HGB NaN + Pérdida Esperada.",
+    "study01_desc": "En una simulación con 30.000 cuentas UCI, el tratamiento nativo de ausencias + Pérdida Esperada estima <strong>NT$ 6,48M (97,6%) bajo supuestos operativos</strong>; no es recuperación observada en operaciones reales.",
     "study01_btn_study": "Leer estudio →",
     "study01_btn_sim": "Simulador",
     "study01_btn_code": "Código ↗",
     "study02_badge": "Estudio 02 · Datos Abiertos CVM",
     "study02_title": "Unificación de Registros Duplicados (MDM) en la Base CVM",
-    "study02_desc": "Consolida 7.905 registros en 6.736 CNPJs únicos (<strong>-14,8% duplicidades</strong>) y resuelve <strong>78,6% (33/42)</strong> de los conflictos por recencia, aun sin clave de CNPJ. <em>Método:</em> Golden Record + Record Linkage (<code>PR-AUC 0,884</code>).",
+    "study02_desc": "Separa supervivencia determinística y matching: la regla de Recencia produce <strong>33/42</strong> estados en conflicto (<strong>78,6%</strong>), no una medida de precisión; Entity Resolution sin CNPJ se evalúa aparte (<code>PR-AUC 0,884</code>).",
     "study02_btn_study": "Leer estudio →",
     "study02_btn_sim": "Simulador",
     "study02_btn_code": "Código ↗",
-    "sidebar_catalog_link": "Ver Vitrina Completa con los 5 Estudios",
+    "sidebar_catalog_link": "Ver Vitrina Completa con los 6 Estudios",
     "catalog_title": "Vitrina de Estudios Analíticos",
     "catalog_sub": "Casos de estudio reales y datos públicos sobre Riesgo de Crédito, Calidad de Datos, Resolución de Entidades y Econometría.",
     "catalog_back_home": "← Volver al Portafolio Principal",
@@ -1294,19 +1314,22 @@ python src/estudo_alta_renda_publico.py</pre>
     "cat_intro_desc": "Casos analíticos reproducibles basados exclusivamente en fuentes públicas oficiales y benchmarks públicos anonimizados (UCI Machine Learning Repository, Datos Abiertos CVM, IBGE PNAD Contínua, Banco Central do Brasil SGS y GiveMeSomeCredit / OpenML #46929).",
     "cat_card01_badge": "Estudio 01 · UCI Credit Default",
     "cat_card01_title": "Impacto de la calidad de los datos en el riesgo de morosidad",
-    "cat_card01_desc": "Prueba en 30.000 cuentas que fallas catastrales ocultan morosos sin disparar alertas globales; el manejo nativo recupera NT$ 6,48M (97,6% del valor limpio).",
+    "cat_card01_desc": "La simulación en 30.000 cuentas UCI estima NT$ 6,48M (97,6%) bajo supuestos operativos; es una estimación contrafactual, no recuperación efectiva en operaciones reales.",
     "cat_card02_badge": "Estudio 02 · Datos Abiertos CVM",
     "cat_card02_title": "Unificación de Registros Duplicados (MDM) en la Base CVM",
-    "cat_card02_desc": "Consolida 7.905 registros CVM (-14,8% duplicidades), resuelve 78,6% de conflictos por recencia y cruza registros sin CNPJ con HGB (PR-AUC 0,763 → 0,884).",
+    "cat_card02_desc": "Separa supervivencia determinística (33/42 conflictos de estado bajo Recencia) de la precisión del matching sin CNPJ (Entity Resolution, PR-AUC 0,884).",
     "cat_card03_badge": "Estudio 03 · 138 Bancos + 108 UF-Años",
     "cat_card03_title": "Dónde Cobran Más Caro los Bancos y Límites del Ingreso Regional",
-    "cat_card03_desc": "Mapea 138 bancos con 15,57x de dispersión en tasas (persistencia ρ = 0,866) y prueba en 108 UF-años que el ingreso aislado falla fuera de muestra.",
+    "cat_card03_desc": "Dos hallazgos independientes, sin inferencia causal: persiste el posicionamiento de tasas bancarias; el ingreso estatal aislado no supera la inercia en la predicción de 2025.",
     "cat_card04_badge": "Estudio 04 · Banco Central SGS",
     "cat_card04_title": "Previsión de Crédito PF: Backtest Walk-Forward y Efecto Calendario",
     "cat_card04_desc": "Ajustar por feriados nacionales ANBIMA y días hábiles reduce el error mensual (MAE) en R$ 7,39 mil M/mes (wMAPE 2,79%) y acierta 97,0% de los meses en ±5%.",
     "cat_card05_badge": "Estudio 05 · 150 mil registros históricos (OpenML)",
     "cat_card05_title": "Optimización de Política de Crédito: Maximizando Retorno con Score e Inteligencia Artificial",
     "cat_card05_desc": "Simulación Optimizada 2D aprueba 49,68% con Bad Rate EAD de 1,05% y 5,05M (+10,9% vs rígida). P&amp;L descompuesto en -255k + 14k + 739k (Cluster B @ 7%), con umbral de 75,9% de aceptación.",
+    "cat_card06_badge": "Estudio 06 · IA, evidencia y decisión",
+    "cat_card06_title": "¿La Inteligencia Artificial realmente mejora las decisiones?",
+    "cat_card06_desc": "Síntesis de dos benchmarks públicos: la mejora predictiva es condicional y el retorno económico es simulado; no se infiere impacto empresarial real.",
     "cat_btn_read": "Leer estudio →",
     "cat_btn_code_data": "<i class='bi bi-github'></i> Código y Datos ↗",
     "cat_btn_code_res": "<i class='bi bi-github'></i> Código y Resultados ↗",
@@ -1365,7 +1388,7 @@ python src/estudo_alta_renda_publico.py</pre>
     "case2_kpi": "81,57% Recall Fin a Fin",
     "case2_title": "Resolución de Entidades &amp; Golden Record Catastral (Datos Abiertos CVM / 7.905 registros)",
     "case2_prob": "<strong>Problema:</strong> Múltiples sistemas heredados y registros públicos divergentes generaban duplicidad y rompían el seguimiento de relaciones B2B.",
-    "case2_act": "<strong>Acción en Benchmark:</strong> Pipeline de Entity Resolution con deduplicación probabilística, bloqueo fonético y supervivencia temporal mapeando 33 de 42 conflictos reales de estado.",
+    "case2_act": "<strong>Acción en Benchmark:</strong> Benchmark de Entity Resolution para medir precisión del matching, además de una auditoría separada de reglas determinísticas de supervivencia que difieren en 33 de 42 conflictos de estado.",
     "case2_stack": "<strong>Stack del Estudio:</strong> Python, Scikit-learn (HistGradientBoosting), Jaro-Winkler, Levenshtein",
     "case3_badge": "Benchmark 02 · Forecasting &amp; Finanzas",
     "case3_kpi": "-54% Error de Proyección",

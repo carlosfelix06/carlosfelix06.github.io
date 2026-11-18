@@ -589,7 +589,6 @@
           <a href="#ato-3-matriz" class="nav-step"><i class="bi bi-grid-3x3"></i> 3. Matriz 3×3 ↓</a>
           <a href="#resultados" class="nav-step"><i class="bi bi-cash-coin"></i> 4. Impacto Financeiro ↓</a>
           <a href="#ato-5-prova" class="nav-step"><i class="bi bi-activity"></i> 5. Prova &amp; Simulador ↓</a>
-          <a href="#credit-decision-lab" class="nav-step" style="border-color:#10B981; color:#065F46; background:#ECFDF5; font-weight:700;"><i class="bi bi-cpu-fill"></i> 6. Credit Decision Lab (MLOps) ↓</a>
         </div>
 
         <section id="sintese-executiva" class="exec-summary-card" aria-label="Síntese Executiva em Duas Camadas" style="margin: 1.5rem 0 2rem; background: #FFFFFF; border: 1px solid #CBD5E1; border-left: 6px solid #1565C0; border-radius: 10px; padding: 22px 24px; box-shadow: 0 2px 10px rgba(15,23,42,0.04);">
@@ -638,7 +637,7 @@
         04 · Premissas &amp; Limitações
       </div>
       <p style="margin: 0; font-size: 13px; line-height: 1.5; color: var(--mute);">
-        Base histórica de 150.000 registros (GiveMeSomeCredit / OpenML). O ganho de P&amp;L depende da hipótese de aceitação mínima de 75,9% nas contrapropostas e premissas paramétricas de LGD/juros.
+        GiveMeSomeCredit é uma base histórica de 2011; o split estratificado 60/20/20 não é teste temporal OOT. LP e CP usam o mesmo alvo de inadimplência grave em 2 anos, com complementaridade observada, não ortogonalidade absoluta (DebtRatio incorpora MonthlyIncome). O P&amp;L é simulado e depende de premissas de LGD, juros e aceitação.
       </p>
     </div>
   </div>
@@ -1089,218 +1088,16 @@ python -m unittest discover -s testes -v</pre>
           </div>
         </section>
 
-
-        <!-- SEÇÃO: CREDIT DECISION LAB (MLOps, Inferência e Observabilidade) -->
-        <section id="credit-decision-lab" aria-label="Credit Decision Lab: MLOps, Inferência e Observabilidade" style="margin:3.8rem 0 3.4rem;">
-          <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
-            <span style="background:#0F172A; color:#38BDF8; font-size:11px; font-weight:800; padding:4px 10px; border-radius:4px; text-transform:uppercase; letter-spacing:0.8px;">
-              <i class="bi bi-gear-wide-connected"></i> Produto Analítico Operacional &middot; MLOps
-            </span>
-            <span style="background:#ECFDF5; color:#047857; font-size:11px; font-weight:700; padding:4px 10px; border-radius:4px; border:1px solid #A7F3D0;">
-              <i class="bi bi-check-circle-fill"></i> Lat&ecirc;ncia &lt; 20ms &middot; Pydantic v2 &middot; PSI &middot; SciPy HiGHS
-            </span>
-          </div>
-
-          <h2 class="study-h2" style="border-bottom:2px solid var(--line); padding-bottom:.5rem; margin-bottom:0.6rem;">
-            Credit Decision Lab &middot; Infer&ecirc;ncia em Tempo Real, MLOps e Observabilidade de Risco
-          </h2>
-          <p class="study-sub" style="margin:0 0 14px; font-size:15.5px; font-weight:600; color:#0F172A; line-height:1.5;">
-            Do Modelo Estat&iacute;stico &agrave; Esteira de Produ&ccedil;&atilde;o: Contratos Estritos, Monitoramento de Drift e Otimiza&ccedil;&atilde;o de Capital
-          </p>
-          <p style="margin:0 0 1.6rem; font-size:15px; line-height:1.72; color:#334155;">
-            Em ambientes banc&aacute;rios e fintechs de alta escala, o valor do modelo de risco n&atilde;o se encerra no notebook ou na curva ROC. Ele se materializa na capacidade de <strong>tomar decis&otilde;es audit&aacute;veis em milissegundos</strong>, <strong>monitorar continuamente a estabilidade da popula&ccedil;&atilde;o (PSI/KS)</strong> e <strong>alocar capital sob restri&ccedil;&otilde;es regulat&oacute;rias formais</strong>. O Credit Decision Lab implementa a esteira operacional completa que conecta a ci&ecirc;ncia de dados aos sistemas transacionais de cr&eacute;dito.
-          </p>
-
-          <!-- GRID DE ARQUITETURA OPERACIONAL -->
-          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:16px; margin-bottom:2rem;">
-            <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-top:4px solid #2563EB; border-radius:8px; padding:18px 20px; box-shadow:0 1px 3px rgba(0,0,0,0.02);">
-              <div style="font-size:11px; font-weight:800; color:#2563EB; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">
-                1. Contrato de Entrada (Pydantic v2)
-              </div>
-              <div style="font-weight:700; color:#0F172A; font-size:14.5px; margin-bottom:6px;">Tipagem Estrita &amp; DQ Gate</div>
-              <p style="margin:0; font-size:13px; line-height:1.6; color:#475569;">
-                Valida&ccedil;&atilde;o de schema em tempo de execu&ccedil;&atilde;o com bounds r&iacute;gidos (idade &ge; 18, renda &ge; 0, limite entre R$ 100 e R$ 1M). Rejeita payloads corrompidos antes da chamada ao modelo.
-              </p>
-            </div>
-
-            <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-top:4px solid #10B981; border-radius:8px; padding:18px 20px; box-shadow:0 1px 3px rgba(0,0,0,0.02);">
-              <div style="font-size:11px; font-weight:800; color:#10B981; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">
-                2. Engine de Decis&atilde;o (&lt; 20ms)
-              </div>
-              <div style="font-weight:700; color:#0F172A; font-size:14.5px; margin-bottom:6px;">Filtros Duros + Matriz 3&times;3</div>
-              <p style="margin:0; font-size:13px; line-height:1.6; color:#475569;">
-                Execu&ccedil;&atilde;o sequencial: R1 (atrasos 90d+) &rarr; R2 (Debt Ratio &gt; 50%) &rarr; R3 (Rotativo &gt; 100%) &rarr; Scoring 2D &rarr; Aloca&ccedil;&atilde;o em Cluster A, B ou C com hash SHA-256 de auditoria.
-              </p>
-            </div>
-
-            <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-top:4px solid #D97706; border-radius:8px; padding:18px 20px; box-shadow:0 1px 3px rgba(0,0,0,0.02);">
-              <div style="font-size:11px; font-weight:800; color:#D97706; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">
-                3. Observabilidade de Risco
-              </div>
-              <div style="font-weight:700; color:#0F172A; font-size:14.5px; margin-bottom:6px;">PSI Dec&iacute;lico &amp; Teste KS</div>
-              <p style="margin:0; font-size:13px; line-height:1.6; color:#475569;">
-                C&aacute;lculo cont&iacute;nuo do Population Stability Index (PSI) e teste Kolmogorov-Smirnov comparando a safra corrente contra a distribui&ccedil;&atilde;o baseline de treino para detec&ccedil;&atilde;o precoce de drift.
-              </p>
-            </div>
-
-            <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-top:4px solid #7C3AED; border-radius:8px; padding:18px 20px; box-shadow:0 1px 3px rgba(0,0,0,0.02);">
-              <div style="font-size:11px; font-weight:800; color:#7C3AED; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">
-                4. Otimiza&ccedil;&atilde;o de Capital
-              </div>
-              <div style="font-weight:700; color:#0F172A; font-size:14.5px; margin-bottom:6px;">SciPy HiGHS Solver</div>
-              <p style="margin:0; font-size:13px; line-height:1.6; color:#475569;">
-                Resolu&ccedil;&atilde;o formal do problema &amp;max; &sum; P&amp;L<sub>i</sub> &times; x<sub>i</sub> sujeito ao teto de capital (EAD &le; K) e limite de perda esperada (EL &le; EL<sub>max</sub>), superando r&eacute;guas est&aacute;ticas.
-              </p>
-            </div>
-          </div>
-
-          <!-- CONSOLE INTERATIVO DE INFERÊNCIA EM TEMPO REAL -->
-          <div style="background:#F8FAFC; border:1px solid #CBD5E1; border-radius:10px; padding:24px 26px; margin-bottom:2.2rem; box-shadow:0 2px 8px rgba(15,23,42,0.03);">
-            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:18px; border-bottom:1px solid #E2E8F0; padding-bottom:14px;">
-              <div>
-                <span style="font-size:11px; font-weight:800; color:#1E293B; background:#E2E8F0; padding:3px 8px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
-                  Simulador Operacional
-                </span>
-                <h3 style="margin:4px 0 0; font-size:1.15rem; font-weight:800; color:#0F172A;">
-                  Console de Infer&ecirc;ncia da API de Decis&atilde;o de Cr&eacute;dito
-                </h3>
-              </div>
-              <div style="display:flex; align-items:center; gap:8px;">
-                <label for="cde-preset-select" style="font-size:12.5px; font-weight:600; color:#475569;">Carregar Perfil T&iacute;pico:</label>
-                <select id="cde-preset-select" style="font-size:13px; padding:5px 10px; border-radius:6px; border:1px solid #CBD5E1; background:#FFFFFF; color:#0F172A; font-weight:600;">
-                  <option value="prime" selected>1. Perfil Prime (Aprova&ccedil;&atilde;o 100% &middot; Cluster A)</option>
-                  <option value="moderate">2. Perfil Moderado (Contraproposta 65% @ 7,0% &middot; Cluster B)</option>
-                  <option value="overdue90">3. Inadimpl&ecirc;ncia Grave R1 (Recusa Imediata 90d+)</option>
-                  <option value="debt_heavy">4. Endividamento Excessivo R2 (Debt Ratio 72%)</option>
-                  <option value="rev_heavy">5. Limite Rotativo Saturado R3 (Utiliza&ccedil;&atilde;o 120%)</option>
-                </select>
-              </div>
-            </div>
-
-            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:14px; margin-bottom:18px;">
-              <div>
-                <label style="font-size:11.5px; font-weight:700; color:#475569; display:block; margin-bottom:4px;">Idade do Proponente</label>
-                <input type="number" id="cde-age" value="48" min="18" max="100" style="width:100%; padding:7px 10px; font-size:13.5px; border:1px solid #CBD5E1; border-radius:6px; background:#FFFFFF;" />
-              </div>
-              <div>
-                <label style="font-size:11.5px; font-weight:700; color:#475569; display:block; margin-bottom:4px;">Renda Mensal (R$)</label>
-                <input type="number" id="cde-income" value="18000" min="0" step="500" style="width:100%; padding:7px 10px; font-size:13.5px; border:1px solid #CBD5E1; border-radius:6px; background:#FFFFFF;" />
-              </div>
-              <div>
-                <label style="font-size:11.5px; font-weight:700; color:#475569; display:block; margin-bottom:4px;">Dependentes Declarados</label>
-                <input type="number" id="cde-deps" value="1" min="0" max="10" style="width:100%; padding:7px 10px; font-size:13.5px; border:1px solid #CBD5E1; border-radius:6px; background:#FFFFFF;" />
-              </div>
-              <div>
-                <label style="font-size:11.5px; font-weight:700; color:#475569; display:block; margin-bottom:4px;">Linhas de Cr&eacute;dito Abertas</label>
-                <input type="number" id="cde-open-lines" value="8" min="0" max="30" style="width:100%; padding:7px 10px; font-size:13.5px; border:1px solid #CBD5E1; border-radius:6px; background:#FFFFFF;" />
-              </div>
-              <div>
-                <label style="font-size:11.5px; font-weight:700; color:#475569; display:block; margin-bottom:4px;">Financiamentos Imobili&aacute;rios</label>
-                <input type="number" id="cde-re-loans" value="2" min="0" max="10" style="width:100%; padding:7px 10px; font-size:13.5px; border:1px solid #CBD5E1; border-radius:6px; background:#FFFFFF;" />
-              </div>
-              <div>
-                <label style="font-size:11.5px; font-weight:700; color:#475569; display:block; margin-bottom:4px;">Uso Rotativo (0 a 1 = 0% a 100%)</label>
-                <input type="number" id="cde-rev-util" value="0.12" min="0" max="5" step="0.05" style="width:100%; padding:7px 10px; font-size:13.5px; border:1px solid #CBD5E1; border-radius:6px; background:#FFFFFF;" />
-              </div>
-              <div>
-                <label style="font-size:11.5px; font-weight:700; color:#475569; display:block; margin-bottom:4px;">Debt Ratio (D&iacute;vida / Renda)</label>
-                <input type="number" id="cde-debt-ratio" value="0.22" min="0" max="10" step="0.05" style="width:100%; padding:7px 10px; font-size:13.5px; border:1px solid #CBD5E1; border-radius:6px; background:#FFFFFF;" />
-              </div>
-              <div>
-                <label style="font-size:11.5px; font-weight:700; color:#475569; display:block; margin-bottom:4px;">Atrasos 30-59d (24m)</label>
-                <input type="number" id="cde-d30" value="0" min="0" max="15" style="width:100%; padding:7px 10px; font-size:13.5px; border:1px solid #CBD5E1; border-radius:6px; background:#FFFFFF;" />
-              </div>
-              <div>
-                <label style="font-size:11.5px; font-weight:700; color:#475569; display:block; margin-bottom:4px;">Atrasos 90d+ (24m)</label>
-                <input type="number" id="cde-d90" value="0" min="0" max="10" style="width:100%; padding:7px 10px; font-size:13.5px; border:1px solid #CBD5E1; border-radius:6px; background:#FFFFFF;" />
-              </div>
-              <div>
-                <label style="font-size:11.5px; font-weight:700; color:#475569; display:block; margin-bottom:4px;">Limite Solicitado (R$)</label>
-                <input type="number" id="cde-limit-req" value="30000" min="500" max="500000" step="1000" style="width:100%; padding:7px 10px; font-size:13.5px; border:1px solid #CBD5E1; border-radius:6px; background:#FFFFFF; font-weight:700; color:#0F172A;" />
-              </div>
-            </div>
-
-            <div style="display:flex; justify-content:flex-end; margin-bottom:20px;">
-              <button id="cde-eval-btn" type="button" style="background:#0F172A; color:#FFFFFF; border:none; padding:10px 22px; border-radius:6px; font-size:13.5px; font-weight:700; cursor:pointer; display:inline-flex; align-items:center; gap:8px;">
-                <i class="bi bi-play-circle-fill"></i> Executar Avalia&ccedil;&atilde;o de Cr&eacute;dito (&lt; 5ms)
-              </button>
-            </div>
-
-            <!-- RESULTADO E AUDITORIA DA DECISÃO -->
-            <div id="cde-result-card" style="background:#FFFFFF; border:1px solid #CBD5E1; border-radius:8px; padding:20px 22px; box-shadow:0 1px 4px rgba(0,0,0,0.03);">
-              <!-- Preenchido dinamicamente via JS -->
-            </div>
-          </div>
-
-          <!-- PAINEL DE OBSERVABILIDADE & DRIFT (PSI & KS) -->
-          <div style="background:#FFFFFF; border:1px solid var(--line); border-radius:10px; padding:24px 26px; margin-bottom:2.4rem;">
-            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:14px; border-bottom:1px solid #F1F5F9; padding-bottom:12px;">
-              <div>
-                <span style="font-size:11px; font-weight:800; color:#D97706; background:#FEF3C7; padding:3px 8px; border-radius:4px; text-transform:uppercase; letter-spacing:0.5px;">
-                  Observabilidade MLOps
-                </span>
-                <h3 style="margin:4px 0 0; font-size:1.15rem; font-weight:800; color:#0F172A;">
-                  Monitor de Estabilidade Populacional (PSI) &amp; Teste Kolmogorov-Smirnov
-                </h3>
-              </div>
-              <div style="display:flex; align-items:center; gap:8px;">
-                <label for="psi-cohort-select" style="font-size:12.5px; font-weight:600; color:#475569;">Safra de Monitoramento:</label>
-                <select id="psi-cohort-select" style="font-size:13px; padding:5px 10px; border-radius:6px; border:1px solid #CBD5E1; background:#FFFFFF; color:#0F172A; font-weight:600;">
-                  <option value="stable" selected>Safra 2026-Q1 &middot; Opera&ccedil;&atilde;o Normal (PSI = 0,024 &middot; Est&aacute;vel)</option>
-                  <option value="moderate">Safra 2026-Q2 &middot; Alerta de Risco (PSI = 0,168 &middot; Aten&ccedil;&atilde;o)</option>
-                  <option value="critical">Safra 2026-Q3 &middot; Choque de Safra (PSI = 0,325 &middot; Drift Severo)</option>
-                </select>
-              </div>
-            </div>
-
-            <p style="margin:0 0 16px; font-size:14px; line-height:1.65; color:#475569;">
-              O Population Stability Index (PSI) compara a distribui&ccedil;&atilde;o de scores dec&iacute;licos da safra de treino (baseline hist&oacute;rico) com as propostas recebidas no ambiente produtivo. Limiares de governan&ccedil;a adotados: <strong>PSI &lt; 0,10</strong> (Est&aacute;vel &middot; sem interven&ccedil;&atilde;o); <strong>0,10 &le; PSI &lt; 0,25</strong> (Alerta Moderado &middot; ciclo semanal); <strong>PSI &ge; 0,25</strong> (Drift Cr&iacute;tico &middot; re-treino ou fallback de pol&iacute;tica).
-            </p>
-
-            <div id="psi-metric-box" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:14px; margin-bottom:18px;">
-              <!-- Preenchido dinamicamente via JS -->
-            </div>
-
-            <div style="font-size:12px; font-weight:700; color:#475569; text-transform:uppercase; margin-bottom:8px;">
-              Distribui&ccedil;&atilde;o de Frequ&ecirc;ncia por Decil: Baseline vs Safra em Produ&ccedil;&atilde;o
-            </div>
-            <div id="psi-decile-table" style="margin-bottom:14px;">
-              <!-- Tabela decílica preenchida via JS -->
-            </div>
-            <div id="psi-action-box" style="padding:12px 16px; border-radius:8px; font-size:13.5px; line-height:1.6;">
-              <!-- Alerta de governança via JS -->
-            </div>
-          </div>
-
-          <!-- AUDITORIA DO CÓDIGO E TESTES DO CREDIT DECISION LAB -->
-          <div class="study-note" style="background:#FFFFFF; border:1px solid var(--line); border-left:4px solid #10B981; border-radius:10px; padding:22px 24px; margin:2.2rem 0 2.6rem;">
-            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:8px;">
-              <div style="color:var(--ink-heading); font-weight:700; font-size:15px;">
-                Como auditar e executar os m&oacute;dulos do Credit Decision Lab localmente
-              </div>
-              <span style="background:#ECFDF5; color:#065F46; font-size:12px; font-weight:700; padding:3px 10px; border-radius:12px; border:1px solid #A7F3D0;">
-                <i class="bi bi-shield-check"></i> 33/33 Testes Passando no CI
-              </span>
-            </div>
-            <p style="margin:0 0 12px; font-size:14px; line-height:1.65; color:#475569;">
-              Os m&oacute;dulos da esteira operacional est&atilde;o versionados em <code>codigo/estudo-05-funil-politica-credito/src/</code> (<code>credit_decision_engine.py</code>, <code>risk_drift_monitor.py</code> e <code>capital_optimizer.py</code>) com cobertura de testes unit&aacute;rios completa em <code>testes/test_credit_decision_lab.py</code>.
-            </p>
-            <pre class="repro-terminal" style="margin:0;">git clone https://github.com/carlosfelix06/carlosfelix06.github.io.git
-cd carlosfelix06.github.io/codigo/estudo-05-funil-politica-credito
-python -m pytest testes/test_credit_decision_lab.py -v
-# 11 passed in 1.18s (Lat&ecirc;ncia de infer&ecirc;ncia &lt; 25ms, PSI can&ocirc;nico, KS drift e SciPy HiGHS)</pre>
-          </div>
-        </section>
-
-                <section id="metodologia" style="margin-top:3.2rem;">
+        <section id="metodologia" style="margin-top:3.2rem;">
           <h2 class="study-h2" style="border-bottom:2px solid var(--line); padding-bottom:.5rem; margin-bottom:0.6rem;">Nota Técnica, Especificação das Variáveis e Limites do Estudo</h2>
           <p class="study-sub" style="margin:0 0 14px; font-size:15.5px; font-weight:600; color:#0F172A; line-height:1.5;">Apêndice Técnico, Particionamento e Fronteiras de Validade Metodológica</p>
           <p style="margin:0 0 1.4rem; font-size:15px; line-height:1.7; color:#475569;">As seis seções abaixo detalham a partição dos dados, a lista exata de variáveis de cada modelo, os pontos de corte estatísticos e as fronteiras de validade para quem deseja auditar a modelagem em profundidade.</p>
-          <section id="etapa-1" class="canonical-step" style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:24px 26px; margin-bottom:1.5rem; box-shadow:0 1px 4px rgba(0,0,0,0.02);">  <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px; border-bottom:1px solid var(--line); padding-bottom:12px;">    <span style="background:var(--primary); color:#FFFFFF; font-size:12px; font-weight:800; width:26px; height:26px; border-radius:50%; display:grid; place-items:center;">1</span>    <h3 style="font-size:1.2rem; font-weight:800; color:var(--ink-heading); margin:0;">Resumo executivo</h3>  </div>  <div class="canonical-content" style="color:var(--ink); font-size:15px; line-height:1.7;"><p>Esta nota técnica consolida a especificação matemática, a escolha de calibração e as fronteiras de validade do funil R1→R2→R3→R4 e da Matriz 3×3 apresentados nos Atos 1 a 5 acima. Todos os números provêm do pipeline reproduzível em <code>codigo/estudo-05-funil-politica-credito/src/funil_politica_credito.py</code> sobre a base pública OpenML 46929 (90.000 treino · 30.000 validação · 30.000 teste fora da amostra).</p></div></section>
-<section id="etapa-2" class="canonical-step" style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:24px 26px; margin-bottom:1.5rem; box-shadow:0 1px 4px rgba(0,0,0,0.02);">  <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px; border-bottom:1px solid var(--line); padding-bottom:12px;">    <span style="background:var(--primary); color:#FFFFFF; font-size:12px; font-weight:800; width:26px; height:26px; border-radius:50%; display:grid; place-items:center;">2</span>    <h3 style="font-size:1.2rem; font-weight:800; color:var(--ink-heading); margin:0;">Contexto e dados</h3>  </div>  <div class="canonical-content" style="color:var(--ink); font-size:15px; line-height:1.7;"><p>Base pública GiveMeSomeCredit (OpenML 46929, 150.000 registros históricos de tomadores, 11 colunas originais, sem dados pessoais identificáveis e com 6,684% de inadimplência grave observada em 24 meses).</p>
+          <section id="etapa-1" class="canonical-step" style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:24px 26px; margin-bottom:1.5rem; box-shadow:0 1px 4px rgba(0,0,0,0.02);">  <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px; border-bottom:1px solid var(--line); padding-bottom:12px;">    <span style="background:var(--primary); color:#FFFFFF; font-size:12px; font-weight:800; width:26px; height:26px; border-radius:50%; display:grid; place-items:center;">1</span>    <h3 style="font-size:1.2rem; font-weight:800; color:var(--ink-heading); margin:0;">Resumo executivo</h3>  </div>  <div class="canonical-content" style="color:var(--ink); font-size:15px; line-height:1.7;"><p>Esta nota técnica consolida a especificação matemática, a escolha de calibração e as fronteiras de validade do funil R1→R2→R3→R4 e da Matriz 3×3 apresentados nos Atos 1 a 5 acima. A GiveMeSomeCredit é uma base histórica de 2011; o split estratificado 60/20/20 produz validação e teste fora da amostra, mas não constitui um teste temporal out-of-time (OOT).</p>
+<p>Os eixos LP e CP foram avaliados contra o mesmo alvo de inadimplência grave em dois anos. Observou-se complementaridade preditiva, não ortogonalidade absoluta: <code>DebtRatio</code> é construído com <code>MonthlyIncome</code> e há dependência entre variáveis dos eixos. Todos os números provêm do pipeline reproduzível em <code>codigo/estudo-05-funil-politica-credito/src/funil_politica_credito.py</code> sobre a base pública OpenML 46929 (90.000 treino · 30.000 validação · 30.000 teste).</p></div></section>
+<section id="etapa-2" class="canonical-step" style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:24px 26px; margin-bottom:1.5rem; box-shadow:0 1px 4px rgba(0,0,0,0.02);">  <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px; border-bottom:1px solid var(--line); padding-bottom:12px;">    <span style="background:var(--primary); color:#FFFFFF; font-size:12px; font-weight:800; width:26px; height:26px; border-radius:50%; display:grid; place-items:center;">2</span>    <h3 style="font-size:1.2rem; font-weight:800; color:var(--ink-heading); margin:0;">Contexto e dados</h3>  </div>  <div class="canonical-content" style="color:var(--ink); font-size:15px; line-height:1.7;"><p>Base histórica GiveMeSomeCredit (OpenML 46929, publicada em 2011; 150.000 registros de tomadores, 11 colunas originais, sem dados pessoais identificáveis e com 6,684% de inadimplência grave observada em 24 meses).</p>
 <ul>
 <li>Particionamento estratificado disjunto (60% / 20% / 20%): 90.000 para treino (6,684% de perda), 30.000 para validação e pontos de corte (6,683%) e 30.000 para teste final fora da amostra (6,683%).</li>
-<li>Complementaridade preditiva observada sobre o mesmo alvo de 24 meses (zero colunas compartilhadas diretamente, com baixa colinearidade VIF = 1,060, embora <code>DebtRatio</code> no eixo de curto prazo utilize a renda mensal na sua construção original):</li>
+<li>Os eixos LP e CP predizem o mesmo alvo de inadimplência grave em 24 meses. A complementaridade preditiva observada não significa ortogonalidade absoluta: apesar de não haver colunas diretamente compartilhadas e o VIF ser 1,060, <code>DebtRatio</code> no eixo de curto prazo é construído usando <code>MonthlyIncome</code>:</li>
 <li>Eixo de Longo Prazo (Spline + Regressão Logística, 11 variáveis estruturais): <code>age</code>, <code>income_missing</code>, <code>log_income</code>, <code>dependents_missing</code>, <code>dependents</code>, <code>open_lines</code>, <code>real_estate_loans</code>, <code>real_estate_share</code>, <code>has_real_estate</code>, <code>zero_open_lines</code> e <code>income_per_dep</code>.</li>
 <li>Eixo de Curto Prazo (Random Forest regularizado, 9 variáveis de pressão imediata): <code>rev_util_capped</code>, <code>log_rev_util</code>, <code>rev_over_08</code>, <code>debt_ratio_known</code>, <code>debt_amt_no_income</code>, <code>d30</code>, <code>d60</code>, <code>d90</code> e <code>severity_idx</code>.</li>
 </ul></div></section>
@@ -1360,7 +1157,8 @@ python -m pytest testes/test_credit_decision_lab.py -v
 <p>3. <strong>Ponto de Equilíbrio Comercial (Viabilidade das Contrapropostas):</strong> Sem a elevação de spread no Cluster B, a política 2D é derrotada pela política Rígida (<code>4.312.080</code> vs <code>4.553.250 u.m.</code>). Além disso, para que a estratégia supere a Rígida no cenário base (LGD 65%), a taxa de aceitação da contraproposta no Cluster B precisa atingir no mínimo <strong>75,9%</strong> (<code>break-even = 75,9%</code>). Se a adesão real dos clientes for inferior a esse patamar, a Regra Rígida tradicional entrega maior resultado financeiro líquido.</p>
 <p>4. <strong>Governança tabular vs modelo contínuo:</strong> O RF 1D contínuo pareado gera <code>5.076.630 u.m.</code>, superando a Matriz 3×3 em <code>+25.110 u.m.</code> (<code>+0,49%</code>). A escolha da grade 3×3 decorre de um trade-off deliberado: aceita-se uma perda econômica ínfima de 0,49% em troca de 9 células operacionais com governança e auditoria regulatória transparentes.</p></div></section>
 <section id="etapa-6" class="canonical-step" style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:24px 26px; margin-bottom:1.5rem; box-shadow:0 1px 4px rgba(0,0,0,0.02);">  <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px; border-bottom:1px solid var(--line); padding-bottom:12px;">    <span style="background:var(--primary); color:#FFFFFF; font-size:12px; font-weight:800; width:26px; height:26px; border-radius:50%; display:grid; place-items:center;">6</span>    <h3 style="font-size:1.2rem; font-weight:800; color:var(--ink-heading); margin:0;">Fronteiras de validade e síntese final</h3>  </div>  <div class="canonical-content" style="color:var(--ink); font-size:15px; line-height:1.7;"><ul>
-<li><strong>Base histórica transversal (GiveMeSomeCredit · OpenML 46929):</strong> Análise conduzida sobre 150.000 registros históricos de crédito com particionamento estratificado 60/20/20 (30.000 observações fora da amostra). A base pública não registra o funil original de concessão, recusas passadas nem safra temporal de originação; portanto, os resultados representam simulações contrafactualmente controladas, sem cálculo de PSI ou Reject Inference.</li>
+<li><strong>Base histórica transversal (GiveMeSomeCredit · OpenML 46929 · 2011):</strong> Análise conduzida sobre 150.000 registros históricos de crédito com split estratificado 60/20/20 (30.000 observações no teste). Esse particionamento não é um teste temporal out-of-time (OOT); a base também não registra o funil original de concessão, recusas passadas nem safra temporal de originação. Os resultados representam simulações contrafactualmente controladas, sem cálculo de PSI ou Reject Inference.</li>
+<li><strong>Alvo e complementaridade dos modelos:</strong> LP e CP predizem o mesmo desfecho de inadimplência grave em 2 anos. A complementaridade observada não implica ortogonalidade absoluta: <code>DebtRatio</code> incorpora <code>MonthlyIncome</code> em sua construção, apesar da baixa colinearidade medida entre os scores.</li>
 <li><strong>Sensibilidade a parâmetros comerciais:</strong> O limite padrão (10.000 u.m.), o custo operacional (100 u.m./contrato), as taxas de juros (5,5% e 7,0%) e o haircut de limite (65%) são parâmetros de política simulada, e sua viabilidade depende do cumprimento do limiar de 75,9% de adesão na contraproposta.</li>
 <li><strong>Auditoria de calibração:</strong> O Random Forest regularizado dispensa recalibração empírica pós-modelo (ECE = 0,00123), mantendo estabilidade probabilística nas faixas de decisão.</li>
 </ul></div></section>
@@ -1465,11 +1263,11 @@ python -m pytest testes/test_credit_decision_lab.py -v
     "hero_diff_label": "Previsão de Crédito · Banco Central",
     "hero_diff_val": "Reduziu o erro de projeção (MAE) em <strong>R$ 7,39 bi/mês (-54%)</strong> com calendário ANBIMA →",
     "hero_domain_label": "Qualidade de Dados & Cobrança · 30 mil contas",
-    "hero_domain_val": "Preservou <strong>97,6% (NT$ 6,48M simulados)</strong> em experimento de falha de dados →",
+    "hero_domain_val": "Estima <strong>NT$ 6,48M (97,6%)</strong> em simulação sob premissas operacionais; não é recuperação real →",
     "hero_method_label": "Base Única de Empresas (MDM) · 7.905 registros CVM",
     "hero_method_val": "Eliminou <strong>14,8%</strong> de duplicidades e unificou empresas e fundos em visão confiável →",
-    "hero_avail_label": "Taxas de Juros & Concorrência · 138 Bancos + IBGE",
-    "hero_avail_val": "Mapeou variação de até <strong>15,6x</strong> nos juros entre bancos e mediu a concorrência local →",
+    "hero_avail_label": "Taxas Bancárias & Renda Regional · 138 Bancos + IBGE",
+    "hero_avail_val": "Mapeou dispersão de até <strong>15,6x</strong> entre bancos e avaliou a renda regional separadamente →",
     "about_title": "Sobre mim & Trajetória",
     "about_sub": "Uma visão sobre a bagagem técnica, postura analítica e como gero impacto nas operações.",
     "about_bio_p1": "Atuo na interseção entre <strong>Dados, Analytics e Operações de Negócio</strong>, investigando a origem, a granularidade e as regras das informações para construir indicadores confiáveis, identificar oportunidades e apoiar decisões estratégicas e operacionais.",
@@ -1517,29 +1315,34 @@ python -m pytest testes/test_credit_decision_lab.py -v
     "study05_title": "Otimização de Política de Crédito: Maximizando o Retorno com Score e Machine Learning",
     "study05_desc": "Separa eliminatórios por gravidade (<code>R1→R2→R3</code>) e aplica Matriz 3×3 na R4: <strong>5,05M u.m.</strong> de P&amp;L simulado (+10,9% sobre a regra rígida de 4,55M). O ganho decorre da precificação de risco no Cluster B (+739k u.m.), exigindo adesão mínima de 75,9%. O RF 1D pareado rende 5,08M (−0,49%): a matriz entrega 9 células auditáveis.",
     "study05_btn_study": "Ler Estudo e Simulador →",
+    "study06_badge": "Estudo 06 · IA, evidência e decisão",
+    "study06_meta": "Síntese dos Estudos 01 (UCI) e 05 (OpenML) · dados públicos",
+    "study06_title": "A Inteligência Artificial está realmente melhorando as decisões?",
+    "study06_desc": "Dois benchmarks mostram ganhos condicionais, não um efeito de implantação empresarial: sob falha de dados simulada, o AUC cai de 0,7853 para 0,7034; no OpenML, a combinação soma 0,0071 de AUC, enquanto o retorno depende de premissas comerciais.",
+    "study06_btn_study": "Ler Estudo e Evidências →",
     "hero_policy_label": "Concessão de Crédito & IA · 150 mil registros históricos",
     "hero_policy_val": "Elevou o P&amp;L simulado em <strong>+10,9%</strong> sobre a regra rígida, com Bad Rate EAD de <strong>1,05%</strong> (perda bruta de 0,69%) →",
     "study03_badge": "Estudo 03 · 138 Bancos + 108 UF-Anos",
     "study03_meta": "BCB Olinda (11m) + IBGE 2022–2025",
     "study03_title": "Onde Bancos Cobram Mais Caro e Limites da Renda Regional",
-    "study03_desc": "Em duas análises independentes (sem relação causal direta): mapeia taxas de <strong>138 bancos</strong> (dispersão de até <strong>15,57x</strong> e persistência de 11 meses, <code>Spearman ρ = 0,866</code>) e avalia separadamente <strong>108 UF-anos</strong> mostrando que renda estadual isolada não prevê a inadimplência futura (<code>MAE 1,28 vs 0,95 p.p.</code>).",
+    "study03_desc": "Duas conclusões independentes, sem inferência causal: o posicionamento das taxas de <strong>138 bancos</strong> persiste por 11 meses (<code>ρ = 0,866</code>); em <strong>108 UF-anos</strong>, renda estadual isolada não supera a inércia ao prever inadimplência (<code>MAE 1,28 vs 0,95 p.p.</code>).",
     "study03_btn_study": "Ler Estudo e Método →",
     "sidebar_title": "Demais Estudos",
     "sidebar_badge": "Acervo",
     "sidebar_intro": "Estudos aprofundados com simuladores interativos e modelos executivos:",
     "study01_badge": "Estudo 01 · UCI Credit Default",
     "study01_title": "Impacto da Qualidade dos Dados no Risco de Inadimplência",
-    "study01_desc": "Experimento simulado em 30.000 contas UCI mostrando que falhas de ETL degradam a fila de cobrança e que tratar ausências nativamente + ordenar por Perda Esperada preserva <strong>97,6% do retorno simulado (estimativa de NT$ 6,48M sob premissas parametrizadas)</strong>.",
+    "study01_desc": "Em experimento simulado com 30.000 contas UCI, tratamento nativo de ausências + Perda Esperada estima <strong>NT$ 6,48M (97,6%) sob premissas operacionais</strong>; não é recuperação efetiva observada em operação real.",
     "study01_btn_study": "Ler estudo →",
     "study01_btn_sim": "Simulador",
     "study01_btn_code": "Código ↗",
     "study02_badge": "Estudo 02 · Dados Abertos CVM",
     "study02_title": "Unificação de Cadastros Duplicados (MDM) na Base CVM",
-    "study02_desc": "Separa duas frentes na base CVM (7.905 registros → 6.736 CNPJs, <strong>-14,8%</strong>): (1) regra determinística de sobrevivência cadastral com CNPJ (Recência inverte <strong>78,6% · 33/42</strong> conflitos de status) e (2) acurácia do pareamento probabilístico sem CNPJ via HGB (<code>PR-AUC 0,884</code>).",
+    "study02_desc": "Separa sobrevivência determinística e pareamento: a regra de Recência diverge em <strong>33/42</strong> conflitos de status (<strong>78,6%</strong>), não uma medida de acurácia; Entity Resolution sem CNPJ é avaliada à parte (<code>PR-AUC 0,884</code>).",
     "study02_btn_study": "Ler estudo →",
     "study02_btn_sim": "Simulador",
     "study02_btn_code": "Código ↗",
-    "sidebar_catalog_link": "Ver Vitrine Completa com os 5 Estudos",
+    "sidebar_catalog_link": "Ver Vitrine Completa com os 6 Estudos",
     "catalog_title": "Vitrine de Estudos Analíticos",
     "catalog_sub": "Estudos de caso reais e dados públicos sobre Risco de Crédito, Qualidade de Dados, Resolução de Entidades e Econometria.",
     "catalog_back_home": "← Voltar ao Portfólio Principal",
@@ -1560,19 +1363,22 @@ python -m pytest testes/test_credit_decision_lab.py -v
     "cat_intro_desc": "Casos analíticos reproduzíveis baseados exclusivamente em fontes de dados públicas oficiais ou benchmarks públicos anonimizados (UCI Machine Learning Repository, Dados Abertos CVM, IBGE PNAD Contínua, Banco Central do Brasil SGS e GiveMeSomeCredit / OpenML #46929).",
     "cat_card01_badge": "Estudo 01 · UCI Credit Default",
     "cat_card01_title": "Impacto da Qualidade dos Dados no Risco de Inadimplência",
-    "cat_card01_desc": "Experimento simulado em 30.000 contas UCI: tratar ausências nativamente + priorizar por Perda Esperada preserva 97,6% do retorno simulado (NT$ 6,48M sob premissas operacionais parametrizadas).",
+    "cat_card01_desc": "Experimento simulado em 30.000 contas UCI estima NT$ 6,48M (97,6%) sob premissas operacionais; é retorno contrafactual, não recuperação efetiva em operação real.",
     "cat_card02_badge": "Estudo 02 · Dados Abertos CVM",
     "cat_card02_title": "Unificação de Cadastros Duplicados (MDM) na Base CVM",
-    "cat_card02_desc": "Consolida 7.905 registros da CVM (-14,8% duplicidades), separando a regra determinística de sobrevivência com CNPJ (78,6% de inversão por recência) da acurácia do pareamento sem CNPJ (PR-AUC 0,884).",
+    "cat_card02_desc": "Separa a regra determinística de sobrevivência com CNPJ (33/42 status divergentes por recência) da acurácia de pareamento sem CNPJ (Entity Resolution, PR-AUC 0,884).",
     "cat_card03_badge": "Estudo 03 · 138 Bancos + 108 UF-Anos",
     "cat_card03_title": "Onde Bancos Cobram Mais Caro e Limites da Renda Regional",
-    "cat_card03_desc": "Em duas análises independentes (sem nexo causal direto): mapeia a persistência de taxas em 138 bancos (15,57x, ρ = 0,866) e mostra em 108 UF-anos que renda estadual isolada falha fora da amostra (MAE 1,28 vs 0,95 p.p.).",
+    "cat_card03_desc": "Duas conclusões independentes, sem inferência causal: há persistência no posicionamento das taxas de 138 bancos; renda estadual isolada não supera a inércia na previsão para 2025 (MAE 1,28 vs 0,95 p.p.).",
     "cat_card04_badge": "Estudo 04 · Banco Central SGS",
     "cat_card04_title": "Previsão de Crédito PF: Backtest Walk-Forward e Efeito Calendário",
     "cat_card04_desc": "Ajustar por feriados nacionais ANBIMA e dias úteis reduz o erro absoluto de projeção (MAE) em R$ 7,39 bi/mês (de R$ 13,63 bi para R$ 6,24 bi/mês · wMAPE 2,79%) e acerta 97,0% dos meses na meta ±5%.",
     "cat_card05_badge": "Estudo 05 · 150 mil registros históricos (OpenML)",
     "cat_card05_title": "Otimização de Política de Crédito: Maximizando o Retorno com Score e Machine Learning",
     "cat_card05_desc": "Simulação Otimizada 2D aprova 49,68% com Bad Rate EAD de 1,05% e 5,05M u.m. (+10,9% vs rígida). P&amp;L decomposto em -255k + 14k + 739k (Cluster B @ 7%), com break-even em 75,9% de adesão.",
+    "cat_card06_badge": "Estudo 06 · IA, evidência e decisão",
+    "cat_card06_title": "A Inteligência Artificial está realmente melhorando as decisões?",
+    "cat_card06_desc": "Síntese de dois benchmarks públicos: o ganho preditivo é condicional e o retorno econômico é simulado; não há inferência de impacto empresarial real.",
     "cat_btn_read": "Ler estudo →",
     "cat_btn_code_data": "<i class='bi bi-github'></i> Código e Dados ↗",
     "cat_btn_code_res": "<i class='bi bi-github'></i> Código e Resultados ↗",
@@ -1631,7 +1437,7 @@ python -m pytest testes/test_credit_decision_lab.py -v
     "case2_kpi": "81,57% Recall Fim a Fim",
     "case2_title": "Resolução de Entidades &amp; Golden Record Cadastral (Dados Abertos CVM / 7.905 registros)",
     "case2_prob": "<strong>Problema:</strong> Múltiplos sistemas legados e cadastros públicos divergentes geravam duplicidade e quebra de relacionamento B2B.",
-    "case2_act": "<strong>Atuação no Experimento:</strong> Pipeline de Entity Resolution com deduplicação probabilística, blocagem fonética e sobrevivência temporal mapeando 33 de 42 conflitos reais de status.",
+    "case2_act": "<strong>Atuação no Experimento:</strong> Benchmark de Entity Resolution para medir acurácia de pareamento e, separadamente, auditoria das regras de sobrevivência determinística, que divergem em 33 de 42 conflitos de status.",
     "case2_stack": "<strong>Stack do Estudo:</strong> Python, Scikit-learn (HistGradientBoosting), Jaro-Winkler, Levenshtein",
     "case3_badge": "Benchmark 02 · Forecasting &amp; Finanças",
     "case3_kpi": "-54% Erro de Previsão",
@@ -1660,11 +1466,11 @@ python -m pytest testes/test_credit_decision_lab.py -v
     "hero_diff_label": "Credit Forecasting · Central Bank",
     "hero_diff_val": "Cut forecast MAE by <strong>R$ 7.39 bn/month (-54%)</strong> with ANBIMA holiday calendar →",
     "hero_domain_label": "Data Quality & Collections · 30k Accounts",
-    "hero_domain_val": "Recovered <strong>97.6%</strong> of financial value (NT$ 6.48M) in simulated data failure experiment →",
+    "hero_domain_val": "Estimated <strong>NT$ 6.48M (97.6%)</strong> in a simulated experiment under operating assumptions; not actual recovery →",
     "hero_method_label": "Unified Registry (MDM) · 7,905 CVM Records",
     "hero_method_val": "Eliminated <strong>14.8%</strong> duplicates and built a single, reliable entity view →",
-    "hero_avail_label": "Bank Pricing & Income · 138 Banks + IBGE",
-    "hero_avail_val": "Mapped up to <strong>15.6x</strong> interest rate spread and measured local competition impact →",
+    "hero_avail_label": "Bank Rates & Regional Income · 138 Banks + IBGE",
+    "hero_avail_val": "Mapped rate spreads up to <strong>15.6x</strong> and separately tested regional income →",
     "about_title": "About Me & Career",
     "about_sub": "A perspective on technical background, analytical mindset, and operational impact.",
     "about_bio_p1": "I operate at the intersection of <strong>Data, Analytics, and Business Operations</strong>, investigating the lineage, granularity, and business logic of information to build reliable indicators, identify opportunities, and support strategic and operational decisions.",
@@ -1712,27 +1518,32 @@ python -m pytest testes/test_credit_decision_lab.py -v
     "study05_title": "How a 2D Policy (Score × Random Forest) Lifts Return on EAD to 4.14% vs RF 1D & Rigid",
     "study05_desc": "Separates knock-outs by severity (<code>R1→R2→R3</code>) and applies a 3×3 Matrix in R4 (<strong>5.05M</strong> net P&amp;L, +10.9% vs rigid). Gain is driven by Cluster B pricing (+739k u.m.) with a 75.9% acceptance break-even threshold. Paired RF 1D yields 5.08M (-0.49%): matrix trades 0.49% for 9 auditable cells.",
     "study05_btn_study": "Read Study & Simulator →",
+    "study06_badge": "Study 06 · AI, evidence & decisions",
+    "study06_meta": "Synthesis of Studies 01 (UCI) and 05 (OpenML) · public data",
+    "study06_title": "Is Artificial Intelligence Really Improving Decisions?",
+    "study06_desc": "Two benchmarks show conditional gains, not a business deployment effect: under simulated data failure, AUC falls from 0.7853 to 0.7034; on OpenML, the blend adds 0.0071 AUC while returns depend on commercial assumptions.",
+    "study06_btn_study": "Read Study & Evidence →",
     "study03_badge": "Study 03 · 138 Banks + 108 State-Years",
     "study03_meta": "BCB Olinda (11m) + IBGE 2022–2025",
     "study03_title": "Where Banks Charge Most & Why Income Alone Fails to Predict Credit",
-    "study03_desc": "Compares rates across <strong>138 banks</strong> (a <strong>15.57x</strong> spread), proving price positioning persists over 11 months, and shows across <strong>108 state-years</strong> why static state income fails out-of-sample. <em>Method:</em> <code>K-Means + PCA (Spearman ρ = 0.866)</code> & fixed-effects panel (<code>MAE 1.28 vs 0.95 pp</code>).",
+    "study03_desc": "Two independent conclusions, without causal inference: rate positioning across <strong>138 banks</strong> persists for 11 months (<code>ρ = 0.866</code>); across <strong>108 state-years</strong>, state income alone does not beat inertia in predicting defaults (<code>MAE 1.28 vs 0.95 pp</code>).",
     "study03_btn_study": "Read Study & Method →",
     "sidebar_title": "Other Pipeline Studies",
     "sidebar_badge": "Archive",
     "sidebar_intro": "In-depth studies with interactive simulators and executive decision models:",
     "study01_badge": "Study 01 · UCI Credit Default",
     "study01_title": "Impact of Data Quality on Default Risk",
-    "study01_desc": "Shows on 30,000 accounts how missing data hides defaulters without triggering global alerts, recovering <strong>97.6% of value (NT$ 6.48M)</strong> with native missing handling. <em>Method:</em> <code>32.3% → 27.4%</code> capture drop & HGB NaN + Expected Loss.",
+    "study01_desc": "In a simulation on 30,000 UCI accounts, native missing-value handling + Expected Loss estimates <strong>NT$ 6.48M (97.6%) under operating assumptions</strong>; this is not recovery observed in real operations.",
     "study01_btn_study": "Read study →",
     "study01_btn_sim": "Simulator",
     "study01_btn_code": "Code ↗",
     "study02_badge": "Study 02 · CVM Open Data",
     "study02_title": "Entity Deduplication & Golden Record (MDM) on CVM Data",
-    "study02_desc": "Consolidates 7,905 official records into 6,736 unique CNPJs (<strong>-14.8% duplicates</strong>) and resolves <strong>78.6% (33/42)</strong> of conflicts by recency, even without tax keys. <em>Method:</em> Golden Record + Record Linkage (<code>PR-AUC 0.884</code>).",
+    "study02_desc": "Separates deterministic survivorship from matching: the recency rule yields <strong>33/42</strong> conflicting statuses (<strong>78.6%</strong>), not a matching-accuracy score; Entity Resolution without CNPJ is evaluated separately (<code>PR-AUC 0.884</code>).",
     "study02_btn_study": "Read study →",
     "study02_btn_sim": "Simulator",
     "study02_btn_code": "Code ↗",
-    "sidebar_catalog_link": "View Full Showcase with all 5 Studies",
+    "sidebar_catalog_link": "View Full Showcase with all 6 Studies",
     "catalog_title": "Analytical Studies Showcase",
     "catalog_sub": "Real-world case studies and open data on Credit Risk, Data Quality, Entity Resolution, and Econometrics.",
     "catalog_back_home": "← Back to Main Portfolio",
@@ -1753,19 +1564,22 @@ python -m pytest testes/test_credit_decision_lab.py -v
     "cat_intro_desc": "Reproducible analytical case studies based exclusively on official public data sources and anonymized public benchmarks (UCI Machine Learning Repository, CVM Open Data, IBGE PNAD Contínua, Central Bank of Brazil SGS, and GiveMeSomeCredit / OpenML #46929).",
     "cat_card01_badge": "Study 01 · UCI Credit Default",
     "cat_card01_title": "Impact of Data Quality on Default Risk",
-    "cat_card01_desc": "Proves on 30,000 accounts that missing data hides defaulters without moving global alerts; native missing handling recovers NT$ 6.48M (97.6% of clean value).",
+    "cat_card01_desc": "Simulation on 30,000 UCI accounts estimates NT$ 6.48M (97.6%) under operating assumptions; this is a counterfactual estimate, not actual recovery in real operations.",
     "cat_card02_badge": "Study 02 · CVM Open Data",
     "cat_card02_title": "Entity Deduplication & Golden Record (MDM) on CVM Data",
-    "cat_card02_desc": "Consolidates 7,905 CVM records (-14.8% duplicates), resolves 78.6% of conflicts by recency, and matches unkeyed records with HGB (PR-AUC 0.763 → 0.884).",
+    "cat_card02_desc": "Separates deterministic survivorship (33/42 status conflicts under recency) from matching accuracy without CNPJ (Entity Resolution, PR-AUC 0.884).",
     "cat_card03_badge": "Study 03 · 138 Banks + 108 State-Years",
     "cat_card03_title": "Where Banks Charge Most & Limits of Regional Income",
-    "cat_card03_desc": "Maps 138 banks with a 15.57x rate spread (persistence ρ = 0.866) and proves across 108 state-years that income alone fails out-of-sample tests.",
+    "cat_card03_desc": "Two independent findings, without causal inference: bank rate positioning persists across 138 institutions; state income alone does not beat inertia in the 2025 default prediction test.",
     "cat_card04_badge": "Study 04 · Central Bank SGS",
     "cat_card04_title": "Household Credit Forecasting: Walk-Forward Backtest & Calendar Effects",
     "cat_card04_desc": "Adjusting for Brazilian national holidays (ANBIMA) and business days reduces monthly forecast MAE by R$ 7.39 bn/month (wMAPE 2.79%) with 97.0% of months inside ±5%.",
     "cat_card05_badge": "Study 05 · 150k Historical Records (OpenML)",
     "cat_card05_title": "Credit Policy Optimization: Maximizing Returns with Score and Machine Learning",
     "cat_card05_desc": "Optimized 2D simulation approves 49.68% with 1.05% EAD Bad Rate and 5.05M P&amp;L (+10.9% vs rigid). P&amp;L bridge decomposes into -255k + 14k + 739k (Cluster B @ 7%), with a 75.9% acceptance break-even.",
+    "cat_card06_badge": "Study 06 · AI, evidence & decisions",
+    "cat_card06_title": "Is Artificial Intelligence Really Improving Decisions?",
+    "cat_card06_desc": "Synthesis of two public benchmarks: predictive gains are conditional and returns are simulated; no real business impact is inferred.",
     "cat_btn_read": "Read study →",
     "cat_btn_code_data": "<i class='bi bi-github'></i> Code &amp; Data ↗",
     "cat_btn_code_res": "<i class='bi bi-github'></i> Code &amp; Results ↗",
@@ -1824,7 +1638,7 @@ python -m pytest testes/test_credit_decision_lab.py -v
     "case2_kpi": "81.57% End-to-End Recall",
     "case2_title": "Entity Resolution &amp; Golden Record Architecture (CVM Open Data / 7,905 records)",
     "case2_prob": "<strong>Problem:</strong> Multiple legacy systems and diverging public records generated entity duplication and broke B2B relationship tracking.",
-    "case2_act": "<strong>Action in Benchmark:</strong> Entity Resolution pipeline with probabilistic deduplication, phonetic blocking, and temporal survivorship mapping 33 of 42 real status conflicts.",
+    "case2_act": "<strong>Action in Benchmark:</strong> Entity Resolution benchmark measuring matching accuracy, plus a separate audit of deterministic survivorship rules that diverge in 33 of 42 status conflicts.",
     "case2_stack": "<strong>Study Stack:</strong> Python, Scikit-learn (HistGradientBoosting), Jaro-Winkler, Levenshtein",
     "case3_badge": "Benchmark 02 · Forecasting &amp; Finance",
     "case3_kpi": "-54% Forecast Error",
@@ -1853,11 +1667,11 @@ python -m pytest testes/test_credit_decision_lab.py -v
     "hero_diff_label": "Previsión de Crédito · Banco Central",
     "hero_diff_val": "Redujo el error de proyección (MAE) en <strong>R$ 7,39 mil M/mes (-54%)</strong> con feriados ANBIMA →",
     "hero_domain_label": "Calidad de Datos & Cobranza · 30 mil cuentas",
-    "hero_domain_val": "Preservó el <strong>97,6% (NT$ 6,48M)</strong> del valor simulado en fallo de datos →",
+    "hero_domain_val": "Estimación de <strong>NT$ 6,48M (97,6%)</strong> en una simulación bajo supuestos operativos; no es recuperación real →",
     "hero_method_label": "Base Única de Empresas (MDM) · 7.905 registros CVM",
     "hero_method_val": "Eliminó <strong>14,8%</strong> de duplicidades y creó una visión única y confiable de empresas →",
-    "hero_avail_label": "Tasas & Ingreso Regional · 138 Bancos + IBGE",
-    "hero_avail_val": "Mapeó dispersión de hasta <strong>15,6x</strong> en tasas y midió el peso de la competencia local →",
+    "hero_avail_label": "Tasas Bancarias e Ingreso Regional · 138 Bancos + IBGE",
+    "hero_avail_val": "Mapeó una dispersión de hasta <strong>15,6x</strong> entre bancos y evaluó el ingreso regional por separado →",
     "about_title": "Sobre mí & Trayectoria",
     "about_sub": "Una visión sobre la base técnica, la postura analítica y cómo genero impacto en las operaciones.",
     "about_bio_p1": "Actúo en la intersección entre <strong>Datos, Analytics y Operaciones de Negocio</strong>, investigando el origen, granularidad y reglas de la información para construir indicadores confiables, identificar oportunidades y apoyar decisiones estratégicas y operativas.",
@@ -1905,27 +1719,32 @@ python -m pytest testes/test_credit_decision_lab.py -v
     "study05_title": "Cómo Política 2D (Score × Random Forest) Eleva Retorno s/ EAD a 4,14% vs RF 1D y Rígida",
     "study05_desc": "Separa filtros por gravedad (<code>R1→R2→R3</code>) y aplica Matriz 3×3 en R4: <strong>5,05M</strong> P&amp;L (+10,9% vs rígida). El beneficio proviene del precio en Cluster B (+739k), con umbral de aceptación del 75,9%. RF 1D rinde 5,08M (-0,49%): la matriz entrega 9 celdas auditables.",
     "study05_btn_study": "Leer Estudio y Simulador →",
+    "study06_badge": "Estudio 06 · IA, evidencia y decisión",
+    "study06_meta": "Síntesis de los Estudios 01 (UCI) y 05 (OpenML) · datos públicos",
+    "study06_title": "¿La Inteligencia Artificial realmente mejora las decisiones?",
+    "study06_desc": "Dos benchmarks muestran ganancias condicionales, no un efecto de implantación empresarial: ante una falla de datos simulada, el AUC cae de 0,7853 a 0,7034; en OpenML, la combinación suma 0,0071 de AUC y el retorno depende de supuestos comerciales.",
+    "study06_btn_study": "Leer Estudio y Evidencias →",
     "study03_badge": "Estudio 03 · 138 Bancos + 108 UF-Años",
     "study03_meta": "BCB Olinda (11m) + IBGE 2022–2025",
     "study03_title": "Dónde Cobran Más Caro los Bancos y Por Qué el Ingreso Solo Falla",
-    "study03_desc": "Analiza tasas de <strong>138 bancos</strong> (diferencia de hasta <strong>15,57x</strong>) probando persistencia de 11 meses, y muestra en <strong>108 UF-años</strong> por qué el ingreso estatal aislado falla en el futuro. <em>Método:</em> <code>K-Means + PCA (Spearman ρ = 0,866)</code> y efectos fijos (<code>MAE 1,28 vs 0,95 p.p.</code>).",
+    "study03_desc": "Dos conclusiones independientes, sin inferencia causal: el posicionamiento de tasas en <strong>138 bancos</strong> persiste 11 meses (<code>ρ = 0,866</code>); en <strong>108 UF-años</strong>, el ingreso estatal aislado no supera la inercia al predecir morosidad (<code>MAE 1,28 vs 0,95 p.p.</code>).",
     "study03_btn_study": "Leer Estudio y Método →",
     "sidebar_title": "Demás Estudios del Pipeline",
     "sidebar_badge": "Acervo",
     "sidebar_intro": "Estudios profundos con simuladores interactivos y modelos ejecutivos de decisión:",
     "study01_badge": "Estudio 01 · UCI Credit Default",
     "study01_title": "Impacto de la Calidad de los Datos en el Riesgo de Morosidad",
-    "study01_desc": "Demuestra en 30.000 cuentas que fallas catastrales ocultan morosos sin alterar alertas globales, recuperando <strong>97,6% del valor (NT$ 6,48M)</strong> al tratar ausencias nativamente. <em>Método:</em> <code>32,3% → 27,4%</code> en captura y HGB NaN + Pérdida Esperada.",
+    "study01_desc": "En una simulación con 30.000 cuentas UCI, el tratamiento nativo de ausencias + Pérdida Esperada estima <strong>NT$ 6,48M (97,6%) bajo supuestos operativos</strong>; no es recuperación observada en operaciones reales.",
     "study01_btn_study": "Leer estudio →",
     "study01_btn_sim": "Simulador",
     "study01_btn_code": "Código ↗",
     "study02_badge": "Estudio 02 · Datos Abiertos CVM",
     "study02_title": "Unificación de Registros Duplicados (MDM) en la Base CVM",
-    "study02_desc": "Consolida 7.905 registros en 6.736 CNPJs únicos (<strong>-14,8% duplicidades</strong>) y resuelve <strong>78,6% (33/42)</strong> de los conflictos por recencia, aun sin clave de CNPJ. <em>Método:</em> Golden Record + Record Linkage (<code>PR-AUC 0,884</code>).",
+    "study02_desc": "Separa supervivencia determinística y matching: la regla de Recencia produce <strong>33/42</strong> estados en conflicto (<strong>78,6%</strong>), no una medida de precisión; Entity Resolution sin CNPJ se evalúa aparte (<code>PR-AUC 0,884</code>).",
     "study02_btn_study": "Leer estudio →",
     "study02_btn_sim": "Simulador",
     "study02_btn_code": "Código ↗",
-    "sidebar_catalog_link": "Ver Vitrina Completa con los 5 Estudios",
+    "sidebar_catalog_link": "Ver Vitrina Completa con los 6 Estudios",
     "catalog_title": "Vitrina de Estudios Analíticos",
     "catalog_sub": "Casos de estudio reales y datos públicos sobre Riesgo de Crédito, Calidad de Datos, Resolución de Entidades y Econometría.",
     "catalog_back_home": "← Volver al Portafolio Principal",
@@ -1946,19 +1765,22 @@ python -m pytest testes/test_credit_decision_lab.py -v
     "cat_intro_desc": "Casos analíticos reproducibles basados exclusivamente en fuentes públicas oficiales y benchmarks públicos anonimizados (UCI Machine Learning Repository, Datos Abiertos CVM, IBGE PNAD Contínua, Banco Central do Brasil SGS y GiveMeSomeCredit / OpenML #46929).",
     "cat_card01_badge": "Estudio 01 · UCI Credit Default",
     "cat_card01_title": "Impacto de la calidad de los datos en el riesgo de morosidad",
-    "cat_card01_desc": "Prueba en 30.000 cuentas que fallas catastrales ocultan morosos sin disparar alertas globales; el manejo nativo recupera NT$ 6,48M (97,6% del valor limpio).",
+    "cat_card01_desc": "La simulación en 30.000 cuentas UCI estima NT$ 6,48M (97,6%) bajo supuestos operativos; es una estimación contrafactual, no recuperación efectiva en operaciones reales.",
     "cat_card02_badge": "Estudio 02 · Datos Abiertos CVM",
     "cat_card02_title": "Unificación de Registros Duplicados (MDM) en la Base CVM",
-    "cat_card02_desc": "Consolida 7.905 registros CVM (-14,8% duplicidades), resuelve 78,6% de conflictos por recencia y cruza registros sin CNPJ con HGB (PR-AUC 0,763 → 0,884).",
+    "cat_card02_desc": "Separa supervivencia determinística (33/42 conflictos de estado bajo Recencia) de la precisión del matching sin CNPJ (Entity Resolution, PR-AUC 0,884).",
     "cat_card03_badge": "Estudio 03 · 138 Bancos + 108 UF-Años",
     "cat_card03_title": "Dónde Cobran Más Caro los Bancos y Límites del Ingreso Regional",
-    "cat_card03_desc": "Mapea 138 bancos con 15,57x de dispersión en tasas (persistencia ρ = 0,866) y prueba en 108 UF-años que el ingreso aislado falla fuera de muestra.",
+    "cat_card03_desc": "Dos hallazgos independientes, sin inferencia causal: persiste el posicionamiento de tasas bancarias; el ingreso estatal aislado no supera la inercia en la predicción de 2025.",
     "cat_card04_badge": "Estudio 04 · Banco Central SGS",
     "cat_card04_title": "Previsión de Crédito PF: Backtest Walk-Forward y Efecto Calendario",
     "cat_card04_desc": "Ajustar por feriados nacionales ANBIMA y días hábiles reduce el error mensual (MAE) en R$ 7,39 mil M/mes (wMAPE 2,79%) y acierta 97,0% de los meses en ±5%.",
     "cat_card05_badge": "Estudio 05 · 150 mil registros históricos (OpenML)",
     "cat_card05_title": "Optimización de Política de Crédito: Maximizando Retorno con Score e Inteligencia Artificial",
     "cat_card05_desc": "Simulación Optimizada 2D aprueba 49,68% con Bad Rate EAD de 1,05% y 5,05M (+10,9% vs rígida). P&amp;L descompuesto en -255k + 14k + 739k (Cluster B @ 7%), con umbral de 75,9% de aceptación.",
+    "cat_card06_badge": "Estudio 06 · IA, evidencia y decisión",
+    "cat_card06_title": "¿La Inteligencia Artificial realmente mejora las decisiones?",
+    "cat_card06_desc": "Síntesis de dos benchmarks públicos: la mejora predictiva es condicional y el retorno económico es simulado; no se infiere impacto empresarial real.",
     "cat_btn_read": "Leer estudio →",
     "cat_btn_code_data": "<i class='bi bi-github'></i> Código y Datos ↗",
     "cat_btn_code_res": "<i class='bi bi-github'></i> Código y Resultados ↗",
@@ -2017,7 +1839,7 @@ python -m pytest testes/test_credit_decision_lab.py -v
     "case2_kpi": "81,57% Recall Fin a Fin",
     "case2_title": "Resolución de Entidades &amp; Golden Record Catastral (Datos Abiertos CVM / 7.905 registros)",
     "case2_prob": "<strong>Problema:</strong> Múltiples sistemas heredados y registros públicos divergentes generaban duplicidad y rompían el seguimiento de relaciones B2B.",
-    "case2_act": "<strong>Acción en Benchmark:</strong> Pipeline de Entity Resolution con deduplicación probabilística, bloqueo fonético y supervivencia temporal mapeando 33 de 42 conflictos reales de estado.",
+    "case2_act": "<strong>Acción en Benchmark:</strong> Benchmark de Entity Resolution para medir precisión del matching, además de una auditoría separada de reglas determinísticas de supervivencia que difieren en 33 de 42 conflictos de estado.",
     "case2_stack": "<strong>Stack del Estudio:</strong> Python, Scikit-learn (HistGradientBoosting), Jaro-Winkler, Levenshtein",
     "case3_badge": "Benchmark 02 · Forecasting &amp; Finanzas",
     "case3_kpi": "-54% Error de Proyección",
@@ -2711,344 +2533,5 @@ python -m pytest testes/test_credit_decision_lab.py -v
   renderSim();
 })();
 </script>
-
-<script>
-// =============================================================================
-// Credit Decision Lab - Motor de Inferência e Simulador Operacional no Browser
-// =============================================================================
-(function() {
-  const PRESETS = {
-    prime: {
-      age: 48, income: 18000, deps: 1, openLines: 8, reLoans: 2,
-      revUtil: 0.12, debtRatio: 0.22, d30: 0, d90: 0, limitReq: 30000
-    },
-    moderate: {
-      age: 29, income: 4500, deps: 0, openLines: 4, reLoans: 0,
-      revUtil: 0.45, debtRatio: 0.35, d30: 1, d90: 0, limitReq: 10000
-    },
-    overdue90: {
-      age: 40, income: 12000, deps: 1, openLines: 4, reLoans: 1,
-      revUtil: 0.15, debtRatio: 0.20, d30: 0, d90: 1, limitReq: 20000
-    },
-    debt_heavy: {
-      age: 35, income: 5000, deps: 0, openLines: 6, reLoans: 0,
-      revUtil: 0.40, debtRatio: 0.72, d30: 0, d90: 0, limitReq: 8000
-    },
-    rev_heavy: {
-      age: 33, income: 6000, deps: 1, openLines: 5, reLoans: 0,
-      revUtil: 1.20, debtRatio: 0.35, d30: 0, d90: 0, limitReq: 12000
-    }
-  };
-
-  const presetSelect = document.getElementById("cde-preset-select");
-  if (presetSelect) {
-    presetSelect.addEventListener("change", function() {
-      const p = PRESETS[this.value];
-      if (!p) return;
-      document.getElementById("cde-age").value = p.age;
-      document.getElementById("cde-income").value = p.income;
-      document.getElementById("cde-deps").value = p.deps;
-      document.getElementById("cde-open-lines").value = p.openLines;
-      document.getElementById("cde-re-loans").value = p.reLoans;
-      document.getElementById("cde-rev-util").value = p.revUtil;
-      document.getElementById("cde-debt-ratio").value = p.debtRatio;
-      document.getElementById("cde-d30").value = p.d30;
-      document.getElementById("cde-d90").value = p.d90;
-      document.getElementById("cde-limit-req").value = p.limitReq;
-      evaluateProposal();
-    });
-  }
-
-  function evaluateProposal() {
-    const t0 = performance.now();
-    const age = parseInt(document.getElementById("cde-age").value, 10) || 18;
-    const income = parseFloat(document.getElementById("cde-income").value) || 0.0;
-    const deps = parseInt(document.getElementById("cde-deps").value, 10) || 0;
-    const openLines = parseInt(document.getElementById("cde-open-lines").value, 10) || 0;
-    const reLoans = parseInt(document.getElementById("cde-re-loans").value, 10) || 0;
-    const revUtil = parseFloat(document.getElementById("cde-rev-util").value) || 0.0;
-    const debtRatio = parseFloat(document.getElementById("cde-debt-ratio").value) || 0.0;
-    const d30 = parseInt(document.getElementById("cde-d30").value, 10) || 0;
-    const d90 = parseInt(document.getElementById("cde-d90").value, 10) || 0;
-    const limitReq = parseFloat(document.getElementById("cde-limit-req").value) || 1000.0;
-
-    const rejections = [];
-    if (d90 > 0) {
-      rejections.push("R1: Inadimplência grave recente (90+ dias de atraso nos últimos 24 meses).");
-    }
-    if (debtRatio > 0.50) {
-      rejections.push(`R2: Comprometimento financeiro excessivo (Debt Ratio ${(debtRatio * 100).toFixed(0)}% > teto de 50%).`);
-    }
-    if (revUtil > 1.00) {
-      rejections.push(`R3: Alavancagem rotativa saturada (${(revUtil * 100).toFixed(0)}% > 100%).`);
-    }
-
-    let decision, approvedLimit, rateMonthly, clusterName, trigger, pdVal, lpScore, badgeBg, badgeColor;
-
-    if (rejections.length > 0) {
-      decision = "DECLINED_POLICY";
-      approvedLimit = 0.0;
-      rateMonthly = 0.0;
-      clusterName = "Descartado na Entrada (Filtros R1-R3)";
-      trigger = rejections[0].startsWith("R1:") ? "REJECTED_FILTER_R1" : (rejections[0].startsWith("R2:") ? "REJECTED_FILTER_R2" : "REJECTED_FILTER_R3");
-      pdVal = null;
-      lpScore = null;
-      badgeBg = "#FEE2E2";
-      badgeColor = "#991B1B";
-    } else {
-      // Scoring Model Fallback
-      const logInc = Math.log1p(Math.max(0, income));
-      lpScore = 600.0 + (age - 45.0) * 2.5 + (logInc - 8.5) * 25.0 + (reLoans > 0 ? 35.0 : 0.0) - (deps > 3 ? 20.0 : 0.0);
-      lpScore = Math.max(300, Math.min(850, lpScore));
-
-      const revCapped = Math.min(revUtil, 5.0);
-      const sevIdx = d30 * 1.0 + d90 * 5.0;
-      const logOdds = -3.6 + sevIdx * 0.45 + revCapped * 0.55 + (revUtil > 0.8 ? 0.35 : 0.0) + debtRatio * 0.20;
-      pdVal = 1.0 / (1.0 + Math.exp(-logOdds));
-      pdVal = Math.max(0.005, Math.min(0.95, pdVal));
-
-      const lpBand = lpScore >= 680 ? 2 : (lpScore >= 480 ? 1 : 0);
-      const cpBand = pdVal < 0.040 ? 0 : (pdVal < 0.095 ? 1 : 2);
-
-      // Canonical Matrix Map
-      const matrixMap = {
-        "2,0": "A", "1,0": "A",
-        "0,0": "B", "1,1": "B", "2,1": "B",
-        "0,1": "C", "0,2": "C", "1,2": "C", "2,2": "C"
-      };
-      const assigned = matrixMap[`${lpBand},${cpBand}`] || "C";
-
-      if (assigned === "A") {
-        decision = "APPROVED_FULL";
-        approvedLimit = limitReq;
-        rateMonthly = 0.045; // 4,5% a.m.
-        clusterName = "Cluster A (Prime / Baixo Risco)";
-        trigger = "APPROVED_CLUSTER_A_FULL";
-        badgeBg = "#DCFCE7";
-        badgeColor = "#166534";
-      } else if (assigned === "B") {
-        decision = "COUNTEROFFER_ADJUSTED";
-        approvedLimit = Math.round(limitReq * 0.65);
-        rateMonthly = 0.070; // 7,0% a.m.
-        clusterName = "Cluster B (Perfil Moderado / Mitigação)";
-        trigger = "COUNTEROFFER_CLUSTER_B_RISK_ADJ";
-        badgeBg = "#FEF3C7";
-        badgeColor = "#92400E";
-      } else {
-        decision = "DECLINED_POLICY";
-        approvedLimit = 0.0;
-        rateMonthly = 0.0;
-        clusterName = "Cluster C (Subprime / Alto Risco)";
-        trigger = "REJECTED_CLUSTER_C_HIGH_RISK";
-        rejections.push("R4: Matriz de Risco Bidimensional categorizada em Cluster C (PD excessiva ou risco acumulado).");
-        badgeBg = "#FEE2E2";
-        badgeColor = "#991B1B";
-      }
-    }
-
-    const latencyMs = Math.max(0.8, (performance.now() - t0)).toFixed(2);
-    const mockHash = "7f4c" + Math.abs((age * 73 + income * 17 + limitReq) % 999999999).toString(16).padStart(8, "0") + "a189fec420b9e84d";
-
-    const decisionLabels = {
-      APPROVED_FULL: "APROVAÇÃO INTEGRAL (100% DO LIMITE)",
-      COUNTEROFFER_ADJUSTED: "CONTRAPROPOSTA MITIGADA (65% DO LIMITE)",
-      DECLINED_POLICY: "RECUSA POR POLÍTICA DE CRÉDITO"
-    };
-
-    const card = document.getElementById("cde-result-card");
-    if (!card) return;
-
-    card.innerHTML = `
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:14px; border-bottom:1px solid #F1F5F9; padding-bottom:12px;">
-        <span style="background:${badgeBg}; color:${badgeColor}; font-size:12.5px; font-weight:800; padding:5px 12px; border-radius:6px; letter-spacing:0.5px;">
-          ${decisionLabels[decision]}
-        </span>
-        <span style="font-size:12px; color:#64748B; font-family:monospace; background:#F8FAFC; border:1px solid #E2E8F0; padding:3px 8px; border-radius:4px;">
-          <i class="bi bi-stopwatch"></i> Latência: <strong>${latencyMs} ms</strong>
-        </span>
-      </div>
-
-      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:14px; margin-bottom:16px;">
-        <div style="background:#F8FAFC; padding:12px 14px; border-radius:6px; border:1px solid #E2E8F0;">
-          <div style="font-size:11px; font-weight:700; color:#64748B; text-transform:uppercase;">Limite Concedido</div>
-          <div style="font-size:1.25rem; font-weight:800; color:${approvedLimit > 0 ? '#0F172A' : '#94A3B8'};">
-            ${approvedLimit > 0 ? 'R$ ' + approvedLimit.toLocaleString('pt-BR') : 'R$ 0,00'}
-          </div>
-          <div style="font-size:11.5px; color:#64748B;">Solicitado: R$ ${limitReq.toLocaleString('pt-BR')}</div>
-        </div>
-
-        <div style="background:#F8FAFC; padding:12px 14px; border-radius:6px; border:1px solid #E2E8F0;">
-          <div style="font-size:11px; font-weight:700; color:#64748B; text-transform:uppercase;">Taxa Mensal Atribuída</div>
-          <div style="font-size:1.25rem; font-weight:800; color:${rateMonthly > 0 ? '#10B981' : '#94A3B8'};">
-            ${rateMonthly > 0 ? (rateMonthly * 100).toFixed(2).replace('.', ',') + '% a.m.' : '—'}
-          </div>
-          <div style="font-size:11.5px; color:#64748B;">Prazo padrão: 24 meses</div>
-        </div>
-
-        <div style="background:#F8FAFC; padding:12px 14px; border-radius:6px; border:1px solid #E2E8F0;">
-          <div style="font-size:11px; font-weight:700; color:#64748B; text-transform:uppercase;">Classificação de Risco</div>
-          <div style="font-size:1.05rem; font-weight:800; color:#0F172A; margin-top:2px;">
-            ${clusterName}
-          </div>
-          <div style="font-size:11.5px; color:#64748B;">Gatilho: <code>${trigger}</code></div>
-        </div>
-
-        <div style="background:#F8FAFC; padding:12px 14px; border-radius:6px; border:1px solid #E2E8F0;">
-          <div style="font-size:11px; font-weight:700; color:#64748B; text-transform:uppercase;">Métricas de Modelo</div>
-          <div style="font-size:12.5px; color:#0F172A; margin-top:4px;">
-            <strong>Score LP:</strong> ${lpScore !== null ? lpScore.toFixed(0) + ' pts' : 'N/A'}<br/>
-            <strong>PD Calibrada:</strong> ${pdVal !== null ? (pdVal * 100).toFixed(2).replace('.', ',') + '%' : 'N/A'}
-          </div>
-        </div>
-      </div>
-
-      ${rejections.length > 0 ? `
-        <div style="background:#FEF2F2; border-left:4px solid #EF4444; border-radius:4px; padding:10px 14px; margin-bottom:14px; font-size:13px; color:#991B1B;">
-          <strong>Motivos de Recusa por Política:</strong>
-          <ul style="margin:4px 0 0; padding-left:18px;">
-            ${rejections.map(r => `<li>${r}</li>`).join('')}
-          </ul>
-        </div>
-      ` : ''}
-
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; font-size:11.5px; color:#64748B; border-top:1px solid #F1F5F9; padding-top:10px;">
-        <span>Trilha de Auditoria (SHA-256): <code style="font-size:11px; color:#475569;">${mockHash}</code></span>
-        <span>Contrato Pydantic: <strong style="color:#059669;"><i class="bi bi-shield-check"></i> Válido</strong></span>
-      </div>
-    `;
-  }
-
-  const evalBtn = document.getElementById("cde-eval-btn");
-  if (evalBtn) evalBtn.addEventListener("click", evaluateProposal);
-
-  // =============================================================================
-  // Monitor de Drift Populacional (PSI) Interativo
-  // =============================================================================
-  const PSI_SCENARIOS = {
-    stable: {
-      psi: 0.024,
-      status: "STABLE",
-      badgeBg: "#DCFCE7",
-      badgeColor: "#166534",
-      statusLabel: "Distribuição Estável (Operação Normal)",
-      ksStat: 0.018,
-      ksPval: 0.421,
-      dqStatus: "OK",
-      action: "Modelo operando em perfeita consonância com os parâmetros de homologação. Nenhuma intervenção necessária.",
-      actualPcts: [9.8, 10.2, 9.7, 10.1, 10.0, 9.9, 10.3, 9.8, 10.1, 10.1]
-    },
-    moderate: {
-      psi: 0.168,
-      status: "MODERATE_SHIFT",
-      badgeBg: "#FEF3C7",
-      badgeColor: "#92400E",
-      statusLabel: "Alerta Moderado de Drift Populacional",
-      ksStat: 0.072,
-      ksPval: 0.003,
-      dqStatus: "WARNING",
-      action: "Migração moderada em direção a decis de maior risco (PD média +1,8 p.p.). Recomenda-se cadência semanal e simulação de stress na esteira.",
-      actualPcts: [7.2, 8.1, 8.8, 9.5, 10.2, 10.8, 11.5, 12.1, 11.2, 10.6]
-    },
-    critical: {
-      psi: 0.325,
-      status: "SIGNIFICANT_DRIFT",
-      badgeBg: "#FEE2E2",
-      badgeColor: "#991B1B",
-      statusLabel: "Drift Severo Detectado (Ação Obrigatória)",
-      ksStat: 0.145,
-      ksPval: 0.00001,
-      dqStatus: "CRITICAL",
-      action: "Deterioração severa de safra com concentração atípica nos decis 8, 9 e 10 (PSI >= 0.25). Acionar comitê de crédito, fallback de corte conservador e re-treino.",
-      actualPcts: [4.5, 5.2, 6.8, 8.0, 9.5, 11.2, 13.5, 15.1, 14.8, 11.4]
-    }
-  };
-
-  function renderPsi(scenarioKey) {
-    const sc = PSI_SCENARIOS[scenarioKey] || PSI_SCENARIOS.stable;
-    const metricBox = document.getElementById("psi-metric-box");
-    const decileTable = document.getElementById("psi-decile-table");
-    const actionBox = document.getElementById("psi-action-box");
-    if (!metricBox || !decileTable || !actionBox) return;
-
-    metricBox.innerHTML = `
-      <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:14px 16px;">
-        <div style="font-size:11px; font-weight:700; color:#64748B; text-transform:uppercase;">PSI Total</div>
-        <div style="font-size:1.6rem; font-weight:800; color:#0F172A;">${sc.psi.toFixed(3).replace('.', ',')}</div>
-        <div style="margin-top:4px;">
-          <span style="background:${sc.badgeBg}; color:${sc.badgeColor}; font-size:11px; font-weight:800; padding:2px 8px; border-radius:4px;">
-            ${sc.statusLabel}
-          </span>
-        </div>
-      </div>
-
-      <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:14px 16px;">
-        <div style="font-size:11px; font-weight:700; color:#64748B; text-transform:uppercase;">Estatística KS (2-sample)</div>
-        <div style="font-size:1.6rem; font-weight:800; color:#0F172A;">${sc.ksStat.toFixed(3).replace('.', ',')}</div>
-        <div style="font-size:12px; color:#64748B; margin-top:4px;">p-valor: ${sc.ksPval < 0.001 ? '< 0,001 (Significante)' : sc.ksPval.toFixed(3)}</div>
-      </div>
-
-      <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:14px 16px;">
-        <div style="font-size:11px; font-weight:700; color:#64748B; text-transform:uppercase;">Data Quality Gate</div>
-        <div style="font-size:1.6rem; font-weight:800; color:${sc.dqStatus === 'OK' ? '#059669' : (sc.dqStatus === 'WARNING' ? '#D97706' : '#DC2626')};">
-          ${sc.dqStatus}
-        </div>
-        <div style="font-size:12px; color:#64748B; margin-top:4px;">Taxa de nulos e range anomalies</div>
-      </div>
-    `;
-
-    const baselinePcts = [10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0];
-    const rows = baselinePcts.map((bPct, idx) => {
-      const aPct = sc.actualPcts[idx];
-      const bFrac = bPct / 100.0;
-      const aFrac = aPct / 100.0;
-      const cellPsi = (aFrac - bFrac) * Math.log(aFrac / bFrac);
-      const isShifted = Math.abs(aPct - bPct) >= 2.5;
-      return `
-        <tr style="${isShifted ? 'background:#FEF2F2; font-weight:600;' : ''}">
-          <td style="font-weight:700; text-align:center;">D${idx + 1}</td>
-          <td style="text-align:right;">${bPct.toFixed(1).replace('.', ',')}%</td>
-          <td style="text-align:right; color:${isShifted ? '#DC2626' : 'inherit'};">${aPct.toFixed(1).replace('.', ',')}%</td>
-          <td style="text-align:right;">${(aPct - bPct > 0 ? '+' : '') + (aPct - bPct).toFixed(1).replace('.', ',')}%</td>
-          <td style="text-align:right; font-family:monospace;">${cellPsi.toFixed(4).replace('.', ',')}</td>
-        </tr>
-      `;
-    }).join("");
-
-    decileTable.innerHTML = `
-      <div class="wrap" style="margin:0;">
-        <table style="width:100%; font-size:13px;">
-          <thead>
-            <tr>
-              <th style="text-align:center;">Decil</th>
-              <th style="text-align:right;">Baseline (Treino %)</th>
-              <th style="text-align:right;">Safra Atual (%)</th>
-              <th style="text-align:right;">Desvio (&Delta;)</th>
-              <th style="text-align:right;">Contribuição PSI</th>
-            </tr>
-          </thead>
-          <tbody>${rows}</tbody>
-        </table>
-      </div>
-    `;
-
-    actionBox.style.background = sc.badgeBg;
-    actionBox.style.color = sc.badgeColor;
-    actionBox.style.border = `1px solid ${sc.badgeColor}33`;
-    actionBox.innerHTML = `<strong>Ação Recomendada de Governança:</strong> ${sc.action}`;
-  }
-
-  const cohortSelect = document.getElementById("psi-cohort-select");
-  if (cohortSelect) {
-    cohortSelect.addEventListener("change", function() {
-      renderPsi(this.value);
-    });
-  }
-
-  // Inicializar estado padrão
-  evaluateProposal();
-  renderPsi("stable");
-})();
-</script>
-
 </body>
 </html>

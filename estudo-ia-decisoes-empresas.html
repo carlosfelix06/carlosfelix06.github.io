@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="alternate icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<title>A Inteligência Artificial está realmente melhorando as decisões? | Carlos Santos</title>
+<meta name="description" content="Síntese de evidências públicas sobre aprendizado de máquina, qualidade de dados e decisões de crédito, com fronteiras explícitas sobre o que os experimentos não provam.">
+<link rel="canonical" href="https://carlosfelix06.github.io/estudo-ia-decisoes-empresas.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Inteligência Artificial está realmente melhorando as decisões? | Carlos Santos">
+<meta property="og:description" content="Dois benchmarks públicos mostram ganhos preditivos condicionais, não o efeito de implantar IA em empresas reais.">
+<meta property="og:url" content="https://carlosfelix06.github.io/estudo-ia-decisoes-empresas.html">
+<meta property="og:image" content="https://carlosfelix06.github.io/assets/img/vitrine_estudo_06_ia_decisoes.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="A Inteligência Artificial está realmente melhorando as decisões? | Carlos Santos">
+<meta name="twitter:description" content="Dois benchmarks públicos mostram ganhos preditivos condicionais, não o efeito de implantar IA em empresas reais.">
+<meta name="twitter:image" content="https://carlosfelix06.github.io/assets/img/vitrine_estudo_06_ia_decisoes.svg">
+<link rel="stylesheet" href="assets/vendor/bootstrap-icons/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/css/style.css?v=20261116_pillfix">
+</head>
+<body>
+<header id="header">
+  <div class="container header-inner">
+    <div class="logo"><a href="index.html">Carlos Santos <span class="tagline-pill" data-i18n="tagline_pill">Dados &amp; Analytics</span></a></div>
+    <div class="header-right">
+      <nav id="navbar" aria-label="Navegação principal">
+        <ul>
+          <li><a href="index.html#hero" data-i18n="nav_home">Início</a></li>
+          <li><a href="index.html#sobre" data-i18n="nav_about">Sobre &amp; Trajetória</a></li>
+          <li><a href="index.html#entrega" data-i18n="nav_deliver">O que entrega</a></li>
+          <li><a href="index.html#ferramentas" data-i18n="nav_tools">Ferramentas</a></li>
+          <li><a href="estudos.html" class="nav-cta active" data-i18n="nav_studies">Vitrine de Estudos →</a></li>
+          <li><a href="index.html#contato" data-i18n="nav_contact">Contato</a></li>
+        </ul>
+      </nav>
+      <div class="lang-switcher" id="lang-switcher">
+        <button type="button" class="lang-btn" id="lang-btn" aria-label="Selecionar idioma" aria-expanded="false">
+          <i class="bi bi-globe2" style="font-size:13px; color:#FFA5C8;"></i>
+          <span class="lang-code" id="lang-current-code">PT</span>
+          <i class="bi bi-chevron-down" style="font-size:9px; margin-left:1px; opacity:0.8;"></i>
+        </button>
+        <ul class="lang-dropdown" id="lang-dropdown">
+          <li><button type="button" class="lang-option active" data-lang="pt"><span class="lang-code-pill">PT</span> Português</button></li>
+          <li><button type="button" class="lang-option" data-lang="en"><span class="lang-code-pill">EN</span> English</button></li>
+          <li><button type="button" class="lang-option" data-lang="es"><span class="lang-code-pill">ES</span> Español</button></li>
+        </ul>
+      </div>
+      <button type="button" class="mobile-nav-toggle" aria-label="Menu" aria-expanded="false" style="display:none;"><i class="bi bi-list"></i></button>
+    </div>
+  </div>
+</header>
+<section id="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="hero-tag">Estudo 06 · Evidência pública e decisão</span>
+      <h1 class="study-title">A Inteligência Artificial está realmente melhorando as decisões?</h1>
+      <div class="hero-role">O que dois benchmarks de crédito permitem — e não permitem — concluir sobre IA</div>
+      <p class="hero-summary">Síntese de resultados separados dos Estudos 01 (UCI, qualidade de dados) e 05 (OpenML 46929, política de crédito). Os experimentos mostram ganhos preditivos e simulações econômicas condicionais, mas não medem adoção nem resultados de empresas em produção.</p>
+      <div class="hero-cta-group">
+        <a class="btn-serasa" href="#evidencias">Ver evidências e decisão ↓</a>
+        <a class="btn-pill-compact" href="estudos.html">Vitrine de Estudos ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+<main>
+  <section class="section" style="padding:2.5rem 0 4rem;">
+    <div class="container">
+      <div class="study-article">
+        <div class="files">
+          <span class="label-group"><i class="bi bi-compass"></i> Navegação Interna:</span>
+          <a href="estudos.html" class="nav-back"><i class="bi bi-arrow-left"></i> Voltar à Vitrine</a>
+          <a href="#evidencias" class="nav-step">Evidências e decisão ↓</a>
+          <a href="#metodologia" class="nav-step">Método e fronteiras ↓</a>
+        </div>
+        <section id="evidencias" aria-label="Evidências quantitativas e conclusão" style="margin-top:1rem;">
+          <h2 class="study-h2">Síntese executiva: o ganho depende da decisão</h2>
+          <p class="study-sub">Em duas tarefas diferentes, os resultados indicam limites distintos: dados degradados prejudicam o modelo; um ganho de AUC não garante, sozinho, valor econômico.</p>
+          <div class="study-kpis" style="margin:1.2rem 0 1.8rem;">
+            <article class="study-kpi">
+              <div class="study-kpi-label">UCI · Choque de dados simulado</div>
+              <div class="study-kpi-value" style="color:#B42318;">AUC 0,7853 → 0,7034</div>
+              <div class="study-kpi-note">Queda sob falha de 50% no ETL de variáveis comportamentais após o deploy.</div>
+            </article>
+            <article class="study-kpi">
+              <div class="study-kpi-label">OpenML · Incremento sobre RF</div>
+              <div class="study-kpi-value" style="color:#0284C7;">AUC +0,0071</div>
+              <div class="study-kpi-note">Combinação 2D no teste OOS; o P&amp;L depende de premissas comerciais.</div>
+            </article>
+          </div>
+          <figure class="study-figure">
+            <img src="assets/img/vitrine_estudo_06_ia_decisoes.svg" alt="Dois resultados separados: o AUC do benchmark UCI cai com a falha simulada de dados, enquanto no OpenML a combinação de modelos eleva o AUC em 0,0071 sobre o Random Forest.">
+            <figcaption>Os painéis representam bases, alvos e protocolos distintos; as métricas não devem ser comparadas entre si nem interpretadas como efeito de implantação empresarial.</figcaption>
+          </figure>
+          <div class="study-note" style="background:#FFFFFF;border:1px solid var(--line);border-left:4px solid #D91568;border-radius:8px;padding:18px 20px;margin:1.8rem 0 2.2rem;">
+            <strong style="color:var(--ink-heading);font-size:14.5px;">Decisão prática</strong>
+            <p style="margin:6px 0 0;font-size:13.5px;color:var(--ink);">Exigir baseline pareado fora da amostra, limites monitoráveis de qualidade e calibração, resultado operacional na mesma exposição e valor líquido positivo sob sensibilidades comerciais. Sem isso, não substituir a regra de referência.</p>
+          </div>
+        </section>
+        <section id="metodologia" style="margin-top:2.2rem;">
+          <h2 class="study-h2">Método, resultados e fronteiras de validade</h2>
+          <p class="study-sub">A síntese mantém separados os achados observados em testes públicos e os retornos contrafactuais sob premissas explícitas.</p>
+          <section id="etapa-1" class="canonical-step" style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:24px 26px; margin-bottom:1.5rem; box-shadow:0 1px 4px rgba(0,0,0,0.02);">  <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px; border-bottom:1px solid var(--line); padding-bottom:12px;">    <span style="background:var(--primary); color:#FFFFFF; font-size:12px; font-weight:800; width:26px; height:26px; border-radius:50%; display:grid; place-items:center;">1</span>    <h3 style="font-size:1.2rem; font-weight:800; color:var(--ink-heading); margin:0;">Resumo executivo</h3>  </div>  <div class="canonical-content" style="color:var(--ink); font-size:15px; line-height:1.7;"><p><strong>Resposta curta:</strong> os experimentos deste portfólio mostram que aprendizado de máquina pode melhorar a previsão ou apoiar uma política de crédito mais rentável em condições controladas; eles <strong>não provam</strong> que a adoção de IA melhora resultados de empresas em operação. O desafio central é transformar um score confiável em uma decisão operacional que resista a falhas de dados e preserve valor sob premissas comerciais verificáveis.</p>
+<p>Esta síntese reúne dois estudos independentes, sem combinar suas amostras ou moedas. No benchmark UCI, um choque pós-implantação simulado degrada o ROC-AUC de <code>0,7853</code> para <code>0,7034</code>, e a estimativa de recuperação líquida cai de <code>NT$ 6,64 milhões</code> para <code>NT$ 4,58 milhões</code>. No GiveMeSomeCredit, a combinação de um score estrutural com Random Forest aumenta o AUC em <code>0,0071</code> sobre o Random Forest isolado; o P&amp;L apresentado é contrafactual e depende de margem, LGD e adesão.</p></div></section>
+<section id="etapa-2" class="canonical-step" style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:24px 26px; margin-bottom:1.5rem; box-shadow:0 1px 4px rgba(0,0,0,0.02);">  <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px; border-bottom:1px solid var(--line); padding-bottom:12px;">    <span style="background:var(--primary); color:#FFFFFF; font-size:12px; font-weight:800; width:26px; height:26px; border-radius:50%; display:grid; place-items:center;">2</span>    <h3 style="font-size:1.2rem; font-weight:800; color:var(--ink-heading); margin:0;">Contexto e dados</h3>  </div>  <div class="canonical-content" style="color:var(--ink); font-size:15px; line-height:1.7;"><p>A análise é uma <strong>síntese secundária</strong> de dois experimentos já reproduzíveis no repositório, e não um novo ensaio de implantação de IA:</p>
+<ul>
+<li><strong>Estudo 01 · UCI Default of Credit Card Clients:</strong> 30.000 registros públicos de Taiwan (2005), alvo de inadimplência no mês seguinte. Avalia modelos sob ausência aleatória e falha concentrada de atributos comportamentais, incluindo um choque pós-deploy simulado.</li>
+<li><strong>Estudo 05 · GiveMeSomeCredit / OpenML 46929:</strong> 150.000 registros históricos (2011), alvo de inadimplência grave em até dois anos. Compara score, Random Forest e combinação 2D em partições estratificadas disjuntas de treino, validação e teste.</li>
+</ul>
+<p>As unidades, os alvos, os períodos e as moedas são diferentes. As métricas são apresentadas dentro de cada estudo e não são agregadas em um efeito geral de “IA”.</p></div></section>
+<section id="etapa-3" class="canonical-step" style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:24px 26px; margin-bottom:1.5rem; box-shadow:0 1px 4px rgba(0,0,0,0.02);">  <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px; border-bottom:1px solid var(--line); padding-bottom:12px;">    <span style="background:var(--primary); color:#FFFFFF; font-size:12px; font-weight:800; width:26px; height:26px; border-radius:50%; display:grid; place-items:center;">3</span>    <h3 style="font-size:1.2rem; font-weight:800; color:var(--ink-heading); margin:0;">Método e análise</h3>  </div>  <div class="canonical-content" style="color:var(--ink); font-size:15px; line-height:1.7;"><p>Foram preservados os protocolos e resultados publicados nos dois estudos de origem; nenhum resultado foi reestimado nem tratado como observação de produção.</p>
+<div class="wrap"><table><thead><tr>
+<th>Evidência</th>
+<th class="num">Protocolo do estudo de origem</th>
+<th class="num">Medida de decisão</th>
+</tr></thead><tbody>
+<tr>
+<td>UCI · qualidade dos dados</td>
+<td class="num">Split estratificado 60/20/20, cinco sementes de máscara; choque pós-deploy com 50% de falha concentrada no bloco mensal</td>
+<td class="num">ROC-AUC, captura e exposição da fila Top 10%; recuperação líquida contrafactual</td>
+</tr>
+<tr>
+<td>OpenML · política de crédito</td>
+<td class="num">Split estratificado disjunto 90.000/30.000/30.000; comparação final em 30.000 observações de teste</td>
+<td class="num">AUC e intervalo bootstrap; política sob capital/EAD e P&amp;L simulado</td>
+</tr>
+</tbody></table></div>
+<p>O AUC mede ordenação de risco, não lucro. O resultado monetário do UCI usa uma taxa de recuperação e custos operacionais parametrizados; o P&amp;L do OpenML depende de limite, margem, LGD e adesão a contrapropostas. Por isso, previsão observada no teste e retorno simulado permanecem em categorias distintas.</p></div></section>
+<section id="etapa-4" class="canonical-step" style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:24px 26px; margin-bottom:1.5rem; box-shadow:0 1px 4px rgba(0,0,0,0.02);">  <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px; border-bottom:1px solid var(--line); padding-bottom:12px;">    <span style="background:var(--primary); color:#FFFFFF; font-size:12px; font-weight:800; width:26px; height:26px; border-radius:50%; display:grid; place-items:center;">4</span>    <h3 style="font-size:1.2rem; font-weight:800; color:var(--ink-heading); margin:0;">Resultados e interpretação</h3>  </div>  <div class="canonical-content" style="color:var(--ink); font-size:15px; line-height:1.7;"><div class="wrap"><table><thead><tr>
+<th>Estudo / condição</th>
+<th class="num">Resultado observado no teste ou experimento</th>
+<th class="num">Leitura para a decisão</th>
+</tr></thead><tbody>
+<tr>
+<td>UCI · sem falha vs. choque pós-deploy</td>
+<td class="num">ROC-AUC <code>0,7853 → 0,7034</code>; recuperação estimada <code>NT$ 6,64M → NT$ 4,58M</code></td>
+<td class="num">Uma métrica de modelo e a estimativa operacional pioram quando a entrada degrada.</td>
+</tr>
+<tr>
+<td>UCI · HGB robusto + perda esperada</td>
+<td class="num"><code>NT$ 6,48M</code> estimados, <code>97,6%</code> do baseline limpo; cobertura de exposição de <code>40,76%</code></td>
+<td class="num">Priorizar <code>probabilidade × exposição</code> recupera valor simulado; não é caixa recuperado em operação real.</td>
+</tr>
+<tr>
+<td>OpenML · RF vs. combinação Score + RF</td>
+<td class="num">AUC <code>0,8044 → 0,8116</code>; ganho <code>0,0071</code> (IC bootstrap 95% <code>0,0044–0,0097</code>)</td>
+<td class="num">O incremento preditivo é positivo, mas pequeno frente ao RF isolado.</td>
+</tr>
+<tr>
+<td>OpenML · política 2D vs. regra rígida</td>
+<td class="num">P&amp;L simulado <code>5,05M</code> vs. <code>4,55M</code> unidades monetárias (<code>+10,94%</code>)</td>
+<td class="num">O ganho depende da hipótese comercial: o efeito de reprecificação responde por <code>739.440</code> u.m.; adesão mínima estimada de <code>75,9%</code>.</td>
+</tr>
+</tbody></table></div>
+<p>Há ainda um limite importante para interpretar “melhor”: o Random Forest contínuo pareado chega a <code>5,08M</code> u.m., aproximadamente <code>0,49%</code> acima da matriz 3×3. A grade foi escolhida pelo trade-off de governança e auditabilidade, não por maximizar o P&amp;L simulado.</p></div></section>
+<section id="etapa-5" class="canonical-step" style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:24px 26px; margin-bottom:1.5rem; box-shadow:0 1px 4px rgba(0,0,0,0.02);">  <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px; border-bottom:1px solid var(--line); padding-bottom:12px;">    <span style="background:var(--primary); color:#FFFFFF; font-size:12px; font-weight:800; width:26px; height:26px; border-radius:50%; display:grid; place-items:center;">5</span>    <h3 style="font-size:1.2rem; font-weight:800; color:var(--ink-heading); margin:0;">Conclusão e implicação prática</h3>  </div>  <div class="canonical-content" style="color:var(--ink); font-size:15px; line-height:1.7;"><p><strong>Veredito:</strong> há evidência de que modelos de aprendizado de máquina melhoram medidas preditivas e podem apoiar decisões de crédito melhores em benchmarks públicos; não há evidência nestes dados de que a implantação de IA, por si só, tenha elevado o resultado de uma empresa real. A acurácia não substitui uma função de decisão bem definida, nem corrige dados degradados ou uma hipótese comercial inviável.</p>
+<p><strong>Regra aplicável:</strong> só promover um modelo à decisão quando, em teste fora da amostra e contra um baseline pareado, ele (1) mantém dados e calibração dentro de limites monitoráveis, (2) melhora a métrica operacional no mesmo volume ou exposição e (3) entrega valor líquido positivo sob sensibilidades de custo, perda e adesão. Caso qualquer condição falhe, manter a regra de referência ou encaminhar para revisão humana.</p></div></section>
+<section id="etapa-6" class="canonical-step" style="background:#FFFFFF; border:1px solid var(--line); border-radius:8px; padding:24px 26px; margin-bottom:1.5rem; box-shadow:0 1px 4px rgba(0,0,0,0.02);">  <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px; border-bottom:1px solid var(--line); padding-bottom:12px;">    <span style="background:var(--primary); color:#FFFFFF; font-size:12px; font-weight:800; width:26px; height:26px; border-radius:50%; display:grid; place-items:center;">6</span>    <h3 style="font-size:1.2rem; font-weight:800; color:var(--ink-heading); margin:0;">Fronteiras de validade e síntese final</h3>  </div>  <div class="canonical-content" style="color:var(--ink); font-size:15px; line-height:1.7;"><p><strong>Fronteiras de validade e síntese final</strong></p>
+<ul>
+<li>Os dois conjuntos são benchmarks históricos e transversais; o estudo UCI simula falha de dados, e o estudo OpenML não contém a decisão empresarial original, custos de implantação ou adesão observada. O split do OpenML não é validação temporal.</li>
+<li>O resultado UCI é uma estimativa contrafactual sob taxa de recuperação e custos parametrizados; o P&amp;L OpenML depende de premissas comerciais e não representa retorno realizado.</li>
+<li>Não se mede IA generativa, adoção organizacional, custo de integração, efeito causal ou impacto em empresas de outros setores. “IA” nesta síntese refere-se a modelos preditivos de aprendizado de máquina.</li>
+<li><strong>Síntese final:</strong> nos casos avaliados, há ganho preditivo condicional, mas o valor decisório depende de qualidade de dados, alinhamento da métrica ao objetivo operacional, premissas econômicas e governança. Não é válido extrapolar esses resultados para uma melhora geral de decisões empresariais.</li>
+</ul></div></section>
+        </section>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="site-footer"><div class="container"><p>&copy; Carlos Santos. Síntese de resultados de benchmarks públicos UCI e GiveMeSomeCredit / OpenML.</p></div></footer>
+<script>
+  window.toggleExtraTools = function() {
+    const container = document.getElementById('tools-extra-container');
+    const btn = document.getElementById('btn-toggle-tools');
+    if (!container || !btn) return;
+    const lang = document.documentElement.lang || 'pt';
+    const dict = (typeof I18N_DATA !== 'undefined' && I18N_DATA[lang]) ? I18N_DATA[lang] : {};
+    const isHidden = container.style.display === 'none' || container.style.display === '';
+    if (isHidden) {
+      container.style.display = 'block';
+      btn.setAttribute('aria-expanded', 'true');
+      const lessTxt = dict.tools_btn_less || 'Ver menos tecnologias';
+      btn.innerHTML = '<span data-i18n="tools_btn_less">' + lessTxt + '</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>';
+    } else {
+      container.style.display = 'none';
+      btn.setAttribute('aria-expanded', 'false');
+      const moreTxt = dict.tools_btn_more || 'Ver todas as tecnologias (+21)';
+      btn.innerHTML = '<span data-i18n="tools_btn_more">' + moreTxt + '</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>';
+    }
+  };
+
+(function () {
+  "use strict";
+
+  function initMobileNav() {
+    const navbar = document.querySelector("#navbar");
+    const toggle = document.querySelector(".mobile-nav-toggle");
+    if (!navbar || !toggle) return;
+
+    toggle.addEventListener("click", function (e) {
+      e.stopPropagation();
+      const isOpen = navbar.classList.toggle("navbar-mobile");
+      toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      const icon = toggle.querySelector("i");
+      if (icon) {
+        if (isOpen) {
+          icon.classList.remove("bi-list");
+          icon.classList.add("bi-x");
+        } else {
+          icon.classList.remove("bi-x");
+          icon.classList.add("bi-list");
+        }
+      }
+    });
+
+    navbar.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        navbar.classList.remove("navbar-mobile");
+        toggle.setAttribute("aria-expanded", "false");
+        const icon = toggle.querySelector("i");
+        if (icon) {
+          icon.classList.remove("bi-x");
+          icon.classList.add("bi-list");
+        }
+      });
+    });
+
+    document.addEventListener("click", function (e) {
+      if (navbar.classList.contains("navbar-mobile") && !navbar.contains(e.target) && !toggle.contains(e.target)) {
+        navbar.classList.remove("navbar-mobile");
+        toggle.setAttribute("aria-expanded", "false");
+        const icon = toggle.querySelector("i");
+        if (icon) {
+          icon.classList.remove("bi-x");
+          icon.classList.add("bi-list");
+        }
+      }
+    });
+  }
+
+
+  // ===================================================
+  // INTERNACIONALIZAÇÃO (PT / EN / ES) COM LOCALSTORAGE
+  // ===================================================
+  const I18N_DATA = {
+  "pt": {
+    "tagline_pill": "Dados & Analytics",
+    "nav_home": "Início",
+    "nav_about": "Sobre & Trajetória",
+    "nav_deliver": "O que entrega",
+    "nav_tools": "Ferramentas",
+    "nav_studies": "Vitrine de Estudos →",
+    "nav_contact": "Contato",
+    "hero_tag": "Dados · Analytics · Decisão",
+    "hero_role": "Especialista em Dados & Analytics com foco em Risco de Crédito, Qualidade de Dados e Decisão Operacional",
+    "hero_summary": "Conecto investigação profunda de regras e bases de dados a diagnósticos claros e ações operacionais que geram resultado direto para o negócio.",
+    "hero_cta_studies": "Acessar Vitrine de Estudos →",
+    "hero_cta_credit": "Ver Estudo de Crédito",
+    "hero_card_kicker": "Últimos Estudos",
+    "hero_card_sub": "Clique em qualquer entrega para abrir os dados e o código:",
+    "hero_diff_label": "Previsão de Crédito · Banco Central",
+    "hero_diff_val": "Reduziu o erro de projeção (MAE) em <strong>R$ 7,39 bi/mês (-54%)</strong> com calendário ANBIMA →",
+    "hero_domain_label": "Qualidade de Dados & Cobrança · 30 mil contas",
+    "hero_domain_val": "Estima <strong>NT$ 6,48M (97,6%)</strong> em simulação sob premissas operacionais; não é recuperação real →",
+    "hero_method_label": "Base Única de Empresas (MDM) · 7.905 registros CVM",
+    "hero_method_val": "Eliminou <strong>14,8%</strong> de duplicidades e unificou empresas e fundos em visão confiável →",
+    "hero_avail_label": "Taxas Bancárias & Renda Regional · 138 Bancos + IBGE",
+    "hero_avail_val": "Mapeou dispersão de até <strong>15,6x</strong> entre bancos e avaliou a renda regional separadamente →",
+    "about_title": "Sobre mim & Trajetória",
+    "about_sub": "Uma visão sobre a bagagem técnica, postura analítica e como gero impacto nas operações.",
+    "about_bio_p1": "Atuo na interseção entre <strong>Dados, Analytics e Operações de Negócio</strong>, investigando a origem, a granularidade e as regras das informações para construir indicadores confiáveis, identificar oportunidades e apoiar decisões estratégicas e operacionais.",
+    "about_quote": "“Indicadores consolidados podem esconder falhas operacionais. Uma análise eficiente começa pela qualidade dos dados, pelas regras de negócio e pela compreensão do problema.”",
+    "about_bio_p2": "Com foco em <strong>risco de crédito, funil de conversão, conciliação de indicadores e qualidade de dados</strong>, uno ferramentas escaláveis (SQL avançado, pipelines em Python, DuckDB e Databricks) à modelagem de negócio (Power BI, DAX e governança de KPIs) para assegurar que liderança e operação tomem decisões alinhadas e rastreáveis.",
+    "cred_edu_label": "01 · FORMAÇÃO ACADÊMICA",
+    "cred_edu_title": "Formação em Computação, Big Data e Estatística",
+    "cred_edu_desc": "• Bacharelado em <strong>Ciência da Computação</strong> (Faculdade Sumaré)<br>• Pós-graduação em <strong>Big Data</strong> (Univ. Anhembi Morumbi)<br>• Pós-graduação em <strong>Estatística Aplicada</strong> (FMU)",
+    "cred_spec_label": "02 · ÁREAS DE ESPECIALIDADE",
+    "cred_spec_title": "Frentes Centrais de Atuação",
+    "cred_spec_desc": "• <strong>Crédito:</strong> Escoragem, políticas de limite, priorização de cobrança.<br>• <strong>Qualidade (DQ):</strong> Data contracts, monitoramento de ausência e drift.<br>• <strong>BI & Receita:</strong> Modelagem dimensional, funil e conciliação de bases.",
+    "cred_ops_label": "03 · POSTURA OPERACIONAL",
+    "cred_ops_title": "Do Diagnóstico à Ação",
+    "cred_ops_desc": "• <strong>Rigor & Causalidade:</strong> Separação entre correlação e causalidade real.<br>• <strong>Comunicação em Camadas:</strong> Executiva para diretoria e técnica para squads.<br>• <strong>Reprodutibilidade:</strong> Pipelines auditáveis sem dependência de processos manuais.",
+    "deliver_title": "O que eu entrego",
+    "deliver_sub": "Capacidades analíticas aplicadas para resolver problemas reais de operações e gestão:",
+    "deliv_dashboards": "Dashboards",
+    "deliv_dashboards_p": "Painéis executivos com indicadores confiáveis, análises detalhadas e acompanhamento de resultados.",
+    "deliv_dashboards_link": "Ver painéis e modelos →",
+    "deliv_analyses": "Análises & Estudos",
+    "deliv_analyses_p": "Investigações de crédito, cobrança e receita para identificar causas, riscos e oportunidades.",
+    "deliv_analyses_link": "Ver estudo de crédito →",
+    "deliv_automations": "Automações",
+    "deliv_automations_p": "Processos em Python e SQL para reduzir retrabalho, validar informações e aumentar a eficiência.",
+    "deliv_automations_link": "Ver pipeline e simulador →",
+    "deliv_governance": "Governança de Dados",
+    "deliv_governance_p": "Qualidade, conciliação e regras de negócio para garantir consistência e confiabilidade dos indicadores.",
+    "deliv_governance_link": "Ver auditoria e DQ →",
+    "deliv_traceability": "Rastreabilidade",
+    "deliv_traceability_p": "Código versionado, documentação técnica e histórico das regras e transformações aplicadas.",
+    "deliv_traceability_link": "Ver repositório no GitHub ↗",
+    "tools_title": "Ferramentas & Tecnologias",
+    "tools_sub": "Ecossistema tecnológico organizado por especialidade para engenharia de dados, modelagem preditiva e analytics:",
+    "showcase_title": "Vitrine de Estudos & Projetos",
+    "showcase_sub": "Análises aprofundadas com metodologia reproduzível, dados quantitativos e impacto direto na decisão operacional:",
+    "showcase_recent_badge": "Últimos Estudos Publicados (Vitrine em Destaque)",
+    "study04_badge": "Estudo 04 · Backtest BCB SGS",
+    "study04_meta": "Piso de Ruído na Projeção de Concessões de Crédito PF · 57 meses reais",
+    "study04_title": "Previsão de Crédito PF: Backtest Walk-Forward e Efeito Calendário",
+    "study04_desc": "Incluir feriados nacionais ANBIMA e dias úteis reduz o erro absoluto de projeção (MAE) de <strong>R$ 13,63 bi para R$ 6,24 bi/mês (-R$ 7,39 bi/mês em acurácia de planejamento)</strong> e coloca <strong>97,0%</strong> dos meses na meta ±5%. <em>Método:</em> backtest walk-forward em 33 origens reais (<code>wMAPE 2,79% · Ljung-Box p = 0,403</code>).",
+    "study04_btn_study": "Ler Estudo e Método →",
+    "study04_btn_json": "Dados JSON",
+    "study05_badge": "Estudo 05 · Política de Crédito & Decisão",
+    "study05_meta": "GiveMeSomeCredit (OpenML 46929) · 150.000 registros históricos",
+    "study05_title": "Otimização de Política de Crédito: Maximizando o Retorno com Score e Machine Learning",
+    "study05_desc": "Separa eliminatórios por gravidade (<code>R1→R2→R3</code>) e aplica Matriz 3×3 na R4: <strong>5,05M u.m.</strong> de P&amp;L simulado (+10,9% sobre a regra rígida de 4,55M). O ganho decorre da precificação de risco no Cluster B (+739k u.m.), exigindo adesão mínima de 75,9%. O RF 1D pareado rende 5,08M (−0,49%): a matriz entrega 9 células auditáveis.",
+    "study05_btn_study": "Ler Estudo e Simulador →",
+    "study06_badge": "Estudo 06 · IA, evidência e decisão",
+    "study06_meta": "Síntese dos Estudos 01 (UCI) e 05 (OpenML) · dados públicos",
+    "study06_title": "A Inteligência Artificial está realmente melhorando as decisões?",
+    "study06_desc": "Dois benchmarks mostram ganhos condicionais, não um efeito de implantação empresarial: sob falha de dados simulada, o AUC cai de 0,7853 para 0,7034; no OpenML, a combinação soma 0,0071 de AUC, enquanto o retorno depende de premissas comerciais.",
+    "study06_btn_study": "Ler Estudo e Evidências →",
+    "hero_policy_label": "Concessão de Crédito & IA · 150 mil registros históricos",
+    "hero_policy_val": "Elevou o P&amp;L simulado em <strong>+10,9%</strong> sobre a regra rígida, com Bad Rate EAD de <strong>1,05%</strong> (perda bruta de 0,69%) →",
+    "study03_badge": "Estudo 03 · 138 Bancos + 108 UF-Anos",
+    "study03_meta": "BCB Olinda (11m) + IBGE 2022–2025",
+    "study03_title": "Onde Bancos Cobram Mais Caro e Limites da Renda Regional",
+    "study03_desc": "Duas conclusões independentes, sem inferência causal: o posicionamento das taxas de <strong>138 bancos</strong> persiste por 11 meses (<code>ρ = 0,866</code>); em <strong>108 UF-anos</strong>, renda estadual isolada não supera a inércia ao prever inadimplência (<code>MAE 1,28 vs 0,95 p.p.</code>).",
+    "study03_btn_study": "Ler Estudo e Método →",
+    "sidebar_title": "Demais Estudos",
+    "sidebar_badge": "Acervo",
+    "sidebar_intro": "Estudos aprofundados com simuladores interativos e modelos executivos:",
+    "study01_badge": "Estudo 01 · UCI Credit Default",
+    "study01_title": "Impacto da Qualidade dos Dados no Risco de Inadimplência",
+    "study01_desc": "Em experimento simulado com 30.000 contas UCI, tratamento nativo de ausências + Perda Esperada estima <strong>NT$ 6,48M (97,6%) sob premissas operacionais</strong>; não é recuperação efetiva observada em operação real.",
+    "study01_btn_study": "Ler estudo →",
+    "study01_btn_sim": "Simulador",
+    "study01_btn_code": "Código ↗",
+    "study02_badge": "Estudo 02 · Dados Abertos CVM",
+    "study02_title": "Unificação de Cadastros Duplicados (MDM) na Base CVM",
+    "study02_desc": "Separa sobrevivência determinística e pareamento: a regra de Recência diverge em <strong>33/42</strong> conflitos de status (<strong>78,6%</strong>), não uma medida de acurácia; Entity Resolution sem CNPJ é avaliada à parte (<code>PR-AUC 0,884</code>).",
+    "study02_btn_study": "Ler estudo →",
+    "study02_btn_sim": "Simulador",
+    "study02_btn_code": "Código ↗",
+    "sidebar_catalog_link": "Ver Vitrine Completa com os 6 Estudos",
+    "catalog_title": "Vitrine de Estudos Analíticos",
+    "catalog_sub": "Estudos de caso reais e dados públicos sobre Risco de Crédito, Qualidade de Dados, Resolução de Entidades e Econometria.",
+    "catalog_back_home": "← Voltar ao Portfólio Principal",
+    "contact_title": "Entre em Contato",
+    "contact_sub": "Disponível para posições de Especialista / Sênior em Dados, Analytics, Risco de Crédito e Inteligência de Negócio:",
+    "contact_btn_li": "Conectar no LinkedIn →",
+    "contact_btn_gh": "Explorar Repositório no GitHub",
+    "contact_loc_label": "Localização",
+    "contact_loc_val": "São Paulo, SP — Brasil (Híbrido / Remoto)",
+    "contact_li_label": "LinkedIn Profissional",
+    "contact_repo_label": "Projetos & Código",
+    "footer_rights": "Carlos Santos. Todos os direitos reservados.",
+    "cat_hero_tag": "Catálogo de estudos",
+    "cat_hero_title": "Vitrine de Estudos",
+    "cat_hero_role": "Análises com escopo, métricas e limitações documentados",
+    "cat_intro_label": "Vitrine de Estudos",
+    "cat_intro_title": "Estudos publicados",
+    "cat_intro_desc": "Casos analíticos reproduzíveis baseados exclusivamente em fontes de dados públicas oficiais ou benchmarks públicos anonimizados (UCI Machine Learning Repository, Dados Abertos CVM, IBGE PNAD Contínua, Banco Central do Brasil SGS e GiveMeSomeCredit / OpenML #46929).",
+    "cat_card01_badge": "Estudo 01 · UCI Credit Default",
+    "cat_card01_title": "Impacto da Qualidade dos Dados no Risco de Inadimplência",
+    "cat_card01_desc": "Experimento simulado em 30.000 contas UCI estima NT$ 6,48M (97,6%) sob premissas operacionais; é retorno contrafactual, não recuperação efetiva em operação real.",
+    "cat_card02_badge": "Estudo 02 · Dados Abertos CVM",
+    "cat_card02_title": "Unificação de Cadastros Duplicados (MDM) na Base CVM",
+    "cat_card02_desc": "Separa a regra determinística de sobrevivência com CNPJ (33/42 status divergentes por recência) da acurácia de pareamento sem CNPJ (Entity Resolution, PR-AUC 0,884).",
+    "cat_card03_badge": "Estudo 03 · 138 Bancos + 108 UF-Anos",
+    "cat_card03_title": "Onde Bancos Cobram Mais Caro e Limites da Renda Regional",
+    "cat_card03_desc": "Duas conclusões independentes, sem inferência causal: há persistência no posicionamento das taxas de 138 bancos; renda estadual isolada não supera a inércia na previsão para 2025 (MAE 1,28 vs 0,95 p.p.).",
+    "cat_card04_badge": "Estudo 04 · Banco Central SGS",
+    "cat_card04_title": "Previsão de Crédito PF: Backtest Walk-Forward e Efeito Calendário",
+    "cat_card04_desc": "Ajustar por feriados nacionais ANBIMA e dias úteis reduz o erro absoluto de projeção (MAE) em R$ 7,39 bi/mês (de R$ 13,63 bi para R$ 6,24 bi/mês · wMAPE 2,79%) e acerta 97,0% dos meses na meta ±5%.",
+    "cat_card05_badge": "Estudo 05 · 150 mil registros históricos (OpenML)",
+    "cat_card05_title": "Otimização de Política de Crédito: Maximizando o Retorno com Score e Machine Learning",
+    "cat_card05_desc": "Simulação Otimizada 2D aprova 49,68% com Bad Rate EAD de 1,05% e 5,05M u.m. (+10,9% vs rígida). P&amp;L decomposto em -255k + 14k + 739k (Cluster B @ 7%), com break-even em 75,9% de adesão.",
+    "cat_card06_badge": "Estudo 06 · IA, evidência e decisão",
+    "cat_card06_title": "A Inteligência Artificial está realmente melhorando as decisões?",
+    "cat_card06_desc": "Síntese de dois benchmarks públicos: o ganho preditivo é condicional e o retorno econômico é simulado; não há inferência de impacto empresarial real.",
+    "cat_btn_read": "Ler estudo →",
+    "cat_btn_code_data": "<i class='bi bi-github'></i> Código e Dados ↗",
+    "cat_btn_code_res": "<i class='bi bi-github'></i> Código e Resultados ↗",
+    "footer_home_link": "Início",
+    "tools_cat_01": "<span class='badge-dot'></span> 01 · Linguagens &amp; Engenharia de Dados",
+    "tools_cat_02": "<span class='badge-dot'></span> 02 · Analytics &amp; Machine Learning",
+    "tools_cat_03": "<span class='badge-dot'></span> 03 · Bancos de Dados &amp; Infraestrutura",
+    "tools_cat_04": "<span class='badge-dot'></span> 04 · Business Intelligence &amp; Produtividade",
+    "tools_btn_more": "Ver todas as tecnologias (+21)",
+    "tools_btn_less": "Ver menos tecnologias",
+    "study03_kpi1_label": "Persistência 11m",
+    "study03_kpi2_label": "Spread Bancário",
+    "study03_kpi3_label": "Painel 108 UF-Anos",
+    "btn_code_and_data": "<i class='bi bi-github'></i> Código e Dados ↗",
+    "hero_btn_resume": "Currículo PDF",
+    "hero_btn_contact": "Contato Direto",
+    "contact_btn_resume": "Baixar Currículo PDF",
+        "traj_title": "Trajetória Corporativa em Grandes Instituições",
+    "traj_sub": "Histórico formal com instituições financeiras e consultorias",
+    "traj_1_period": "2025 – Atual",
+    "traj_1_company": "BTG Pactual",
+    "traj_1_role": "Especialista em Dados",
+    "traj_1_desc": "Análise de dados de crédito, receita e produtos financeiros para traduzir demandas de negócio em KPIs e diagnósticos de funil; reconciliação de fontes, regras de negócio e qualidade dos dados com Python, SQL, Databricks e Apache Spark.",
+    "traj_1_stack": "<strong>Stack Corporativa:</strong> Databricks, Apache Spark, Python, SQL, Git",
+    "traj_2_period": "2023 – 2024",
+    "traj_2_company": "CredSystem Administradora de Cartões",
+    "traj_2_role": "Cientista de Dados Sênior",
+    "traj_2_desc": "Modelagem e análise de risco de crédito; simulação de cenários de inadimplência e rentabilidade de carteiras; relatórios analíticos em Power BI para clientes internos/externos com SAS, SQL, Databricks e Python (Random Forest).",
+    "traj_2_stack": "<strong>Stack Corporativa:</strong> SAS, Databricks, Python, SQL, Power BI",
+    "traj_3_period": "2022 – 2023",
+    "traj_3_company": "Banco Bradesco",
+    "traj_3_role": "Cientista de Dados Sênior",
+    "traj_3_desc": "Modelagem de risco de crédito e simulações de KPIs de carteira; gestão e otimização de rotinas em SAS; esteiras de modelagem com Teradata, Hive, SQL e automações estatísticas em Python.",
+    "traj_3_stack": "<strong>Stack Corporativa:</strong> SAS, Teradata, Hive, SQL, Python",
+    "traj_4_period": "2021 – 2022",
+    "traj_4_company": "Ernst &amp; Young (EY)",
+    "traj_4_role": "Consultor FSO Sênior (Cliente: Bradesco Crédito)",
+    "traj_4_desc": "Consultoria ao Departamento de Políticas de Crédito do Banco Bradesco em modelagem de risco; simulação de cenários contrafactuais de políticas e apresentação de estudos analíticos em comitês executivos.",
+    "traj_4_stack": "<strong>Stack Corporativa:</strong> SAS, SQL, Python, Comitês de Risco",
+    "traj_5_period": "2017 – 2021",
+    "traj_5_company": "Marfrig · SulAmérica (Concentrix) · Carrefour (Vermont)",
+    "traj_5_role": "Especialista &amp; Analista Sênior MIS / BI",
+    "traj_5_desc": "Consolidação de informações operacionais, dimensionamento e forecast, modelagem dimensional em SQL Server e MySQL, elaboração de painéis no Power BI e automação de rotinas em VBA.",
+    "traj_5_stack": "<strong>Stack Corporativa:</strong> SQL Server, MySQL, Power BI, DAX, VBA",
+    "cred_block_title": "Atuação Corporativa &amp; Rigor Ético de Informações",
+    "cred_block_desc": "As tecnologias corporativas (Databricks, Spark, Teradata, SAS, Power BI) refletem minha atuação profissional direta nas instituições financeiras acima. Por motivos de confidencialidade bancária e sigilo corporativo, dados proprietários de clientes e estratégias internas não são expostos. Os benchmarks quantitativos a seguir foram desenvolvidos de forma <strong>independente e aberta com bases públicas oficiais</strong> para demonstrar capacidade analítica, rigor científico e código reproduzível.",
+    "cases_title": "Laboratório de Pesquisa Aplicada &amp; Benchmarks Autorais",
+    "cases_badge": "Bases Públicas · Código Aberto &amp; Auditável no GitHub",
+    "case1_badge": "Benchmark 01 · Política &amp; Decisão",
+    "case1_kpi": "+10,94% P&amp;L Simulado",
+    "case1_title": "Política de Crédito em Camadas &amp; Early Warning (GiveMeSomeCredit / 150k registros)",
+    "case1_prob": "<strong>Problema:</strong> Regras de corte único descartavam bons pagadores ou abriam margem para inadimplência oculta por falta de visão combinada de curto e longo prazo.",
+    "case1_act": "<strong>Atuação no Experimento:</strong> Modelagem de funil de gravidade (R1→R4) com Matriz 3×3 calibrada, isolando 1.794 contas em risco oculto (6,35% Bad Rate) e alcançando Bad Rate EAD de 1,054% (0,685% perda LGD 65%).",
+    "case1_stack": "<strong>Stack do Estudo:</strong> Python, Scikit-learn, Pandas, NumPy, HTML/Plotly Interativo",
+    "case2_badge": "Benchmark 03 · Governança &amp; MDM",
+    "case2_kpi": "81,57% Recall Fim a Fim",
+    "case2_title": "Resolução de Entidades &amp; Golden Record Cadastral (Dados Abertos CVM / 7.905 registros)",
+    "case2_prob": "<strong>Problema:</strong> Múltiplos sistemas legados e cadastros públicos divergentes geravam duplicidade e quebra de relacionamento B2B.",
+    "case2_act": "<strong>Atuação no Experimento:</strong> Benchmark de Entity Resolution para medir acurácia de pareamento e, separadamente, auditoria das regras de sobrevivência determinística, que divergem em 33 de 42 conflitos de status.",
+    "case2_stack": "<strong>Stack do Estudo:</strong> Python, Scikit-learn (HistGradientBoosting), Jaro-Winkler, Levenshtein",
+    "case3_badge": "Benchmark 02 · Forecasting &amp; Finanças",
+    "case3_kpi": "-54% Erro de Previsão",
+    "case3_title": "Previsão de Concessões com Calendário ANBIMA (Banco Central SGS / 180 meses)",
+    "case3_prob": "<strong>Problema:</strong> Desvios nas metas orçamentárias mensais causados pela variação de feriados móveis e dias úteis entre meses consecutivos.",
+    "case3_act": "<strong>Atuação no Experimento:</strong> Modelagem Ridge sazonal com feriados ANBIMA, reduzindo o MAE de R$ 13,63 bi para R$ 6,24 bi/mês em 33 origens de backtest (-R$ 1,23 bi/mês incremental comprovado na ablação).",
+    "case3_stack": "<strong>Stack do Estudo:</strong> Python, Statsmodels, NumPy (`busdaycalendar`), APIs BCB SGS, Walk-Forward"
+  },
+  "en": {
+    "tagline_pill": "Data & Analytics",
+    "nav_home": "Home",
+    "nav_about": "About & Career",
+    "nav_deliver": "What I Deliver",
+    "nav_tools": "Tools & Stack",
+    "nav_studies": "Studies Showcase →",
+    "nav_contact": "Contact",
+    "hero_tag": "Data · Analytics · Decision",
+    "hero_role": "Data & Analytics Specialist focused on Credit Risk, Data Quality and Operational Decision-Making",
+    "hero_summary": "I connect in-depth investigation of business rules and databases to clear diagnostics and operational actions that drive direct business value.",
+    "hero_cta_studies": "Explore Studies Showcase →",
+    "hero_cta_credit": "View Credit Study",
+    "hero_card_kicker": "Latest Studies",
+    "hero_card_sub": "Click any outcome below to inspect the open data and code:",
+    "hero_policy_label": "Credit Policy & AI · 150k Historical Records",
+    "hero_policy_val": "Lifted simulated P&amp;L by <strong>+10.9%</strong> over rigid rule, with <strong>1.05%</strong> EAD Bad Rate (0.69% gross credit loss) →",
+    "hero_diff_label": "Credit Forecasting · Central Bank",
+    "hero_diff_val": "Cut forecast MAE by <strong>R$ 7.39 bn/month (-54%)</strong> with ANBIMA holiday calendar →",
+    "hero_domain_label": "Data Quality & Collections · 30k Accounts",
+    "hero_domain_val": "Estimated <strong>NT$ 6.48M (97.6%)</strong> in a simulated experiment under operating assumptions; not actual recovery →",
+    "hero_method_label": "Unified Registry (MDM) · 7,905 CVM Records",
+    "hero_method_val": "Eliminated <strong>14.8%</strong> duplicates and built a single, reliable entity view →",
+    "hero_avail_label": "Bank Rates & Regional Income · 138 Banks + IBGE",
+    "hero_avail_val": "Mapped rate spreads up to <strong>15.6x</strong> and separately tested regional income →",
+    "about_title": "About Me & Career",
+    "about_sub": "A perspective on technical background, analytical mindset, and operational impact.",
+    "about_bio_p1": "I operate at the intersection of <strong>Data, Analytics, and Business Operations</strong>, investigating the lineage, granularity, and business logic of information to build reliable indicators, identify opportunities, and support strategic and operational decisions.",
+    "about_quote": "“Aggregated metrics can hide critical operational failures. Efficient analysis starts with data quality, business rules, and a deep understanding of the problem.”",
+    "about_bio_p2": "Focused on <strong>credit risk, conversion funnels, KPI reconciliation, and data quality</strong>, I combine scalable tools (advanced SQL, Python pipelines, DuckDB, Databricks) with business modeling (Power BI, DAX, KPI governance) to ensure leadership and operations execute auditable, aligned decisions.",
+    "cred_edu_label": "01 · ACADEMIC BACKGROUND",
+    "cred_edu_title": "Education in Computing, Big Data & Statistics",
+    "cred_edu_desc": "• B.S. in <strong>Computer Science</strong> (Faculdade Sumaré)<br>• Postgraduate in <strong>Big Data</strong> (Univ. Anhembi Morumbi)<br>• Postgraduate in <strong>Applied Statistics</strong> (FMU)",
+    "cred_spec_label": "02 · CORE SPECIALIZATIONS",
+    "cred_spec_title": "Key Areas of Expertise",
+    "cred_spec_desc": "• <strong>Credit:</strong> Scoring models, credit limit policies, collections prioritization.<br>• <strong>Quality (DQ):</strong> Data contracts, missingness monitoring, and drift detection.<br>• <strong>BI & Revenue:</strong> Dimensional modeling, funnel tracking, and base reconciliation.",
+    "cred_ops_label": "03 · OPERATIONAL POSTURE",
+    "cred_ops_title": "From Diagnostic to Action",
+    "cred_ops_desc": "• <strong>Rigor & Causality:</strong> Clear separation between correlation and true causality.<br>• <strong>Layered Communication:</strong> Executive summaries for leadership, deep technical specs for squads.<br>• <strong>Reproducibility:</strong> Auditable data pipelines with zero dependency on manual steps.",
+    "deliver_title": "What I Deliver",
+    "deliver_sub": "Applied analytical capabilities solving real-world challenges in business operations and management:",
+    "deliv_dashboards": "Dashboards",
+    "deliv_dashboards_p": "Executive dashboards with dependable KPIs, granular drill-downs, and outcome tracking.",
+    "deliv_dashboards_link": "View dashboards & models →",
+    "deliv_analyses": "Analytics & Studies",
+    "deliv_analyses_p": "Deep investigations into credit risk, collections, and revenue to uncover root causes and opportunities.",
+    "deliv_analyses_link": "View credit study →",
+    "deliv_automations": "Automations",
+    "deliv_automations_p": "Automated pipelines in Python and SQL to reduce manual effort, validate data contracts, and boost efficiency.",
+    "deliv_automations_link": "View pipeline & simulator →",
+    "deliv_governance": "Data Governance",
+    "deliv_governance_p": "Data quality audits, reconciliation, and business rules governance to ensure indicator consistency.",
+    "deliv_governance_link": "View audit & DQ →",
+    "deliv_traceability": "Traceability",
+    "deliv_traceability_p": "Version-controlled code, comprehensive technical documentation, and full transformation audit trails.",
+    "deliv_traceability_link": "View GitHub repository ↗",
+    "tools_title": "Tools & Technologies",
+    "tools_sub": "Technological ecosystem organized by domain for data engineering, predictive modeling, and analytics:",
+    "showcase_title": "Studies & Projects Showcase",
+    "showcase_sub": "In-depth analyses with reproducible methodology, quantitative data, and direct operational impact:",
+    "showcase_recent_badge": "Latest Published Studies (Featured Showcase)",
+    "study04_badge": "Study 04 · Central Bank SGS Backtest",
+    "study04_meta": "Noise Floor in Household Credit Granting Projections · 57 real months",
+    "study04_title": "Household Credit Forecasting: Walk-Forward Backtest & Calendar Effects",
+    "study04_desc": "Adding Brazilian national (ANBIMA) holidays and business days cuts monthly forecast error (MAE) from <strong>R$ 13.63 bn to R$ 6.24 bn (-R$ 7.39 bn/month in planning accuracy)</strong>, hitting the ±5% target in <strong>97.0%</strong> of months. <em>Method:</em> 33-origin walk-forward backtest (<code>wMAPE 2.79% · Ljung-Box p = 0.403</code>).",
+    "study04_btn_study": "Read Study & Method →",
+    "study04_btn_json": "JSON Data",
+    "study05_badge": "Study 05 · Credit Policy & Decisioning",
+    "study05_meta": "GiveMeSomeCredit (OpenML 46929) · 150,000 historical records",
+    "study05_title": "How a 2D Policy (Score × Random Forest) Lifts Return on EAD to 4.14% vs RF 1D & Rigid",
+    "study05_desc": "Separates knock-outs by severity (<code>R1→R2→R3</code>) and applies a 3×3 Matrix in R4 (<strong>5.05M</strong> net P&amp;L, +10.9% vs rigid). Gain is driven by Cluster B pricing (+739k u.m.) with a 75.9% acceptance break-even threshold. Paired RF 1D yields 5.08M (-0.49%): matrix trades 0.49% for 9 auditable cells.",
+    "study05_btn_study": "Read Study & Simulator →",
+    "study06_badge": "Study 06 · AI, evidence & decisions",
+    "study06_meta": "Synthesis of Studies 01 (UCI) and 05 (OpenML) · public data",
+    "study06_title": "Is Artificial Intelligence Really Improving Decisions?",
+    "study06_desc": "Two benchmarks show conditional gains, not a business deployment effect: under simulated data failure, AUC falls from 0.7853 to 0.7034; on OpenML, the blend adds 0.0071 AUC while returns depend on commercial assumptions.",
+    "study06_btn_study": "Read Study & Evidence →",
+    "study03_badge": "Study 03 · 138 Banks + 108 State-Years",
+    "study03_meta": "BCB Olinda (11m) + IBGE 2022–2025",
+    "study03_title": "Where Banks Charge Most & Why Income Alone Fails to Predict Credit",
+    "study03_desc": "Two independent conclusions, without causal inference: rate positioning across <strong>138 banks</strong> persists for 11 months (<code>ρ = 0.866</code>); across <strong>108 state-years</strong>, state income alone does not beat inertia in predicting defaults (<code>MAE 1.28 vs 0.95 pp</code>).",
+    "study03_btn_study": "Read Study & Method →",
+    "sidebar_title": "Other Pipeline Studies",
+    "sidebar_badge": "Archive",
+    "sidebar_intro": "In-depth studies with interactive simulators and executive decision models:",
+    "study01_badge": "Study 01 · UCI Credit Default",
+    "study01_title": "Impact of Data Quality on Default Risk",
+    "study01_desc": "In a simulation on 30,000 UCI accounts, native missing-value handling + Expected Loss estimates <strong>NT$ 6.48M (97.6%) under operating assumptions</strong>; this is not recovery observed in real operations.",
+    "study01_btn_study": "Read study →",
+    "study01_btn_sim": "Simulator",
+    "study01_btn_code": "Code ↗",
+    "study02_badge": "Study 02 · CVM Open Data",
+    "study02_title": "Entity Deduplication & Golden Record (MDM) on CVM Data",
+    "study02_desc": "Separates deterministic survivorship from matching: the recency rule yields <strong>33/42</strong> conflicting statuses (<strong>78.6%</strong>), not a matching-accuracy score; Entity Resolution without CNPJ is evaluated separately (<code>PR-AUC 0.884</code>).",
+    "study02_btn_study": "Read study →",
+    "study02_btn_sim": "Simulator",
+    "study02_btn_code": "Code ↗",
+    "sidebar_catalog_link": "View Full Showcase with all 6 Studies",
+    "catalog_title": "Analytical Studies Showcase",
+    "catalog_sub": "Real-world case studies and open data on Credit Risk, Data Quality, Entity Resolution, and Econometrics.",
+    "catalog_back_home": "← Back to Main Portfolio",
+    "contact_title": "Get in Touch",
+    "contact_sub": "Available for Specialist / Senior roles in Data, Analytics, Credit Risk and Business Intelligence:",
+    "contact_btn_li": "Connect on LinkedIn →",
+    "contact_btn_gh": "Explore Repository on GitHub",
+    "contact_loc_label": "Location",
+    "contact_loc_val": "São Paulo, SP — Brazil (Hybrid / Remote)",
+    "contact_li_label": "Professional LinkedIn",
+    "contact_repo_label": "Projects & Code",
+    "footer_rights": "Carlos Santos. All rights reserved.",
+    "cat_hero_tag": "Studies Catalogue",
+    "cat_hero_title": "Studies Showcase",
+    "cat_hero_role": "Analyses with documented scope, metrics, and explicit limitations",
+    "cat_intro_label": "Studies Showcase",
+    "cat_intro_title": "Published Studies",
+    "cat_intro_desc": "Reproducible analytical case studies based exclusively on official public data sources and anonymized public benchmarks (UCI Machine Learning Repository, CVM Open Data, IBGE PNAD Contínua, Central Bank of Brazil SGS, and GiveMeSomeCredit / OpenML #46929).",
+    "cat_card01_badge": "Study 01 · UCI Credit Default",
+    "cat_card01_title": "Impact of Data Quality on Default Risk",
+    "cat_card01_desc": "Simulation on 30,000 UCI accounts estimates NT$ 6.48M (97.6%) under operating assumptions; this is a counterfactual estimate, not actual recovery in real operations.",
+    "cat_card02_badge": "Study 02 · CVM Open Data",
+    "cat_card02_title": "Entity Deduplication & Golden Record (MDM) on CVM Data",
+    "cat_card02_desc": "Separates deterministic survivorship (33/42 status conflicts under recency) from matching accuracy without CNPJ (Entity Resolution, PR-AUC 0.884).",
+    "cat_card03_badge": "Study 03 · 138 Banks + 108 State-Years",
+    "cat_card03_title": "Where Banks Charge Most & Limits of Regional Income",
+    "cat_card03_desc": "Two independent findings, without causal inference: bank rate positioning persists across 138 institutions; state income alone does not beat inertia in the 2025 default prediction test.",
+    "cat_card04_badge": "Study 04 · Central Bank SGS",
+    "cat_card04_title": "Household Credit Forecasting: Walk-Forward Backtest & Calendar Effects",
+    "cat_card04_desc": "Adjusting for Brazilian national holidays (ANBIMA) and business days reduces monthly forecast MAE by R$ 7.39 bn/month (wMAPE 2.79%) with 97.0% of months inside ±5%.",
+    "cat_card05_badge": "Study 05 · 150k Historical Records (OpenML)",
+    "cat_card05_title": "Credit Policy Optimization: Maximizing Returns with Score and Machine Learning",
+    "cat_card05_desc": "Optimized 2D simulation approves 49.68% with 1.05% EAD Bad Rate and 5.05M P&amp;L (+10.9% vs rigid). P&amp;L bridge decomposes into -255k + 14k + 739k (Cluster B @ 7%), with a 75.9% acceptance break-even.",
+    "cat_card06_badge": "Study 06 · AI, evidence & decisions",
+    "cat_card06_title": "Is Artificial Intelligence Really Improving Decisions?",
+    "cat_card06_desc": "Synthesis of two public benchmarks: predictive gains are conditional and returns are simulated; no real business impact is inferred.",
+    "cat_btn_read": "Read study →",
+    "cat_btn_code_data": "<i class='bi bi-github'></i> Code &amp; Data ↗",
+    "cat_btn_code_res": "<i class='bi bi-github'></i> Code &amp; Results ↗",
+    "footer_home_link": "Home",
+    "tools_cat_01": "<span class='badge-dot'></span> 01 · Languages &amp; Data Engineering",
+    "tools_cat_02": "<span class='badge-dot'></span> 02 · Analytics &amp; Machine Learning",
+    "tools_cat_03": "<span class='badge-dot'></span> 03 · Databases &amp; Cloud Infrastructure",
+    "tools_cat_04": "<span class='badge-dot'></span> 04 · Business Intelligence &amp; Productivity",
+    "tools_btn_more": "View all technologies (+21)",
+    "tools_btn_less": "Show fewer technologies",
+    "study03_kpi1_label": "11m Persistence",
+    "study03_kpi2_label": "Bank Rate Spread",
+    "study03_kpi3_label": "108 State-Years Panel",
+    "btn_code_and_data": "<i class='bi bi-github'></i> Code &amp; Data ↗",
+    "hero_btn_resume": "Resume PDF",
+    "hero_btn_contact": "Direct Contact",
+    "contact_btn_resume": "Download Resume PDF",
+        "traj_title": "Corporate Career in Major Institutions",
+    "traj_sub": "Formal track record with financial institutions and consultancies",
+    "traj_1_period": "2025 – Present",
+    "traj_1_company": "BTG Pactual",
+    "traj_1_role": "Data Specialist",
+    "traj_1_desc": "Analysis of credit, revenue, and financial product data to translate business requirements into KPIs and funnel diagnostics; source reconciliation, business rules, and data quality using Python, SQL, Databricks, and Apache Spark.",
+    "traj_1_stack": "<strong>Corporate Stack:</strong> Databricks, Apache Spark, Python, SQL, Git",
+    "traj_2_period": "2023 – 2024",
+    "traj_2_company": "CredSystem Card Administrator",
+    "traj_2_role": "Senior Data Scientist",
+    "traj_2_desc": "Credit risk modeling and analysis; simulation of portfolio delinquency and profitability scenarios; analytical reporting in Power BI for internal/external stakeholders with SAS, SQL, Databricks, and Python (Random Forest).",
+    "traj_2_stack": "<strong>Corporate Stack:</strong> SAS, Databricks, Python, SQL, Power BI",
+    "traj_3_period": "2022 – 2023",
+    "traj_3_company": "Banco Bradesco",
+    "traj_3_role": "Senior Data Scientist",
+    "traj_3_desc": "Credit risk modeling and portfolio KPI simulations; management and optimization of analytical routines in SAS; modeling data pipelines using Teradata, Hive, SQL, and statistical automation in Python.",
+    "traj_3_stack": "<strong>Corporate Stack:</strong> SAS, Teradata, Hive, SQL, Python",
+    "traj_4_period": "2021 – 2022",
+    "traj_4_company": "Ernst &amp; Young (EY)",
+    "traj_4_role": "Senior FSO Consultant (Client: Bradesco Credit Department)",
+    "traj_4_desc": "Consulting for Banco Bradesco's Credit Policy Department in risk modeling; counterfactual policy scenario simulation and analytical defense in executive risk committees.",
+    "traj_4_stack": "<strong>Corporate Stack:</strong> SAS, SQL, Python, Risk Committees",
+    "traj_5_period": "2017 – 2021",
+    "traj_5_company": "Marfrig · SulAmérica (Concentrix) · Carrefour (Vermont)",
+    "traj_5_role": "Specialist &amp; Senior MIS / BI Analyst",
+    "traj_5_desc": "Operational data consolidation, capacity planning, and forecasting; dimensional modeling in SQL Server and MySQL; executive dashboard design in Power BI and automation routines in VBA.",
+    "traj_5_stack": "<strong>Corporate Stack:</strong> SQL Server, MySQL, Power BI, DAX, VBA",
+    "cred_block_title": "Corporate Practice &amp; Ethical Information Rigor",
+    "cred_block_desc": "Corporate technologies (Databricks, Spark, Teradata, SAS, Power BI) reflect my direct professional delivery at the financial institutions above. For banking confidentiality reasons, proprietary client data and internal strategies are never exposed. The quantitative benchmarks below were developed <strong>independently and openly with official public data</strong> to demonstrate analytical acumen, scientific rigor, and reproducible code.",
+    "cases_title": "Applied Research Lab &amp; Authorial Benchmarks",
+    "cases_badge": "Public Datasets · Open &amp; Auditable Code on GitHub",
+    "case1_badge": "Benchmark 01 · Policy &amp; Decision",
+    "case1_kpi": "+10.94% Simulated P&amp;L",
+    "case1_title": "Tiered Credit Policy Funnel &amp; Early Warning (GiveMeSomeCredit / 150k records)",
+    "case1_prob": "<strong>Problem:</strong> Single-cutoff rules rejected creditworthy borrowers or allowed hidden delinquency due to lack of a combined short- and long-term risk view.",
+    "case1_act": "<strong>Action in Benchmark:</strong> Tiered severity funnel (R1→R4) with calibrated 3×3 Matrix, isolating 1,794 hidden-risk accounts (6.35% Bad Rate) and achieving 1.054% EAD Bad Rate (0.685% loss at 65% LGD).",
+    "case1_stack": "<strong>Study Stack:</strong> Python, Scikit-learn, Pandas, NumPy, HTML/Plotly Interactive",
+    "case2_badge": "Benchmark 03 · Governance &amp; MDM",
+    "case2_kpi": "81.57% End-to-End Recall",
+    "case2_title": "Entity Resolution &amp; Golden Record Architecture (CVM Open Data / 7,905 records)",
+    "case2_prob": "<strong>Problem:</strong> Multiple legacy systems and diverging public records generated entity duplication and broke B2B relationship tracking.",
+    "case2_act": "<strong>Action in Benchmark:</strong> Entity Resolution benchmark measuring matching accuracy, plus a separate audit of deterministic survivorship rules that diverge in 33 of 42 status conflicts.",
+    "case2_stack": "<strong>Study Stack:</strong> Python, Scikit-learn (HistGradientBoosting), Jaro-Winkler, Levenshtein",
+    "case3_badge": "Benchmark 02 · Forecasting &amp; Finance",
+    "case3_kpi": "-54% Forecast Error",
+    "case3_title": "Credit Origination Forecast with ANBIMA Calendar (Central Bank SGS / 180 months)",
+    "case3_prob": "<strong>Problem:</strong> Monthly budget variances caused by shifting holidays and differing banking business days across months.",
+    "case3_act": "<strong>Action in Benchmark:</strong> Seasonal Ridge modeling with national banking business days, reducing MAE from R$ 13.63B to R$ 6.24B/month across 33 backtest origins (-R$ 1.23B/month incremental gain from ANBIMA holidays in ablation).",
+    "case3_stack": "<strong>Study Stack:</strong> Python, Statsmodels, NumPy (`busdaycalendar`), APIs BCB SGS, Walk-Forward"
+  },
+  "es": {
+    "tagline_pill": "Datos & Analytics",
+    "nav_home": "Inicio",
+    "nav_about": "Sobre Mí & Trayectoria",
+    "nav_deliver": "Lo que entrego",
+    "nav_tools": "Herramientas",
+    "nav_studies": "Vitrina de Estudios →",
+    "nav_contact": "Contacto",
+    "hero_tag": "Datos · Analytics · Decisión",
+    "hero_role": "Especialista en Datos & Analytics con foco en Riesgo de Crédito, Calidad de Datos y Decisión Operativa",
+    "hero_summary": "Conecto la investigación profunda de reglas de negocio y bases de datos con diagnósticos claros y acciones operativas que generan impacto directo en el negocio.",
+    "hero_cta_studies": "Acceder a Vitrina de Estudios →",
+    "hero_cta_credit": "Ver Estudio de Crédito",
+    "hero_card_kicker": "Últimos Estudios",
+    "hero_card_sub": "Haz clic en cualquier resultado para ver los datos y el código:",
+    "hero_policy_label": "Concesión de Crédito & IA · 150 mil registros históricos",
+    "hero_policy_val": "Elevó el P&amp;L simulado en <strong>+10,9%</strong> sobre la regla rígida, con Bad Rate EAD de <strong>1,05%</strong> (pérdida bruta de 0,69%) →",
+    "hero_diff_label": "Previsión de Crédito · Banco Central",
+    "hero_diff_val": "Redujo el error de proyección (MAE) en <strong>R$ 7,39 mil M/mes (-54%)</strong> con feriados ANBIMA →",
+    "hero_domain_label": "Calidad de Datos & Cobranza · 30 mil cuentas",
+    "hero_domain_val": "Estimación de <strong>NT$ 6,48M (97,6%)</strong> en una simulación bajo supuestos operativos; no es recuperación real →",
+    "hero_method_label": "Base Única de Empresas (MDM) · 7.905 registros CVM",
+    "hero_method_val": "Eliminó <strong>14,8%</strong> de duplicidades y creó una visión única y confiable de empresas →",
+    "hero_avail_label": "Tasas Bancarias e Ingreso Regional · 138 Bancos + IBGE",
+    "hero_avail_val": "Mapeó una dispersión de hasta <strong>15,6x</strong> entre bancos y evaluó el ingreso regional por separado →",
+    "about_title": "Sobre mí & Trayectoria",
+    "about_sub": "Una visión sobre la base técnica, la postura analítica y cómo genero impacto en las operaciones.",
+    "about_bio_p1": "Actúo en la intersección entre <strong>Datos, Analytics y Operaciones de Negocio</strong>, investigando el origen, granularidad y reglas de la información para construir indicadores confiables, identificar oportunidades y apoyar decisiones estratégicas y operativas.",
+    "about_quote": "“Los indicadores consolidados pueden ocultar fallas operativas. Un análisis eficiente comienza por la calidad de los datos, las reglas de negocio y la comprensión del problema.”",
+    "about_bio_p2": "Con foco en <strong>riesgo de crédito, embudo de conversión, conciliación de indicadores y calidad de datos</strong>, uno herramientas escalables (SQL avanzado, pipelines en Python, DuckDB y Databricks) al modelado de negocio (Power BI, DAX y gobernanza de KPIs) para asegurar que liderazgo y operación tomen decisiones alineadas y auditables.",
+    "cred_edu_label": "01 · FORMACIÓN ACADÉMICA",
+    "cred_edu_title": "Formación en Computación, Big Data y Estadística",
+    "cred_edu_desc": "• Licenciatura en <strong>Ciencias de la Computación</strong> (Facultad Sumaré)<br>• Posgrado en <strong>Big Data</strong> (Univ. Anhembi Morumbi)<br>• Posgrado en <strong>Estadística Aplicada</strong> (FMU)",
+    "cred_spec_label": "02 · ÁREAS DE ESPECIALIDAD",
+    "cred_spec_title": "Frentes Centrales de Actuación",
+    "cred_spec_desc": "• <strong>Crédito:</strong> Scoring, políticas de límite, priorización de cobranza.<br>• <strong>Calidad (DQ):</strong> Data contracts, monitoreo de ausencias y drift.<br>• <strong>BI & Ingresos:</strong> Modelado dimensional, embudo y conciliación de bases.",
+    "cred_ops_label": "03 · POSTURA OPERATIVA",
+    "cred_ops_title": "Del Diagnóstico a la Acción",
+    "cred_ops_desc": "• <strong>Rigor & Causalidad:</strong> Separación entre correlación y causalidad real.<br>• <strong>Comunicación en Capas:</strong> Ejecutiva para dirección y técnica para squads.<br>• <strong>Reproducibilidad:</strong> Pipelines auditables sin dependencia de procesos manuales.",
+    "deliver_title": "Lo que entrego",
+    "deliver_sub": "Capacidades analíticas aplicadas para resolver problemas reales de operaciones y gestión:",
+    "deliv_dashboards": "Dashboards",
+    "deliv_dashboards_p": "Paneles ejecutivos con indicadores confiables, análisis detallados y seguimiento de resultados.",
+    "deliv_dashboards_link": "Ver paneles y modelos →",
+    "deliv_analyses": "Análisis & Estudios",
+    "deliv_analyses_p": "Investigaciones de crédito, cobranza e ingresos para identificar causas, riesgos y oportunidades.",
+    "deliv_analyses_link": "Ver estudio de crédito →",
+    "deliv_automations": "Automatizaciones",
+    "deliv_automations_p": "Procesos en Python y SQL para reducir retrabajo, validar contratos de datos y aumentar la eficiencia.",
+    "deliv_automations_link": "Ver pipeline y simulador →",
+    "deliv_governance": "Gobernanza de Datos",
+    "deliv_governance_p": "Calidad, conciliación y reglas de negocio para garantizar consistencia y confiabilidad de indicadores.",
+    "deliv_governance_link": "Ver auditoría y DQ →",
+    "deliv_traceability": "Trazabilidad",
+    "deliv_traceability_p": "Código versionado, documentación técnica e historial de transformaciones y reglas aplicadas.",
+    "deliv_traceability_link": "Ver repositorio en GitHub ↗",
+    "tools_title": "Herramientas & Tecnologías",
+    "tools_sub": "Ecosistema tecnológico organizado por especialidad para ingeniería de datos, modelado predictivo y analytics:",
+    "showcase_title": "Vitrina de Estudios & Proyectos",
+    "showcase_sub": "Análisis profundos con metodología reproducible, datos cuantitativos e impacto operativo directo:",
+    "showcase_recent_badge": "Últimos Estudios Publicados (Vitrina Destacada)",
+    "study04_badge": "Estudio 04 · Backtest BCB SGS",
+    "study04_meta": "Piso de Ruido en la Proyección de Concesiones de Crédito PF · 57 meses reales",
+    "study04_title": "Previsión de Crédito PF: Backtest Walk-Forward y Efecto Calendario",
+    "study04_desc": "Incluir feriados nacionales ANBIMA y días hábiles reduce el error de proyección (MAE) de <strong>R$ 13,63 mil M a R$ 6,24 mil M/mes (-R$ 7,39 mil M/mes)</strong> y ubica el <strong>97,0%</strong> de los meses en la meta ±5%. <em>Método:</em> backtest walk-forward en 33 meses reales (<code>wMAPE 2,79% · Ljung-Box p = 0,403</code>).",
+    "study04_btn_study": "Leer Estudio y Método →",
+    "study04_btn_json": "Datos JSON",
+    "study05_badge": "Estudio 05 · Política de Crédito y Decisión",
+    "study05_meta": "GiveMeSomeCredit (OpenML 46929) · 150.000 registros históricos",
+    "study05_title": "Cómo Política 2D (Score × Random Forest) Eleva Retorno s/ EAD a 4,14% vs RF 1D y Rígida",
+    "study05_desc": "Separa filtros por gravedad (<code>R1→R2→R3</code>) y aplica Matriz 3×3 en R4: <strong>5,05M</strong> P&amp;L (+10,9% vs rígida). El beneficio proviene del precio en Cluster B (+739k), con umbral de aceptación del 75,9%. RF 1D rinde 5,08M (-0,49%): la matriz entrega 9 celdas auditables.",
+    "study05_btn_study": "Leer Estudio y Simulador →",
+    "study06_badge": "Estudio 06 · IA, evidencia y decisión",
+    "study06_meta": "Síntesis de los Estudios 01 (UCI) y 05 (OpenML) · datos públicos",
+    "study06_title": "¿La Inteligencia Artificial realmente mejora las decisiones?",
+    "study06_desc": "Dos benchmarks muestran ganancias condicionales, no un efecto de implantación empresarial: ante una falla de datos simulada, el AUC cae de 0,7853 a 0,7034; en OpenML, la combinación suma 0,0071 de AUC y el retorno depende de supuestos comerciales.",
+    "study06_btn_study": "Leer Estudio y Evidencias →",
+    "study03_badge": "Estudio 03 · 138 Bancos + 108 UF-Años",
+    "study03_meta": "BCB Olinda (11m) + IBGE 2022–2025",
+    "study03_title": "Dónde Cobran Más Caro los Bancos y Por Qué el Ingreso Solo Falla",
+    "study03_desc": "Dos conclusiones independientes, sin inferencia causal: el posicionamiento de tasas en <strong>138 bancos</strong> persiste 11 meses (<code>ρ = 0,866</code>); en <strong>108 UF-años</strong>, el ingreso estatal aislado no supera la inercia al predecir morosidad (<code>MAE 1,28 vs 0,95 p.p.</code>).",
+    "study03_btn_study": "Leer Estudio y Método →",
+    "sidebar_title": "Demás Estudios del Pipeline",
+    "sidebar_badge": "Acervo",
+    "sidebar_intro": "Estudios profundos con simuladores interactivos y modelos ejecutivos de decisión:",
+    "study01_badge": "Estudio 01 · UCI Credit Default",
+    "study01_title": "Impacto de la Calidad de los Datos en el Riesgo de Morosidad",
+    "study01_desc": "En una simulación con 30.000 cuentas UCI, el tratamiento nativo de ausencias + Pérdida Esperada estima <strong>NT$ 6,48M (97,6%) bajo supuestos operativos</strong>; no es recuperación observada en operaciones reales.",
+    "study01_btn_study": "Leer estudio →",
+    "study01_btn_sim": "Simulador",
+    "study01_btn_code": "Código ↗",
+    "study02_badge": "Estudio 02 · Datos Abiertos CVM",
+    "study02_title": "Unificación de Registros Duplicados (MDM) en la Base CVM",
+    "study02_desc": "Separa supervivencia determinística y matching: la regla de Recencia produce <strong>33/42</strong> estados en conflicto (<strong>78,6%</strong>), no una medida de precisión; Entity Resolution sin CNPJ se evalúa aparte (<code>PR-AUC 0,884</code>).",
+    "study02_btn_study": "Leer estudio →",
+    "study02_btn_sim": "Simulador",
+    "study02_btn_code": "Código ↗",
+    "sidebar_catalog_link": "Ver Vitrina Completa con los 6 Estudios",
+    "catalog_title": "Vitrina de Estudios Analíticos",
+    "catalog_sub": "Casos de estudio reales y datos públicos sobre Riesgo de Crédito, Calidad de Datos, Resolución de Entidades y Econometría.",
+    "catalog_back_home": "← Volver al Portafolio Principal",
+    "contact_title": "Póngase en Contacto",
+    "contact_sub": "Disponible para puestos de Especialista / Sénior en Datos, Analytics, Riesgo de Crédito e Inteligencia de Negocio:",
+    "contact_btn_li": "Conectar en LinkedIn →",
+    "contact_btn_gh": "Explorar Repositorio en GitHub",
+    "contact_loc_label": "Ubicación",
+    "contact_loc_val": "São Paulo, SP — Brasil (Híbrido / Remoto)",
+    "contact_li_label": "LinkedIn Profesional",
+    "contact_repo_label": "Proyectos & Código",
+    "footer_rights": "Carlos Santos. Todos los derechos reservados.",
+    "cat_hero_tag": "Catálogo de estudios",
+    "cat_hero_title": "Vitrina de Estudios",
+    "cat_hero_role": "Análisis con alcance, métricas y limitaciones documentadas",
+    "cat_intro_label": "Vitrina de Estudios",
+    "cat_intro_title": "Estudios publicados",
+    "cat_intro_desc": "Casos analíticos reproducibles basados exclusivamente en fuentes públicas oficiales y benchmarks públicos anonimizados (UCI Machine Learning Repository, Datos Abiertos CVM, IBGE PNAD Contínua, Banco Central do Brasil SGS y GiveMeSomeCredit / OpenML #46929).",
+    "cat_card01_badge": "Estudio 01 · UCI Credit Default",
+    "cat_card01_title": "Impacto de la calidad de los datos en el riesgo de morosidad",
+    "cat_card01_desc": "La simulación en 30.000 cuentas UCI estima NT$ 6,48M (97,6%) bajo supuestos operativos; es una estimación contrafactual, no recuperación efectiva en operaciones reales.",
+    "cat_card02_badge": "Estudio 02 · Datos Abiertos CVM",
+    "cat_card02_title": "Unificación de Registros Duplicados (MDM) en la Base CVM",
+    "cat_card02_desc": "Separa supervivencia determinística (33/42 conflictos de estado bajo Recencia) de la precisión del matching sin CNPJ (Entity Resolution, PR-AUC 0,884).",
+    "cat_card03_badge": "Estudio 03 · 138 Bancos + 108 UF-Años",
+    "cat_card03_title": "Dónde Cobran Más Caro los Bancos y Límites del Ingreso Regional",
+    "cat_card03_desc": "Dos hallazgos independientes, sin inferencia causal: persiste el posicionamiento de tasas bancarias; el ingreso estatal aislado no supera la inercia en la predicción de 2025.",
+    "cat_card04_badge": "Estudio 04 · Banco Central SGS",
+    "cat_card04_title": "Previsión de Crédito PF: Backtest Walk-Forward y Efecto Calendario",
+    "cat_card04_desc": "Ajustar por feriados nacionales ANBIMA y días hábiles reduce el error mensual (MAE) en R$ 7,39 mil M/mes (wMAPE 2,79%) y acierta 97,0% de los meses en ±5%.",
+    "cat_card05_badge": "Estudio 05 · 150 mil registros históricos (OpenML)",
+    "cat_card05_title": "Optimización de Política de Crédito: Maximizando Retorno con Score e Inteligencia Artificial",
+    "cat_card05_desc": "Simulación Optimizada 2D aprueba 49,68% con Bad Rate EAD de 1,05% y 5,05M (+10,9% vs rígida). P&amp;L descompuesto en -255k + 14k + 739k (Cluster B @ 7%), con umbral de 75,9% de aceptación.",
+    "cat_card06_badge": "Estudio 06 · IA, evidencia y decisión",
+    "cat_card06_title": "¿La Inteligencia Artificial realmente mejora las decisiones?",
+    "cat_card06_desc": "Síntesis de dos benchmarks públicos: la mejora predictiva es condicional y el retorno económico es simulado; no se infiere impacto empresarial real.",
+    "cat_btn_read": "Leer estudio →",
+    "cat_btn_code_data": "<i class='bi bi-github'></i> Código y Datos ↗",
+    "cat_btn_code_res": "<i class='bi bi-github'></i> Código y Resultados ↗",
+    "footer_home_link": "Inicio",
+    "tools_cat_01": "<span class='badge-dot'></span> 01 · Lenguajes e Ingeniería de Datos",
+    "tools_cat_02": "<span class='badge-dot'></span> 02 · Analytics &amp; Machine Learning",
+    "tools_cat_03": "<span class='badge-dot'></span> 03 · Bases de Datos e Infraestructura",
+    "tools_cat_04": "<span class='badge-dot'></span> 04 · Business Intelligence y Productividad",
+    "tools_btn_more": "Ver todas las tecnologías (+21)",
+    "tools_btn_less": "Ver menos tecnologías",
+    "study03_kpi1_label": "Persistencia 11m",
+    "study03_kpi2_label": "Spread Bancario",
+    "study03_kpi3_label": "Panel 108 UF-Años",
+    "btn_code_and_data": "<i class='bi bi-github'></i> Código y Datos ↗",
+    "hero_btn_resume": "Currículum PDF",
+    "hero_btn_contact": "Contacto Directo",
+    "contact_btn_resume": "Descargar Currículum PDF",
+        "traj_title": "Trayectoria Corporativa en Grandes Instituciones",
+    "traj_sub": "Historial formal con instituciones financieras y consultoras",
+    "traj_1_period": "2025 – Actual",
+    "traj_1_company": "BTG Pactual",
+    "traj_1_role": "Especialista en Datos",
+    "traj_1_desc": "Análisis de datos de crédito, ingresos y productos financieros para traducir demandas de negocio en KPIs y diagnósticos de embudo; conciliación de fuentes, reglas de negocio y calidad de datos con Python, SQL, Databricks y Apache Spark.",
+    "traj_1_stack": "<strong>Stack Corporativo:</strong> Databricks, Apache Spark, Python, SQL, Git",
+    "traj_2_period": "2023 – 2024",
+    "traj_2_company": "CredSystem Administradora de Tarjetas",
+    "traj_2_role": "Científico de Datos Sénior",
+    "traj_2_desc": "Modelado y análisis de riesgo de crédito; simulación de escenarios de morosidad y rentabilidad de cartera; reportes analíticos en Power BI para clientes internos/externos con SAS, SQL, Databricks y Python (Random Forest).",
+    "traj_2_stack": "<strong>Stack Corporativo:</strong> SAS, Databricks, Python, SQL, Power BI",
+    "traj_3_period": "2022 – 2023",
+    "traj_3_company": "Banco Bradesco",
+    "traj_3_role": "Científico de Datos Sénior",
+    "traj_3_desc": "Modelado de riesgo de crédito y simulaciones de KPIs de cartera; gestión y optimización de rutinas en SAS; pipelines de modelado con Teradata, Hive, SQL y automatización estadística en Python.",
+    "traj_3_stack": "<strong>Stack Corporativo:</strong> SAS, Teradata, Hive, SQL, Python",
+    "traj_4_period": "2021 – 2022",
+    "traj_4_company": "Ernst &amp; Young (EY)",
+    "traj_4_role": "Consultor FSO Sénior (Cliente: Bradesco Crédito)",
+    "traj_4_desc": "Consultoría al Departamento de Políticas de Crédito del Banco Bradesco en modelado de riesgo; simulación de escenarios contrafácticos de políticas y defensa en comités ejecutivos de riesgo.",
+    "traj_4_stack": "<strong>Stack Corporativo:</strong> SAS, SQL, Python, Comités de Riesgo",
+    "traj_5_period": "2017 – 2021",
+    "traj_5_company": "Marfrig · SulAmérica (Concentrix) · Carrefour (Vermont)",
+    "traj_5_role": "Especialista &amp; Analista Sénior MIS / BI",
+    "traj_5_desc": "Consolidación de información operativa, dimensionamiento y pronósticos; modelado dimensional en SQL Server y MySQL; elaboración de tableros en Power BI y automatización en VBA.",
+    "traj_5_stack": "<strong>Stack Corporativo:</strong> SQL Server, MySQL, Power BI, DAX, VBA",
+    "cred_block_title": "Práctica Corporativa &amp; Rigor Ético de Información",
+    "cred_block_desc": "Las tecnologías corporativas (Databricks, Spark, Teradata, SAS, Power BI) reflejan mi entrega profesional directa en las instituciones financieras anteriores. Por motivos de confidencialidad bancaria, los datos y estrategias propietarias nunca se exponen. Los siguientes benchmarks cuantitativos se desarrollaron de forma <strong>independiente y abierta con bases públicas oficiales</strong> para demostrar solvencia analítica, rigor científico y código reproducible.",
+    "cases_title": "Laboratorio de Investigación Aplicada &amp; Benchmarks Autoriales",
+    "cases_badge": "Bases Públicas · Código Abierto y Auditable en GitHub",
+    "case1_badge": "Benchmark 01 · Política &amp; Decisión",
+    "case1_kpi": "+10,94% P&amp;L Simulado",
+    "case1_title": "Embudo de Política de Crédito en Capas &amp; Early Warning (GiveMeSomeCredit / 150k registros)",
+    "case1_prob": "<strong>Problema:</strong> Las reglas de corte único descartaban buenos pagadores o permitían morosidad oculta por falta de visión combinada de corto y largo plazo.",
+    "case1_act": "<strong>Acción en Benchmark:</strong> Modelado de embudo de gravedad (R1→R4) con Matriz 3×3 calibrada, aislando 1.794 cuentas en riesgo oculto (6,35% Bad Rate) y logrando Bad Rate EAD de 1,054% (0,685% pérdida a LGD 65%).",
+    "case1_stack": "<strong>Stack del Estudio:</strong> Python, Scikit-learn, Pandas, NumPy, HTML/Plotly Interactivo",
+    "case2_badge": "Benchmark 03 · Gobernanza &amp; MDM",
+    "case2_kpi": "81,57% Recall Fin a Fin",
+    "case2_title": "Resolución de Entidades &amp; Golden Record Catastral (Datos Abiertos CVM / 7.905 registros)",
+    "case2_prob": "<strong>Problema:</strong> Múltiples sistemas heredados y registros públicos divergentes generaban duplicidad y rompían el seguimiento de relaciones B2B.",
+    "case2_act": "<strong>Acción en Benchmark:</strong> Benchmark de Entity Resolution para medir precisión del matching, además de una auditoría separada de reglas determinísticas de supervivencia que difieren en 33 de 42 conflictos de estado.",
+    "case2_stack": "<strong>Stack del Estudio:</strong> Python, Scikit-learn (HistGradientBoosting), Jaro-Winkler, Levenshtein",
+    "case3_badge": "Benchmark 02 · Forecasting &amp; Finanzas",
+    "case3_kpi": "-54% Error de Proyección",
+    "case3_title": "Proyección de Crédito con Calendario ANBIMA (Banco Central SGS / 180 meses)",
+    "case3_prob": "<strong>Problema:</strong> Desvíos en las metas presupuestarias mensuales causados por la variación de feriados móviles y días hábiles entre meses consecutivos.",
+    "case3_act": "<strong>Acción en Benchmark:</strong> Modelado Ridge estacional con feriados bancarios ANBIMA, reduciendo el MAE de R$ 13,63 mil M a R$ 6,24 mil M/mes en 33 orígenes (-R$ 1,23 mil M/mes incremental en ablación).",
+    "case3_stack": "<strong>Stack del Estudio:</strong> Python, Statsmodels, NumPy (`busdaycalendar`), APIs BCB SGS, Walk-Forward"
+  }
+};
+
+  function applyLanguage(lang) {
+    if (!I18N_DATA[lang]) lang = "pt";
+    try { localStorage.setItem("portfolio_user_lang", lang); } catch (e) {}
+    document.documentElement.lang = lang;
+
+    const codeEl = document.getElementById("lang-current-code");
+    if (codeEl) codeEl.textContent = lang.toUpperCase();
+
+    document.querySelectorAll(".lang-option").forEach(btn => {
+      btn.classList.toggle("active", btn.getAttribute("data-lang") === lang);
+    });
+
+    const dict = I18N_DATA[lang] || {};
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const key = el.getAttribute("data-i18n");
+      if (dict[key]) {
+        el.innerHTML = dict[key];
+      }
+    });
+
+    // Sincronismo com Google Translate para tradução contínua de parágrafos dos estudos
+    try {
+      const domain = window.location.hostname;
+      if (lang === "pt") {
+        document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + domain + ";";
+      } else {
+        document.cookie = "googtrans=/pt/" + lang + "; path=/;";
+        document.cookie = "googtrans=/pt/" + lang + "; path=/; domain=" + domain + ";";
+      }
+      const select = document.querySelector(".goog-te-combo");
+      if (select) {
+        select.value = lang;
+        select.dispatchEvent(new Event("change"));
+      }
+    } catch (e) {}
+  }
+
+  function initLanguageSwitcher() {
+    const switcher = document.getElementById("lang-switcher");
+    const btn = document.getElementById("lang-btn");
+    const dropdown = document.getElementById("lang-dropdown");
+    if (!switcher || !btn || !dropdown) return;
+
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      const isOpen = dropdown.classList.toggle("open");
+      btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+
+    dropdown.querySelectorAll(".lang-option").forEach(opt => {
+      opt.addEventListener("click", function (e) {
+        e.stopPropagation();
+        const selectedLang = this.getAttribute("data-lang");
+        applyLanguage(selectedLang);
+        dropdown.classList.remove("open");
+        btn.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    document.addEventListener("click", function (e) {
+      if (!switcher.contains(e.target)) {
+        dropdown.classList.remove("open");
+        btn.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    let savedLang = "pt";
+    try {
+      savedLang = localStorage.getItem("portfolio_user_lang") || "pt";
+    } catch (e) {}
+    applyLanguage(savedLang);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initLanguageSwitcher);
+  } else {
+    initLanguageSwitcher();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initMobileNav);
+  } else {
+    initMobileNav();
+  }
+
+  // ScrollSpy para atualizar o menu ativo conforme a seção visualizada
+  const sections = document.querySelectorAll("section[id]");
+  const navLinks = document.querySelectorAll("#navbar a[href^='#']");
+
+  if (sections.length && navLinks.length && "IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const currentId = entry.target.getAttribute("id");
+          navLinks.forEach((link) => {
+            const href = link.getAttribute("href");
+            if (href === "#" + currentId) {
+              link.classList.add("active");
+            } else {
+              link.classList.remove("active");
+            }
+          });
+        }
+      });
+    }, { rootMargin: "-70px 0px -50% 0px" });
+
+    sections.forEach((sec) => observer.observe(sec));
+  }
+})();
+</script>
+</body>
+</html>
