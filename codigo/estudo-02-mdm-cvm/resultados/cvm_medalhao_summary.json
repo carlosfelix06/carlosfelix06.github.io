@@ -1,5 +1,5 @@
 {
-  "executed_at": "2026-11-18T18:18:26.720694",
+  "executed_at": "2026-11-18T17:56:11.493462",
   "lakehouse_engine": "DuckDB 1.5.5",
   "layers": {
     "bronze": {
@@ -21,7 +21,7 @@
       ],
       "sample": [
         {
-          "raw_id": 259,
+          "raw_id": 39784,
           "source": "CVM_CIA_ABERTA",
           "trust_rank": 1,
           "raw_cnpj": "00000000000191",
@@ -31,7 +31,7 @@
           "_raw_hash": "cf87f0d02c006ca8"
         },
         {
-          "raw_id": 461,
+          "raw_id": 39986,
           "source": "CVM_CIA_ABERTA",
           "trust_rank": 1,
           "raw_cnpj": "00000208000100",
@@ -41,7 +41,7 @@
           "_raw_hash": "aff5f1202f9b2d32"
         },
         {
-          "raw_id": 462,
+          "raw_id": 39987,
           "source": "CVM_CIA_ABERTA",
           "trust_rank": 1,
           "raw_cnpj": "33136888000143",
@@ -51,7 +51,7 @@
           "_raw_hash": "173a22345d7a8ad4"
         },
         {
-          "raw_id": 463,
+          "raw_id": 39988,
           "source": "CVM_CIA_ABERTA",
           "trust_rank": 1,
           "raw_cnpj": "10739356000103",
@@ -61,7 +61,7 @@
           "_raw_hash": "4aeb7ef32c5a95e6"
         },
         {
-          "raw_id": 2735,
+          "raw_id": 42260,
           "source": "CVM_FI_ADMIN",
           "trust_rank": 2,
           "raw_cnpj": "33850686000169",
@@ -71,7 +71,7 @@
           "_raw_hash": "590fcde622a5a4dd"
         },
         {
-          "raw_id": 2878,
+          "raw_id": 42403,
           "source": "CVM_FI_ADMIN",
           "trust_rank": 2,
           "raw_cnpj": "33923111000129",
@@ -81,7 +81,7 @@
           "_raw_hash": "9d68a9130545e965"
         },
         {
-          "raw_id": 2968,
+          "raw_id": 42493,
           "source": "CVM_ADM_FII",
           "trust_rank": 3,
           "raw_cnpj": "33850686000169",
@@ -91,7 +91,7 @@
           "_raw_hash": "1e3cb6d27f913848"
         },
         {
-          "raw_id": 2969,
+          "raw_id": 42494,
           "source": "CVM_ADM_FII",
           "trust_rank": 3,
           "raw_cnpj": "33923111000129",
@@ -101,7 +101,7 @@
           "_raw_hash": "0a97904f8eb0372b"
         },
         {
-          "raw_id": 3061,
+          "raw_id": 42586,
           "source": "CVM_FI_CUSTOD",
           "trust_rank": 4,
           "raw_cnpj": "00000000000191",
@@ -111,7 +111,7 @@
           "_raw_hash": "879aa5dd0b765f8a"
         },
         {
-          "raw_id": 3097,
+          "raw_id": 42622,
           "source": "CVM_FI_CUSTOD",
           "trust_rank": 4,
           "raw_cnpj": "00000208000100",
@@ -132,80 +132,62 @@
       "conflict_rows": 813,
       "sample": [
         {
-          "clean_cnpj": "59588111000103",
-          "clean_denom_social": "BANCO VOTORANTIM S.A.",
-          "clean_uf": "SP",
-          "clean_sit_standard": "ATIVO",
-          "clean_dt_ini_sit": "2026-11-11 00:00:00",
-          "dq_completeness_pct": 100.0,
-          "source": "CVM_CIA_ABERTA"
-        },
-        {
-          "clean_cnpj": "60872504000123",
-          "clean_denom_social": "ITAÚ UNIBANCO HOLDING S.A.",
+          "clean_cnpj": "61186680000174",
+          "clean_denom_social": "BANCO BMG S/A",
           "clean_uf": "SP",
           "clean_sit_standard": "CANCELADA",
-          "clean_dt_ini_sit": "1998-04-08 00:00:00",
+          "clean_dt_ini_sit": "1994-03-14 00:00:00",
           "dq_completeness_pct": 100.0,
           "source": "CVM_CIA_ABERTA"
         },
         {
-          "clean_cnpj": "60872504000123",
-          "clean_denom_social": "ITAÚ UNIBANCO HOLDING S.A.",
+          "clean_cnpj": "61186680000174",
+          "clean_denom_social": "BANCO BMG S/A",
           "clean_uf": "SP",
           "clean_sit_standard": "ATIVO",
-          "clean_dt_ini_sit": "2002-12-30 00:00:00",
+          "clean_dt_ini_sit": "2018-12-17 00:00:00",
           "dq_completeness_pct": 100.0,
           "source": "CVM_CIA_ABERTA"
         },
         {
-          "clean_cnpj": "00974211000125",
-          "clean_denom_social": "LINHA AMARELA S.A.- LAMSA",
-          "clean_uf": "RJ",
-          "clean_sit_standard": "CANCELADA",
-          "clean_dt_ini_sit": "2003-05-06 00:00:00",
-          "dq_completeness_pct": 100.0,
-          "source": "CVM_CIA_ABERTA"
-        },
-        {
-          "clean_cnpj": "00974211000125",
-          "clean_denom_social": "LINHA AMARELA S.A.- LAMSA",
-          "clean_uf": "RJ",
+          "clean_cnpj": "90400888000142",
+          "clean_denom_social": "BANCO SANTANDER (BRASIL) S.A.",
+          "clean_uf": "SP",
           "clean_sit_standard": "ATIVO",
-          "clean_dt_ini_sit": "2020-04-08 00:00:00",
+          "clean_dt_ini_sit": "2007-03-02 00:00:00",
           "dq_completeness_pct": 100.0,
           "source": "CVM_CIA_ABERTA"
         },
         {
-          "clean_cnpj": "08926302000105",
-          "clean_denom_social": "PRIO FORTE S.A.",
-          "clean_uf": "RJ",
-          "clean_sit_standard": "CANCELADA",
-          "clean_dt_ini_sit": "2023-03-09 00:00:00",
-          "dq_completeness_pct": 100.0,
-          "source": "CVM_CIA_ABERTA"
-        },
-        {
-          "clean_cnpj": "08926302000105",
-          "clean_denom_social": "PRIO FORTE S.A.",
-          "clean_uf": "RJ",
+          "clean_cnpj": "14998371000119",
+          "clean_denom_social": "J. MACEDO S/A",
+          "clean_uf": "CE",
           "clean_sit_standard": "ATIVO",
-          "clean_dt_ini_sit": "2024-12-19 00:00:00",
+          "clean_dt_ini_sit": "2007-10-16 00:00:00",
           "dq_completeness_pct": 100.0,
           "source": "CVM_CIA_ABERTA"
         },
         {
-          "clean_cnpj": "48967968000118",
-          "clean_denom_social": "VERT DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA.",
+          "clean_cnpj": "90400888000142",
+          "clean_denom_social": "BANCO SANTANDER (BRASIL) S.A.",
           "clean_uf": "ND",
-          "clean_sit_standard": "EM LIQUIDACAO",
-          "clean_dt_ini_sit": "2023-02-07 00:00:00",
+          "clean_sit_standard": "CANCELADA",
+          "clean_dt_ini_sit": "2017-12-15 00:00:00",
           "dq_completeness_pct": 66.66666666666666,
           "source": "CVM_FI_ADMIN"
         },
         {
-          "clean_cnpj": "48967968000118",
-          "clean_denom_social": "VERT DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA.",
+          "clean_cnpj": "40434681000110",
+          "clean_denom_social": "AZUMI DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA.",
+          "clean_uf": "ND",
+          "clean_sit_standard": "ATIVO",
+          "clean_dt_ini_sit": "2021-12-14 00:00:00",
+          "dq_completeness_pct": 66.66666666666666,
+          "source": "CVM_FI_ADMIN"
+        },
+        {
+          "clean_cnpj": "40434681000110",
+          "clean_denom_social": "AZUMI DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA.",
           "clean_uf": "ND",
           "clean_sit_standard": "CANCELADA",
           "clean_dt_ini_sit": "2025-10-01 00:00:00",
@@ -213,11 +195,29 @@
           "source": "CVM_ADM_FII"
         },
         {
-          "clean_cnpj": "59588111000103",
-          "clean_denom_social": "BANCO VOTORANTIM S.A.",
+          "clean_cnpj": "90400888000142",
+          "clean_denom_social": "BANCO SANTANDER (BRASIL) S.A.",
+          "clean_uf": "SP",
+          "clean_sit_standard": "CANCELADA",
+          "clean_dt_ini_sit": "2015-06-26 00:00:00",
+          "dq_completeness_pct": 100.0,
+          "source": "CVM_ADM_FII"
+        },
+        {
+          "clean_cnpj": "90400888000142",
+          "clean_denom_social": "BANCO SANTANDER (BRASIL) S.A.",
+          "clean_uf": "SP",
+          "clean_sit_standard": "CANCELADA",
+          "clean_dt_ini_sit": "2025-10-01 00:00:00",
+          "dq_completeness_pct": 100.0,
+          "source": "CVM_ADM_FII"
+        },
+        {
+          "clean_cnpj": "90400888000142",
+          "clean_denom_social": "BANCO SANTANDER (BRASIL) S.A.",
           "clean_uf": "ND",
           "clean_sit_standard": "CANCELADA",
-          "clean_dt_ini_sit": "2018-05-21 00:00:00",
+          "clean_dt_ini_sit": "2013-06-21 00:00:00",
           "dq_completeness_pct": 66.66666666666666,
           "source": "CVM_FI_CUSTOD"
         }

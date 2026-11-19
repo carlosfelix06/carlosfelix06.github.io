@@ -199,6 +199,26 @@
     }
   };
 
+  window.toggleTrajectoryCases = function() {
+    const container = document.getElementById('trajectory-cases-container');
+    const btn = document.getElementById('btn-toggle-cases');
+    if (!container || !btn) return;
+    const lang = document.documentElement.lang || 'pt';
+    const dict = (typeof I18N_DATA !== 'undefined' && I18N_DATA[lang]) ? I18N_DATA[lang] : {};
+    const isHidden = container.style.display === 'none' || container.style.display === '';
+    if (isHidden) {
+      container.style.display = 'block';
+      btn.setAttribute('aria-expanded', 'true');
+      const lessTxt = dict.cases_btn_less || 'Ocultar Laboratório de Pesquisa & Benchmarks';
+      btn.innerHTML = '<span data-i18n="cases_btn_less">' + lessTxt + '</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>';
+    } else {
+      container.style.display = 'none';
+      btn.setAttribute('aria-expanded', 'false');
+      const moreTxt = dict.cases_btn_more || 'Ver Laboratório de Pesquisa & Benchmarks Autorais (+3)';
+      btn.innerHTML = '<span data-i18n="cases_btn_more">' + moreTxt + '</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>';
+    }
+  };
+
 (function () {
   "use strict";
 
@@ -397,6 +417,8 @@
     "tools_cat_04": "<span class='badge-dot'></span> 04 · Business Intelligence &amp; Produtividade",
     "tools_btn_more": "Ver todas as tecnologias (+21)",
     "tools_btn_less": "Ver menos tecnologias",
+    "cases_btn_more": "Ver Laboratório de Pesquisa &amp; Benchmarks Autorais (+3)",
+    "cases_btn_less": "Ocultar Laboratório de Pesquisa &amp; Benchmarks",
     "study03_kpi1_label": "Persistência 11m",
     "study03_kpi2_label": "Spread Bancário",
     "study03_kpi3_label": "Painel 108 UF-Anos",
@@ -598,6 +620,8 @@
     "tools_cat_04": "<span class='badge-dot'></span> 04 · Business Intelligence &amp; Productivity",
     "tools_btn_more": "View all technologies (+21)",
     "tools_btn_less": "Show fewer technologies",
+    "cases_btn_more": "View Applied Research Lab &amp; Benchmarks (+3)",
+    "cases_btn_less": "Hide Applied Research Lab &amp; Benchmarks",
     "study03_kpi1_label": "11m Persistence",
     "study03_kpi2_label": "Bank Rate Spread",
     "study03_kpi3_label": "108 State-Years Panel",
@@ -799,6 +823,8 @@
     "tools_cat_04": "<span class='badge-dot'></span> 04 · Business Intelligence y Productividad",
     "tools_btn_more": "Ver todas las tecnologías (+21)",
     "tools_btn_less": "Ver menos tecnologías",
+    "cases_btn_more": "Ver Laboratorio de Investigación y Benchmarks (+3)",
+    "cases_btn_less": "Ocultar Laboratorio de Investigación y Benchmarks",
     "study03_kpi1_label": "Persistencia 11m",
     "study03_kpi2_label": "Spread Bancario",
     "study03_kpi3_label": "Panel 108 UF-Años",
