@@ -1731,6 +1731,9 @@ body { color: var(--ink); font-family: var(--sans); background: var(--bg); font-
 .tag-purple {
   color: #6A1B9A;
 }
+.tag-blue {
+  color: #2878E8;
+}
 
 .sidebar-study-name {
   font-size: 14.5px;
