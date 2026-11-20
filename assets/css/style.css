@@ -37,7 +37,7 @@ h3 { font-size: 1.15rem; margin: 0 0 .4rem; color: var(--ink-heading); font-weig
 a { color: var(--primary); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-.container { max-width: 1160px; margin: 0 auto; padding: 0 20px; }
+.container { max-width: 1320px; margin: 0 auto; padding: 0 20px; }
 .section { padding: 3.5rem 0 1rem; }
 
 
@@ -961,7 +961,7 @@ a:hover { text-decoration: underline; }
 }
 
 /* Case Study / Estudo individual */
-main.case-study { max-width: 1180px; margin: 0 auto; padding: 100px 20px 60px; font-family: var(--sans); }
+main.case-study { max-width: 1320px; margin: 0 auto; padding: 100px 20px 60px; font-family: var(--sans); }
 main.case-study h1, main.case-study h2, main.case-study h3, main.case-study table, main.case-study .meta, main.case-study .files { font-family: var(--sans); }
 main.case-study h2 {
   margin-top: 2.4rem;
