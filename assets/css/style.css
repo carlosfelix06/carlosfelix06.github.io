@@ -19,6 +19,11 @@
 }
 
 * { box-sizing: border-box; }
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+}
 html { scroll-behavior: smooth; scroll-padding-top: 75px; }
 body {
   margin: 0;
@@ -2191,6 +2196,8 @@ html {
   .hero-grid {
     grid-template-columns: 1fr !important;
     gap: 18px !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
   #hero h1 {
     font-size: 1.85rem !important;
@@ -2218,9 +2225,82 @@ html {
     text-align: center !important;
     box-sizing: border-box !important;
   }
+  /* Ocultar card de Últimos Estudos na Home no mobile para destravar rolagem */
+  .hero-quick-card.hero-impact-card,
+  #hero .hero-impact-card {
+    display: none !important;
+  }
   .hero-quick-card {
     padding: 16px 14px !important;
     margin-top: 6px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Barras de navegação internas nos estudos (.files) */
+  .files, .study-article .files {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    flex-wrap: wrap !important;
+    padding: 10px 12px !important;
+    gap: 6px !important;
+  }
+  .files a, .study-article .files a {
+    flex: 1 1 auto !important;
+    text-align: center !important;
+    justify-content: center !important;
+    font-size: 11.5px !important;
+    padding: 7px 10px !important;
+  }
+
+  /* Barra de Proporção / Split-Bar */
+  .split-bar-box {
+    flex-direction: column !important;
+    height: auto !important;
+    min-height: auto !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    gap: 1px !important;
+    background: #E2E8F0 !important;
+  }
+  .split-seg {
+    width: 100% !important;
+    justify-content: flex-start !important;
+    padding: 8px 12px !important;
+    font-size: 12.5px !important;
+    white-space: normal !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Gráficos Interativos e Plotly */
+  .study-chart, .study-figure, .viz-interactive-shell, .viz-canvas, .js-plotly-plot, .plot-container {
+    max-width: 100% !important;
+    width: 100% !important;
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
+  }
+  .js-plotly-plot .plotly .main-svg {
+    max-width: 100% !important;
+  }
+  .viz-toolbar {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+  }
+  .viz-pills {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+    width: 100% !important;
+  }
+  .viz-pill {
+    font-size: 12px !important;
+    padding: 6px 10px !important;
+    white-space: normal !important;
+    text-align: center !important;
+    flex: 1 1 auto !important;
   }
 
   /* Seções e Títulos */
